@@ -85,7 +85,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
             title: 'Seleccionar vereda',
             initialValue: 'CC', 
             hintext: 'Seleccionar vereda', 
-            items:const ['1','2','3'], 
+            items:PlacesListJson.placesBYMunicipalities[selectedMunicipality]??[], 
             validator: (value) => ValidationInputs.inputTypeSelect(value),
             onChanged: (val){  
               setState(() {
