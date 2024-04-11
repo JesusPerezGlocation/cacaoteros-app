@@ -54,7 +54,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
             items:PlacesListJson.departments, 
             validator: (value) => ValidationInputs.inputTypeSelect(value),
             onChanged: (val){  
-                              setState(() {
+                  setState(() {
                   selectedDepartment = val.toString();
                   selectedMunicipality = '';
                   selectedRural = '';
@@ -63,7 +63,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
           ),
           SizedBox(height: size.height*.03),
           //#2
-          //if (selectedDepartment.isNotEmpty)
+          if (selectedDepartment.isNotEmpty)
           DropdownComponents(
             title: 'Seleccionar municipio',
             initialValue: 'CC', 
@@ -71,19 +71,26 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
             items:PlacesListJson.municipalitiesByDepartment[selectedDepartment]??[], 
             validator: (value) => ValidationInputs.inputTypeSelect(value),
             onChanged: (val){ 
-           
+            setState(() {
+              selectedMunicipality =val.toString();
+              selectedRural = '';
+            });
             },
           ),
 
            SizedBox(height: size.height*.03),
           //#3
+           if (selectedMunicipality.isNotEmpty)
           DropdownComponents(
             title: 'Seleccionar vereda',
             initialValue: 'CC', 
             hintext: 'Seleccionar vereda', 
             items:const ['1','2','3'], 
             validator: (value) => ValidationInputs.inputTypeSelect(value),
-            onChanged: (val){           
+            onChanged: (val){  
+              setState(() {
+                selectedRural=val.toString();
+              });         
             },
           ),
       
