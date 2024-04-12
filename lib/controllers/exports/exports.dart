@@ -1,4 +1,7 @@
 
+export 'package:surveys_app/views/components/loading_app_component.dart';
+
+export 'package:surveys_app/controllers/services/filter_places_services.dart';
 export 'package:surveys_app/controllers/providers/surveys_questions_provider.dart';
 export 'package:surveys_app/views/components/is_empty_data.dart';
 export 'package:surveys_app/views/widgets/show_modal_municipalities.dart';

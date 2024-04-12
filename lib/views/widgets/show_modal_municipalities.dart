@@ -60,17 +60,17 @@ final size = MediaQuery.of(context).size;
     children: [
      const TitleAndCloseModal(title: 'DEPARTAMENTO'),
       
-    if (JsonDataMunicipalities.departments.isEmpty) const IsEmptyDataComponent(title: 'No se encontraron municipios') else Expanded(
+    if (FilterPlacesServices.departments.isEmpty) const IsEmptyDataComponent(title: 'No se encontraron municipios') else Expanded(
         child: FadeIn(
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
            
-          itemCount: JsonDataMunicipalities.departments.length,
+          itemCount: FilterPlacesServices.departments.length,
             separatorBuilder:(context, index) => const Divider(), 
             itemBuilder:(context, index) {
               /*muestra el elemento en la lista */
-               final item = JsonDataMunicipalities.departments[index];
+               final item = FilterPlacesServices.departments[index];
               return ListTile(
                 onTap: () {
                   /*le paso el dato selccionado al controlador del departamento */
@@ -121,6 +121,16 @@ class _ContainerShowModalTwoState extends State<_ContainerShowModalTwo> {
   static const int _pageSize = 10; // Tamaño de la página
   bool _hasNextPage = true; // Indica si hay más páginas disponibles
 
+  bool isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 1),(){
+    setState(()=> isLoading=false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -137,57 +147,57 @@ class _ContainerShowModalTwoState extends State<_ContainerShowModalTwo> {
         children: [
           TitleAndCloseModal(
               title: 'MUNICIPIO > ${surveysPRV.department.text}'),
-
-         JsonDataMunicipalities.getMunicipalitiesByDepartment(surveysPRV.department.text).isEmpty?
-
-    const IsEmptyDataComponent(title: 'No se encontraron municipios'):
-          Expanded(
+       
+         if (FilterPlacesServices.getMunicipalitiesByDepartment(surveysPRV.department.text).isEmpty)
+          const IsEmptyDataComponent(title: 'No se encontraron municipios') else Expanded(
             child: FutureBuilder<List<MunicipalitiesModels>>(
               future: _fetchMunicipalities(surveysPRV.department.text),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const LoadingAppComponent();
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else {
                   final municipalities = snapshot.data!;
-                  return ListView.separated(
-                    itemCount: municipalities.length,
-                    separatorBuilder: (context, index) =>
-                        const Divider(),
-                    physics: const BouncingScrollPhysics(),
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    itemBuilder: (context, index) {
-                      final data = municipalities[index];
-                      return ListTile(
-                        onTap: () {
-                  /*le paso el dato selccionado al controlador del departamento */
-                  surveysPRV.municipality.text =data.municipio;
-                  /*seteo el dato */
-                  surveysPRV.setMunicipality(data.municipio);
-          
-                   /*cierro el pop up*/
-                    Navigator.pop(context);
-                        },
-                        leading: const Icon(IconlyLight.location),
-                        title: Text(
-                          data.municipio,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.start,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        trailing: const Icon(IconlyLight.arrow_right_2),
-                      );
-                    },
+                  return FadeIn(
+                    child: ListView.separated(
+                      itemCount: municipalities.length,
+                      separatorBuilder: (context, index) =>
+                          const Divider(),
+                      physics: const BouncingScrollPhysics(),
+                      keyboardDismissBehavior:
+                          ScrollViewKeyboardDismissBehavior.onDrag,
+                      itemBuilder: (context, index) {
+                        final data = municipalities[index];
+                        return ListTile(
+                          onTap: () {
+                    /*le paso el dato selccionado al controlador del departamento */
+                    surveysPRV.municipality.text =data.municipio;
+                    /*seteo el dato */
+                    surveysPRV.setMunicipality(data.municipio);
+                              
+                     /*cierro el pop up*/
+                      Navigator.pop(context);
+                          },
+                          leading: const Icon(IconlyLight.location),
+                          title: Text(
+                            data.municipio,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.start,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          trailing: const Icon(IconlyLight.arrow_right_2),
+                        );
+                      },
+                    ),
                   );
                 }
               },
             ),
           ),
-        if(JsonDataMunicipalities.getMunicipalitiesByDepartment(surveysPRV.department.text).isNotEmpty) 
-        Row(
+        if(FilterPlacesServices.getMunicipalitiesByDepartment(surveysPRV.department.text).isNotEmpty) 
+         Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
@@ -208,7 +218,7 @@ class _ContainerShowModalTwoState extends State<_ContainerShowModalTwo> {
 
   Future<List<MunicipalitiesModels>> _fetchMunicipalities(String text) async {
     /*lama a la función para obtener municipios según el departamento y la página actual */
-    final municipalities = await JsonDataMunicipalities.getMunicipalitiesByDepartment(
+    final municipalities = await FilterPlacesServices.getMunicipalitiesByDepartment(
         text,
         page: _currentPage,
         pageSize: _pageSize);

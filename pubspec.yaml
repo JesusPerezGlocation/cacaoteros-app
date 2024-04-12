@@ -42,6 +42,7 @@ dependencies:
   icons_plus: ^5.0.0
   animate_do: ^3.3.4
   provider: ^6.1.2
+  loading_animation_widget: ^1.2.1
 
 dev_dependencies:
   flutter_test:
