@@ -2,6 +2,7 @@
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
@@ -16,14 +17,14 @@ const FourSurveysScreen({super.key});
 }
 
 class _FourSurveysScreenState extends State<FourSurveysScreen> {
+   
+ 
 
-  //!!!cambiar y crear un provider
-    String selectedDepartment = '';
-  String selectedMunicipality = '';
-  String selectedRural = '';
+ 
  @override
  Widget build(BuildContext context) {
  final size = MediaQuery.of(context).size;
+ final surveysPRV= Provider.of<SurveysQuestionsProvider>(context);
  return Scaffold(
   appBar: AppBar(
         actions:const [
@@ -46,54 +47,61 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
       answers: '4',
       ),
       SizedBox(height: size.height*.04),
-          //#1 tipo de persona
-          DropdownComponents(
+          //#1 buscar municipio
+          InkWell(
+            onTap: (){
+              /*si presionan limpia el dato seleccionado */
+              surveysPRV.cleanDepartaments();
+              ShowModalMunicipality.showSelectDepartament(context);
+            },
+            child: InputDesabledComponents(
             title: 'Seleccionar departamento',
-            initialValue: 'CC', 
-            hintext: 'Seleccionar departamento', 
-            items:PlacesListJson.departments, 
+             hintext:  ' Seleccionar departamento', 
+             enabled: false,
+             controller: surveysPRV.department,
             validator: (value) => ValidationInputs.inputTypeSelect(value),
-            onChanged: (val){  
-                  setState(() {
-                  selectedDepartment = val.toString();
-                  selectedMunicipality = '';
-                  selectedRural = '';
-                });         
-            },
+             onChanged: (val)=> surveysPRV.setDepartement(val),
+             
+             ),
           ),
-          SizedBox(height: size.height*.03),
-          //#2
-          if (selectedDepartment.isNotEmpty)
-          DropdownComponents(
-            title: 'Seleccionar municipio',
-            initialValue: 'CC', 
-            hintext: 'Seleccionar municipio', 
-            items:PlacesListJson.municipalitiesByDepartment[selectedDepartment]??[], 
-            validator: (value) => ValidationInputs.inputTypeSelect(value),
-            onChanged: (val){ 
-            setState(() {
-              selectedMunicipality =val.toString();
-              selectedRural = '';
-            });
-            },
-          ),
-
-           SizedBox(height: size.height*.03),
-          //#3
-           if (selectedMunicipality.isNotEmpty)
-          DropdownComponents(
-            title: 'Seleccionar vereda',
-            initialValue: 'CC', 
-            hintext: 'Seleccionar vereda', 
-            items:PlacesListJson.placesBYMunicipalities[selectedMunicipality]??[], 
-            validator: (value) => ValidationInputs.inputTypeSelect(value),
-            onChanged: (val){  
-              setState(() {
-                selectedRural=val.toString();
-              });         
-            },
-          ),
-      
+        
+        SizedBox(height: size.height*.03),
+        //# 2 
+        if(surveysPRV.department.text.isNotEmpty)
+        InkWell(
+          onTap: (){
+            surveysPRV.cleanMunicipality();
+             ShowModalMunicipality.showSelectMunicipality(context);
+          },
+          child: InputDesabledComponents(
+              title: 'Seleccionar municipio',
+               hintext:  ' Seleccionar municipio', 
+               enabled: false,
+               controller: surveysPRV.municipality,
+              validator: (value) => ValidationInputs.inputTypeSelect(value),
+               onChanged: (val)=> surveysPRV.setMunicipality(val),
+               
+               ),
+        ),
+ 
+      SizedBox(height: size.height*.03),
+        //#3 
+       if(surveysPRV.municipality.text.isNotEmpty)
+        InkWell(
+          onTap: () {
+            surveysPRV.cleanPlace();
+          },
+          child: InputDesabledComponents(
+              title: 'Seleccionar vereda',
+               hintext:  ' Seleccionar vereda', 
+               enabled: false,
+               controller: surveysPRV.place,
+              validator: (value) => ValidationInputs.inputTypeSelect(value),
+               onChanged: (val)=> surveysPRV.setPlace(val),
+               
+               ),
+        ),
+    
       SizedBox(height: size.height*.06),
 
       /*boton para continuar*/

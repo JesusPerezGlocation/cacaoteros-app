@@ -41,6 +41,7 @@ dependencies:
   iconly: ^1.0.1
   icons_plus: ^5.0.0
   animate_do: ^3.3.4
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

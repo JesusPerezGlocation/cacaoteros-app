@@ -20,3 +20,23 @@ this.maxLine,
       );
  }
 }
+
+
+class TitleAndCloseModal extends StatelessWidget {
+  final String title;
+const TitleAndCloseModal({super.key, required this.title});
+ @override
+ Widget build(BuildContext context) {
+ final size = MediaQuery.of(context).size;
+ return  ListTile(
+        contentPadding: EdgeInsets.only(right:size.width*.02, left: size.width*.04),
+        leading: Text(
+        title,                
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.start,
+        style: Theme.of(context).textTheme.titleLarge,),
+        trailing: IconButton(onPressed: ()=> Navigator.pop(context), icon:const Icon(Icons.close_outlined)),
+      );
+ }
+}

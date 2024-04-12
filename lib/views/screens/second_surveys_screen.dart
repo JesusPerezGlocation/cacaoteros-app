@@ -41,7 +41,6 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
       answers: '2',
       ),
       SizedBox(height: size.height*.04),
-    
         //#1 tipo de persona
            DropdownComponents(
             title: 'Tipo de persona',

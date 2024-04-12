@@ -89,7 +89,8 @@ class _DropdownComponentsState extends State<DropdownComponents> {
         labelText: widget.title,
           hintText: widget.hintext,
          ),
-      items: widget.items.map((String items) {
+      items:
+       widget.items.map((String items) {
         return DropdownMenuItem(
           value: items,
           child: Text(items),
@@ -98,4 +99,49 @@ class _DropdownComponentsState extends State<DropdownComponents> {
       onChanged: (value) => widget.onChanged(value),
     );
   }
+}
+
+
+
+ 
+/*
+input desactivado
+*/
+class InputDesabledComponents extends StatelessWidget {
+  final String title;
+  final String hintext;
+  final int? maxLine;
+  final bool? enabled;
+  final TextEditingController? controller;
+  final String? Function(String? value) validator;
+  final void Function(String value) onChanged;
+  
+const InputDesabledComponents({super.key, 
+required this.title, 
+required this.hintext, 
+this.maxLine, 
+this.controller, 
+required this.validator,
+ required this.onChanged, this.enabled,
+ });
+ @override
+ Widget build(BuildContext context) {
+  
+ return TextFormField(
+      controller: controller,
+      enabled:enabled?? false,
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PaletteColorsTheme.principalColor, fontWeight: FontWeight.w500),
+      maxLines: maxLine ?? 1,
+      cursorColor: PaletteColorsTheme.principalColor,
+      keyboardType:TextInputType.text,
+      onChanged: (value) => onChanged(value),
+      validator: (value) => validator(value),
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+          hintText: hintext,
+          labelText: title,
+         // prefixIcon: Icon(iconData),
+          ),
+    );
+ }
 }
