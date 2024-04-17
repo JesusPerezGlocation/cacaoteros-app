@@ -1,0 +1,162 @@
+{
+  "project_info": {
+    "project_number": "685453403635",
+    "project_id": "odk-central-393313",
+    "storage_bucket": "odk-central-393313.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685453403635:android:901bb295ea495b788d1e86",
+        "android_client_info": {
+          "package_name": "com.example.surveys_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi4Waboq7zFNfF2LaTlFI83Kujxynl50M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685453403635-e0ijhu4pan7vkiau3ohdblugj1b5uk4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "survey.record"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685453403635:android:bb0bbab50a9c0ff38d1e86",
+        "android_client_info": {
+          "package_name": "com.example.test_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi4Waboq7zFNfF2LaTlFI83Kujxynl50M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685453403635-e0ijhu4pan7vkiau3ohdblugj1b5uk4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "survey.record"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685453403635:android:13c27d50a18742f58d1e86",
+        "android_client_info": {
+          "package_name": "com.mycompany.pruebascarlos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi4Waboq7zFNfF2LaTlFI83Kujxynl50M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685453403635-e0ijhu4pan7vkiau3ohdblugj1b5uk4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "survey.record"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685453403635:android:96d3fd41ee41d4d78d1e86",
+        "android_client_info": {
+          "package_name": "survey.record"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685453403635-gaj7voa6ucbplt46ot2362b43iitebeo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "survey.record",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi4Waboq7zFNfF2LaTlFI83Kujxynl50M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685453403635-vc6q9rolfn79a0j9b27v57q21mop7rkf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "685453403635-e0ijhu4pan7vkiau3ohdblugj1b5uk4l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "survey.record"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
