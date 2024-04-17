@@ -1,4 +1,4 @@
-
+export 'package:surveys_app/controllers/paths/petitions_path.dart';
 export 'package:surveys_app/views/widgets/term_and_cond_show_modal_widget.dart';
 export 'package:surveys_app/views/components/signature_component.dart';
 export 'package:surveys_app/views/components/icon_button_add_member_component.dart';
@@ -7,7 +7,7 @@ export 'package:surveys_app/views/widgets/show_modal_location_widget.dart';
 export 'package:surveys_app/controllers/providers/permission_location_provider.dart';
 export 'package:surveys_app/views/components/loading_app_component.dart';
 export 'package:surveys_app/controllers/services/filter_places_services.dart';
-export 'package:surveys_app/controllers/providers/surveys_questions_provider.dart';
+export 'package:surveys_app/controllers/providers/surveys_visit_registration_register.dart';
 export 'package:surveys_app/views/components/is_empty_data.dart';
 export 'package:surveys_app/views/widgets/show_modal_municipalities.dart';
 export 'package:surveys_app/views/components/save_draft_icon_components.dart';

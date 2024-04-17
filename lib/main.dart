@@ -29,7 +29,8 @@ class StateApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         /*provider para manejar el gestor de estado de las preguntas */
-        ChangeNotifierProvider(create: (context) => SurveysQuestionsProvider()),
+        ChangeNotifierProvider(
+            create: (context) => SurveysVisitRegistrationProvider()),
         ChangeNotifierProvider(
             create: (context) => PermissionLocationProvider()),
       ],
