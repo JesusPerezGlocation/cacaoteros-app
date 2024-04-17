@@ -82,7 +82,7 @@ class _DropdownComponentsState extends State<DropdownComponents> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       elevation: 3,
-      validator: (value) => widget.validator(value.toString()),
+      validator: (value) => widget.validator(value),
       isExpanded: true,
       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: PaletteColorsTheme.principalColor,

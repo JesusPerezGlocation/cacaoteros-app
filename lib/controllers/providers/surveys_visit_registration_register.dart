@@ -168,6 +168,84 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   }
 
 //?tercera pantalla #3*/
+  final TextEditingController _possesionLandType = TextEditingController();
+  TextEditingController get possesionLandType => _possesionLandType;
+
+  setPosessionLandTypee(String val) {
+    _possesionLandType.text = val; // tenienca de la tierra
+    notifyListeners();
+  }
+
+  final TextEditingController _originPossesionLand = TextEditingController();
+  TextEditingController get originPossesionLand => _originPossesionLand;
+
+  setOriginPosessionLand(String val) {
+    _originPossesionLand.text = val; // origen de la tenencia de la tierra
+    notifyListeners();
+  }
+
+  final TextEditingController _possesionOverCultivation =
+      TextEditingController();
+  TextEditingController get possesionOverCultivation =>
+      _possesionOverCultivation;
+
+  setPossesionOverCultivation(String val) {
+    _possesionOverCultivation.text = val; // posesión sobre cultivo
+    notifyListeners();
+  }
+
+  final TextEditingController _producesOrganization = TextEditingController();
+  TextEditingController get producesOrganization => _producesOrganization;
+
+  setProducesOrganization(String val) {
+    _producesOrganization.text = val; // afilización a productores
+    notifyListeners();
+  }
+
+  final TextEditingController _nameOrganization = TextEditingController();
+  TextEditingController get nameOrganization => _nameOrganization;
+
+  setNameOrganization(String val) {
+    _nameOrganization.text =
+        val; // nombre de alguna organización a la que pertenece
+    notifyListeners();
+  }
+
+  final TextEditingController _mainEconomicActivity = TextEditingController();
+  TextEditingController get mainEconomicActivity => _mainEconomicActivity;
+
+  setMainEconomicActivity(String val) {
+    _mainEconomicActivity.text = val; // principal actividad economica
+    notifyListeners();
+  }
+
+  final TextEditingController _mainEconomicActivityOther =
+      TextEditingController();
+  TextEditingController get mainEconomicActivityOther =>
+      _mainEconomicActivityOther;
+
+  setMainEconomicActivityOther(String val) {
+    _mainEconomicActivityOther.text = val; //
+    notifyListeners();
+  }
+
+  final TextEditingController _numberMonthWorkFarm = TextEditingController();
+  TextEditingController get numberMonthWorkFarm => _numberMonthWorkFarm;
+
+  setNumberMonthWorkFarm(String val) {
+    _numberMonthWorkFarm.text =
+        val; // número de dias al mes que trabaja en el cultivo d cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _numberWithoutFarm = TextEditingController();
+  TextEditingController get numberWithoutFarm => _numberWithoutFarm;
+
+  setNumberWithoutFarm(String val) {
+    _numberWithoutFarm.text =
+        val; // número de dias al mes que trabaja fuera de la finca
+    notifyListeners();
+  }
 
 //?pantalla
 /*seleccion de municpio, departamento y vereda*/
