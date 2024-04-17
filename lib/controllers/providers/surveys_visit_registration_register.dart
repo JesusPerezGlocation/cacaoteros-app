@@ -11,9 +11,6 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final CollectionReference databaseReference =
       FirebaseFirestore.instance.collection(ApiPaths.cacaotesting);
 
-  final ScrollController _controller = ScrollController();
-  ScrollController get controller => _controller;
-
 //?primera pantalla #1*/
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
@@ -28,7 +25,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get selectedPersonType => _selectedPersonType;
 
   setSelectedPersonType(String val) {
-    _selectedPersonType.text = val;
+    _selectedPersonType.text = val; //tipo de persona
     notifyListeners();
   }
 
@@ -36,7 +33,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get selectedDocumentType => _selectedDocumentType;
 
   setSelectedDocumentType(String val) {
-    _selectedDocumentType.text = val;
+    _selectedDocumentType.text = val; //tipo de documento
     notifyListeners();
   }
 
@@ -46,7 +43,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
 
   setSelectedDocumentTypeOther(String val) {
     //!!al enviar los datos si el usuario selecciona otro, envia el _selecDocumentTypeOther en vez de _selectedDocumentType
-    _selecDocumentTypeOther.text = val;
+    _selecDocumentTypeOther.text = val; // otro documento
     notifyListeners();
   }
 
@@ -54,7 +51,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get documentNumber => _documentNumber;
 
   setDocumentNumber(String val) {
-    _documentNumber.text = val;
+    _documentNumber.text = val; //número de documento
     notifyListeners();
   }
 
@@ -62,7 +59,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get fullName => _fullName;
 
   setFullName(String val) {
-    _fullName.text = val;
+    _fullName.text = val; //nombre completo
     notifyListeners();
   }
 
@@ -70,7 +67,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get phoneNumber => _phoneNumber;
 
   setPhoneNumber(String val) {
-    _phoneNumber.text = val;
+    _phoneNumber.text = val; //número de celular
     notifyListeners();
   }
 
@@ -78,7 +75,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get landlineNumber => _landlineNumber;
 
   setLandlineNumber(String val) {
-    _landlineNumber.text = val;
+    _landlineNumber.text = val; //número de télefono
     notifyListeners();
   }
 
@@ -86,7 +83,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get emailAddress => _emailAddress;
 
   setEmailAddress(String val) {
-    _emailAddress.text = val;
+    _emailAddress.text = val; //correo
     notifyListeners();
   }
 
@@ -94,7 +91,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get gender => _gender;
 
   setGender(String val) {
-    _gender.text = val;
+    _gender.text = val; //genero
     notifyListeners();
   }
 
@@ -102,21 +99,23 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get birthMonth => _birthMonth;
 
   setBirthMonth(String val) {
-    _birthMonth.text = val;
+    _birthMonth.text = val; //mes cumpleaños
     notifyListeners();
   }
 
   final TextEditingController _birthDay = TextEditingController();
   TextEditingController get birthDay => _birthDay;
+
   setBirthDay(String val) {
-    _birthDay.text = val;
+    _birthDay.text = val; //dia cumpleaños
     notifyListeners();
   }
 
   final TextEditingController _birthYear = TextEditingController();
   TextEditingController get birthYear => _birthYear;
+
   setBirthYear(String val) {
-    _birthYear.text = val;
+    _birthYear.text = val; //año cumpleaños
     notifyListeners();
   }
 
@@ -124,7 +123,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get civilStatus => _civilStatus;
 
   setCivilStatus(String val) {
-    _civilStatus.text = val;
+    _civilStatus.text = val; //estado civil
     notifyListeners();
   }
 
@@ -132,7 +131,15 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get nationality => _nationality;
 
   setNationality(String val) {
-    _nationality.text = val;
+    _nationality.text = val; //nacionalidad
+    notifyListeners();
+  }
+
+  final TextEditingController _nationalityOther = TextEditingController();
+  TextEditingController get nationalityOther => _nationalityOther;
+
+  setNationalityOther(String val) {
+    _nationalityOther.text = val; //otra nacionalidad
     notifyListeners();
   }
 
@@ -140,7 +147,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get educationalLevel => _educationalLevel;
 
   setEducationalLevel(String val) {
-    _educationalLevel.text = val;
+    _educationalLevel.text = val; //nivel de educación
     notifyListeners();
   }
 
@@ -148,7 +155,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get yearsStudied => _yearsStudied;
 
   setYearsStudied(String val) {
-    _yearsStudied.text = val;
+    _yearsStudied.text = val; //años estudiados
     notifyListeners();
   }
 
@@ -156,9 +163,11 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get obtainedTitle => _obtainedTitle;
 
   setObtainedTitle(String val) {
-    _obtainedTitle.text = val;
+    _obtainedTitle.text = val; //titulo obtenido
     notifyListeners();
   }
+
+//?tercera pantalla #3*/
 
 //?pantalla
 /*seleccion de municpio, departamento y vereda*/

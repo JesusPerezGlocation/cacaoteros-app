@@ -59,18 +59,17 @@ input de tipo select
 class DropdownComponents extends StatefulWidget {
   final String title;
   final String hintext;
-  final String initialValue;
+  final String? initialValue;
   final List<String> items;
-
   final void Function(Object? value) onChanged;
   final String? Function(String? value) validator;
   const DropdownComponents({
     super.key,
-    required this.initialValue,
+    required this.title,
+    this.initialValue,
     required this.hintext,
     required this.items,
     required this.onChanged,
-    required this.title,
     required this.validator,
   });
 
@@ -83,8 +82,7 @@ class _DropdownComponentsState extends State<DropdownComponents> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField(
       elevation: 3,
-      validator: (value) => widget.validator(value),
-      isDense: true,
+      validator: (value) => widget.validator(value.toString()),
       isExpanded: true,
       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
           color: PaletteColorsTheme.principalColor,
@@ -99,7 +97,9 @@ class _DropdownComponentsState extends State<DropdownComponents> {
           child: Text(items),
         );
       }).toList(),
-      onChanged: (value) => widget.onChanged(value),
+      onChanged: (value) {
+        setState(() => widget.onChanged(value));
+      },
     );
   }
 }
@@ -165,6 +165,63 @@ class InputsDatesComponent extends StatelessWidget {
   final String? Function(String? value) validator;
   final void Function(String value) onChanged;
   const InputsDatesComponent({
+    super.key,
+    required this.title,
+    required this.hintext,
+    this.initialValue,
+    this.maxLength,
+    this.enabled,
+    this.maxLine,
+    this.keyboardType,
+    this.textInputAction,
+    this.controller,
+    required this.validator,
+    required this.onChanged,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      initialValue: initialValue,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      enabled: enabled,
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
+      maxLines: maxLine ?? 1,
+      maxLength: maxLength ?? 2,
+      cursorColor: PaletteColorsTheme.principalColor,
+      keyboardType: keyboardType ?? TextInputType.text,
+      onChanged: (value) => onChanged(value),
+      validator: (value) => validator(value),
+      textInputAction: textInputAction ?? TextInputAction.done,
+      decoration: InputDecoration(
+        counter: const SizedBox(),
+        hintText: hintext,
+        labelText: title,
+        // prefixIcon: Icon(iconData),
+      ),
+    );
+  }
+}
+
+/*
+inputs para números de telefonos
+*/
+
+class InputsPhoneComponent extends StatelessWidget {
+  final String title;
+  final String hintext;
+  final String? initialValue;
+  final bool? enabled;
+  final int? maxLine;
+  final int? maxLength;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextEditingController? controller;
+  final String? Function(String? value) validator;
+  final void Function(String value) onChanged;
+  const InputsPhoneComponent({
     super.key,
     required this.title,
     required this.hintext,

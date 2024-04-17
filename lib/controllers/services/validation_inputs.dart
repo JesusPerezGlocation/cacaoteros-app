@@ -20,7 +20,7 @@ class ValidationInputs {
   }
 
   /*ingresar correo electrónico */
-  static String? email(String? value) {
+  static String? emailValidations(String? value) {
     if (value == null) return 'Por favor, ingrese un correo';
     value = value.trim();
     if (value.isEmpty) return 'Por favor, ingrese un correo';
