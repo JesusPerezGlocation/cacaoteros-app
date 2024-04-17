@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -38,23 +39,27 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
         child: Column(
           children: [
             /*componente para llenar las encuestas*/
-            StartSurveysComponents(
-              title: 'Registro de visitas',
-              answers: '10/50 respuestas conectar',
-              dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-              percent: 0.5,
-              onTap: () {
-                /*navega a la primera pantalla de preguntas */
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FirstSurveysScreens(
-                              dateTime:
-                                  DateFormat('dd/MM/yyyy').format(dateTime),
-                            )));
-              },
+            SizedBox(
+              height: size.height * .35,
+              width: size.width,
+              child: ListSurveysHomeComponents(dateTime: dateTime),
             ),
-            SizedBox(height: size.height * .03),
+            // StartSurveysComponents(
+            //   title: 'Registro de visitas',
+            //   answers: '10/50 respuestas conectar',
+            //   dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
+            //   percent: 0.5,
+            //   onTap: () {
+            //     /*navega a la primera pantalla de preguntas */
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => FirstSurveysScreens(
+            //                   dateTime:
+            //                       DateFormat('dd/MM/yyyy').format(dateTime),
+            //                 )));
+            //   },
+            // ),
 
             /*ver todos los borradores*/
             ViewAllDraftComponents(

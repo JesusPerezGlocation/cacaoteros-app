@@ -8,6 +8,8 @@ componente para iniciar las encuentes, en caso de ser varias encuestas retornari
 */
 class StartSurveysComponents extends StatelessWidget {
   final String title;
+  final String image;
+  final Color color;
   final String answers;
   final double percent;
   final String dateTime;
@@ -18,6 +20,8 @@ class StartSurveysComponents extends StatelessWidget {
     required this.answers,
     required this.percent,
     required this.dateTime,
+    required this.image,
+    required this.color,
     required this.onTap,
   });
   @override
@@ -25,7 +29,7 @@ class StartSurveysComponents extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Container(
       height: size.height * .3,
-      width: size.width,
+      width: size.width * .9,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -52,7 +56,7 @@ class StartSurveysComponents extends StatelessWidget {
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15)),
                   child: Image.asset(
-                    ImagesPaths.surveyImg,
+                    image,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) =>
                         Image.asset(ImagesPaths.logo),
@@ -87,10 +91,10 @@ class StartSurveysComponents extends StatelessWidget {
                       lineHeight: size.height * .015,
                       percent: percent,
                       barRadius: const Radius.circular(10),
-                      backgroundColor: PaletteColorsTheme.greyColor,
-                      linearGradient: const LinearGradient(colors: [
-                        PaletteColorsTheme.principalColor,
-                        Color.fromARGB(255, 132, 163, 54),
+                      backgroundColor: color.withOpacity(0.1),
+                      linearGradient: LinearGradient(colors: [
+                        color,
+                        color.withOpacity(0.4),
                       ]),
                     ),
                     SizedBox(height: size.height * .015),
@@ -111,8 +115,9 @@ class StartSurveysComponents extends StatelessWidget {
                 horizontal: size.width * .04, vertical: size.height * .01),
             child: InkWell(
               onTap: () => onTap(),
-              child: const CircleAvatar(
-                child: Icon(IconlyLight.arrow_right_2),
+              child: CircleAvatar(
+                backgroundColor: color,
+                child: const Icon(IconlyLight.arrow_right_2),
               ),
             ),
           ),

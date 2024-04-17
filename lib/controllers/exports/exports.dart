@@ -1,3 +1,4 @@
+export 'package:surveys_app/views/components/list_surveys_home_components.dart';
 export 'package:surveys_app/controllers/paths/petitions_path.dart';
 export 'package:surveys_app/views/widgets/term_and_cond_show_modal_widget.dart';
 export 'package:surveys_app/views/components/signature_component.dart';
