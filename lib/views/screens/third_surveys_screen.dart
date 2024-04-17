@@ -158,13 +158,14 @@ class _ThirdSurveysScreenState extends State<ThirdSurveysScreen> {
 
               SizedBox(height: size.height * .03),
               //#8
-              InputsComponent(
+              InputsDatesComponent(
                 title: 'Número de días al mes que labora fuera de la finca',
                 hintext: ' Ingresar número',
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
+                maxLength: 2,
                 controller: surveysPrv.numberWithoutFarm,
-                validator: (val) => ValidationInputs.inputEmpty(val),
+                validator: (val) => ValidationInputs.validateDayOfMonth(val),
                 onChanged: (val) => surveysPrv.setNumberWithoutFarm(val),
               ),
 

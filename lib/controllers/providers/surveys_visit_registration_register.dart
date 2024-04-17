@@ -247,7 +247,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//?pantalla
+//?cuarta pantalla #4*/
 /*seleccion de municpio, departamento y vereda*/
   final TextEditingController _department = TextEditingController();
   final TextEditingController _municipality = TextEditingController();
@@ -256,6 +256,45 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get department => _department;
   TextEditingController get municipality => _municipality;
   TextEditingController get place => _place;
+
+//?quinta pantalla #5*/
+
+  double? _latitude;
+  double? _longitude;
+
+  double? get latitude => _latitude;
+  double? get longitude => _longitude;
+
+  void setUpdateLocation(double? lat, double? long) {
+    _latitude = lat;
+    _longitude = long;
+    notifyListeners();
+  }
+
+  final TextEditingController _nameFarm = TextEditingController();
+  TextEditingController get nameFarm => _nameFarm;
+
+  setnameFarm(String val) {
+    _nameFarm.text = val; // nombre de la finca
+    notifyListeners();
+  }
+
+  final TextEditingController _numberHectareasProperty =
+      TextEditingController();
+  TextEditingController get numberHectareasProperty => _numberHectareasProperty;
+
+  setNumberHectareasProperty(String val) {
+    _numberHectareasProperty.text = val; // numero de hectareas del predio
+    notifyListeners();
+  }
+
+  final TextEditingController _hasCertification = TextEditingController();
+  TextEditingController get hasCertification => _hasCertification;
+
+  setHasCertification(String val) {
+    _hasCertification.text = val; // tiene certificación
+    notifyListeners();
+  }
 
 //petición a firebase
 
