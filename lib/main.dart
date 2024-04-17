@@ -31,6 +31,7 @@ class StateApp extends StatelessWidget {
         /*provider para manejar el gestor de estado de las preguntas */
         ChangeNotifierProvider(
             create: (context) => SurveysVisitRegistrationProvider()),
+        /*provider para los permisos */
         ChangeNotifierProvider(
             create: (context) => PermissionLocationProvider()),
       ],

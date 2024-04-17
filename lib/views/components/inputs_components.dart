@@ -34,7 +34,9 @@ class InputsComponent extends StatelessWidget {
       controller: controller,
       initialValue: initialValue,
       enabled: enabled,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PaletteColorsTheme.principalColor, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       cursorColor: PaletteColorsTheme.principalColor,
       keyboardType: keyboardType ?? TextInputType.text,
@@ -42,10 +44,10 @@ class InputsComponent extends StatelessWidget {
       validator: (value) => validator(value),
       textInputAction: textInputAction ?? TextInputAction.done,
       decoration: InputDecoration(
-          hintText: hintext,
-          labelText: title,
-         // prefixIcon: Icon(iconData),
-          ),
+        hintText: hintext,
+        labelText: title,
+        // prefixIcon: Icon(iconData),
+      ),
     );
   }
 }
@@ -67,8 +69,8 @@ class DropdownComponents extends StatefulWidget {
     required this.initialValue,
     required this.hintext,
     required this.items,
-    required this.onChanged, 
-    required this.title, 
+    required this.onChanged,
+    required this.title,
     required this.validator,
   });
 
@@ -84,14 +86,14 @@ class _DropdownComponentsState extends State<DropdownComponents> {
       validator: (value) => widget.validator(value),
       isDense: true,
       isExpanded: true,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PaletteColorsTheme.principalColor, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       decoration: InputDecoration(
-        
         labelText: widget.title,
-          hintText: widget.hintext,
-         ),
-      items:
-       widget.items.map((String items) {
+        hintText: widget.hintext,
+      ),
+      items: widget.items.map((String items) {
         return DropdownMenuItem(
           value: items,
           child: Text(items),
@@ -102,9 +104,6 @@ class _DropdownComponentsState extends State<DropdownComponents> {
   }
 }
 
-
-
- 
 /*
 input desactivado
 */
@@ -116,34 +115,92 @@ class InputDesabledComponents extends StatelessWidget {
   final TextEditingController? controller;
   final String? Function(String? value) validator;
   final void Function(String value) onChanged;
-  
-const InputDesabledComponents({super.key, 
-required this.title, 
-required this.hintext, 
-this.maxLine, 
-this.controller, 
-required this.validator,
- required this.onChanged, this.enabled,
- });
- @override
- Widget build(BuildContext context) {
-  
- return TextFormField(
+
+  const InputDesabledComponents({
+    super.key,
+    required this.title,
+    required this.hintext,
+    this.maxLine,
+    this.controller,
+    required this.validator,
+    required this.onChanged,
+    this.enabled,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
       controller: controller,
-      enabled:enabled?? false,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: PaletteColorsTheme.principalColor, fontWeight: FontWeight.w500),
+      enabled: enabled ?? false,
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       cursorColor: PaletteColorsTheme.principalColor,
-      keyboardType:TextInputType.text,
+      keyboardType: TextInputType.text,
       onChanged: (value) => onChanged(value),
       validator: (value) => validator(value),
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
-          hintText: hintext,
-          labelText: title,
-         // prefixIcon: Icon(iconData),
-          ),
+        hintText: hintext,
+        labelText: title,
+        // prefixIcon: Icon(iconData),
+      ),
     );
- }
+  }
 }
- 
+
+/*
+inputs para fechas
+*/
+class InputsDatesComponent extends StatelessWidget {
+  final String title;
+  final String hintext;
+  final String? initialValue;
+  final bool? enabled;
+  final int? maxLine;
+  final int? maxLength;
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final TextEditingController? controller;
+  final String? Function(String? value) validator;
+  final void Function(String value) onChanged;
+  const InputsDatesComponent({
+    super.key,
+    required this.title,
+    required this.hintext,
+    this.initialValue,
+    this.maxLength,
+    this.enabled,
+    this.maxLine,
+    this.keyboardType,
+    this.textInputAction,
+    this.controller,
+    required this.validator,
+    required this.onChanged,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      initialValue: initialValue,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      enabled: enabled,
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
+      maxLines: maxLine ?? 1,
+      maxLength: maxLength ?? 2,
+      cursorColor: PaletteColorsTheme.principalColor,
+      keyboardType: keyboardType ?? TextInputType.text,
+      onChanged: (value) => onChanged(value),
+      validator: (value) => validator(value),
+      textInputAction: textInputAction ?? TextInputAction.done,
+      decoration: InputDecoration(
+        counter: const SizedBox(),
+        hintText: hintext,
+        labelText: title,
+        // prefixIcon: Icon(iconData),
+      ),
+    );
+  }
+}
