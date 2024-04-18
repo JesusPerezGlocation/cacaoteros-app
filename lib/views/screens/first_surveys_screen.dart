@@ -1,12 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:math';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
+import 'package:uuid/uuid.dart';
 
 /*
 pantalla #1 ENCUESTA DE CARACTERIZACIÓN A CACAOCULTORES
@@ -22,10 +20,10 @@ class FirstSurveysScreens extends StatefulWidget {
 class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
   /*key*/
   final formKey = GlobalKey<FormState>();
-
-  int generatedIdRandom() {
-    Random random = Random();
-    return random.nextInt(1000000) + 1;
+  /*genera un uuid random*/
+  final uuid = const Uuid();
+  String generatedIdRandom() {
+    return uuid.v4();
   }
 
   @override
@@ -80,10 +78,12 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () async {
+                  /*genera un id ramdon  */
+                  String idRandom = generatedIdRandom();
+                  surveysPrv.setIDSurveys(idRandom);
+
+                  print('uuid: $idRandom');
                   if (formKey.currentState!.validate()) {
-                    /*genera un id ramdon  */
-                    int idRandom = generatedIdRandom();
-                    surveysPrv.setIDSurveys(idRandom);
                     /*envia el dato */
                     // await surveysPrv.sentSurveysToFirabase(context);
 

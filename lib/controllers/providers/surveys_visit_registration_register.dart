@@ -15,15 +15,15 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
 
-  int _iDSurveys = 0;
-  int get iDSurveys => _iDSurveys;
+  String _iDSurveys = '';
+  String get iDSurveys => _iDSurveys;
 
   setNameUnit(String val) {
     _nameUnit.text = val; //nombre de la unidad
     notifyListeners();
   }
 
-  setIDSurveys(int id) {
+  setIDSurveys(String id) {
     _iDSurveys = id;
     notifyListeners();
   }
