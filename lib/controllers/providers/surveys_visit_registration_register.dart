@@ -11,7 +11,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final CollectionReference databaseReference =
       FirebaseFirestore.instance.collection(ApiPaths.cacaotesting);
 
-//?primera pantalla #1*/
+//*primera pantalla #1*/
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
 
@@ -28,14 +28,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//?segunda pantalla #2*/
-  final TextEditingController _selectedPersonType = TextEditingController();
-  TextEditingController get selectedPersonType => _selectedPersonType;
-
-  setSelectedPersonType(String val) {
-    _selectedPersonType.text = val; //tipo de persona
-    notifyListeners();
-  }
+//*segunda pantalla #2*/
 
   final TextEditingController _selectedDocumentType = TextEditingController();
   TextEditingController get selectedDocumentType => _selectedDocumentType;
@@ -61,11 +54,75 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _fullName = TextEditingController();
-  TextEditingController get fullName => _fullName;
+  final TextEditingController _expeditionMonth = TextEditingController();
+  TextEditingController get expeditionMonth => _expeditionMonth;
 
-  setFullName(String val) {
-    _fullName.text = val; //nombre completo
+  setExpeditionMonth(String val) {
+    _expeditionMonth.text = val; //mes de expedición del documento
+    notifyListeners();
+  }
+
+  final TextEditingController _expeditionDay = TextEditingController();
+  TextEditingController get expeditionDay => _expeditionDay;
+
+  setExpeditionDay(String val) {
+    _expeditionDay.text = val; // dia de expedición
+    notifyListeners();
+  }
+
+  final TextEditingController _expeditionYear = TextEditingController();
+  TextEditingController get expeditionYear => _expeditionYear;
+
+  setExpeditionYear(String val) {
+    _expeditionYear.text = val; //año de expedición
+    notifyListeners();
+  }
+
+  final TextEditingController _placeExpedition = TextEditingController();
+  TextEditingController get placeExpedition => _placeExpedition;
+
+  setPlaceExpedition(String val) {
+    _placeExpedition.text = val; // lugar de expedición
+    notifyListeners();
+  }
+
+  final TextEditingController _firtName = TextEditingController();
+  TextEditingController get firtName => _firtName;
+
+  setFirtName(String val) {
+    _firtName.text = val; // primer nombre del usuario
+    notifyListeners();
+  }
+
+  final TextEditingController _secondName = TextEditingController();
+  TextEditingController get secondName => _secondName;
+
+  setSecondName(String val) {
+    _secondName.text = val; // segundo nombre del usuario
+    notifyListeners();
+  }
+
+  final TextEditingController _firtLastName = TextEditingController();
+  TextEditingController get firtLastName => _firtLastName;
+
+  setFirtLastName(String val) {
+    _firtLastName.text = val; // primero apellido del usuario
+    notifyListeners();
+  }
+
+  final TextEditingController _secondLastName = TextEditingController();
+  TextEditingController get secondLastName => _secondLastName;
+
+  setSecondLastName(String val) {
+    _secondLastName.text = val; // segundo apellido del usuario
+    notifyListeners();
+  }
+
+  final TextEditingController _ageUser = TextEditingController();
+  TextEditingController get ageUser => _ageUser;
+
+  setAgeUser(String val) {
+    _ageUser.text = val; // edad del usuario
     notifyListeners();
   }
 
@@ -77,11 +134,19 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _landlineNumber = TextEditingController();
-  TextEditingController get landlineNumber => _landlineNumber;
+  final TextEditingController _hasWhatsApp = TextEditingController();
+  TextEditingController get hasWhatsApp => _hasWhatsApp;
 
-  setLandlineNumber(String val) {
-    _landlineNumber.text = val; //número de télefono
+  setHasWhatsApp(String val) {
+    _hasWhatsApp.text = val; // tiene whatsapp?
+    notifyListeners();
+  }
+
+  final TextEditingController _hasEmailAddressOther = TextEditingController();
+  TextEditingController get hasEmailAddressOther => _hasEmailAddressOther;
+
+  setHasEmailAddressOther(String val) {
+    _hasEmailAddressOther.text = val; //pregunta si correo
     notifyListeners();
   }
 
@@ -90,6 +155,30 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
 
   setEmailAddress(String val) {
     _emailAddress.text = val; //correo
+    notifyListeners();
+  }
+
+  final TextEditingController _servicesEthernet = TextEditingController();
+  TextEditingController get servicesEthernet => _servicesEthernet;
+
+  setServicesEthernet(String val) {
+    _servicesEthernet.text = val; // cuenta con servicios a internet?
+    notifyListeners();
+  }
+
+  final TextEditingController _typeServicesEthernet = TextEditingController();
+  TextEditingController get typeServicesEthernet => _typeServicesEthernet;
+
+  setTypeServicesEthernet(String val) {
+    _typeServicesEthernet.text = val; // tipo de servicio internet
+    notifyListeners();
+  }
+
+  final TextEditingController _whatServicesEthernet = TextEditingController();
+  TextEditingController get whatServicesEthernet => _whatServicesEthernet;
+
+  setWhatServicesEthernet(String val) {
+    _whatServicesEthernet.text = val; // cual servicio a intenert
     notifyListeners();
   }
 
@@ -125,55 +214,50 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _civilStatus = TextEditingController();
-  TextEditingController get civilStatus => _civilStatus;
+  final TextEditingController _placeBorn = TextEditingController();
+  TextEditingController get placeBorn => _placeBorn;
 
-  setCivilStatus(String val) {
-    _civilStatus.text = val; //estado civil
+  setPlaceBorn(String val) {
+    _placeBorn.text = val; //lugar de nacimiento
     notifyListeners();
   }
 
-  final TextEditingController _nationality = TextEditingController();
-  TextEditingController get nationality => _nationality;
+  final TextEditingController _whatconsultEthernet = TextEditingController();
+  TextEditingController get whatconsultEthernet => _whatconsultEthernet;
 
-  setNationality(String val) {
-    _nationality.text = val; //nacionalidad
+  setWhatconsultEthernet(String val) {
+    _whatconsultEthernet.text = val; //que temas consulta atrvez de internet
     notifyListeners();
   }
 
-  final TextEditingController _nationalityOther = TextEditingController();
-  TextEditingController get nationalityOther => _nationalityOther;
+  final TextEditingController _whatconsultEthernetOther =
+      TextEditingController();
+  TextEditingController get whatconsultEthernetOther =>
+      _whatconsultEthernetOther;
 
-  setNationalityOther(String val) {
-    _nationalityOther.text = val; //otra nacionalidad
+  setWhatconsultEthernetOther(String val) {
+    _whatconsultEthernetOther.text =
+        val; //que temas otro consulta atrvez de internet
     notifyListeners();
   }
 
-  final TextEditingController _educationalLevel = TextEditingController();
-  TextEditingController get educationalLevel => _educationalLevel;
+  final TextEditingController _hasDisability = TextEditingController();
+  TextEditingController get hasDisability => _hasDisability;
 
-  setEducationalLevel(String val) {
-    _educationalLevel.text = val; //nivel de educación
+  setHasDisability(String val) {
+    _hasDisability.text = val; //  presenta discapcidad
     notifyListeners();
   }
 
-  final TextEditingController _yearsStudied = TextEditingController();
-  TextEditingController get yearsStudied => _yearsStudied;
+  final TextEditingController _hasDisabilityOther = TextEditingController();
+  TextEditingController get hasDisabilityOther => _hasDisabilityOther;
 
-  setYearsStudied(String val) {
-    _yearsStudied.text = val; //años estudiados
+  setHasDisabilityOther(String val) {
+    _hasDisabilityOther.text = val; //  presenta discapcidad
     notifyListeners();
   }
 
-  final TextEditingController _obtainedTitle = TextEditingController();
-  TextEditingController get obtainedTitle => _obtainedTitle;
-
-  setObtainedTitle(String val) {
-    _obtainedTitle.text = val; //titulo obtenido
-    notifyListeners();
-  }
-
-//?tercera pantalla #3*/
+//*tercera pantalla #3*/
   final TextEditingController _possesionLandType = TextEditingController();
   TextEditingController get possesionLandType => _possesionLandType;
 
@@ -388,49 +472,10 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     try {
       databaseReference.add(
         {
+          //!!hacer validacion por si el usuario no tiene segundo nombre o apellido
+          //!!pregunta si tiene correo, whatsaap
           //pantalla #1
-          'id': _iDSurveys, //!!cambiar
-          'nameUnit': _nameUnit.text,
           //pantalla #2
-          'typePerson': _selectedPersonType.text,
-          'typeDoc': _selectedDocumentType.text == 'Otro'
-              ? _selecDocumentTypeOther.text
-              : _selectedDocumentType.text,
-          'documentNumber': _documentNumber.text,
-          'fullNames': _fullName.text,
-          'phoneNumber': _phoneNumber.text,
-          'landlineNumber': _landlineNumber.text,
-          'email': _emailAddress.text,
-          'birthday':
-              '${_birthMonth.text}/${_birthDay.text}/${_birthYear.text}',
-          'civilStatus': _civilStatus.text,
-          'nacionality': _nationality.text == 'Otro'
-              ? _nationalityOther.text
-              : _nationality.text,
-          'levelSchool': _educationalLevel.text,
-          'yearsStudied': _yearsStudied.text,
-          'obtainedTitle': _obtainedTitle.text,
-          //pantalla #3
-          '_possesionLandType': _possesionLandType.text,
-          '_originPossesionLand': _originPossesionLand.text,
-          'possesionOverCultivation': _possesionOverCultivation.text,
-          'producesOrganization': _producesOrganization.text,
-          'nameOrganization': _nameOrganization.text,
-          'mainEconomicActivity': _mainEconomicActivity.text == 'Otro'
-              ? _mainEconomicActivityOther
-              : _mainEconomicActivity,
-          'numberMonthWorkFarm': _numberMonthWorkFarm.text,
-          'numberWithoutFarm': _numberWithoutFarm.text,
-          //pantalla #4
-          'departament': _department.text,
-          'municipality': _municipality.text,
-          'place': _place.text,
-          //pantalla #5
-          'latitue': '$_latitude',
-          'longitude': '$_longitude',
-          'nameFarm': _nameFarm.text,
-          'numberHectares': _numberHectareasProperty.text,
-          'certification': _hasCertification.text,
           //pantalla #6
           //pantalla #7
           //pantalla #8

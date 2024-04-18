@@ -78,14 +78,10 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () async {
-                  /*genera un id ramdon  */
-                  String idRandom = generatedIdRandom();
-                  surveysPrv.setIDSurveys(idRandom);
-
-                  print('uuid: $idRandom');
                   if (formKey.currentState!.validate()) {
-                    /*envia el dato */
-                    // await surveysPrv.sentSurveysToFirabase(context);
+                    /*genera un id ramdon  */
+                    String idRandom = generatedIdRandom();
+                    surveysPrv.setIDSurveys(idRandom);
 
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(

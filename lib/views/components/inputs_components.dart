@@ -69,8 +69,8 @@ class DropdownComponents extends StatefulWidget {
     this.initialValue,
     required this.hintext,
     required this.items,
-    required this.onChanged,
     required this.validator,
+    required this.onChanged,
   });
 
   @override

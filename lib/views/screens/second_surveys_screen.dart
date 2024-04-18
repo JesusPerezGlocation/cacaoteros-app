@@ -43,18 +43,8 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 answers: '2',
               ),
               SizedBox(height: size.height * .04),
-              //#1 tipo de persona
-              DropdownComponents(
-                title: 'Tipo de persona',
-                initialValue: '',
-                hintext: 'Seleccionar tipo de persona',
-                items: const ['Natural', 'Jurídica'],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setSelectedPersonType(val.toString()),
-              ),
-              SizedBox(height: size.height * .03),
-              //#2 tipo de documento
+
+              //#1 tipo de documento
               DropdownComponents(
                 title: 'Tipo de documento',
                 initialValue: 'CC',
@@ -97,65 +87,111 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setDocumentNumber(val),
               ),
-
               SizedBox(height: size.height * .03),
-              // #4 nombre y apellidos
-              InputsComponent(
-                title: 'Nombres y apellidos',
-                hintext: ' Ingresar nombres y apellidos',
-                textInputAction: TextInputAction.next,
-                controller: surveysPrv.fullName,
-                validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setFullName(val),
-              ),
-              SizedBox(height: size.height * .03),
-              // #5 número de celular
-              InputsPhoneComponent(
-                title: 'Número de celular',
-                hintext: ' Ingresar número de celular',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                maxLength: 10,
-                controller: surveysPrv.phoneNumber,
-                validator: (val) => ValidationInputs.validatePhoneNumber(val),
-                onChanged: (val) => surveysPrv.setPhoneNumber(val),
-              ),
-              SizedBox(height: size.height * .03),
-              // #6 número de teléfono fijo
-              InputsPhoneComponent(
-                title: 'Teléfono fijo',
-                hintext: ' Ingresar teléfono fijo',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                controller: surveysPrv.landlineNumber,
-                maxLength: 15,
-                validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setLandlineNumber(val),
-              ),
-              SizedBox(height: size.height * .03),
-              // #7 correo electronico
-              InputsComponent(
-                title: 'Correo electrónico',
-                hintext: ' Ingresar correo electrónico',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.emailAddress,
-                controller: surveysPrv.emailAddress,
-                validator: (val) => ValidationInputs.emailValidations(val),
-                onChanged: (val) => surveysPrv.setEmailAddress(val),
-              ),
-              SizedBox(height: size.height * .03),
-              //#7 genero
-              DropdownComponents(
-                title: ' Seleccionar género',
-                initialValue: '-',
-                hintext: 'Seleccionar género',
-                items: const ['Masculino', 'Femenino'],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) => surveysPrv.setGender(val.toString()),
+              // #4
+              Row(
+                children: [
+                  //01
+                  Flexible(
+                    flex: 1,
+                    child: InputsDatesComponent(
+                      title: 'Mes de expedición',
+                      hintext: ' 10',
+                      maxLength: 2,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      controller: surveysPrv.expeditionMonth,
+                      validator: (val) => ValidationInputs.validateMonth(val),
+                      onChanged: (val) => surveysPrv.setExpeditionMonth(val),
+                    ),
+                  ),
+                  SizedBox(width: size.width * .02),
+                  //02
+                  Flexible(
+                    flex: 1,
+                    child: InputsDatesComponent(
+                      title: 'Día de expedición',
+                      hintext: ' 02',
+                      maxLength: 2,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      controller: surveysPrv.expeditionDay,
+                      validator: (val) =>
+                          ValidationInputs.validateDayOfMonth(val),
+                      onChanged: (val) => surveysPrv.setExpeditionDay(val),
+                    ),
+                  ),
+                  SizedBox(width: size.width * .02),
+                  //03
+                  Flexible(
+                    flex: 1,
+                    child: InputsDatesComponent(
+                      title: 'Año de expedición',
+                      hintext: ' 1999',
+                      maxLength: 4,
+                      keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
+                      controller: surveysPrv.expeditionYear,
+                      validator: (val) => ValidationInputs.validateYear(val),
+                      onChanged: (val) => surveysPrv.setExpeditionYear(val),
+                    ),
+                  ),
+                ],
               ),
 
               SizedBox(height: size.height * .03),
-              // #8 fecha de nacimiento
+              //#5
+              InputsComponent(
+                title: 'Lugar de expedición',
+                hintext: ' Ingresar lugar',
+                textInputAction: TextInputAction.next,
+                controller: surveysPrv.placeExpedition,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setPlaceExpedition(val),
+              ),
+
+              SizedBox(height: size.height * .03),
+              //#6
+              InputsComponent(
+                title: 'Primer nombre',
+                hintext: ' Ingresar nombre',
+                textInputAction: TextInputAction.next,
+                controller: surveysPrv.firtName,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setFirtName(val),
+              ),
+              SizedBox(height: size.height * .03),
+              //#7
+              InputsComponent(
+                title: 'Segundo nombre',
+                hintext: ' Ingresar segundo nombre',
+                textInputAction: TextInputAction.next,
+                controller: surveysPrv.secondName,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setSecondName(val),
+              ),
+              SizedBox(height: size.height * .03),
+              //#8
+              InputsComponent(
+                title: 'Primer apellido',
+                hintext: ' Ingresar primero apellido',
+                textInputAction: TextInputAction.next,
+                controller: surveysPrv.firtLastName,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setFirtLastName(val),
+              ),
+              SizedBox(height: size.height * .03),
+              //#9
+              InputsComponent(
+                title: 'Segundo apellido',
+                hintext: ' Ingresar segundo apellido',
+                textInputAction: TextInputAction.next,
+                controller: surveysPrv.secondLastName,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setSecondLastName(val),
+              ),
+              SizedBox(height: size.height * .03),
+              // #10 fecha de nacimiento
               Row(
                 children: [
                   //01
@@ -206,86 +242,202 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 ],
               ),
               SizedBox(height: size.height * .03),
-              //#9 estado civil
-              DropdownComponents(
-                title: ' Seleccionar estado civil',
-                initialValue: '-',
-                hintext: ' Seleccionar estado civil',
-                items: const ['Casado', 'Unión libre', 'Soltero'],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) => surveysPrv.setCivilStatus(val.toString()),
+              //#11
+              InputsComponent(
+                title: 'Edad',
+                hintext: ' Ingresar edad',
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                controller: surveysPrv.ageUser,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setAgeUser(val),
               ),
               SizedBox(height: size.height * .03),
-              //#10 nacionalidad
+              //#12 genero
               DropdownComponents(
-                title: ' Seleccionar nacionalidad',
+                title: 'Seleccionar género',
                 initialValue: '-',
-                hintext: ' Seleccionar nacionalidad',
-                items: const ['Colombiano', 'Otro'],
+                hintext: ' Seleccionar género',
+                items: const ['Masculino', 'Femenino', 'Otro'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) => surveysPrv.setNationality(val.toString()),
+                onChanged: (val) => surveysPrv.setGender(val.toString()),
+              ),
+              SizedBox(height: size.height * .03),
+              //#13 nacionalidad
+              InputsComponent(
+                title: 'Lugar de nacimiento',
+                hintext: ' Ingresar lugar de nacimiento',
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                controller: surveysPrv.placeBorn,
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPrv.setPlaceBorn(val.toString()),
               ),
 
-              if (surveysPrv.nationality.text.isNotEmpty &&
-                  surveysPrv.nationality.text == 'Otro')
+              SizedBox(height: size.height * .03),
+              // #14 número de celular
+              InputsPhoneComponent(
+                title: 'Número de celular',
+                hintext: ' Ingresar número de celular',
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                maxLength: 10,
+                controller: surveysPrv.phoneNumber,
+                validator: (val) => ValidationInputs.validatePhoneNumber(val),
+                onChanged: (val) => surveysPrv.setPhoneNumber(val),
+              ),
+              SizedBox(height: size.height * .03),
+
+              //#15 tiene whatsapp?
+              DropdownComponents(
+                title: '¿Tiene WhatsApp en el mismo número de celular?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) => ValidationInputs.inputTypeSelect(val),
+                onChanged: (val) => surveysPrv.setHasWhatsApp(val.toString()),
+              ),
+
+              SizedBox(height: size.height * .03),
+              //#16 pregunta si tiene correo
+              DropdownComponents(
+                title: '¿Tiene correo electrónico?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) => ValidationInputs.inputTypeSelect(val),
+                onChanged: (val) =>
+                    surveysPrv.setHasEmailAddressOther(val.toString()),
+              ),
+
+              if (surveysPrv.hasEmailAddressOther.text.isNotEmpty &&
+                  surveysPrv.hasEmailAddressOther.text == 'Si')
                 SizedBox(height: size.height * .03),
-              // #10 nacionalidad
-              if (surveysPrv.nationality.text.isNotEmpty &&
-                  surveysPrv.nationality.text == 'Otro')
+              // #17 correo electronico
+              if (surveysPrv.hasEmailAddressOther.text.isNotEmpty &&
+                  surveysPrv.hasEmailAddressOther.text == 'Si')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
-                    title: '¿Otro, Cuál?',
-                    hintext: ' Ingresar nacionalidad',
+                    title: 'Correo electrónico',
+                    hintext: ' Ingresar correo electrónico',
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.text,
-                    controller: surveysPrv.nationalityOther,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) => surveysPrv.setNationalityOther(val),
+                    keyboardType: TextInputType.emailAddress,
+                    controller: surveysPrv.emailAddress,
+                    validator: (val) => ValidationInputs.emailValidations(val),
+                    onChanged: (val) => surveysPrv.setEmailAddress(val),
                   ),
                 ),
               SizedBox(height: size.height * .03),
-              // #11 nivel academico
-              InputsComponent(
-                title: 'Nivel de escolaridad',
-                hintext: ' Ingresar nivel de escolaridad',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                controller: surveysPrv.educationalLevel,
-                validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setEducationalLevel(val),
+              //#18 servicio a internet
+              DropdownComponents(
+                title: '¿Cuenta con servicio de internet?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) => ValidationInputs.inputTypeSelect(val),
+                onChanged: (val) =>
+                    surveysPrv.setServicesEthernet(val.toString()),
               ),
+              if (surveysPrv.servicesEthernet.text.isNotEmpty &&
+                  surveysPrv.servicesEthernet.text == 'Si')
+                SizedBox(height: size.height * .03),
+              //#19 tipo de servicio a intenet
+              if (surveysPrv.servicesEthernet.text.isNotEmpty &&
+                  surveysPrv.servicesEthernet.text == 'Si')
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: DropdownComponents(
+                    title: 'Tipo de servicio internet',
+                    hintext: ' Seleccionar dato',
+                    items: const ['Plan de datos', 'Internet hogar', 'Otro'],
+                    validator: (val) => ValidationInputs.inputTypeSelect(val),
+                    onChanged: (val) =>
+                        surveysPrv.setTypeServicesEthernet(val.toString()),
+                  ),
+                ),
+              if (surveysPrv.typeServicesEthernet.text.isNotEmpty &&
+                  surveysPrv.typeServicesEthernet.text == 'Otro')
+                SizedBox(height: size.height * .03),
+              //#20 tipo de servicio
+              if (surveysPrv.typeServicesEthernet.text.isNotEmpty &&
+                  surveysPrv.typeServicesEthernet.text == 'Otro')
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cúal?',
+                    hintext: ' Ingresar el tipo de servicio',
+                    textInputAction: TextInputAction.next,
+                    controller: surveysPrv.whatServicesEthernet,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) => surveysPrv.setWhatServicesEthernet(val),
+                  ),
+                ),
 
               SizedBox(height: size.height * .03),
-              // #12 años cursados
-              InputsComponent(
-                title: 'Número de años cursados',
-                hintext: ' Ingresar número de años cursados',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                controller: surveysPrv.yearsStudied,
-                validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setYearsStudied(val),
+              //#21 temas de consulta en internet
+              DropdownComponents(
+                title: '¿Qué temas de consulta a través de internet?',
+                initialValue: '-',
+                hintext: ' Seleccionar dato',
+                items: const [
+                  'Redes sociales',
+                  'Noticias',
+                  'Deportes',
+                  'Compras',
+                  'Tecnología',
+                  'Otro'
+                ],
+                validator: (value) => ValidationInputs.inputTypeSelect(value),
+                onChanged: (val) =>
+                    surveysPrv.setWhatconsultEthernet(val.toString()),
               ),
+              if (surveysPrv.whatServicesEthernet.text.isNotEmpty &&
+                  surveysPrv.whatServicesEthernet.text == 'Otro')
+                SizedBox(height: size.height * .03),
+              //# 22 otro tema de consulta
+              if (surveysPrv.whatServicesEthernet.text.isNotEmpty &&
+                  surveysPrv.whatServicesEthernet.text == 'Otro')
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cúal?',
+                    hintext: ' Ingresar el tipo de consulta',
+                    textInputAction: TextInputAction.next,
+                    controller: surveysPrv.whatconsultEthernetOther,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) =>
+                        surveysPrv.setWhatconsultEthernetOther(val),
+                  ),
+                ),
               SizedBox(height: size.height * .03),
-              // #13 titulo obtenido
-              InputsComponent(
-                title: 'Título obtenido',
-                hintext: ' Ingresar título obtenido',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.text,
-                controller: surveysPrv.obtainedTitle,
-                validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setObtainedTitle(val),
+              //23 presenta discapacidades
+              DropdownComponents(
+                title: '¿Presenta usted alguna condición de discapacidad?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) => ValidationInputs.inputTypeSelect(val),
+                onChanged: (val) => surveysPrv.setHasDisability(val.toString()),
               ),
-
+              if (surveysPrv.hasDisability.text.isNotEmpty &&
+                  surveysPrv.hasDisability.text == 'Si')
+                SizedBox(height: size.height * .03),
+              //# otra discapacidad
+              if (surveysPrv.hasDisability.text.isNotEmpty &&
+                  surveysPrv.hasDisability.text == 'Si')
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cúal?',
+                    hintext: ' Ingresar el tipo de discapacidad',
+                    textInputAction: TextInputAction.next,
+                    controller: surveysPrv.hasDisabilityOther,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) => surveysPrv.setHasDisabilityOther(val),
+                  ),
+                ),
               SizedBox(height: size.height * .06),
 
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  print(surveysPrv.selectedPersonType.text);
-
                   if (formKey.currentState!.validate()) {
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(
