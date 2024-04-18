@@ -15,8 +15,16 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
 
+  int _iDSurveys = 0;
+  int get iDSurveys => _iDSurveys;
+
   setNameUnit(String val) {
     _nameUnit.text = val; //nombre de la unidad
+    notifyListeners();
+  }
+
+  setIDSurveys(int id) {
+    _iDSurveys = id;
     notifyListeners();
   }
 
@@ -37,12 +45,10 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //!!si el usuario en tipo de documento selecciona otro se activa este textEdit
   final TextEditingController _selecDocumentTypeOther = TextEditingController();
   TextEditingController get selecDocumentTypeOther => _selecDocumentTypeOther;
 
   setSelectedDocumentTypeOther(String val) {
-    //!!al enviar los datos si el usuario selecciona otro, envia el _selecDocumentTypeOther en vez de _selectedDocumentType
     _selecDocumentTypeOther.text = val; // otro documento
     notifyListeners();
   }
@@ -296,13 +302,154 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-//petición a firebase
+  //?sexta pantalla #6
+  final TextEditingController _liveFarm = TextEditingController();
+  TextEditingController get liveFarm => _liveFarm;
+
+  setLiveFarm(String val) {
+    _liveFarm.text = val; // vive en la finca?
+    notifyListeners();
+  }
+
+  final TextEditingController _typePeopleVulnerable = TextEditingController();
+  TextEditingController get typePeopleVulnerable => _typePeopleVulnerable;
+
+  setTypePeopleVulnerable(String val) {
+    _typePeopleVulnerable.text = val; //tipo de población vulnerable
+    notifyListeners();
+  }
+
+  final TextEditingController _ethhicGroup = TextEditingController();
+  TextEditingController get ethhicGroup => _ethhicGroup;
+
+  setEthhicGroup(String val) {
+    _ethhicGroup.text = val; // grupo etnico
+    notifyListeners();
+  }
+
+//?septima pantalla #7*
+  final TextEditingController _typeAccountBank = TextEditingController();
+  TextEditingController get typeAccountBank => _typeAccountBank;
+
+  setTypeAccountBank(String val) {
+    _typeAccountBank.text = val; // posee cuenta bancaria
+    notifyListeners();
+  }
+
+  final TextEditingController _typeAccountBankOther = TextEditingController();
+  TextEditingController get typeAccountBankOther => _typeAccountBankOther;
+
+  setTypeAccountBankOther(String val) {
+    _typeAccountBankOther.text =
+        val; // posee cuenta bancaria cuando el usuario seleccion "Si"
+    notifyListeners();
+  }
+
+  final TextEditingController _agroCulturalCredit = TextEditingController();
+  TextEditingController get agroCulturalCredit => _agroCulturalCredit;
+
+  setAgroCulturalCredit(String val) {
+    _agroCulturalCredit.text = val; // posee credito agropecuario
+    notifyListeners();
+  }
+
+  final TextEditingController _agroCulturalCreditOther =
+      TextEditingController();
+  TextEditingController get agroCulturalCreditOther => _agroCulturalCreditOther;
+
+  setAgroCulturalCreditOther(String val) {
+    _agroCulturalCreditOther.text =
+        val; // posee credito agropecuario cuando el usuario seleccion "Si"
+    notifyListeners();
+  }
+
+  final TextEditingController _favoredCreditCultural = TextEditingController();
+  TextEditingController get favoredCreditCultural => _favoredCreditCultural;
+
+  setFavoredCreditCultural(String val) {
+    _favoredCreditCultural.text = val; // ha sido favorecido con credito cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _activityFavoredWithCredit =
+      TextEditingController();
+  TextEditingController get activityFavoredWithCredit =>
+      _activityFavoredWithCredit;
+
+  setActivityFavoredWithCredit(String val) {
+    _activityFavoredWithCredit.text =
+        val; // que actividad financió con el credito
+    notifyListeners();
+  }
+
+//*petición a firebase
 
   Future<void> sentSurveysToFirabase(BuildContext context) async {
     try {
       databaseReference.add(
         {
+          //pantalla #1
+          'id': _iDSurveys,
           'nameUnit': _nameUnit.text,
+          //pantalla #2
+          'typePerson': _selectedPersonType.text,
+          'typeDoc': _selectedDocumentType.text == 'Otro'
+              ? _selecDocumentTypeOther.text
+              : _selectedDocumentType.text,
+          'documentNumber': _documentNumber.text,
+          'fullNames': _fullName.text,
+          'phoneNumber': _phoneNumber.text,
+          'landlineNumber': _landlineNumber.text,
+          'email': _emailAddress.text,
+          'birthday':
+              '${_birthMonth.text}/${_birthDay.text}/${_birthYear.text}',
+          'civilStatus': _civilStatus.text,
+          'nacionality': _nationality.text == 'Otro'
+              ? _nationalityOther.text
+              : _nationality.text,
+          'levelSchool': _educationalLevel.text,
+          'yearsStudied': _yearsStudied.text,
+          'obtainedTitle': _obtainedTitle.text,
+          //pantalla #3
+          '_possesionLandType': _possesionLandType.text,
+          '_originPossesionLand': _originPossesionLand.text,
+          'possesionOverCultivation': _possesionOverCultivation.text,
+          'producesOrganization': _producesOrganization.text,
+          'nameOrganization': _nameOrganization.text,
+          'mainEconomicActivity': _mainEconomicActivity.text == 'Otro'
+              ? _mainEconomicActivityOther
+              : _mainEconomicActivity,
+          'numberMonthWorkFarm': _numberMonthWorkFarm.text,
+          'numberWithoutFarm': _numberWithoutFarm.text,
+          //pantalla #4
+          'departament': _department.text,
+          'municipality': _municipality.text,
+          'place': _place.text,
+          //pantalla #5
+          'latitue': '$_latitude',
+          'longitude': '$_longitude',
+          'nameFarm': _nameFarm.text,
+          'numberHectares': _numberHectareasProperty.text,
+          'certification': _hasCertification.text,
+          //pantalla #6
+          //pantalla #7
+          //pantalla #8
+          //pantalla #9
+          //pantalla #10
+          //pantalla #11
+          //pantalla #12
+          //pantalla #13
+          //pantalla #14
+          //pantalla #15
+          //pantalla #16
+          //pantalla #17
+          //pantalla #18
+          //pantalla #19
+          //pantalla #20
+          //pantalla #21
+          //pantalla #22
+          //pantalla #23
+          //pantalla #24
         },
       ).then((_) {
         /*si los datos se enviaron con exito*/

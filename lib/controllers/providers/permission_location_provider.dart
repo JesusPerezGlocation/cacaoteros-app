@@ -52,11 +52,15 @@ class PermissionLocationProvider extends ChangeNotifier {
 
   /*obtener ubicación del usuario*/
   getLocationUser() async {
-    final position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+    try {
+      final position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
 
-    _latitude = position.latitude;
-    _longitude = position.longitude;
-    notifyListeners();
+      _latitude = position.latitude;
+      _longitude = position.longitude;
+      notifyListeners();
+    } catch (e) {
+      log('error location: $e');
+    }
   }
 }

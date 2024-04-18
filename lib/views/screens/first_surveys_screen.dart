@@ -1,5 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:math';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +22,11 @@ class FirstSurveysScreens extends StatefulWidget {
 class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
   /*key*/
   final formKey = GlobalKey<FormState>();
+
+  int generatedIdRandom() {
+    Random random = Random();
+    return random.nextInt(1000000) + 1;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +81,9 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
                 title: 'Continuar',
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
+                    /*genera un id ramdon  */
+                    int idRandom = generatedIdRandom();
+                    surveysPrv.setIDSurveys(idRandom);
                     /*envia el dato */
                     // await surveysPrv.sentSurveysToFirabase(context);
 

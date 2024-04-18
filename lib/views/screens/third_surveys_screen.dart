@@ -152,7 +152,7 @@ class _ThirdSurveysScreenState extends State<ThirdSurveysScreen> {
                 keyboardType: TextInputType.number,
                 maxLength: 2,
                 controller: surveysPrv.numberMonthWorkFarm,
-                validator: (val) => ValidationInputs.validateMonth(val),
+                validator: (val) => ValidationInputs.validateDayOfMonth(val),
                 onChanged: (val) => surveysPrv.setNumberMonthWorkFarm(val),
               ),
 
