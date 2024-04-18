@@ -324,10 +324,32 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final TextEditingController _department = TextEditingController();
   final TextEditingController _municipality = TextEditingController();
   final TextEditingController _place = TextEditingController(); //vereda
+  final TextEditingController _nameProperty = TextEditingController();
 
   TextEditingController get department => _department;
   TextEditingController get municipality => _municipality;
   TextEditingController get place => _place;
+  TextEditingController get nameProperty => _nameProperty;
+
+  setDepartement(String date) {
+    _department.text = date;
+    notifyListeners();
+  }
+
+  setMunicipality(String date) {
+    _municipality.text = date;
+    notifyListeners();
+  }
+
+  setPlace(String date) {
+    _place.text = date;
+    notifyListeners();
+  }
+
+  setNameProperty(String val) {
+    _nameProperty.text = val;
+    notifyListeners();
+  }
 
 //*quinta pantalla #5*/
 
@@ -568,23 +590,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // final TextEditingController _liveFarm = TextEditingController();
-  // TextEditingController get liveFarm => _liveFarm;
-
-  // setLiveFarm(String val) {
-  //   _liveFarm.text = val; // vive en la finca?
-  //   notifyListeners();
-  // }
-
-  // final TextEditingController _typePeopleVulnerable = TextEditingController();
-  // TextEditingController get typePeopleVulnerable => _typePeopleVulnerable;
-
-  // setTypePeopleVulnerable(String val) {
-  //   _typePeopleVulnerable.text = val; //tipo de población vulnerable
-  //   notifyListeners();
-  // }
-
-//?septima pantalla #7*
+//*septima pantalla #7*
   final TextEditingController _typeAccountBank = TextEditingController();
   TextEditingController get typeAccountBank => _typeAccountBank;
 
@@ -763,22 +769,6 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
       SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
     }
-  }
-
-/*setea los controladores*/
-  setDepartement(String date) {
-    _department.text = date;
-    notifyListeners();
-  }
-
-  setMunicipality(String date) {
-    _municipality.text = date;
-    notifyListeners();
-  }
-
-  setPlace(String date) {
-    _place.text = date;
-    notifyListeners();
   }
 
 /*limpia la selección de departamentos*/

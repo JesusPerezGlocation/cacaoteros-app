@@ -103,6 +103,15 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                   ),
                 ),
 
+              SizedBox(height: size.height * .03),
+              //#4
+              InputsComponent(
+                title: 'Nombre del predio',
+                hintext: ' Ingresar nombre del predio',
+                validator: (val) => ValidationInputs.inputEmpty(val),
+                onChanged: (val) => surveysPRV.setNameProperty(val),
+              ),
+
               SizedBox(height: size.height * .06),
 
               /*boton para continuar*/
