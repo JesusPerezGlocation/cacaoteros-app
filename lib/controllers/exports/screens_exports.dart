@@ -7,7 +7,7 @@ export 'package:surveys_app/views/screens/seven_surveys_screen.dart';
 export 'package:surveys_app/views/screens/six_surveys_screen.dart';
 export 'package:surveys_app/views/screens/all_drafts_screen.dart';
 export 'package:surveys_app/views/screens/four_surveys_screen.dart';
-export 'package:surveys_app/views/screens/first_surveys_screen.dart';
+export 'package:surveys_app/views/screens/firt_surveys_screen.dart';
 export 'package:surveys_app/controllers/routes/main_routes.dart';
 export 'package:surveys_app/views/screens/home_screen.dart';
 export 'package:surveys_app/views/screens/second_surveys_screen.dart';

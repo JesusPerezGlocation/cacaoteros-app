@@ -100,4 +100,24 @@ class ValidationInputs {
     /*vi la longitud es correcta, entonces el número de teléfono es válido */
     return null;
   }
+
+  /*validaciión de edad */
+  static String? validateAge(String? ageStr) {
+    if (ageStr == null || ageStr.isEmpty) {
+      return 'Por favor, introduce una edad.';
+    }
+    /*inntenta convertir el valor de edad a un número entero */
+    try {
+      int age = int.parse(ageStr);
+      /*verifica si la edad está en el rango deseado */
+      if (age < 1 || age > 130) {
+        return 'La edad debe estar entre 1 y 130 años.';
+      }
+    } catch (e) {
+      /*si la conversión a entero falla, es porque no es un número válido */
+      return 'Por favor, introduce un número válido para la edad.';
+    }
+    /*si todo está bien, devuelve null (indicando que no hay errores) */
+    return null;
+  }
 }

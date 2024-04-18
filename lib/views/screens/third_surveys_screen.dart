@@ -142,33 +142,6 @@ class _ThirdSurveysScreenState extends State<ThirdSurveysScreen> {
                   ),
                 ),
 
-              SizedBox(height: size.height * .03),
-              //#7
-              InputsDatesComponent(
-                title:
-                    'Número de días al mes que labora en el cultivo de cacao',
-                hintext: ' Ingresar número',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-                controller: surveysPrv.numberMonthWorkFarm,
-                validator: (val) => ValidationInputs.validateDayOfMonth(val),
-                onChanged: (val) => surveysPrv.setNumberMonthWorkFarm(val),
-              ),
-
-              SizedBox(height: size.height * .03),
-              //#8
-              InputsDatesComponent(
-                title: 'Número de días al mes que labora fuera de la finca',
-                hintext: ' Ingresar número',
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                maxLength: 2,
-                controller: surveysPrv.numberWithoutFarm,
-                validator: (val) => ValidationInputs.validateDayOfMonth(val),
-                onChanged: (val) => surveysPrv.setNumberWithoutFarm(val),
-              ),
-
               SizedBox(height: size.height * .06),
               /*boton para continuar */
               ButtonComponents(

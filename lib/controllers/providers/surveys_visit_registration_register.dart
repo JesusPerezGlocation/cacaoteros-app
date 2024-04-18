@@ -319,25 +319,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _numberMonthWorkFarm = TextEditingController();
-  TextEditingController get numberMonthWorkFarm => _numberMonthWorkFarm;
-
-  setNumberMonthWorkFarm(String val) {
-    _numberMonthWorkFarm.text =
-        val; // número de dias al mes que trabaja en el cultivo d cacao
-    notifyListeners();
-  }
-
-  final TextEditingController _numberWithoutFarm = TextEditingController();
-  TextEditingController get numberWithoutFarm => _numberWithoutFarm;
-
-  setNumberWithoutFarm(String val) {
-    _numberWithoutFarm.text =
-        val; // número de dias al mes que trabaja fuera de la finca
-    notifyListeners();
-  }
-
-//?cuarta pantalla #4*/
+//*cuarta pantalla #4*/
 /*seleccion de municpio, departamento y vereda*/
   final TextEditingController _department = TextEditingController();
   final TextEditingController _municipality = TextEditingController();
@@ -347,7 +329,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   TextEditingController get municipality => _municipality;
   TextEditingController get place => _place;
 
-//?quinta pantalla #5*/
+//*quinta pantalla #5*/
 
   double? _latitude;
   double? _longitude;
@@ -386,20 +368,19 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //?sexta pantalla #6
-  final TextEditingController _liveFarm = TextEditingController();
-  TextEditingController get liveFarm => _liveFarm;
-
-  setLiveFarm(String val) {
-    _liveFarm.text = val; // vive en la finca?
+  //*sexta pantalla #6
+  final TextEditingController _statusCivil = TextEditingController();
+  TextEditingController get statusCivil => _statusCivil;
+  setStatusCivil(String val) {
+    _statusCivil.text = val; // estado civil
     notifyListeners();
   }
 
-  final TextEditingController _typePeopleVulnerable = TextEditingController();
-  TextEditingController get typePeopleVulnerable => _typePeopleVulnerable;
-
-  setTypePeopleVulnerable(String val) {
-    _typePeopleVulnerable.text = val; //tipo de población vulnerable
+  final TextEditingController _statusCivilOther = TextEditingController();
+  TextEditingController get statusCivilOther => _statusCivilOther;
+  setStatusCivilOther(String val) {
+    _statusCivilOther.text =
+        val; // en caso de que haya seleccionado "Otro" en estado civil
     notifyListeners();
   }
 
@@ -410,6 +391,198 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     _ethhicGroup.text = val; // grupo etnico
     notifyListeners();
   }
+
+  final TextEditingController _ethhicGroupOther = TextEditingController();
+  TextEditingController get ethhicGroupOther => _ethhicGroupOther;
+
+  setEthhicGroupOther(String val) {
+    _ethhicGroupOther.text =
+        val; //en caso de que haya seleccionado "Otro" en grupo etnico
+    notifyListeners();
+  }
+
+  final TextEditingController _educationalLevel = TextEditingController();
+  TextEditingController get educationalLevel => _educationalLevel;
+
+  setEducationalLevel(String val) {
+    _educationalLevel.text = val; //nivel educativo alcanzado
+    notifyListeners();
+  }
+
+  final TextEditingController _educationalLevelOther = TextEditingController();
+  TextEditingController get educationalLevelOther => _educationalLevelOther;
+
+  setEducationalLevelOther(String val) {
+    _educationalLevelOther.text =
+        val; //en caso de que haya seleccionado "Otro" nivel educativo alcanzado
+    notifyListeners();
+  }
+
+  final TextEditingController _obtainerTitle = TextEditingController();
+  TextEditingController get obtainerTitle => _obtainerTitle;
+
+  setObtainerTitle(String val) {
+    _obtainerTitle.text = val; // titulo obtenido
+    notifyListeners();
+  }
+
+  final TextEditingController _typeOfTenure = TextEditingController();
+  TextEditingController get typeOfTenure => _typeOfTenure;
+
+  setTypeOfTenure(String val) {
+    _typeOfTenure.text = val; // seleccionar tipo de tenencia
+    notifyListeners();
+  }
+
+  final TextEditingController _typeOfTenureOther = TextEditingController();
+  TextEditingController get typeOfTenureOther => _typeOfTenureOther;
+
+  setTypeOfTenureOther(String val) {
+    _typeOfTenureOther.text =
+        val; //en caso de que haya seleccionado "Otro" seleccionar tipo de tenencia
+    notifyListeners();
+  }
+
+  final TextEditingController _originProperty = TextEditingController();
+  TextEditingController get originProperty => _originProperty;
+
+  setOriginProperty(String val) {
+    _originProperty.text = val; //origen de la tenencia de la tierra
+    notifyListeners();
+  }
+
+  final TextEditingController _originPropertyOther = TextEditingController();
+  TextEditingController get originPropertyOther => _originPropertyOther;
+
+  setOriginPropertyOther(String val) {
+    _originPropertyOther.text =
+        val; //en caso de que haya seleccionado "Otro" origen de la tenencia de la tierra
+    notifyListeners();
+  }
+
+  final TextEditingController _typePossesion = TextEditingController();
+  TextEditingController get typePossesion => _typePossesion;
+
+  setTypePossesion(String val) {
+    _typePossesion.text = val; // tipo de posesión
+    notifyListeners();
+  }
+
+  final TextEditingController _typePossesionOther = TextEditingController();
+  TextEditingController get typePossesionOther => _typePossesionOther;
+
+  setTypePossesionOther(String val) {
+    _typePossesionOther.text =
+        val; //en caso de que haya seleccionado "Otro" tipo de posesión
+    notifyListeners();
+  }
+
+  final TextEditingController _belongAssociation = TextEditingController();
+  TextEditingController get belongAssociation => _belongAssociation;
+
+  setBelongAssociation(String val) {
+    _belongAssociation.text = val; // pertenece a alguna asociación
+    notifyListeners();
+  }
+
+  final TextEditingController _belongAssociationOther = TextEditingController();
+  TextEditingController get belongAssociationOther => _belongAssociationOther;
+
+  setBelongAssociationOther(String val) {
+    _belongAssociationOther.text =
+        val; //en caso de que haya seleccionado "Si" pertenece a alguna asociación
+    notifyListeners();
+  }
+
+  final TextEditingController _nationalFederation = TextEditingController();
+  TextEditingController get nationalFederation => _nationalFederation;
+
+  setNationalFederation(String val) {
+    _nationalFederation.text =
+        val; // pertenece a la federación nacional de cocotero
+    notifyListeners();
+  }
+
+  final TextEditingController _nationalFederationOther =
+      TextEditingController();
+  TextEditingController get nationalFederationOther => _nationalFederationOther;
+
+  setNationalFederationOther(String val) {
+    _nationalFederationOther.text =
+        val; //en caso de que haya seleccionado "Si" pertenece a la federación nacional de cocotero
+    notifyListeners();
+  }
+
+  final TextEditingController _nationalFederationOtherYes =
+      TextEditingController();
+  TextEditingController get nationalFederationOtherYes =>
+      _nationalFederationOtherYes;
+
+  setNationalFederationOtherYes(String val) {
+    _nationalFederationOtherYes.text =
+        val; //en caso de que haya seleccionado "Si" pertenece a la federación nacional de cocotero
+    notifyListeners();
+  }
+
+  final TextEditingController _socialSecurity = TextEditingController();
+  TextEditingController get socialSecurity => _socialSecurity;
+
+  setSocialSecurity(String val) {
+    _socialSecurity.text =
+        val; // estan asociados al sistema de seguridad social?
+    notifyListeners();
+  }
+
+  final TextEditingController _socialSecurityOther = TextEditingController();
+  TextEditingController get socialSecurityOther => _socialSecurityOther;
+
+  setSocialSecurityOther(String val) {
+    _socialSecurityOther.text =
+        val; //en caso de que haya seleccionado "Si" estan asociados al sistema de seguridad social?
+    notifyListeners();
+  }
+
+  final TextEditingController _typeLabour = TextEditingController();
+  TextEditingController get typeLabour => _typeLabour;
+
+  setTypeLabour(String val) {
+    _typeLabour.text = val; //tipo de mano de obra para el cultivo de cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _numberDayFarm = TextEditingController();
+  TextEditingController get numberDayFarm => _numberDayFarm;
+
+  setNumberDayFarm(String val) {
+    _numberDayFarm.text =
+        val; //numero de días al mes que labora en el cultivo de cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _numberDaysMonthFarm = TextEditingController();
+  TextEditingController get numberDaysMonthFarm => _numberDaysMonthFarm;
+
+  setNumberDaysMonthFarm(String val) {
+    _numberDaysMonthFarm.text =
+        val; //número de días que trbaja fuera de la finca
+    notifyListeners();
+  }
+
+  // final TextEditingController _liveFarm = TextEditingController();
+  // TextEditingController get liveFarm => _liveFarm;
+
+  // setLiveFarm(String val) {
+  //   _liveFarm.text = val; // vive en la finca?
+  //   notifyListeners();
+  // }
+
+  // final TextEditingController _typePeopleVulnerable = TextEditingController();
+  // TextEditingController get typePeopleVulnerable => _typePeopleVulnerable;
+
+  // setTypePeopleVulnerable(String val) {
+  //   _typePeopleVulnerable.text = val; //tipo de población vulnerable
+  //   notifyListeners();
+  // }
 
 //?septima pantalla #7*
   final TextEditingController _typeAccountBank = TextEditingController();
@@ -463,6 +636,80 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   setActivityFavoredWithCredit(String val) {
     _activityFavoredWithCredit.text =
         val; // que actividad financió con el credito
+    notifyListeners();
+  }
+
+//*pantalla once #11*/
+  final TextEditingController _nameAndLastNameRelationShip =
+      TextEditingController();
+  TextEditingController get nameAndLastNameRelationShip =>
+      _nameAndLastNameRelationShip;
+
+  setNameAndLastNameRelationShip(String val) {
+    _nameAndLastNameRelationShip.text = val; // nombre y apellido
+    notifyListeners();
+  }
+
+  final TextEditingController _relationShip = TextEditingController();
+  TextEditingController get relationShip => _relationShip;
+
+  setRelationShip(String val) {
+    _relationShip.text = val; // parentesco
+    notifyListeners();
+  }
+
+  final TextEditingController _genderRelationShip = TextEditingController();
+  TextEditingController get genderRelationShip => _genderRelationShip;
+
+  setGenderRelationShip(String val) {
+    _genderRelationShip.text = val; // genero del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _monthBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get monthBrithdayRelationship =>
+      _monthBrithdayRelationship;
+
+  setMonthBrithdayRelationship(String val) {
+    _monthBrithdayRelationship.text = val; // mes de cumpleaños del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _dayBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get dayBrithdayRelationship => _dayBrithdayRelationship;
+
+  setDayBrithdayRelationship(String val) {
+    _dayBrithdayRelationship.text = val; // dia de cumpleaños
+    notifyListeners();
+  }
+
+  final TextEditingController _yearBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get yearBrithdayRelationship =>
+      _yearBrithdayRelationship;
+
+  setYearBrithdayRelationship(String val) {
+    _yearBrithdayRelationship.text = val; //año de cumpleaños familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _educationLevelRelationship =
+      TextEditingController();
+  TextEditingController get educationLevelRelationship =>
+      _educationLevelRelationship;
+
+  setEducationLevelRelationship(String val) {
+    _educationLevelRelationship.text = val; // nivel de educación del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _numberDocRelationship = TextEditingController();
+  TextEditingController get numberDocRelationship => _numberDocRelationship;
+
+  setNumberDocRelationship(String val) {
+    _numberDocRelationship.text = val; // numero de documento del familiar
     notifyListeners();
   }
 

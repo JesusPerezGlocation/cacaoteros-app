@@ -66,7 +66,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
-                    title: '¿Otro, Cuál?',
+                    title: '¿Cuál?',
                     hintext: ' Ingresar tipo de documento',
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
@@ -243,13 +243,14 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               ),
               SizedBox(height: size.height * .03),
               //#11
-              InputsComponent(
+              InputsDatesComponent(
                 title: 'Edad',
                 hintext: ' Ingresar edad',
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
+                maxLength: 3,
                 controller: surveysPrv.ageUser,
-                validator: (val) => ValidationInputs.inputEmpty(val),
+                validator: (val) => ValidationInputs.validateAge(val),
                 onChanged: (val) => surveysPrv.setAgeUser(val),
               ),
               SizedBox(height: size.height * .03),
