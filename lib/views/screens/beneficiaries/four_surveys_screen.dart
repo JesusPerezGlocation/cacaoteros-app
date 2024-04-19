@@ -2,26 +2,29 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 import 'package:surveys_app/controllers/routes/main_routes.dart';
+import 'package:surveys_app/views/screens/beneficiaries/five_surveys_screen.dart';
 
 /*
 pantalla #11 MIEMBROS DE LA FAMILIA QUE VIVEN EN LA FINCA Y APOYAN A LA ACTIVIDAD (HIJOS, YERNO, NUERA, SOBRINO, TIOS Y DEMAS)
 */
-class ElevenSurveysScreen extends StatefulWidget {
-  const ElevenSurveysScreen({super.key});
+class FourSurveysScreen extends StatefulWidget {
+  const FourSurveysScreen({super.key});
 
   @override
-  State<ElevenSurveysScreen> createState() => _ElevenSurveysScreenState();
+  State<FourSurveysScreen> createState() => _FourSurveysScreenState();
 }
 
-class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
+class _FourSurveysScreenState extends State<FourSurveysScreen> {
 /*key*/
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPrv = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
+    final locationPRV = Provider.of<PermissionLocationProvider>(context);
     return Scaffold(
       floatingActionButton: const IconButtonAddMemberComponents(),
       appBar: AppBar(actions: const [SaveIconDraftComponents()]),
@@ -36,12 +39,12 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
             children: [
               const TitleSurveysComponents(
                   title:
-                      'CONFORMACIÓN NÚCLEO FAMILIAR > MIEMBROS DE LA FAMILIA QUE VIVEN EN LA FINCA Y APOYAN A LA ACTIVIDAD (HIJOS, YERNO, NUERA, SOBRINO, TIOS Y DEMAS)'),
+                      'INFORMACIÓN DE FAMILIARES (SOLO FAMILIARES QUE VIVEN O TRABAJEN EN EL CULTIVO)'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (11 - 1) * (100 / 23) / 100,
+                percent: (4 - 1) * (100 / 23) / 100,
                 questions: '30',
-                answers: '11',
+                answers: '4',
               ),
               SizedBox(height: size.height * .04),
               //#1
@@ -144,7 +147,6 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
                   'Secundaria',
                   'Técnico',
                   'Profesional',
-                  'Otro'
                 ],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
@@ -154,23 +156,23 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
 
               SizedBox(height: size.height * .03),
               InputsComponent(
-                title: 'Institución escolaridad',
+                title: 'Institución de escolaridad',
                 hintext: ' Ingresar institución',
-                controller: surveysPrv.numberDocRelationship,
+                controller: surveysPrv.schoolRelationship,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setNumberDocRelationship(val),
+                onChanged: (val) => surveysPrv.setSchoolRelationship(val),
               ),
 
               SizedBox(height: size.height * .03),
               //#7
               InputsComponent(
-                title:
-                    'Número de días al mes que labora en el cultivo de cacao',
+                title: 'Número de documento',
                 hintext: ' Ingresar número',
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
+                controller: surveysPrv.numberDocRelationship,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => surveysPrv.setNumberDocRelationship(val),
               ),
 
               SizedBox(height: size.height * .06),
@@ -180,11 +182,11 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
                 title: 'Continuar',
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    /*navega a la pantalla #12*/
-                    Navigator.pushNamed(
-                      context,
-                      MainRoutes.twelveSurveysRoute,
-                    );
+                    /*navega a la pantalla #5*/
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const FiveSurveysScreen()));
                   }
                 },
               ),

@@ -568,6 +568,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 hintext: 'Ingresar número de días',
                 maxLength: 2,
                 controller: surveysPrv.numberDayFarm,
+                keyboardType: TextInputType.number,
                 validator: (val) => ValidationInputs.validateDayOfMonth(val),
                 onChanged: (val) => surveysPrv.setNumberDayFarm(val),
               ),
@@ -578,6 +579,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 hintext: 'Ingresar número de días',
                 maxLength: 2,
                 controller: surveysPrv.numberDaysMonthFarm,
+                keyboardType: TextInputType.number,
                 validator: (val) => ValidationInputs.validateDayOfMonth(val),
                 onChanged: (val) => surveysPrv.setNumberDaysMonthFarm(val),
               ),
@@ -587,12 +589,12 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    Navigator.pushNamed(
-                      context,
-                      MainRoutes.sevenSurveysRoute,
-                    );
-                  }
+                  //!!aun no esta validando, cuando cambie el tipo de input activar
+                  if (formKey.currentState!.validate()) {}
+                  Navigator.pushNamed(
+                    context,
+                    MainRoutes.elevenSurveysRoute,
+                  );
                 },
               ),
               SizedBox(height: size.height * .06),

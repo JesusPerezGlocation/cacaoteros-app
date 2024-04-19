@@ -57,7 +57,7 @@ class _ContainerShowModalOneState extends State<_ContainerShowModalOne> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPRV = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPRV = Provider.of<BeneficiariesSurveysProvider>(context);
     return Container(
       height: size.height * .8,
       width: size.width,
@@ -145,7 +145,7 @@ class _ContainerShowModalTwoState extends State<_ContainerShowModalTwo> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPRV = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPRV = Provider.of<BeneficiariesSurveysProvider>(context);
     return Container(
       height: size.height * 0.8,
       width: size.width,
@@ -286,7 +286,7 @@ class _ContainerShowModalThreeState extends State<_ContainerShowModalThree> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPRV = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPRV = Provider.of<BeneficiariesSurveysProvider>(context);
     return Container(
       height: size.height * 0.8,
       width: size.width,

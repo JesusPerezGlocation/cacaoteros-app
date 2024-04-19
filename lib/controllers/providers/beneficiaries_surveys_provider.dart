@@ -530,4 +530,369 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
         val; //en caso de que eliga otro en proceso de obtención de certificado
     notifyListeners();
   }
+
+  //*PANTALLA CUATRO #4 */
+  final TextEditingController _nameAndLastNameRelationShip =
+      TextEditingController();
+  TextEditingController get nameAndLastNameRelationShip =>
+      _nameAndLastNameRelationShip;
+
+  setNameAndLastNameRelationShip(String val) {
+    _nameAndLastNameRelationShip.text = val; // nombre y apellido
+    notifyListeners();
+  }
+
+  final TextEditingController _relationShip = TextEditingController();
+  TextEditingController get relationShip => _relationShip;
+
+  setRelationShip(String val) {
+    _relationShip.text = val; // parentesco
+    notifyListeners();
+  }
+
+  final TextEditingController _genderRelationShip = TextEditingController();
+  TextEditingController get genderRelationShip => _genderRelationShip;
+
+  setGenderRelationShip(String val) {
+    _genderRelationShip.text = val; // genero del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _monthBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get monthBrithdayRelationship =>
+      _monthBrithdayRelationship;
+
+  setMonthBrithdayRelationship(String val) {
+    _monthBrithdayRelationship.text = val; // mes de cumpleaños del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _dayBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get dayBrithdayRelationship => _dayBrithdayRelationship;
+
+  setDayBrithdayRelationship(String val) {
+    _dayBrithdayRelationship.text = val; // dia de cumpleaños
+    notifyListeners();
+  }
+
+  final TextEditingController _yearBrithdayRelationship =
+      TextEditingController();
+  TextEditingController get yearBrithdayRelationship =>
+      _yearBrithdayRelationship;
+
+  setYearBrithdayRelationship(String val) {
+    _yearBrithdayRelationship.text = val; //año de cumpleaños familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _educationLevelRelationship =
+      TextEditingController();
+  TextEditingController get educationLevelRelationship =>
+      _educationLevelRelationship;
+
+  setEducationLevelRelationship(String val) {
+    _educationLevelRelationship.text = val; // nivel de educación del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _numberDocRelationship = TextEditingController();
+  TextEditingController get numberDocRelationship => _numberDocRelationship;
+
+  setNumberDocRelationship(String val) {
+    _numberDocRelationship.text = val; // numero de documento del familiar
+    notifyListeners();
+  }
+
+  final TextEditingController _schoolRelationship = TextEditingController();
+  TextEditingController get schoolRelationship => _schoolRelationship;
+
+  setSchoolRelationship(String val) {
+    _schoolRelationship.text = val; //donde estudio el familiar
+    notifyListeners();
+  }
+
+  //*PANTALLA CINCO #5*/
+  /*seleccion de municpio, departamento y vereda*/
+  final TextEditingController _department = TextEditingController();
+  final TextEditingController _codeDepartament = TextEditingController();
+  final TextEditingController _municipality = TextEditingController();
+  final TextEditingController _codeMunicipality = TextEditingController();
+  final TextEditingController _place = TextEditingController(); //vereda
+  final TextEditingController _codePlace =
+      TextEditingController(); //codigo vereda
+  final TextEditingController _nameProperty = TextEditingController();
+
+  TextEditingController get department => _department;
+  TextEditingController get codeDepartament => _codeDepartament;
+  TextEditingController get municipality => _municipality;
+  TextEditingController get codeMunicipality => _codeMunicipality;
+  TextEditingController get place => _place;
+  TextEditingController get codePlace => _codePlace;
+  TextEditingController get nameProperty => _nameProperty;
+
+  setDepartement(String date) {
+    _department.text = date; //departamento
+    notifyListeners();
+  }
+
+  setMunicipality(String date) {
+    _municipality.text = date; //munipio
+    notifyListeners();
+  }
+
+  setPlace(String date) {
+    _place.text = date; //vereda
+    notifyListeners();
+  }
+
+  setNameProperty(String val) {
+    _nameProperty.text = val; //nombre del predio
+    notifyListeners();
+  }
+
+  setCodeDepartament(String val) {
+    _codeDepartament.text = val;
+    notifyListeners();
+  }
+
+  setCodeMunicipality(String val) {
+    _codeMunicipality.text = val;
+    notifyListeners();
+  }
+
+  setCodePlace(String val) {
+    _codePlace.text = val;
+    notifyListeners();
+  }
+
+  final TextEditingController _mapUnitDomestic = TextEditingController();
+  TextEditingController get mapUnitDomestic => _mapUnitDomestic;
+
+  setMapUnitDomestic(String val) {
+    _mapUnitDomestic.text = val; //mapa de la unidad domestica
+    notifyListeners();
+  }
+
+  final TextEditingController _hectareNumbers = TextEditingController();
+  TextEditingController get hectareNumbers => _hectareNumbers;
+
+  setHectareNumber(String val) {
+    _hectareNumbers.text = val; // número de hectareas
+    notifyListeners();
+  }
+
+  final TextEditingController _propertyHeight = TextEditingController();
+  TextEditingController get propertyHeight => _propertyHeight;
+
+  setPropertyHeight(String val) {
+    _propertyHeight.text = val; // pendiente o altura del terreno
+    notifyListeners();
+  }
+
+  final TextEditingController _whoWorkUnitDomectic = TextEditingController();
+  TextEditingController get whoWorkUnitDomectic => _whoWorkUnitDomectic;
+
+  setWhoWorkUnitDomectic(String val) {
+    _whoWorkUnitDomectic.text = val; //quienes laboran en la unidad domesica
+    notifyListeners();
+  }
+
+  final TextEditingController _externalPeopleWithSeguritySocial =
+      TextEditingController();
+  TextEditingController get externalPeopleWithSeguritySocial =>
+      _externalPeopleWithSeguritySocial;
+
+  setExternalPeopleWithSeguritySocial(String val) {
+    _externalPeopleWithSeguritySocial.text =
+        val; // personal externo conseguridad social
+    notifyListeners();
+  }
+
+  final TextEditingController _totalAreaCacao = TextEditingController();
+  TextEditingController get totalAreaCacao => _totalAreaCacao;
+
+  setTotalAreaCacao(String val) {
+    _totalAreaCacao.text = val; //area total del cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _ageCacao = TextEditingController();
+  TextEditingController get ageCacao => _ageCacao;
+
+  setAgeCacao(String val) {
+    _ageCacao.text = val; //edad total del cultivo de ccao
+    notifyListeners();
+  }
+
+  final TextEditingController _cacaoVariety = TextEditingController();
+  TextEditingController get cacaoVariety => _cacaoVariety;
+
+  setCacaoVariety(String val) {
+    _cacaoVariety.text = val; // variedad del cacao
+    notifyListeners();
+  }
+
+  final TextEditingController _forestAreaTotal = TextEditingController();
+  TextEditingController get forestAreaTotal => _forestAreaTotal;
+
+  setForestAreaTotal(String val) {
+    _forestAreaTotal.text = val; //area total de bossques
+    notifyListeners();
+  }
+
+  final TextEditingController _rastrojoAreaTotal = TextEditingController();
+  TextEditingController get rastrojoAreaTotal => _rastrojoAreaTotal;
+
+  setRastrojoAreaTotal(String val) {
+    _rastrojoAreaTotal.text = val; // area total en pasto
+    notifyListeners();
+  }
+
+  final TextEditingController _glassAreaTotal = TextEditingController();
+  TextEditingController get glassAreaTotal => _glassAreaTotal;
+
+  setGlassAreaTotal(String val) {
+    _glassAreaTotal.text = val; // area total en pasto
+    notifyListeners();
+  }
+
+  final TextEditingController _cultivesAreaTotal = TextEditingController();
+  TextEditingController get cultivesAreaTotal => _cultivesAreaTotal;
+
+  setCultivesAreaTotal(String val) {
+    _cultivesAreaTotal.text = val; // araea total de otros cultivos
+    notifyListeners();
+  }
+
+  /*limpia la selección de departamentos*/
+  cleanDepartaments() {
+    _department.clear();
+    _municipality.clear();
+    _place.clear();
+    notifyListeners();
+  }
+
+/*limpia el municpio*/
+  cleanMunicipality() {
+    _municipality.clear();
+    _place.clear();
+    notifyListeners();
+  }
+
+/*limpia la vereda */
+  cleanPlace() {
+    _place.clear();
+    notifyListeners();
+  }
+
+/*limpia todo el cuestionario */
+  cleanAllCuestionary() {
+    _nameUnit.clear();
+    _department.clear();
+    _municipality.clear();
+    _place.clear();
+    notifyListeners();
+  }
+
+  //*PANTALLA CINCO #6*/
+
+  double? _latitude;
+  double? _longitude;
+  double? _accuracy;
+  double? _altitude;
+
+  double? get latitude => _latitude;
+  double? get longitude => _longitude;
+  double? get accuracy => _accuracy;
+  double? get altitude => _altitude;
+
+  void setUpdateLocation(
+      double? lat, double? long, double? accu, double? alti) {
+    _latitude = lat;
+    _longitude = long;
+    _accuracy = accu;
+    _altitude = alti;
+    notifyListeners();
+  }
+
+  final TextEditingController _otherCultives = TextEditingController();
+  TextEditingController get otherCultives => _otherCultives;
+
+  setoOtherCultives(String val) {
+    _otherCultives.text = val; //cuales son esos otros cultivos
+    notifyListeners();
+  }
+
+  final TextEditingController _timberSpecies = TextEditingController();
+  TextEditingController get timberSpecies => _timberSpecies;
+
+  setTimberSpecies(String val) {
+    _timberSpecies.text = val; // especies maderables
+    notifyListeners();
+  }
+
+  final TextEditingController _timberSpeciesOther = TextEditingController();
+  TextEditingController get timberSpeciesOther => _timberSpeciesOther;
+
+  setTimberSpeciesOther(String val) {
+    _timberSpeciesOther.text =
+        val; //en caso de que selecione "si" especies maderables
+    notifyListeners();
+  }
+
+  final TextEditingController _timberTrees = TextEditingController();
+  TextEditingController get timberTrees => _timberTrees;
+
+  setTimberTrees(String val) {
+    _timberTrees.text = val; // total de arboels maderables
+    notifyListeners();
+  }
+
+  final TextEditingController _materialsVegetables = TextEditingController();
+  TextEditingController get materialsVegetables => _materialsVegetables;
+
+  setmaterialsVegetables(String val) {
+    _materialsVegetables.text = val; // materiales vegetales
+    notifyListeners();
+  }
+
+  final TextEditingController _associationWithCocoa = TextEditingController();
+  TextEditingController get associationWithCocoa => _associationWithCocoa;
+
+  setAssociationWithCocoa(String val) {
+    _associationWithCocoa.text = val; // asociason con el cacoa
+    notifyListeners();
+  }
+
+  final TextEditingController _associationWithCocoaOther =
+      TextEditingController();
+  TextEditingController get associationWithCocoaOther =>
+      _associationWithCocoaOther;
+
+  setAssociationWithCocoaOther(String val) {
+    _associationWithCocoaOther.text =
+        val; //si el suaurio selecciona "si" asociason con el cacoa
+    notifyListeners();
+  }
+
+  final TextEditingController _systemTypeProduct = TextEditingController();
+  TextEditingController get systemTypeProduct => _systemTypeProduct;
+
+  setSystemTypeProduct(String val) {
+    _systemTypeProduct.text = val; //sistema productivo de acacao implementado
+    notifyListeners();
+  }
+
+  final TextEditingController _systemTypeProductOther = TextEditingController();
+  TextEditingController get systemTypeProductOther => _systemTypeProductOther;
+
+  setSystemTypeProductOther(String val) {
+    _systemTypeProductOther.text =
+        val; //en caso de que seleccione "otro" sistema productivo de acacao implementado
+    notifyListeners();
+  }
+
+  //*PANTALLA SIETE #7
 }

@@ -12,6 +12,7 @@ class MainRoutes {
   static const secondSurveysdRoute = '/second_surveys_route';
   static const thirdSurveysRoute = '/third_surveys_route';
   static const fourSurveysRoute = '/four_surveys_route';
+  static const fiveSurveysRoute = '/five_surveys_route';
   static const allDraftsRoute = '/all_drafts_route';
   static const threeSurveysRoute = '/six_surveys_route';
   static const sevenSurveysRoute = '/seven_surveys_route';
@@ -49,7 +50,7 @@ class MainRoutes {
     eightSurveyRoute: (_) => const EightSurveysScreen(),
     nineSurveysRoute: (_) => const NineSurveysScreen(),
     tenSurveysRoute: (_) => const TenSurveysScreen(),
-    elevenSurveysRoute: (_) => const ElevenSurveysScreen(),
+    elevenSurveysRoute: (_) => const FourSurveysScreen(),
     listMembersRoute: (_) => const ListMembersScreen(),
     twelveSurveysRoute: (_) => const TwelveSurveysScreen(),
     thirteenSurveysRoute: (_) => const ThirteenSurveysScreen(),
@@ -66,6 +67,6 @@ class MainRoutes {
     twentyFourSurveysRoute: (_) => const TwentyFourSurveysScreen(),
     endSurveysScreenRoute: (_) => const EndSurveysScreen(),
     //firtSurveysRoute:(_) => const FirstSurveysScreens(),
-    // fiveSurveysRoute:(_)=>  const FiveSurveysScreen(),
+    // fiveSurveysRoute: (_) => const FiveSurveysScreen(),
   };
 }
