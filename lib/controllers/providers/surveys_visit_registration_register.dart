@@ -15,16 +15,32 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
 
-  String _iDSurveys = '';
-  String get iDSurveys => _iDSurveys;
+  final TextEditingController _submittionDate = TextEditingController();
+  TextEditingController get submittionDate => _submittionDate;
+
+  final TextEditingController _deviceID = TextEditingController();
+  TextEditingController get deviceID => _deviceID;
+
+  String _uuidiDSurveys = '';
+  String get uuidiDSurveys => _uuidiDSurveys;
 
   setNameUnit(String val) {
     _nameUnit.text = val; //nombre de la unidad
     notifyListeners();
   }
 
-  setIDSurveys(String id) {
-    _iDSurveys = id;
+  setUuidiDSurveys(String id) {
+    _uuidiDSurveys = id; //id de la encuesta
+    notifyListeners();
+  }
+
+  setSubmittionDate(String date) {
+    _submittionDate.text = date; // hora de envio de la encuesta
+    notifyListeners();
+  }
+
+  setDeviceID(String date) {
+    _deviceID.text = date; // id del dispositivo
     notifyListeners();
   }
 
@@ -142,19 +158,19 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _hasEmailAddressOther = TextEditingController();
-  TextEditingController get hasEmailAddressOther => _hasEmailAddressOther;
-
-  setHasEmailAddressOther(String val) {
-    _hasEmailAddressOther.text = val; //pregunta si correo
-    notifyListeners();
-  }
-
   final TextEditingController _emailAddress = TextEditingController();
   TextEditingController get emailAddress => _emailAddress;
 
   setEmailAddress(String val) {
     _emailAddress.text = val; //correo
+    notifyListeners();
+  }
+
+  final TextEditingController _hasEmailAddressOther = TextEditingController();
+  TextEditingController get hasEmailAddressOther => _hasEmailAddressOther;
+
+  setHasEmailAddressOther(String val) {
+    _hasEmailAddressOther.text = val; //pregunta si correo
     notifyListeners();
   }
 
@@ -899,10 +915,58 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     try {
       databaseReference.add(
         {
-          //!!hacer validacion por si el usuario no tiene segundo nombre o apellido
-          //!!pregunta si tiene correo, whatsaap
+          'AttachmentsExpected': "",
+          'AttachmentsPresent': "",
+          'DeviceID': "collect:${_deviceID.text}",
+          'Edits': "",
+          'FormVersion': "Versión 5",
+          'KEY': "uuid:$_uuidiDSurveys",
+          'ReviewState': "",
+          'Status': "",
+          'SubmissionDate': _submittionDate.text,
+          'SubmitterID': "99",
+          'SubmitterName': "iPhoneUser",
           //pantalla #1
+          "encuesta_caracterizacion_nombre_unidad": _nameUnit.text,
           //pantalla #2
+          'informacion_cacaocultorp3_tipo_documento':
+              _selectedDocumentType.text,
+          'informacion_cacaocultorp3_tipo_documento_otro':
+              _selecDocumentTypeOther.text,
+          'informacion_cacaocultorP4_documento': _documentNumber.text,
+          'informacion_cacaocultorp5_fecha_expedicion':
+              '${_expeditionMonth.text}-${_expeditionDay.text}-${_expeditionYear.text}',
+          'informacion_cacaocultorp6_lugar_expedicion': _placeExpedition.text,
+          'informacion_cacaocultorp7_primer_nombre': _firtName.text,
+          'informacion_cacaocultorp8_segundo_nombre': _secondName.text,
+          'informacion_cacaocultorp9_primer_apellido': _firtLastName.text,
+          'informacion_cacaocultorp10_segundo_apellido': _secondLastName.text,
+          'informacion_cacaocultorp11_fecha_nacimiento':
+              '${_birthMonth.text}-${_birthDay.text}-${_birthYear.text}',
+          'informacion_cacaocultorp12_edad': _ageUser.text,
+          'informacion_cacaocultorp13_genero': _gender.text,
+          'informacion_cacaocultorp13_genero_otro': _gender.text,
+          'informacion_cacaocultorp14_lugar_nacimiento': _placeBorn.text,
+          'informacion_cacaocultorp15_numero_celular': _phoneNumber.text,
+          'informacion_cacaocultorp16_whatsapp_mismo_numero': _hasWhatsApp.text,
+          'informacion_cacaocultorp17_tiene_correo': _emailAddress.text,
+          'informacion_cacaocultorp18_correo': _hasEmailAddressOther.text,
+          'informacion_cacaocultorp19_cuenta_con_internet':
+              _servicesEthernet.text,
+          'informacion_cacaocultorp20_tipo_servicion_internet':
+              _typeServicesEthernet.text,
+          'informacion_cacaocultorp20_tipo_servicion_internet_otro':
+              _whatServicesEthernet.text,
+          'informacion_cacaocultorp21_temas_internet':
+              _whatconsultEthernet.text,
+          'informacion_cacaocultorp21_temas_internet_otro':
+              whatconsultEthernetOther.text,
+          'informacion_cacaocultorp22_condicion_discapacidad':
+              _hasDisability.text,
+          'informacion_cacaocultorp22_condicion_discapacidad_si':
+              _hasDisabilityOther.text,
+          //pantalla #3
+
           //pantalla #6
           //pantalla #7
           //pantalla #8

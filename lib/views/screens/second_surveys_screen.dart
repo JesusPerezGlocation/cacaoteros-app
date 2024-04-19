@@ -55,14 +55,26 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   'Otro'
                 ],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setSelectedDocumentType(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Cédula de ciudadanía':
+                      surveysPrv.setSelectedDocumentType('1');
+                      break;
+                    case 'Cédula de extranjería':
+                      surveysPrv.setSelectedDocumentType('2');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setSelectedDocumentType('3');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.selectedDocumentType.text.isNotEmpty &&
-                  surveysPrv.selectedDocumentType.text == 'Otro')
+                  surveysPrv.selectedDocumentType.text == '3')
                 SizedBox(height: size.height * .03),
               if (surveysPrv.selectedDocumentType.text.isNotEmpty &&
-                  surveysPrv.selectedDocumentType.text == 'Otro')
+                  surveysPrv.selectedDocumentType.text == '3')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
@@ -261,7 +273,20 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 hintext: ' Seleccionar género',
                 items: const ['Masculino', 'Femenino', 'Otro'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) => surveysPrv.setGender(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Masculino':
+                      surveysPrv.setGender('1');
+                      break;
+                    case 'Femenino':
+                      surveysPrv.setGender('2');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setGender('3');
+                      break;
+                    default:
+                  }
+                },
               ),
               SizedBox(height: size.height * .03),
               //#13 nacionalidad
@@ -295,7 +320,17 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) => surveysPrv.setHasWhatsApp(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setHasWhatsApp('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setHasWhatsApp('2');
+                      break;
+                    default:
+                  }
+                },
               ),
 
               SizedBox(height: size.height * .03),
@@ -305,16 +340,25 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) =>
-                    surveysPrv.setHasEmailAddressOther(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setEmailAddress('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setEmailAddress('2');
+                      break;
+                    default:
+                  }
+                },
               ),
 
-              if (surveysPrv.hasEmailAddressOther.text.isNotEmpty &&
-                  surveysPrv.hasEmailAddressOther.text == 'Si')
+              if (surveysPrv.emailAddress.text.isNotEmpty &&
+                  surveysPrv.emailAddress.text == '1')
                 SizedBox(height: size.height * .03),
               // #17 correo electronico
-              if (surveysPrv.hasEmailAddressOther.text.isNotEmpty &&
-                  surveysPrv.hasEmailAddressOther.text == 'Si')
+              if (surveysPrv.emailAddress.text.isNotEmpty &&
+                  surveysPrv.emailAddress.text == '1')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
@@ -322,9 +366,9 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                     hintext: ' Ingresar correo electrónico',
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
-                    controller: surveysPrv.emailAddress,
+                    controller: surveysPrv.hasEmailAddressOther,
                     validator: (val) => ValidationInputs.emailValidations(val),
-                    onChanged: (val) => surveysPrv.setEmailAddress(val),
+                    onChanged: (val) => surveysPrv.setHasEmailAddressOther(val),
                   ),
                 ),
               SizedBox(height: size.height * .03),
@@ -334,15 +378,24 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) =>
-                    surveysPrv.setServicesEthernet(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setServicesEthernet('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setServicesEthernet('2');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.servicesEthernet.text.isNotEmpty &&
-                  surveysPrv.servicesEthernet.text == 'Si')
+                  surveysPrv.servicesEthernet.text == '1')
                 SizedBox(height: size.height * .03),
               //#19 tipo de servicio a intenet
               if (surveysPrv.servicesEthernet.text.isNotEmpty &&
-                  surveysPrv.servicesEthernet.text == 'Si')
+                  surveysPrv.servicesEthernet.text == '1')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: DropdownComponents(
@@ -350,16 +403,28 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                     hintext: ' Seleccionar dato',
                     items: const ['Plan de datos', 'Internet hogar', 'Otro'],
                     validator: (val) => ValidationInputs.inputTypeSelect(val),
-                    onChanged: (val) =>
-                        surveysPrv.setTypeServicesEthernet(val.toString()),
+                    onChanged: (val) {
+                      switch (val.toString()) {
+                        case 'Plan de datos':
+                          surveysPrv.setTypeServicesEthernet('1');
+                          break;
+                        case 'Internet hogar':
+                          surveysPrv.setTypeServicesEthernet('2');
+                          break;
+                        case 'Otro':
+                          surveysPrv.setTypeServicesEthernet('3');
+                          break;
+                        default:
+                      }
+                    },
                   ),
                 ),
               if (surveysPrv.typeServicesEthernet.text.isNotEmpty &&
-                  surveysPrv.typeServicesEthernet.text == 'Otro')
+                  surveysPrv.typeServicesEthernet.text == '3')
                 SizedBox(height: size.height * .03),
               //#20 tipo de servicio
               if (surveysPrv.typeServicesEthernet.text.isNotEmpty &&
-                  surveysPrv.typeServicesEthernet.text == 'Otro')
+                  surveysPrv.typeServicesEthernet.text == '3')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
@@ -387,15 +452,33 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   'Otro'
                 ],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setWhatconsultEthernet(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Redes sociales':
+                      surveysPrv.setWhatconsultEthernet('1');
+                      break;
+                    case 'Noticias':
+                      surveysPrv.setWhatconsultEthernet('2');
+                      break;
+                    case 'Deportes':
+                      surveysPrv.setWhatconsultEthernet('3');
+                      break;
+                    case 'Tecnología':
+                      surveysPrv.setWhatconsultEthernet('4');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setWhatconsultEthernet('5');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.whatServicesEthernet.text.isNotEmpty &&
-                  surveysPrv.whatServicesEthernet.text == 'Otro')
+                  surveysPrv.whatServicesEthernet.text == '5')
                 SizedBox(height: size.height * .03),
               //# 22 otro tema de consulta
               if (surveysPrv.whatServicesEthernet.text.isNotEmpty &&
-                  surveysPrv.whatServicesEthernet.text == 'Otro')
+                  surveysPrv.whatServicesEthernet.text == '5')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(
@@ -415,14 +498,24 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) => surveysPrv.setHasDisability(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setHasDisability('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setHasDisability('2');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.hasDisability.text.isNotEmpty &&
-                  surveysPrv.hasDisability.text == 'Si')
+                  surveysPrv.hasDisability.text == '1')
                 SizedBox(height: size.height * .03),
               //# otra discapacidad
               if (surveysPrv.hasDisability.text.isNotEmpty &&
-                  surveysPrv.hasDisability.text == 'Si')
+                  surveysPrv.hasDisability.text == '1')
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: InputsComponent(

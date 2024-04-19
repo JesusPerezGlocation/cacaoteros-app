@@ -81,7 +81,7 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
                   if (formKey.currentState!.validate()) {
                     /*genera un id ramdon  */
                     String idRandom = generatedIdRandom();
-                    surveysPrv.setIDSurveys(idRandom);
+                    surveysPrv.setUuidiDSurveys(idRandom);
 
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(

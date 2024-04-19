@@ -65,7 +65,8 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 ),
               ),
 
-              SizedBox(height: size.height * .03),
+              if (surveysPRV.department.text.isNotEmpty)
+                SizedBox(height: size.height * .03),
               //# 2
               if (surveysPRV.department.text.isNotEmpty)
                 InkWell(
@@ -84,7 +85,8 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                   ),
                 ),
 
-              SizedBox(height: size.height * .03),
+              if (surveysPRV.municipality.text.isNotEmpty)
+                SizedBox(height: size.height * .03),
               //#3
               if (surveysPRV.municipality.text.isNotEmpty)
                 InkWell(
