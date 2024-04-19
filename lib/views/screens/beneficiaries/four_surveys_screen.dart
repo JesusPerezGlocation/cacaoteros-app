@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
-import 'package:surveys_app/views/screens/beneficiaries/five_surveys_screen.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla #11 MIEMBROS DE LA FAMILIA QUE VIVEN EN LA FINCA Y APOYAN A LA ACTIVIDAD (HIJOS, YERNO, NUERA, SOBRINO, TIOS Y DEMAS)
@@ -179,10 +179,11 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 title: 'Continuar',
                 onPressed: () {
                   /*navega a la pantalla #5*/
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FiveSurveysScreen()));
+                  Navigator.pushNamed(
+                    context,
+                    MainRoutes.fiveSurveysRoute,
+                  );
+
                   if (formKey.currentState!.validate()) {}
                 },
               ),

@@ -5,7 +5,7 @@ export 'package:surveys_app/views/screens/fifteen_surveys_screen.dart';
 export 'package:surveys_app/views/screens/twelve_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/lists_members_screen.dart';
 export 'package:surveys_app/views/screens/eight_surveys_screen.dart';
-export 'package:surveys_app/views/screens/seven_surveys_screen.dart';
+export 'package:surveys_app/views/screens/beneficiaries/seven_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/three_surveys_screen.dart';
 export 'package:surveys_app/views/screens/all_drafts_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/firt_surveys_screen.dart';

@@ -566,7 +566,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   if (formKey.currentState!.validate()) {}
                   Navigator.pushNamed(
                     context,
-                    MainRoutes.elevenSurveysRoute,
+                    MainRoutes.foursSurveysRoute,
                   );
                 },
               ),

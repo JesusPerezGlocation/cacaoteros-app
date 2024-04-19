@@ -849,7 +849,7 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   final TextEditingController _materialsVegetables = TextEditingController();
   TextEditingController get materialsVegetables => _materialsVegetables;
 
-  setmaterialsVegetables(String val) {
+  setMaterialsVegetables(String val) {
     _materialsVegetables.text = val; // materiales vegetales
     notifyListeners();
   }
@@ -891,10 +891,74 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   }
 
   //*PANTALLA SIETE #7
+  final TextEditingController _floorSuitability = TextEditingController();
+  TextEditingController get floorSuitability => _floorSuitability;
+  final TextEditingController _maintenaceCultive = TextEditingController();
+  TextEditingController get maintenaceCultive => _maintenaceCultive;
+  final TextEditingController _floorSuitabilityOther = TextEditingController();
+  TextEditingController get floorSuitabilityOther => _floorSuitabilityOther;
+  final TextEditingController _irrigationSystem = TextEditingController();
+  TextEditingController get irrigationSystem => _irrigationSystem;
+  final TextEditingController _performFertilization = TextEditingController();
+  TextEditingController get performFertilization => _performFertilization;
+  final TextEditingController _typeFertilization = TextEditingController();
+  TextEditingController get typeFertilization => _typeFertilization;
+  final TextEditingController _typeFertilizationOther = TextEditingController();
+  TextEditingController get typeFertilizationOther => _typeFertilizationOther;
+  final TextEditingController _recolectionCocoa = TextEditingController();
+  TextEditingController get recolectionCocoa => _recolectionCocoa;
+  final TextEditingController _recolectionCocoaOther = TextEditingController();
+  TextEditingController get recolectionCocoaOther => _recolectionCocoaOther;
+
+  setFloorSuitability(String val) {
+    _floorSuitability.text = val; //adecuación del suelo
+    notifyListeners();
+  }
+
+  setMaintenaceCultive(String val) {
+    _maintenaceCultive.text = val; // mantenimiento de cultivo
+    notifyListeners();
+  }
+
+  setfloorSuitabilityOther(String val) {
+    _floorSuitabilityOther.text =
+        val; // en caso de que seleccione "Otro"mantenimiento de cultivo
+    notifyListeners();
+  }
+
+  seTirrigationSystem(String val) {
+    _irrigationSystem.text = val; //posees sistema de riegos
+    notifyListeners();
+  }
+
+  setPerformFertilization(String val) {
+    _performFertilization.text = val; // realiza fertilizacion
+    notifyListeners();
+  }
+
+  setTypeFertilization(String val) {
+    _typeFertilization.text = val; //tipo de fertilización
+    notifyListeners();
+  }
+
+  setTypeFertilizationOther(String val) {
+    _typeFertilizationOther.text =
+        val; //en caso de que seleccione "otro" tipo de fertilización
+    notifyListeners();
+  }
+
+  setrecolectionCocoa(String val) {
+    _recolectionCocoa.text = val; //recolección de cacao
+    notifyListeners();
+  }
+
+  setRecolectionCocoaOther(String val) {
+    _recolectionCocoaOther.text =
+        val; //en caso de que seleccine otro en recolección de cacao
+    notifyListeners();
+  }
 
   //*PETICIÓN FIREBASE*/
-  //*petición a firebase
-
   Future<void> sentSurveysToFirabase(BuildContext context) async {
     try {
       databaseReference.add(
@@ -995,7 +1059,56 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
           'informacion_sociodemograficap39_dias_labora_fuera_finca':
               _numberDaysMonthFarm.text,
 
-          //pantalla #
+          //pantalla #5
+          'ubicacion_fincap47_codigo_departamento': _codeDepartament.text,
+          'ubicacion_fincap47_departamento': _department.text,
+          'ubicacion_fincap48_codigo_municipio': _codeMunicipality.text,
+          'ubicacion_fincap48_municipio': _municipality.text,
+          'ubicacion_fincap49_codigo_vereda': _codePlace.text,
+          'ubicacion_fincap49_vereda': _place.text,
+          'ubicacion_fincap50_nombre_predio': _nameProperty.text,
+          'informacion_unidad_productivap59_mapa_unidad_productiva':
+              _mapUnitDomestic.text,
+          'informacion_unidad_productivap60_total_hectareas_predio':
+              _hectareNumbers.text,
+          'informacion_unidad_productivap61_pendiente_terreno':
+              _propertyHeight.text,
+          'informacion_unidad_productivap62_laboran_unidad_productiva':
+              _whoWorkUnitDomectic.text,
+          'informacion_unidad_productivap63_personal_seguridad_social':
+              _externalPeopleWithSeguritySocial.text,
+          'informacion_unidad_productivap64_area_total_cacao':
+              _totalAreaCacao.text,
+          'informacion_unidad_productivap65_edad_cultivo_cacao': _ageCacao.text,
+          'informacion_unidad_productivap66_variedades_cacao_establecido':
+              _cacaoVariety.text,
+          'informacion_unidad_productivap67_area_total_bosques':
+              _forestAreaTotal.text,
+          'informacion_unidad_productivap68_area_total_rastrojo':
+              _rastrojoAreaTotal.text,
+          'informacion_unidad_productivap69_area_total_pastos':
+              _glassAreaTotal.text,
+          'informacion_unidad_productivap70_area_total_otros_cultivos':
+              _cultivesAreaTotal.text,
+          'informacion_unidad_productivap71_cuales_otros_cultivos':
+              _otherCultives.text,
+          'informacion_unidad_productivap72_especies_maderables':
+              _timberSpecies.text,
+          'informacion_unidad_productivap72_especies_maderables_cuales':
+              _timberSpeciesOther.text,
+          'informacion_unidad_productivap73_total_arboles_maderables_lote':
+              _timberTrees.text,
+          'informacion_unidad_productivap74_mateia_vegetal_certificado':
+              _materialsVegetables.text,
+          'informacion_unidad_productivap75_socios_cultivos_cacao':
+              _associationWithCocoa.text,
+          'informacion_unidad_productivap75_socios_cultivos_cacao_cuales':
+              _associationWithCocoaOther.text,
+          'informacion_unidad_productivap76_sistema_productivo':
+              _systemTypeProduct.text,
+          'informacion_unidad_productivap76_sistema_productivo_otro':
+              _systemTypeProductOther.text,
+
           //pantalla #
           //pantalla #
           //pantalla #

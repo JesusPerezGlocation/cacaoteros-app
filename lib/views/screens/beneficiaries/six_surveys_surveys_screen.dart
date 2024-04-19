@@ -172,10 +172,10 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 onChanged: (val) {
                   switch (val.toString()) {
                     case 'Si':
-                      surveysPrv.setmaterialsVegetables('1');
+                      surveysPrv.setMaterialsVegetables('1');
                       break;
                     case 'No':
-                      surveysPrv.setmaterialsVegetables('2');
+                      surveysPrv.setMaterialsVegetables('2');
                       break;
                     default:
                   }
@@ -281,18 +281,8 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   /*navega a la siguente pantalla*/
                   Navigator.pushNamed(
                     context,
-                    MainRoutes.threeSurveysRoute,
+                    MainRoutes.sevenSurveysRoute,
                   );
-
-                  //!!!envia los datos, borrar
-                  await surveysPrv.sentSurveysToFirabase(context);
-                  await surveysPrv.sentAddMembersToFirabase(context);
-                  SnackBarGlobalWidget.showSnackBar(
-                      context,
-                      'Datos enviados con éxito!',
-                      Icons.check_circle_sharp,
-                      PaletteColorsTheme.principalColor);
-                  if (formKey.currentState!.validate()) {}
                 },
               ),
               SizedBox(height: size.height * .06),

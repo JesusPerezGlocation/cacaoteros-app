@@ -182,7 +182,7 @@ class TenSurveysScreen extends StatelessWidget {
               onPressed: () {
                 //Todo: debe validar
                 /*navega a la pantalla #11*/
-                Navigator.pushNamed(context, MainRoutes.elevenSurveysRoute);
+                Navigator.pushNamed(context, MainRoutes.foursSurveysRoute);
               },
             ),
             SizedBox(height: size.height * .06),

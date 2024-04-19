@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
+import 'package:surveys_app/views/screens/beneficiaries/five_surveys_screen.dart';
 import 'package:surveys_app/views/screens/end_surveys_screen.dart';
 
 /*
@@ -19,7 +20,7 @@ class MainRoutes {
   static const eightSurveyRoute = '/eight_surveys_route';
   static const nineSurveysRoute = '/nine_surveys_route';
   static const tenSurveysRoute = '/ten_surveys_route';
-  static const elevenSurveysRoute = '/eleven_surveys_route';
+  static const foursSurveysRoute = '/eleven_surveys_route';
   static const listMembersRoute = '/list_members_route';
   static const twelveSurveysRoute = '/twelve_surveys_route';
   static const thirteenSurveysRoute = '/thirteen_surveys_route';
@@ -40,17 +41,21 @@ class MainRoutes {
   static Map<String, Widget Function(BuildContext)> routes = {
     /*-----RUTA INICIAL------*/
     initialRoute: (_) => const HomeSurveysScreen(),
-    /*------ENCUENTAS--------*/
+    /*------ENCUENTAS BENEFICIARIOS DE POTENCIALES BENEFICIOS--------*/
     secondSurveysdRoute: (_) => const SecondSurveysScreen(),
-    thirdSurveysRoute: (_) => const ThirdSurveysScreen(),
-    fourSurveysRoute: (_) => const FourSurveysScreen(),
-    allDraftsRoute: (_) => const AllDraftsScreen(),
     threeSurveysRoute: (_) => const ThreeSurveysScreen(),
+    foursSurveysRoute: (_) => const FourSurveysScreen(),
+    fiveSurveysRoute: (_) => const FiveSurveysScreen(),
     sevenSurveysRoute: (_) => const SevenSurveysScreen(),
+
+    //!!sin uso
+
+    thirdSurveysRoute: (_) => const ThirdSurveysScreen(),
+    // fourSurveysRoute: (_) => const FourSurveysScreen(),
+    allDraftsRoute: (_) => const AllDraftsScreen(),
     eightSurveyRoute: (_) => const EightSurveysScreen(),
     nineSurveysRoute: (_) => const NineSurveysScreen(),
     tenSurveysRoute: (_) => const TenSurveysScreen(),
-    elevenSurveysRoute: (_) => const FourSurveysScreen(),
     listMembersRoute: (_) => const ListMembersScreen(),
     twelveSurveysRoute: (_) => const TwelveSurveysScreen(),
     thirteenSurveysRoute: (_) => const ThirteenSurveysScreen(),
