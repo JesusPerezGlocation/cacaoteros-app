@@ -926,7 +926,7 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  seTirrigationSystem(String val) {
+  seTIrrigationSystem(String val) {
     _irrigationSystem.text = val; //posees sistema de riegos
     notifyListeners();
   }
@@ -947,7 +947,7 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setrecolectionCocoa(String val) {
+  setRecolectionCocoa(String val) {
     _recolectionCocoa.text = val; //recolección de cacao
     notifyListeners();
   }
@@ -1109,7 +1109,27 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
           'informacion_unidad_productivap76_sistema_productivo_otro':
               _systemTypeProductOther.text,
 
-          //pantalla #
+          //pantalla #7
+          'informacion_manejo_cultivop77_labores_adecuacion_suelo':
+              _floorSuitability.text,
+          'informacion_manejo_cultivop78_mantenimiento_cultivo':
+              _maintenaceCultive.text,
+          'informacion_manejo_cultivop78_mantenimiento_cultivo_otro':
+              _floorSuitabilityOther.text,
+          'informacion_manejo_cultivop79_posee_sistema_riego':
+              _irrigationSystem.text,
+          'informacion_manejo_cultivop80_realiza_fertilizacion':
+              _performFertilization.text,
+          'informacion_manejo_cultivop81_tipo_fertilizacion':
+              _typeFertilization.text,
+          'informacion_manejo_cultivop81_tipo_fertilizacion_otro':
+              typeFertilizationOther.text,
+          'informacion_manejo_cultivop82_numero_fertilizaciones':
+              _typeFertilizationOther.text,
+          'informacion_manejo_cultivop83_recolecta_cacao':
+              _recolectionCocoa.text,
+          'informacion_manejo_cultivop83_recolecta_cacao_otro':
+              _recolectionCocoaOther.text,
           //pantalla #
           //pantalla #
           //pantalla #

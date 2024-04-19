@@ -147,10 +147,10 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 onChanged: (val) {
                   switch (val.toString()) {
                     case 'Si':
-                      surveysPrv.seTirrigationSystem('1');
+                      surveysPrv.seTIrrigationSystem('1');
                       break;
                     case 'No':
-                      surveysPrv.seTirrigationSystem('2');
+                      surveysPrv.seTIrrigationSystem('2');
                       break;
                     default:
                   }
@@ -237,13 +237,13 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 onChanged: (val) {
                   switch (val.toString()) {
                     case 'Quincenal':
-                      surveysPrv.setrecolectionCocoa('1');
+                      surveysPrv.setRecolectionCocoa('1');
                       break;
                     case 'Mensual':
-                      surveysPrv.setrecolectionCocoa('2');
+                      surveysPrv.setRecolectionCocoa('2');
                       break;
                     case 'Otro':
-                      surveysPrv.setrecolectionCocoa('3');
+                      surveysPrv.setRecolectionCocoa('3');
                       break;
                     default:
                   }
