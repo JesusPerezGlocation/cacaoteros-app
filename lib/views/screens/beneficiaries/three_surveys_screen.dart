@@ -6,23 +6,23 @@ import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
-pantalla #6 INFORMACIÓN SOCIAL
+pantalla #3 INFORMACIÓN SOCIODEMOGRÁFICA DEL PRODUCTOR
 */
-class SixSurveysScreen extends StatefulWidget {
-  const SixSurveysScreen({super.key});
+class ThreeSurveysScreen extends StatefulWidget {
+  const ThreeSurveysScreen({super.key});
 
   @override
-  State<SixSurveysScreen> createState() => _SixSurveysScreenState();
+  State<ThreeSurveysScreen> createState() => _ThreeSurveysScreenState();
 }
 
-class _SixSurveysScreenState extends State<SixSurveysScreen> {
+class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
   /*key*/
   final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPrv = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(),
       body: FadeIn(
@@ -38,9 +38,9 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   title: 'INFORMACIÓN SOCIODEMOGRÁFICA DEL PRODUCTOR'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (6 - 1) * (100 / 23) / 100,
+                percent: (3 - 1) * (100 / 23) / 100,
                 questions: '30',
-                answers: '6',
+                answers: '3',
               ),
               SizedBox(height: size.height * .04),
               //#1 estado civil
@@ -149,6 +149,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   ),
                 ),
               SizedBox(height: size.height * .04),
+              //#5
               DropdownComponents(
                 title: '¿ Cúal es el nivel educativo alcanzado?',
                 hintext: ' Seleccionar nivel educativo',
@@ -210,9 +211,155 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
               ),
 
               SizedBox(height: size.height * .04),
-              //#14
               DropdownComponents(
-                title: '¿Pertenece a la federación nacional de Cacaoteros?',
+                title: ' Seleccionar tipo de tenencia de la tierra',
+                initialValue: '-',
+                hintext: ' Seleccionar tipo de tenencia',
+                items: const [
+                  'Carta venta',
+                  'Escritura',
+                  'Resguardo indígena',
+                  'Consejo comunitario',
+                  'Sana posesión'
+                ],
+                validator: (value) => ValidationInputs.inputTypeSelect(value),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Carta venta':
+                      surveysPrv.setPosessionLandTypee('1');
+                      break;
+                    case 'Escritura':
+                      surveysPrv.setPosessionLandTypee('2');
+                      break;
+                    case 'Resguardo indígena':
+                      surveysPrv.setPosessionLandTypee('3');
+                      break;
+                    case 'Consejo comunitario':
+                      surveysPrv.setPosessionLandTypee('4');
+                      break;
+                    case 'Sana posesión':
+                      surveysPrv.setPosessionLandTypee('5');
+                      break;
+                    default:
+                  }
+                },
+              ),
+              SizedBox(height: size.height * .04),
+              //#
+              DropdownComponents(
+                title: ' Seleccionar origen de la tenencia de la tierra',
+                initialValue: '-',
+                hintext: ' Seleccionar tipo de tenencia',
+                items: const ['Compra', 'Herencia', 'Subsidio estatal'],
+                validator: (value) => ValidationInputs.inputTypeSelect(value),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Compra':
+                      surveysPrv.setOriginPosessionLand('1');
+                      break;
+                    case 'Herencia':
+                      surveysPrv.setOriginPosessionLand('2');
+                      break;
+                    case 'Subsidio estatal':
+                      surveysPrv.setOriginPosessionLand('3');
+                      break;
+                    default:
+                  }
+                },
+              ),
+              SizedBox(height: size.height * .04),
+              //#
+              DropdownComponents(
+                title: ' Seleccionar posesión sobre el cultivo',
+                initialValue: '-',
+                hintext: ' Seleccionar tipo de posesión',
+                items: const ['Arrendatario', 'Sociedad', 'Propietario'],
+                validator: (value) => ValidationInputs.inputTypeSelect(value),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Arrendatario':
+                      surveysPrv.setPossesionOverCultivation('1');
+                      break;
+                    case 'Sociedad':
+                      surveysPrv.setPossesionOverCultivation('2');
+                      break;
+                    case 'Propietario':
+                      surveysPrv.setPossesionOverCultivation('3');
+                      break;
+                    default:
+                  }
+                },
+              ),
+              SizedBox(height: size.height * .04),
+
+              //#
+              DropdownComponents(
+                title: '¿Pertenece a alguna asociación?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) =>
+                    ValidationInputs.inputTypeSelect(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setHasOrganization('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setHasOrganization('2');
+                      break;
+                    default:
+                  }
+                },
+              ),
+              if (surveysPrv.hasOrganization.text.isNotEmpty &&
+                  surveysPrv.hasOrganization.text == '1')
+                SizedBox(height: size.height * .04),
+              if (surveysPrv.hasOrganization.text.isNotEmpty &&
+                  surveysPrv.hasOrganization.text == '1')
+                //#15
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: DropdownComponents(
+                    title:
+                        '¿Cuenta o está en proceso de abtención de algún sello de certificación?',
+                    hintext: ' Seleccionar dato',
+                    items: const ['Si', 'No'],
+                    validator: (val) =>
+                        ValidationInputs.inputTypeSelect(val.toString()),
+                    onChanged: (val) {
+                      switch (val.toString()) {
+                        case 'Si':
+                          surveysPrv.setHasOrganizationOther('1');
+                          break;
+                        case 'No':
+                          surveysPrv.setHasOrganizationOther('2');
+                          break;
+                        default:
+                      }
+                    },
+                  ),
+                ),
+              if (surveysPrv.hasOrganizationOther.text == '1' &&
+                  surveysPrv.hasOrganizationOther.text.isNotEmpty)
+                SizedBox(height: size.height * .04),
+              if (surveysPrv.hasOrganizationOther.text == '1' &&
+                  surveysPrv.hasOrganizationOther.text.isNotEmpty)
+                //#15
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cuál?',
+                    hintext: ' Ingresar dato',
+                    textInputAction: TextInputAction.next,
+                    controller: surveysPrv.hasOrganizationOtherYes,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) =>
+                        surveysPrv.setHasOrganizationOtherYes(val),
+                  ),
+                ),
+              SizedBox(height: size.height * .04),
+              DropdownComponents(
+                title: '¿Pertenece a la federación nacional de cacaoteros?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (val) =>
@@ -230,16 +377,16 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 },
               ),
               if (surveysPrv.nationalFederation.text.isNotEmpty &&
-                  surveysPrv.nationalFederation.text == '1')
+                  surveysPrv.nationalFederation.text == '2')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.nationalFederation.text.isNotEmpty &&
-                  surveysPrv.nationalFederation.text == '1')
-                //#15
+                  surveysPrv.nationalFederation.text == '2')
+                //#
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: DropdownComponents(
                     title:
-                        '¿Cuenta o está en proceso de abtención de algún sello de certificación?',
+                        '¿Esta interesado en iniciar el proceso de cedulación coon Fedecacao?',
                     hintext: ' Seleccionar dato',
                     items: const ['Si', 'No'],
                     validator: (val) =>
@@ -247,36 +394,47 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     onChanged: (val) {
                       switch (val.toString()) {
                         case 'Si':
-                          surveysPrv.setNationalFederationOther('1');
+                          surveysPrv.setInterestedFederationYesOrNot('1');
                           break;
                         case 'No':
-                          surveysPrv.setNationalFederationOther('2');
+                          surveysPrv.setInterestedFederationYesOrNot('2');
                           break;
                         default:
                       }
                     },
                   ),
                 ),
-              if (surveysPrv.nationalFederationOther.text == '1' &&
-                  surveysPrv.nationalFederationOther.text.isNotEmpty)
+
+              if (surveysPrv.nationalFederation.text.isNotEmpty &&
+                  surveysPrv.nationalFederation.text == '2')
                 SizedBox(height: size.height * .04),
-              if (surveysPrv.nationalFederationOther.text == '1' &&
-                  surveysPrv.nationalFederationOther.text.isNotEmpty)
-                //#15
+              if (surveysPrv.nationalFederation.text.isNotEmpty &&
+                  surveysPrv.nationalFederation.text == '2')
+                //#
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
-                  child: InputsComponent(
-                    title: '¿Cuál?',
-                    hintext: ' Ingresar dato',
-                    textInputAction: TextInputAction.next,
-                    controller: surveysPrv.nationalFederationOtherYes,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) =>
-                        surveysPrv.setNationalFederationOtherYes(val),
+                  child: DropdownComponents(
+                    title:
+                        'Observaciones: se procede a digilenciar el formato de afiliación de Fedecacao',
+                    hintext: ' Seleccionar dato',
+                    items: const ['Si', 'No'],
+                    validator: (val) =>
+                        ValidationInputs.inputTypeSelect(val.toString()),
+                    onChanged: (val) {
+                      switch (val.toString()) {
+                        case 'Si':
+                          surveysPrv.setObservationFederationYesOrNot('1');
+                          break;
+                        case 'No':
+                          surveysPrv.setObservationFederationYesOrNot('2');
+                          break;
+                        default:
+                      }
+                    },
                   ),
                 ),
               SizedBox(height: size.height * .04),
-              //#16
+              //#
               DropdownComponents(
                 title: '¿Están afiliados al sistema de seguridad social?',
                 hintext: ' Seleccionar dato',
@@ -315,11 +473,57 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 ),
 
               SizedBox(height: size.height * .04),
-              //#18
+              //#
+              DropdownComponents(
+                title:
+                    '¿Cuenta o está en proceso de obtención del algún sello de certificación?',
+                hintext: ' Seleccionar dato',
+                items: const ['Si', 'No'],
+                validator: (val) =>
+                    ValidationInputs.inputTypeSelect(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setGetobtainingCertificate('1');
+                      break;
+
+                    case 'No':
+                      surveysPrv.setGetobtainingCertificate('2');
+                      break;
+                    default:
+                  }
+                },
+              ),
+
+              if (surveysPrv.obtainingCertificate.text.isNotEmpty &&
+                  surveysPrv.obtainingCertificate.text == '1')
+                SizedBox(height: size.height * .04),
+
+              if (surveysPrv.obtainingCertificate.text.isNotEmpty &&
+                  surveysPrv.obtainingCertificate.text == '1')
+                //#
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cúal?',
+                    hintext: 'Ingresar proceso',
+                    controller: surveysPrv.obtainingCertificateOther,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) =>
+                        surveysPrv.setGetobtainingCertificateOther(val),
+                  ),
+                ),
+              SizedBox(height: size.height * .04),
+              //#
               DropdownComponents(
                 title: 'Tipo de mano de obra para el cultivo de cacao',
                 hintext: ' Seleccionar dato',
-                items: const ['Administrativo', 'Familiar', 'Propietario'],
+                items: const [
+                  'Administrativo',
+                  'Familiar',
+                  'Propietario',
+                  'Otro'
+                ],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
                 onChanged: (val) {
@@ -333,10 +537,29 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     case 'Propietario':
                       surveysPrv.setTypeLabour('3');
                       break;
+                    case 'Otro':
+                      surveysPrv.setTypeLabour('4');
+                      break;
                     default:
                   }
                 },
               ),
+              if (surveysPrv.typeLabour.text.isNotEmpty &&
+                  surveysPrv.typeLabour.text == '4')
+                SizedBox(height: size.height * .04),
+              if (surveysPrv.typeLabour.text.isNotEmpty &&
+                  surveysPrv.typeLabour.text == '4')
+                //#
+                Animate(
+                  effects: const [FadeEffect(), ScaleEffect()],
+                  child: InputsComponent(
+                    title: '¿Cúal?',
+                    hintext: 'Ingresar mano de obra',
+                    controller: surveysPrv.typeLabourOther,
+                    validator: (val) => ValidationInputs.inputEmpty(val),
+                    onChanged: (val) => surveysPrv.setTypeLabourOther(val),
+                  ),
+                ),
               SizedBox(height: size.height * .04),
               //#19
               InputsDatesComponent(

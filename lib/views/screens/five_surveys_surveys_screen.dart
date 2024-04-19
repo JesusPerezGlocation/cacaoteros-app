@@ -157,7 +157,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                     /*navega a la siguente pantalla*/
                     Navigator.pushNamed(
                       context,
-                      MainRoutes.sixSurveysRoute,
+                      MainRoutes.threeSurveysRoute,
                     );
                   }
                 },

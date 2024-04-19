@@ -47,41 +47,7 @@ class _ThirdSurveysScreenState extends State<ThirdSurveysScreen> {
                 answers: '3',
               ),
               SizedBox(height: size.height * .04),
-              //#1
-              DropdownComponents(
-                title: ' Seleccionar tipo de tenencia de la tierra',
-                initialValue: '-',
-                hintext: ' Seleccionar tipo de tenencia',
-                items: const [
-                  'Carta venta',
-                  'Escritura',
-                  'Resguardo indígena',
-                  'Consejo comunitario',
-                  'Sana posesión'
-                ],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) {
-                  switch (val.toString()) {
-                    case 'Carta venta':
-                      surveysPrv.setPosessionLandTypee('1');
-                      break;
-                    case 'Escritura':
-                      surveysPrv.setPosessionLandTypee('2');
-                      break;
-                    case 'Resguardo indígena':
-                      surveysPrv.setPosessionLandTypee('3');
-                      break;
-                    case 'Consejo comunitario':
-                      surveysPrv.setPosessionLandTypee('4');
-                      break;
-                    case 'Sana posesión':
-                      surveysPrv.setPosessionLandTypee('5');
-                      break;
-                    default:
-                  }
-                },
-              ),
-              SizedBox(height: size.height * .03),
+
               //#2
               DropdownComponents(
                 title: ' Seleccionar origen de la tenencia de la tierra',

@@ -30,3 +30,4 @@ export 'package:surveys_app/controllers/theme/inputs_decoration_theme.dart';
 export 'package:surveys_app/controllers/theme/fonts_type_theme.dart';
 export 'package:surveys_app/controllers/theme/palette_colors_theme.dart';
 export 'package:surveys_app/views/components/title_surveys_components.dart';
+export 'package:surveys_app/controllers/providers/beneficiaries_surveys_provider.dart';

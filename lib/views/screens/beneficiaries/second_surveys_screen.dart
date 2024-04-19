@@ -22,7 +22,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPrv = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: const [SaveIconDraftComponents()]),
       body: FadeIn(
@@ -34,8 +34,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 horizontal: size.width * .03, vertical: size.height * .03),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
-              const TitleSurveysComponents(
-                  title: 'INFORMACIÓN BÁSICA DEL CACAOCULTOR > IDENTIFICACIÓN'),
+              const TitleSurveysComponents(title: 'INFORMACIÓN DEL PRODUCTOR'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
                 percent: (2 - 1) * (100 / 23) / 100,
@@ -48,7 +47,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               DropdownComponents(
                 title: 'Tipo de documento',
                 initialValue: 'CC',
-                hintext: 'Seleccionar tipo de persona',
+                hintext: 'Seleccionar tipo de documento',
                 items: const [
                   'Cédula de ciudadanía',
                   'Cédula de extranjería',
@@ -536,7 +535,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(
                       context,
-                      MainRoutes.thirdSurveysRoute,
+                      MainRoutes.threeSurveysRoute,
                     );
                   }
                 },

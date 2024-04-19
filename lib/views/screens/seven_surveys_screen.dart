@@ -52,15 +52,24 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setTypeAccountBank(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setTypeAccountBank('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setTypeAccountBank('2');
+                      break;
+                    default:
+                  }
+                },
               ),
 
               if (surveysPrv.typeAccountBank.text.isNotEmpty &&
-                  surveysPrv.typeAccountBank.text == 'Si')
+                  surveysPrv.typeAccountBank.text == '1')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.typeAccountBank.text.isNotEmpty &&
-                  surveysPrv.typeAccountBank.text == 'Si')
+                  surveysPrv.typeAccountBank.text == '1')
                 // #2
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -83,14 +92,23 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setAgroCulturalCredit(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setAgroCulturalCredit('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setAgroCulturalCredit('2');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.agroCulturalCredit.text.isNotEmpty &&
-                  surveysPrv.agroCulturalCredit.text == 'Si')
+                  surveysPrv.agroCulturalCredit.text == '1')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.agroCulturalCredit.text.isNotEmpty &&
-                  surveysPrv.agroCulturalCredit.text == 'Si')
+                  surveysPrv.agroCulturalCredit.text == '1')
                 // #4
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -114,26 +132,54 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setFavoredCreditCultural(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setFavoredCreditCultural('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setFavoredCreditCultural('2');
+                      break;
+                    default:
+                  }
+                },
               ),
 
-              SizedBox(height: size.height * .04),
+              if (surveysPrv.favoredCreditCultural.text.isNotEmpty &&
+                  surveysPrv.favoredCreditCultural.text == '1')
+                SizedBox(height: size.height * .04),
               //#6
-              DropdownComponents(
-                title: '¿Qué actividad financió con el crédito?',
-                initialValue: 'CC',
-                hintext: ' Seleccionar dato',
-                items: const [
-                  'Infraestructura',
-                  'Renovación',
-                  'Siembra nueva',
-                  'Sostenimiento'
-                ],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setActivityFavoredWithCredit(val.toString()),
-              ),
+              if (surveysPrv.favoredCreditCultural.text.isNotEmpty &&
+                  surveysPrv.favoredCreditCultural.text == '1')
+                DropdownComponents(
+                  title: '¿Qué actividad financió con el crédito?',
+                  initialValue: 'CC',
+                  hintext: ' Seleccionar dato',
+                  items: const [
+                    'Infraestructura',
+                    'Renovación',
+                    'Siembra nueva',
+                    'Sostenimiento'
+                  ],
+                  validator: (value) => ValidationInputs.inputTypeSelect(value),
+                  onChanged: (val) {
+                    switch (val.toString()) {
+                      case 'Infraestructura':
+                        surveysPrv.setActivityFavoredWithCredit('1');
+                        break;
+                      case 'Renovación':
+                        surveysPrv.setActivityFavoredWithCredit('2');
+                        break;
+                      case 'Siembra nueva':
+                        surveysPrv.setActivityFavoredWithCredit('3');
+                        break;
+                      case 'Sostenimiento':
+                        surveysPrv.setActivityFavoredWithCredit('4');
+                        break;
+                      default:
+                    }
+                  },
+                ),
 
               SizedBox(height: size.height * .06),
 

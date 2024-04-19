@@ -561,12 +561,11 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _nationalFederation = TextEditingController();
-  TextEditingController get nationalFederation => _nationalFederation;
+  final TextEditingController _hasOrganization = TextEditingController();
+  TextEditingController get hasOrganization => _hasOrganization;
 
-  setNationalFederation(String val) {
-    _nationalFederation.text =
-        val; // pertenece a la federación nacional de cocotero
+  setHasOrganization(String val) {
+    _hasOrganization.text = val; // pertenece a la alguna asosiación
     notifyListeners();
   }
 
@@ -1046,7 +1045,7 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
           'informacion_sociodemograficap26_titulo_obtenido':
               _obtainerTitle.text,
           'informacion_sociodemograficap32_pertenece_federacion':
-              _nationalFederation.text,
+              _hasOrganization.text,
           'informacion_sociodemograficap35_cuenta_sello_certificacion':
               _nationalFederationOther.text,
           'informacion_sociodemograficap35_cuenta_sello_certificacion_cual':
@@ -1061,9 +1060,13 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
               _numberDayFarm.text,
           'informacion_sociodemograficap39_dias_labora_fuera_finca':
               _numberDaysMonthFarm.text,
-          //pantalla #
-          //pantalla #
-          //pantalla #
+
+          //pantalla #7
+
+          //pantalla #8
+
+          //pantalla #9
+
           //pantalla #
           //pantalla #
           //pantalla #

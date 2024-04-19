@@ -34,6 +34,9 @@ class StateApp extends StatelessWidget {
         /*provider para los permisos */
         ChangeNotifierProvider(
             create: (context) => PermissionLocationProvider()),
+        /*encuesta de caracterización de beneficiarios */
+        ChangeNotifierProvider(
+            create: (context) => BeneficiariesSurveysProvider()),
       ],
       child: const MyApp(),
     );

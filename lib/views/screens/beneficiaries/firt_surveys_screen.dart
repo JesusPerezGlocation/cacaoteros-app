@@ -29,7 +29,7 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final surveysPrv = Provider.of<SurveysVisitRegistrationProvider>(context);
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
         actions: const [SaveIconDraftComponents()],
@@ -65,8 +65,8 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
               SizedBox(height: size.height * .03),
               //#2 NOMBRE DE LA UNIDAD TÉCNICA
               InputsComponent(
-                title: 'Nombre de la unidad técnica',
-                hintext: ' Ingresar unidad',
+                title: 'Nombre del técnico del campo',
+                hintext: ' Ingresar nombre',
                 textInputAction: TextInputAction.done,
                 controller: surveysPrv.nameUnit,
                 validator: (val) => ValidationInputs.inputEmpty(val),
