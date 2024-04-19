@@ -82,12 +82,17 @@ class _ContainerShowModalOneState extends State<_ContainerShowModalOne> {
                   itemBuilder: (context, index) {
                     /*muestra el elemento en la lista */
                     final item = FilterPlacesServices.departments[index];
+                    final codeDepart =
+                        FilterPlacesServices.codeDepartaments[index];
                     return ListTile(
                       onTap: () {
                         /*le paso el dato selccionado al controlador del departamento */
                         surveysPRV.department.text = item;
                         /*seteo el dato */
                         surveysPRV.setDepartement(item);
+                        /*codigo del departamento */
+                        surveysPRV.codeDepartament.text = codeDepart;
+                        surveysPRV.setCodeDepartament(codeDepart);
 
                         /*cierro el pop up*/
                         Navigator.pop(context);
@@ -182,6 +187,10 @@ class _ContainerShowModalTwoState extends State<_ContainerShowModalTwo> {
                               surveysPRV.municipality.text = data.municipio;
                               /*seteo el dato */
                               surveysPRV.setMunicipality(data.municipio);
+
+                              /*codigo del municipio*/
+                              surveysPRV.codeMunicipality.text = data.codMuni;
+                              surveysPRV.setCodeMunicipality(data.codMuni);
 
                               /*cierro el pop up*/
                               Navigator.pop(context);
@@ -319,6 +328,10 @@ class _ContainerShowModalThreeState extends State<_ContainerShowModalThree> {
                               surveysPRV.place.text = data.vereda;
 
                               surveysPRV.setPlace(data.vereda);
+
+                              /*codigo de la vereda*/
+                              surveysPRV.codePlace.text = data.codMVer;
+                              surveysPRV.setCodePlace(data.codMVer);
 
                               Navigator.pop(context);
                             },

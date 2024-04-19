@@ -68,11 +68,15 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 future: widget.locationPRV.getPermissionLocation(context),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const LoadingAppComponent();
+                    return SizedBox(
+                        height: size.height * .26,
+                        child: const LoadingAppComponent());
                   } else if (snapshot.hasError) {
                     return LatAndLongComponents(
                       data:
                           '${widget.locationPRV.latitude}, ${widget.locationPRV.longitude}',
+                      secondData:
+                          '${widget.locationPRV.accuracy}, ${widget.locationPRV.altitude}',
                       onTap: () async {
                         await widget.locationPRV.getPermissionLocation(context);
                       },
@@ -82,6 +86,8 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                       child: LatAndLongComponents(
                         data:
                             '${widget.locationPRV.latitude}, ${widget.locationPRV.longitude}',
+                        secondData:
+                            '${widget.locationPRV.accuracy}, ${widget.locationPRV.altitude}',
                         onTap: () async {
                           await widget.locationPRV
                               .getPermissionLocation(context);
@@ -122,8 +128,17 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 hintext: 'Seleccionar tipo de persona',
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) =>
-                    surveysPrv.setHasCertification(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setHasCertification('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setHasCertification('2');
+                      break;
+                    default:
+                  }
+                },
               ),
 
               SizedBox(height: size.height * .06),
@@ -134,8 +149,11 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
                     /*añade la latitud al provider*/
-                    surveysPrv.setUpdateLocation(widget.locationPRV.latitude,
-                        widget.locationPRV.longitude);
+                    surveysPrv.setUpdateLocation(
+                        widget.locationPRV.latitude,
+                        widget.locationPRV.longitude,
+                        widget.locationPRV.accuracy,
+                        widget.locationPRV.altitude);
                     /*navega a la siguente pantalla*/
                     Navigator.pushNamed(
                       context,

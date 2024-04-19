@@ -338,13 +338,20 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
 //*cuarta pantalla #4*/
 /*seleccion de municpio, departamento y vereda*/
   final TextEditingController _department = TextEditingController();
+  final TextEditingController _codeDepartament = TextEditingController();
   final TextEditingController _municipality = TextEditingController();
+  final TextEditingController _codeMunicipality = TextEditingController();
   final TextEditingController _place = TextEditingController(); //vereda
+  final TextEditingController _codePlace =
+      TextEditingController(); //codigo vereda
   final TextEditingController _nameProperty = TextEditingController();
 
   TextEditingController get department => _department;
+  TextEditingController get codeDepartament => _codeDepartament;
   TextEditingController get municipality => _municipality;
+  TextEditingController get codeMunicipality => _codeMunicipality;
   TextEditingController get place => _place;
+  TextEditingController get codePlace => _codePlace;
   TextEditingController get nameProperty => _nameProperty;
 
   setDepartement(String date) {
@@ -367,17 +374,39 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  setCodeDepartament(String val) {
+    _codeDepartament.text = val;
+    notifyListeners();
+  }
+
+  setCodeMunicipality(String val) {
+    _codeMunicipality.text = val;
+    notifyListeners();
+  }
+
+  setCodePlace(String val) {
+    _codePlace.text = val;
+    notifyListeners();
+  }
+
 //*quinta pantalla #5*/
 
   double? _latitude;
   double? _longitude;
+  double? _accuracy;
+  double? _altitude;
 
   double? get latitude => _latitude;
   double? get longitude => _longitude;
+  double? get accuracy => _accuracy;
+  double? get altitude => _altitude;
 
-  void setUpdateLocation(double? lat, double? long) {
+  void setUpdateLocation(
+      double? lat, double? long, double? accu, double? alti) {
     _latitude = lat;
     _longitude = long;
+    _accuracy = accu;
+    _altitude = alti;
     notifyListeners();
   }
 
@@ -926,8 +955,10 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
           'SubmissionDate': _submittionDate.text,
           'SubmitterID': "99",
           'SubmitterName': "iPhoneUser",
+
           //pantalla #1
           "encuesta_caracterizacion_nombre_unidad": _nameUnit.text,
+
           //pantalla #2
           'informacion_cacaocultorp3_tipo_documento':
               _selectedDocumentType.text,
@@ -965,27 +996,87 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
               _hasDisability.text,
           'informacion_cacaocultorp22_condicion_discapacidad_si':
               _hasDisabilityOther.text,
+
           //pantalla #3
+          'informacion_sociodemograficap27_tipo_tenencia':
+              _possesionLandType.text,
+          'informacion_sociodemograficap27_tipo_tenencia_otro': '',
+          'informacion_sociodemograficap28_origen_teniencia_tierra':
+              _originPossesionLand.text,
+          'informacion_sociodemograficap28_origen_teniencia_tierra_otro': '',
+          'informacion_sociodemograficap30_tipo_posesion_cultivo':
+              _possesionOverCultivation.text,
+          'informacion_sociodemograficap30_tipo_posesion_cultivo_otro': "",
+          'informacion_sociodemograficap31_pertenece_asociacion':
+              _producesOrganization.text,
+          'informacion_sociodemograficap31_pertenece_asociacion_si':
+              _nameOrganization.text,
+
+          //pantalla #4
+          'ubicacion_fincap47_codigo_departamento': _codeDepartament.text,
+          'ubicacion_fincap47_departamento': _department.text,
+          'ubicacion_fincap48_codigo_municipio': _codeMunicipality.text,
+          'ubicacion_fincap48_municipio': _municipality.text,
+          'ubicacion_fincap49_codigo_vereda': _codePlace.text,
+          'ubicacion_fincap49_vereda': _place.text,
+          'ubicacion_fincap50_nombre_predio': _nameProperty.text,
+
+          //pantalla #5
+          'informacion_unidad_productivap51altitud_coordenadasAccuracy':
+              _accuracy.toString(),
+          'informacion_unidad_productivap51altitud_coordenadasAltitude':
+              _altitude.toString(),
+          'informacion_unidad_productivap51altitud_coordenadasLatitude':
+              _latitude.toString(),
+          'informacion_unidad_productivap51altitud_coordenadasLongitude':
+              _longitude.toString(),
+          'informacion_unidad_productivap60_total_hectareas_predio':
+              _numberHectareasProperty.text,
 
           //pantalla #6
-          //pantalla #7
-          //pantalla #8
-          //pantalla #9
-          //pantalla #10
-          //pantalla #11
-          //pantalla #12
-          //pantalla #13
-          //pantalla #14
-          //pantalla #15
-          //pantalla #16
-          //pantalla #17
-          //pantalla #18
-          //pantalla #19
-          //pantalla #20
-          //pantalla #21
-          //pantalla #22
-          //pantalla #23
-          //pantalla #24
+          'informacion_sociodemograficap23_estado_civil': _statusCivil.text,
+          'informacion_sociodemograficap23_estado_civil_otro':
+              statusCivilOther.text,
+          'informacion_sociodemograficap24_etnia': _ethhicGroup.text,
+          'informacion_sociodemograficap24_etnia_otro': _ethhicGroupOther.text,
+          'informacion_sociodemograficap25_nivel_educativo':
+              _educationalLevel.text,
+          'informacion_sociodemograficap25_nivel_educativo_otro':
+              _educationalLevelOther.text,
+          'informacion_sociodemograficap26_titulo_obtenido':
+              _obtainerTitle.text,
+          'informacion_sociodemograficap32_pertenece_federacion':
+              _nationalFederation.text,
+          'informacion_sociodemograficap35_cuenta_sello_certificacion':
+              _nationalFederationOther.text,
+          'informacion_sociodemograficap35_cuenta_sello_certificacion_cual':
+              nationalFederationOtherYes.text,
+          'informacion_sociodemograficap36_afiliacion_seguridad_social':
+              _socialSecurity.text,
+          'informacion_sociodemograficap36_tipo_seguridad_social':
+              _socialSecurity.text,
+          'informacion_sociodemograficap37_tipo_mano_obra': _typeLabour.text,
+          'informacion_sociodemograficap37_tipo_mano_obra_otro': "",
+          'informacion_sociodemograficap38_dias_labora_cultivo_cacao':
+              _numberDayFarm.text,
+          'informacion_sociodemograficap39_dias_labora_fuera_finca':
+              _numberDaysMonthFarm.text,
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
         },
       ).then((_) {
         /*si los datos se enviaron con exito*/

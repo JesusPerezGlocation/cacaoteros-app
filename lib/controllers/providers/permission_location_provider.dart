@@ -13,15 +13,21 @@ provider para la solicitud de permisos de ubicación y obtener la latitud y long
 class PermissionLocationProvider extends ChangeNotifier {
   double? _latitude;
   double? _longitude;
+  double? _accuracy;
+  double? _altitude;
 
   double? get latitude => _latitude;
   double? get longitude => _longitude;
+  double? get accuracy => _accuracy;
+  double? get altitude => _altitude;
 
-  void setUpdateLocation(double? lat, double? long) {
+  void setUpdateLocation(
+      double? lat, double? long, double? accu, double? alti) {
     _latitude = lat;
     _longitude = long;
+    _accuracy = accu;
+    _altitude = alti;
     notifyListeners();
-    log('log and lont $_latitude $_longitude');
   }
 
 /*future para solicitar los permisos de ubicación*/
@@ -33,7 +39,8 @@ class PermissionLocationProvider extends ChangeNotifier {
         final position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high,
         );
-        setUpdateLocation(position.latitude, position.longitude);
+        setUpdateLocation(position.latitude, position.longitude,
+            position.accuracy, position.altitude);
 
         notifyListeners();
       } else {

@@ -56,13 +56,32 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 ],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) => surveysPrv.setStatusCivil(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Soltero/A':
+                      surveysPrv.setStatusCivil('1');
+                      break;
+                    case 'Casado/A':
+                      surveysPrv.setStatusCivil('2');
+                      break;
+                    case 'Divoriciado/A':
+                      surveysPrv.setStatusCivil('3');
+                      break;
+                    case 'Unión libre':
+                      surveysPrv.setStatusCivil('4');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setStatusCivil('5');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.statusCivil.text.isNotEmpty &&
-                  surveysPrv.statusCivil.text == 'Otro')
+                  surveysPrv.statusCivil.text == '5')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.statusCivil.text.isNotEmpty &&
-                  surveysPrv.statusCivil.text == 'Otro')
+                  surveysPrv.statusCivil.text == '5')
                 //#2 OTRO estado civil
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -90,13 +109,33 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 ],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) => surveysPrv.setEthhicGroup(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Afrodecendiente':
+                      surveysPrv.setEthhicGroup('1');
+                      break;
+                    case 'Gitano':
+                      surveysPrv.setEthhicGroup('2');
+                      break;
+                    case 'Indígena':
+                      surveysPrv.setEthhicGroup('3');
+                      break;
+                    case 'Ninguno':
+                      surveysPrv.setEthhicGroup('4');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setEthhicGroup('5');
+                      break;
+
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.ethhicGroup.text.isNotEmpty &&
-                  surveysPrv.ethhicGroup.text == 'Otro')
+                  surveysPrv.ethhicGroup.text == '5')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.ethhicGroup.text.isNotEmpty &&
-                  surveysPrv.ethhicGroup.text == 'Otro')
+                  surveysPrv.ethhicGroup.text == '5')
                 //#4 OTRO etnia
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -121,14 +160,32 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   'Otro'
                 ],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) =>
-                    surveysPrv.setEducationalLevel(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Primario':
+                      surveysPrv.setEducationalLevel('1');
+                      break;
+                    case 'Secundario':
+                      surveysPrv.setEducationalLevel('2');
+                      break;
+                    case 'Técnico':
+                      surveysPrv.setEducationalLevel('3');
+                      break;
+                    case 'Profesional':
+                      surveysPrv.setEducationalLevel('4');
+                      break;
+                    case 'Otro':
+                      surveysPrv.setEducationalLevel('5');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.educationalLevel.text.isNotEmpty &&
-                  surveysPrv.educationalLevel.text == 'Otro')
+                  surveysPrv.educationalLevel.text == '5')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.educationalLevel.text.isNotEmpty &&
-                  surveysPrv.educationalLevel.text == 'Otro')
+                  surveysPrv.educationalLevel.text == '5')
                 //#4 OTRO etnia
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -151,122 +208,6 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setObtainerTitle(val),
               ),
-              SizedBox(height: size.height * .04),
-              //# 6 tipo de tenencia de la tierra
-              DropdownComponents(
-                title: 'Tipo de tenencia de la tierra',
-                hintext: ' Seleccionar tipo de tenencia',
-                items: const [
-                  'Escritura',
-                  'Consejo comunitario',
-                  'Sana posesión',
-                  'Carta venta',
-                  'Resguardo indigena',
-                  'Otro'
-                ],
-                validator: (val) =>
-                    ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) => surveysPrv.setTypeOfTenure(val.toString()),
-              ),
-              if (surveysPrv.typeOfTenure.text.isNotEmpty &&
-                  surveysPrv.typeOfTenure.text == 'Otro')
-                SizedBox(height: size.height * .04),
-              if (surveysPrv.typeOfTenure.text.isNotEmpty &&
-                  surveysPrv.typeOfTenure.text == 'Otro')
-                //#7
-                Animate(
-                  effects: const [FadeEffect(), ScaleEffect()],
-                  child: InputsComponent(
-                    title: '¿Cuál?',
-                    hintext: ' Ingresar tipo de tenencia',
-                    textInputAction: TextInputAction.next,
-                    controller: surveysPrv.typeOfTenureOther,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) => surveysPrv.setTypeOfTenureOther(val),
-                  ),
-                ),
-
-              SizedBox(height: size.height * .04),
-              //#8
-              DropdownComponents(
-                title: 'Origen de la tenencia de la tierra',
-                hintext: ' Seleccionar origen',
-                items: const ['Compra', 'Herencia', 'Otro'],
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) =>
-                    surveysPrv.setOriginProperty(val.toString()),
-              ),
-              if (surveysPrv.originProperty.text.isNotEmpty &&
-                  surveysPrv.originProperty.text == 'Otro')
-                SizedBox(height: size.height * .04),
-              if (surveysPrv.originProperty.text.isNotEmpty &&
-                  surveysPrv.originProperty.text == 'Otro')
-                //#9
-                Animate(
-                  effects: const [FadeEffect(), ScaleEffect()],
-                  child: InputsComponent(
-                    title: '¿Cuál?',
-                    hintext: ' Ingresar origen',
-                    textInputAction: TextInputAction.next,
-                    controller: surveysPrv.originPropertyOther,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) => surveysPrv.setOriginPropertyOther(val),
-                  ),
-                ),
-              SizedBox(height: size.height * .04),
-              //#10 tipo de poseción sobre el cultivo
-              DropdownComponents(
-                title: 'Tipo de posesión sobre el cultivo',
-                hintext: ' Seleccionar tipo posesión',
-                items: const ['Arrendatario', 'Propietario', 'Otro'],
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) => surveysPrv.setTypePossesion(val.toString()),
-              ),
-              if (surveysPrv.typePossesion.text.isNotEmpty &&
-                  surveysPrv.typePossesion.text == 'Otro')
-                SizedBox(height: size.height * .04),
-              if (surveysPrv.typePossesion.text.isNotEmpty &&
-                  surveysPrv.typePossesion.text == 'Otro')
-                //#11
-                Animate(
-                  effects: const [FadeEffect(), ScaleEffect()],
-                  child: InputsComponent(
-                    title: '¿Cuál?',
-                    hintext: ' Ingresar tipo de posesión',
-                    textInputAction: TextInputAction.next,
-                    controller: surveysPrv.typePossesionOther,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) => surveysPrv.setTypePossesionOther(val),
-                  ),
-                ),
-              SizedBox(height: size.height * .04),
-              //#12
-              DropdownComponents(
-                title: '¿Pertenece a alguna asociación',
-                hintext: ' Seleccionar dato',
-                items: const ['Si', 'No'],
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) =>
-                    surveysPrv.setBelongAssociation(val.toString()),
-              ),
-              if (surveysPrv.belongAssociation.text.isNotEmpty &&
-                  surveysPrv.belongAssociation.text == 'Si')
-                SizedBox(height: size.height * .04),
-              if (surveysPrv.belongAssociation.text.isNotEmpty &&
-                  surveysPrv.belongAssociation.text == 'Si')
-                //#13
-                Animate(
-                  effects: const [FadeEffect(), ScaleEffect()],
-                  child: InputsComponent(
-                    title: '¿Cuál?',
-                    hintext: ' Ingresar nombre de la asociación',
-                    textInputAction: TextInputAction.next,
-                    controller: surveysPrv.belongAssociationOther,
-                    validator: (val) => ValidationInputs.inputEmpty(val),
-                    onChanged: (val) =>
-                        surveysPrv.setBelongAssociationOther(val),
-                  ),
-                ),
 
               SizedBox(height: size.height * .04),
               //#14
@@ -276,14 +217,23 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 items: const ['Si', 'No'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) =>
-                    surveysPrv.setNationalFederation(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setNationalFederation('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setNationalFederation('2');
+                      break;
+                    default:
+                  }
+                },
               ),
               if (surveysPrv.nationalFederation.text.isNotEmpty &&
-                  surveysPrv.nationalFederation.text == 'Si')
+                  surveysPrv.nationalFederation.text == '1')
                 SizedBox(height: size.height * .04),
               if (surveysPrv.nationalFederation.text.isNotEmpty &&
-                  surveysPrv.nationalFederation.text == 'Si')
+                  surveysPrv.nationalFederation.text == '1')
                 //#15
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -294,14 +244,23 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     items: const ['Si', 'No'],
                     validator: (val) =>
                         ValidationInputs.inputTypeSelect(val.toString()),
-                    onChanged: (val) =>
-                        surveysPrv.setNationalFederationOther(val.toString()),
+                    onChanged: (val) {
+                      switch (val.toString()) {
+                        case 'Si':
+                          surveysPrv.setNationalFederationOther('1');
+                          break;
+                        case 'No':
+                          surveysPrv.setNationalFederationOther('2');
+                          break;
+                        default:
+                      }
+                    },
                   ),
                 ),
-              if (surveysPrv.nationalFederationOther.text == 'Si' &&
+              if (surveysPrv.nationalFederationOther.text == '1' &&
                   surveysPrv.nationalFederationOther.text.isNotEmpty)
                 SizedBox(height: size.height * .04),
-              if (surveysPrv.nationalFederationOther.text == 'Si' &&
+              if (surveysPrv.nationalFederationOther.text == '1' &&
                   surveysPrv.nationalFederationOther.text.isNotEmpty)
                 //#15
                 Animate(
@@ -324,14 +283,23 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 items: const ['Si', 'No'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) =>
-                    surveysPrv.setSocialSecurity(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Si':
+                      surveysPrv.setSocialSecurity('1');
+                      break;
+                    case 'No':
+                      surveysPrv.setSocialSecurity('2');
+                      break;
+                    default:
+                  }
+                },
               ),
-              if (surveysPrv.socialSecurity.text == 'Si' &&
+              if (surveysPrv.socialSecurity.text == '1' &&
                   surveysPrv.socialSecurity.text.isNotEmpty)
                 SizedBox(height: size.height * .04),
               //#17
-              if (surveysPrv.socialSecurity.text == 'Si' &&
+              if (surveysPrv.socialSecurity.text == '1' &&
                   surveysPrv.socialSecurity.text.isNotEmpty)
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -354,7 +322,20 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 items: const ['Administrativo', 'Familiar', 'Propietario'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
-                onChanged: (val) => surveysPrv.setTypeLabour(val.toString()),
+                onChanged: (val) {
+                  switch (val.toString()) {
+                    case 'Administrativo':
+                      surveysPrv.setTypeLabour('1');
+                      break;
+                    case 'Familiar':
+                      surveysPrv.setTypeLabour('2');
+                      break;
+                    case 'Propietario':
+                      surveysPrv.setTypeLabour('3');
+                      break;
+                    default:
+                  }
+                },
               ),
               SizedBox(height: size.height * .04),
               //#19
