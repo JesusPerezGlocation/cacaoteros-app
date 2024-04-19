@@ -82,7 +82,10 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
                     /*genera un id ramdon  */
                     String idRandom = generatedIdRandom();
                     surveysPrv.setUuidiDSurveys(idRandom);
-
+                    /*fecha */
+                    surveysPrv.setSubmittionDate(widget.dateTime);
+                    //!!sacar el id del dispositvo
+                    surveysPrv.setDeviceID('-');
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(
                       context,

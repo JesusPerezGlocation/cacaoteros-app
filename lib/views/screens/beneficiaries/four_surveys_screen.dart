@@ -2,8 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
-import 'package:surveys_app/controllers/exports/screens_exports.dart';
-import 'package:surveys_app/controllers/routes/main_routes.dart';
 import 'package:surveys_app/views/screens/beneficiaries/five_surveys_screen.dart';
 
 /*
@@ -24,7 +22,6 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
-    final locationPRV = Provider.of<PermissionLocationProvider>(context);
     return Scaffold(
       floatingActionButton: const IconButtonAddMemberComponents(),
       appBar: AppBar(actions: const [SaveIconDraftComponents()]),
@@ -181,13 +178,12 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    /*navega a la pantalla #5*/
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const FiveSurveysScreen()));
-                  }
+                  /*navega a la pantalla #5*/
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const FiveSurveysScreen()));
+                  if (formKey.currentState!.validate()) {}
                 },
               ),
               SizedBox(height: size.height * .06),

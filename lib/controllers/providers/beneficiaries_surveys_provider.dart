@@ -1,23 +1,46 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 provider para la encuesta de caracterización de beneficiarios
 */
 class BeneficiariesSurveysProvider extends ChangeNotifier {
+/*instancia*/
+  final CollectionReference databaseReference =
+      FirebaseFirestore.instance.collection(ApiPaths.cacaotesting);
+  final CollectionReference memberscacaotestingReferences =
+      FirebaseFirestore.instance.collection(ApiPaths.memberscacaotesting);
+
   //*primera pantalla #1*/
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;
+  final TextEditingController _submittionDate = TextEditingController();
+  TextEditingController get submittionDate => _submittionDate;
+  String _uuidiDSurveys = '';
+  String get uuidiDSurveys => _uuidiDSurveys;
+  final TextEditingController _deviceID = TextEditingController();
+  TextEditingController get deviceID => _deviceID;
 
   setNameUnit(String val) {
     _nameUnit.text = val; //nombre de la unidad
     notifyListeners();
   }
 
-  String _uuidiDSurveys = '';
-  String get uuidiDSurveys => _uuidiDSurveys;
-
   setUuidiDSurveys(String id) {
     _uuidiDSurveys = id; //id de la encuesta
+    notifyListeners();
+  }
+
+  setSubmittionDate(String date) {
+    _submittionDate.text = date; // hora de envio de la encuesta
+    notifyListeners();
+  }
+
+  setDeviceID(String date) {
+    _deviceID.text = date; // id del dispositivo
     notifyListeners();
   }
 
@@ -25,208 +48,187 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
 
   final TextEditingController _selectedDocumentType = TextEditingController();
   TextEditingController get selectedDocumentType => _selectedDocumentType;
+  final TextEditingController _selecDocumentTypeOther = TextEditingController();
+  TextEditingController get selecDocumentTypeOther => _selecDocumentTypeOther;
+  final TextEditingController _documentNumber = TextEditingController();
+  TextEditingController get documentNumber => _documentNumber;
+  final TextEditingController _expeditionMonth = TextEditingController();
+  TextEditingController get expeditionMonth => _expeditionMonth;
+  final TextEditingController _expeditionDay = TextEditingController();
+  TextEditingController get expeditionDay => _expeditionDay;
+  final TextEditingController _expeditionYear = TextEditingController();
+  TextEditingController get expeditionYear => _expeditionYear;
+  final TextEditingController _placeExpedition = TextEditingController();
+  TextEditingController get placeExpedition => _placeExpedition;
+  final TextEditingController _firtName = TextEditingController();
+  TextEditingController get firtName => _firtName;
+  final TextEditingController _secondName = TextEditingController();
+  TextEditingController get secondName => _secondName;
+  final TextEditingController _firtLastName = TextEditingController();
+  TextEditingController get firtLastName => _firtLastName;
+  final TextEditingController _secondLastName = TextEditingController();
+  TextEditingController get secondLastName => _secondLastName;
+  final TextEditingController _ageUser = TextEditingController();
+  TextEditingController get ageUser => _ageUser;
+  final TextEditingController _phoneNumber = TextEditingController();
+  TextEditingController get phoneNumber => _phoneNumber;
+  final TextEditingController _hasWhatsApp = TextEditingController();
+  TextEditingController get hasWhatsApp => _hasWhatsApp;
+  final TextEditingController _emailAddress = TextEditingController();
+  TextEditingController get emailAddress => _emailAddress;
+  final TextEditingController _hasEmailAddressOther = TextEditingController();
+  TextEditingController get hasEmailAddressOther => _hasEmailAddressOther;
+  final TextEditingController _servicesEthernet = TextEditingController();
+  TextEditingController get servicesEthernet => _servicesEthernet;
+  final TextEditingController _typeServicesEthernet = TextEditingController();
+  TextEditingController get typeServicesEthernet => _typeServicesEthernet;
+  final TextEditingController _whatServicesEthernet = TextEditingController();
+  TextEditingController get whatServicesEthernet => _whatServicesEthernet;
+  final TextEditingController _gender = TextEditingController();
+  TextEditingController get gender => _gender;
+  final TextEditingController _birthMonth = TextEditingController();
+  TextEditingController get birthMonth => _birthMonth;
+  final TextEditingController _birthDay = TextEditingController();
+  TextEditingController get birthDay => _birthDay;
+  final TextEditingController _birthYear = TextEditingController();
+  TextEditingController get birthYear => _birthYear;
+  final TextEditingController _placeBorn = TextEditingController();
+  TextEditingController get placeBorn => _placeBorn;
+  final TextEditingController _whatconsultEthernet = TextEditingController();
+  TextEditingController get whatconsultEthernet => _whatconsultEthernet;
+  final TextEditingController _hasDisability = TextEditingController();
+  TextEditingController get hasDisability => _hasDisability;
+  final TextEditingController _hasDisabilityOther = TextEditingController();
+  TextEditingController get hasDisabilityOther => _hasDisabilityOther;
+  final TextEditingController _whatconsultEthernetOther =
+      TextEditingController();
+  TextEditingController get whatconsultEthernetOther =>
+      _whatconsultEthernetOther;
 
   setSelectedDocumentType(String val) {
     _selectedDocumentType.text = val; //tipo de documento
     notifyListeners();
   }
 
-  final TextEditingController _selecDocumentTypeOther = TextEditingController();
-  TextEditingController get selecDocumentTypeOther => _selecDocumentTypeOther;
-
   setSelectedDocumentTypeOther(String val) {
     _selecDocumentTypeOther.text = val; // otro documento
     notifyListeners();
   }
-
-  final TextEditingController _documentNumber = TextEditingController();
-  TextEditingController get documentNumber => _documentNumber;
 
   setDocumentNumber(String val) {
     _documentNumber.text = val; //número de documento
     notifyListeners();
   }
 
-  final TextEditingController _expeditionMonth = TextEditingController();
-  TextEditingController get expeditionMonth => _expeditionMonth;
-
   setExpeditionMonth(String val) {
     _expeditionMonth.text = val; //mes de expedición del documento
     notifyListeners();
   }
-
-  final TextEditingController _expeditionDay = TextEditingController();
-  TextEditingController get expeditionDay => _expeditionDay;
 
   setExpeditionDay(String val) {
     _expeditionDay.text = val; // dia de expedición
     notifyListeners();
   }
 
-  final TextEditingController _expeditionYear = TextEditingController();
-  TextEditingController get expeditionYear => _expeditionYear;
-
   setExpeditionYear(String val) {
     _expeditionYear.text = val; //año de expedición
     notifyListeners();
   }
-
-  final TextEditingController _placeExpedition = TextEditingController();
-  TextEditingController get placeExpedition => _placeExpedition;
 
   setPlaceExpedition(String val) {
     _placeExpedition.text = val; // lugar de expedición
     notifyListeners();
   }
 
-  final TextEditingController _firtName = TextEditingController();
-  TextEditingController get firtName => _firtName;
-
   setFirtName(String val) {
     _firtName.text = val; // primer nombre del usuario
     notifyListeners();
   }
-
-  final TextEditingController _secondName = TextEditingController();
-  TextEditingController get secondName => _secondName;
 
   setSecondName(String val) {
     _secondName.text = val; // segundo nombre del usuario
     notifyListeners();
   }
 
-  final TextEditingController _firtLastName = TextEditingController();
-  TextEditingController get firtLastName => _firtLastName;
-
   setFirtLastName(String val) {
     _firtLastName.text = val; // primero apellido del usuario
     notifyListeners();
   }
-
-  final TextEditingController _secondLastName = TextEditingController();
-  TextEditingController get secondLastName => _secondLastName;
 
   setSecondLastName(String val) {
     _secondLastName.text = val; // segundo apellido del usuario
     notifyListeners();
   }
 
-  final TextEditingController _ageUser = TextEditingController();
-  TextEditingController get ageUser => _ageUser;
-
   setAgeUser(String val) {
     _ageUser.text = val; // edad del usuario
     notifyListeners();
   }
-
-  final TextEditingController _phoneNumber = TextEditingController();
-  TextEditingController get phoneNumber => _phoneNumber;
 
   setPhoneNumber(String val) {
     _phoneNumber.text = val; //número de celular
     notifyListeners();
   }
 
-  final TextEditingController _hasWhatsApp = TextEditingController();
-  TextEditingController get hasWhatsApp => _hasWhatsApp;
-
   setHasWhatsApp(String val) {
     _hasWhatsApp.text = val; // tiene whatsapp?
     notifyListeners();
   }
-
-  final TextEditingController _emailAddress = TextEditingController();
-  TextEditingController get emailAddress => _emailAddress;
 
   setEmailAddress(String val) {
     _emailAddress.text = val; //correo
     notifyListeners();
   }
 
-  final TextEditingController _hasEmailAddressOther = TextEditingController();
-  TextEditingController get hasEmailAddressOther => _hasEmailAddressOther;
-
   setHasEmailAddressOther(String val) {
     _hasEmailAddressOther.text = val; //pregunta si correo
     notifyListeners();
   }
-
-  final TextEditingController _servicesEthernet = TextEditingController();
-  TextEditingController get servicesEthernet => _servicesEthernet;
 
   setServicesEthernet(String val) {
     _servicesEthernet.text = val; // cuenta con servicios a internet?
     notifyListeners();
   }
 
-  final TextEditingController _typeServicesEthernet = TextEditingController();
-  TextEditingController get typeServicesEthernet => _typeServicesEthernet;
-
   setTypeServicesEthernet(String val) {
     _typeServicesEthernet.text = val; // tipo de servicio internet
     notifyListeners();
   }
-
-  final TextEditingController _whatServicesEthernet = TextEditingController();
-  TextEditingController get whatServicesEthernet => _whatServicesEthernet;
 
   setWhatServicesEthernet(String val) {
     _whatServicesEthernet.text = val; // cual servicio a intenert
     notifyListeners();
   }
 
-  final TextEditingController _gender = TextEditingController();
-  TextEditingController get gender => _gender;
-
   setGender(String val) {
     _gender.text = val; //genero
     notifyListeners();
   }
-
-  final TextEditingController _birthMonth = TextEditingController();
-  TextEditingController get birthMonth => _birthMonth;
 
   setBirthMonth(String val) {
     _birthMonth.text = val; //mes cumpleaños
     notifyListeners();
   }
 
-  final TextEditingController _birthDay = TextEditingController();
-  TextEditingController get birthDay => _birthDay;
-
   setBirthDay(String val) {
     _birthDay.text = val; //dia cumpleaños
     notifyListeners();
   }
-
-  final TextEditingController _birthYear = TextEditingController();
-  TextEditingController get birthYear => _birthYear;
 
   setBirthYear(String val) {
     _birthYear.text = val; //año cumpleaños
     notifyListeners();
   }
 
-  final TextEditingController _placeBorn = TextEditingController();
-  TextEditingController get placeBorn => _placeBorn;
-
   setPlaceBorn(String val) {
     _placeBorn.text = val; //lugar de nacimiento
     notifyListeners();
   }
 
-  final TextEditingController _whatconsultEthernet = TextEditingController();
-  TextEditingController get whatconsultEthernet => _whatconsultEthernet;
-
   setWhatconsultEthernet(String val) {
     _whatconsultEthernet.text = val; //que temas consulta atrvez de internet
     notifyListeners();
   }
-
-  final TextEditingController _whatconsultEthernetOther =
-      TextEditingController();
-  TextEditingController get whatconsultEthernetOther =>
-      _whatconsultEthernetOther;
 
   setWhatconsultEthernetOther(String val) {
     _whatconsultEthernetOther.text =
@@ -234,19 +236,13 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  final TextEditingController _hasDisability = TextEditingController();
-  TextEditingController get hasDisability => _hasDisability;
-
   setHasDisability(String val) {
     _hasDisability.text = val; //  presenta discapcidad
     notifyListeners();
   }
 
-  final TextEditingController _hasDisabilityOther = TextEditingController();
-  TextEditingController get hasDisabilityOther => _hasDisabilityOther;
-
   setHasDisabilityOther(String val) {
-    _hasDisabilityOther.text = val; //  presenta discapcidad
+    _hasDisabilityOther.text = val; // si seleccioona otro presenta discapcidad
     notifyListeners();
   }
 
@@ -895,4 +891,178 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   }
 
   //*PANTALLA SIETE #7
+
+  //*PETICIÓN FIREBASE*/
+  //*petición a firebase
+
+  Future<void> sentSurveysToFirabase(BuildContext context) async {
+    try {
+      databaseReference.add(
+        {
+          'AttachmentsExpected': "",
+          'AttachmentsPresent': "",
+          'DeviceID': "collect:${_deviceID.text}",
+          'Edits': "",
+          'FormVersion': "Versión 5",
+          'KEY': "uuid:$_uuidiDSurveys",
+          'ReviewState': "",
+          'Status': "",
+          'SubmissionDate': _submittionDate.text,
+          'SubmitterID': "99",
+          'SubmitterName': "iPhoneUser",
+
+          //pantalla #1
+          "encuesta_caracterizacion_nombre_unidad": _nameUnit.text,
+          //pantalla #2
+          'informacion_cacaocultorp3_tipo_documento':
+              _selectedDocumentType.text,
+          'informacion_cacaocultorp3_tipo_documento_otro':
+              _selecDocumentTypeOther.text,
+          'informacion_cacaocultorP4_documento': _documentNumber.text,
+          'informacion_cacaocultorp5_fecha_expedicion':
+              '${_expeditionMonth.text}-${_expeditionDay.text}-${_expeditionYear.text}',
+          'informacion_cacaocultorp6_lugar_expedicion': _placeExpedition.text,
+          'informacion_cacaocultorp7_primer_nombre': _firtName.text,
+          'informacion_cacaocultorp8_segundo_nombre': _secondName.text,
+          'informacion_cacaocultorp9_primer_apellido': _firtLastName.text,
+          'informacion_cacaocultorp10_segundo_apellido': _secondLastName.text,
+          'informacion_cacaocultorp12_edad': _ageUser.text,
+          'informacion_cacaocultorp13_genero': _gender.text,
+          'informacion_cacaocultorp13_genero_otro': _gender.text,
+          'informacion_cacaocultorp14_lugar_nacimiento': _placeBorn.text,
+          'informacion_cacaocultorp15_numero_celular': _phoneNumber.text,
+          'informacion_cacaocultorp16_whatsapp_mismo_numero': _hasWhatsApp.text,
+          'informacion_cacaocultorp17_tiene_correo': _emailAddress.text,
+          'informacion_cacaocultorp18_correo': _hasEmailAddressOther.text,
+          'informacion_cacaocultorp19_cuenta_con_internet':
+              _servicesEthernet.text,
+          'informacion_cacaocultorp20_tipo_servicion_internet':
+              _typeServicesEthernet.text,
+          'informacion_cacaocultorp20_tipo_servicion_internet_otro':
+              _whatServicesEthernet.text,
+          'informacion_cacaocultorp21_temas_internet':
+              _whatconsultEthernet.text,
+          'informacion_cacaocultorp21_temas_internet_otro':
+              whatconsultEthernetOther.text,
+          'informacion_cacaocultorp22_condicion_discapacidad':
+              _hasDisability.text,
+          'informacion_cacaocultorp22_condicion_discapacidad_si':
+              _hasDisabilityOther.text,
+
+          //pantalla #3
+          'informacion_sociodemograficap23_estado_civil': _statusCivil.text,
+          'informacion_sociodemograficap23_estado_civil_otro':
+              statusCivilOther.text,
+          'informacion_sociodemograficap24_etnia': _ethhicGroup.text,
+          'informacion_sociodemograficap24_etnia_otro': _ethhicGroupOther.text,
+          'informacion_sociodemograficap25_nivel_educativo':
+              _educationalLevel.text,
+          'informacion_sociodemograficap26_titulo_obtenido':
+              _obtainerTitle.text,
+          'informacion_sociodemograficap27_tipo_tenencia':
+              _possesionLandType.text,
+          'informacion_sociodemograficap27_tipo_tenencia_otro':
+              _possesionLandType.text,
+          'informacion_sociodemograficap28_origen_teniencia_tierra':
+              _originPossesionLand.text,
+          'informacion_sociodemograficap28_origen_teniencia_tierra_otro':
+              _originPossesionLand.text,
+          'informacion_sociodemograficap30_tipo_posesion_cultivo':
+              _possesionOverCultivation.text,
+          'informacion_sociodemograficap30_tipo_posesion_cultivo_otro':
+              _possesionOverCultivation.text,
+          'informacion_sociodemograficap31_pertenece_asociacion':
+              _hasOrganization.text,
+          'informacion_sociodemograficap31_pertenece_asociacion_si':
+              _hasOrganizationOtherYes.text,
+          'informacion_sociodemograficap35_cuenta_sello_certificacion':
+              _obtainingCertificate.text,
+          'informacion_sociodemograficap35_cuenta_sello_certificacion_cual':
+              _obtainingCertificateOther.text,
+          'informacion_chequeo_criteriosp109_vinculacion_fedecacao':
+              _nationalFederation.text,
+          'informacion_chequeo_criteriosp109_vinculacion_fedecacao_observaciones':
+              _observationFederationYesOrNot.text,
+          'informacion_sociodemograficap36_afiliacion_seguridad_social':
+              _socialSecurity.text,
+          'informacion_sociodemograficap36_tipo_seguridad_social':
+              _socialSecurityOther.text,
+          'informacion_sociodemograficap37_tipo_mano_obra': _typeLabour.text,
+          'informacion_sociodemograficap37_tipo_mano_obra_otro':
+              _typeLabourOther.text,
+          'informacion_sociodemograficap38_dias_labora_cultivo_cacao':
+              _numberDayFarm.text,
+          'informacion_sociodemograficap39_dias_labora_fuera_finca':
+              _numberDaysMonthFarm.text,
+
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+          //pantalla #
+        },
+      ).then((_) {
+        /*si los datos se enviaron con exito*/
+
+        //Navigator.of(context).pop(); // cierra el dialogo de carga
+
+        SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
+            Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
+
+        notifyListeners();
+      }).catchError((error) {
+        //Navigator.of(context).pop(); // cierra el dialogo de carga
+
+        /*si ocurre un error, muestra un mensaje de error */
+        SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
+            Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+      });
+    } catch (e) {
+      SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+          Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+    }
+  }
+
+  //*envio de datos de firebase para añadir miembros a una familia*/
+  Future<void> sentAddMembersToFirabase(BuildContext context) async {
+    try {
+      memberscacaotestingReferences.add({
+        //pantalla #4
+        'KEY':
+            'uuid:$_uuidiDSurveys/informacion_solo_trabajan/informacion_familiares_trabajen[1]', //!!pasar el index
+        'PARENT_KEY': "uuid:$_uuidiDSurveys",
+        'p40_nombres_apellidos': _nameAndLastNameRelationShip.text,
+        'p41_parentesco': _relationShip.text,
+        'p42_genero': _genderRelationShip.text,
+        'p43_anio_nacido':
+            '${_monthBrithdayRelationship.text}-${_dayBrithdayRelationship.text}-${_yearBrithdayRelationship.text}',
+        'p44_escolaridad_grado': _educationLevelRelationship.text,
+        'p44_escolaridad_institucion': _schoolRelationship.text,
+        'p45_documento_id': _numberDocRelationship.text,
+      }).then((_) {
+        /*si los datos se enviaron con exito*/
+
+        SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
+            Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
+
+        notifyListeners();
+      }).catchError((error) {
+        /*si ocurre un error, muestra un mensaje de error */
+        SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
+            Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+      });
+    } catch (e) {
+      log('error:$e');
+      SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+          Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+    }
+  }
 }

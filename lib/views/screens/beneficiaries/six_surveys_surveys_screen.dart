@@ -271,7 +271,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
               /*boton para continuar*/
               ButtonComponents(
                 title: 'Continuar',
-                onPressed: () {
+                onPressed: () async {
                   /*añade la latitud al provider*/
                   surveysPrv.setUpdateLocation(
                       widget.locationPRV.latitude,
@@ -283,6 +283,15 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     context,
                     MainRoutes.threeSurveysRoute,
                   );
+
+                  //!!!envia los datos, borrar
+                  await surveysPrv.sentSurveysToFirabase(context);
+                  await surveysPrv.sentAddMembersToFirabase(context);
+                  SnackBarGlobalWidget.showSnackBar(
+                      context,
+                      'Datos enviados con éxito!',
+                      Icons.check_circle_sharp,
+                      PaletteColorsTheme.principalColor);
                   if (formKey.currentState!.validate()) {}
                 },
               ),

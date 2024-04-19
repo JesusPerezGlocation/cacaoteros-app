@@ -311,39 +311,12 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   }
                 },
               ),
-              if (surveysPrv.hasOrganization.text.isNotEmpty &&
-                  surveysPrv.hasOrganization.text == '1')
+
+              if (surveysPrv.hasOrganization.text == '1' &&
+                  surveysPrv.hasOrganization.text.isNotEmpty)
                 SizedBox(height: size.height * .04),
-              if (surveysPrv.hasOrganization.text.isNotEmpty &&
-                  surveysPrv.hasOrganization.text == '1')
-                //#15
-                Animate(
-                  effects: const [FadeEffect(), ScaleEffect()],
-                  child: DropdownComponents(
-                    title:
-                        '¿Cuenta o está en proceso de abtención de algún sello de certificación?',
-                    hintext: ' Seleccionar dato',
-                    items: const ['Si', 'No'],
-                    validator: (val) =>
-                        ValidationInputs.inputTypeSelect(val.toString()),
-                    onChanged: (val) {
-                      switch (val.toString()) {
-                        case 'Si':
-                          surveysPrv.setHasOrganizationOther('1');
-                          break;
-                        case 'No':
-                          surveysPrv.setHasOrganizationOther('2');
-                          break;
-                        default:
-                      }
-                    },
-                  ),
-                ),
-              if (surveysPrv.hasOrganizationOther.text == '1' &&
-                  surveysPrv.hasOrganizationOther.text.isNotEmpty)
-                SizedBox(height: size.height * .04),
-              if (surveysPrv.hasOrganizationOther.text == '1' &&
-                  surveysPrv.hasOrganizationOther.text.isNotEmpty)
+              if (surveysPrv.hasOrganization.text == '1' &&
+                  surveysPrv.hasOrganization.text.isNotEmpty)
                 //#15
                 Animate(
                   effects: const [FadeEffect(), ScaleEffect()],
@@ -386,7 +359,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   effects: const [FadeEffect(), ScaleEffect()],
                   child: DropdownComponents(
                     title:
-                        '¿Esta interesado en iniciar el proceso de cedulación coon Fedecacao?',
+                        '¿Esta interesado en iniciar el proceso de cedulación con Fedecacao?',
                     hintext: ' Seleccionar dato',
                     items: const ['Si', 'No'],
                     validator: (val) =>
