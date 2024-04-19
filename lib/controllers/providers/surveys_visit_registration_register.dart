@@ -645,6 +645,180 @@ class SurveysVisitRegistrationProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //*pantalla ocho #8*/
+  final TextEditingController _supportedProject = TextEditingController();
+  TextEditingController get supportedProject => _supportedProject;
+
+  setSupportedProject(String val) {
+    _supportedProject.text = val; // ha sido apoyado por un proyecto de Fomento
+    notifyListeners();
+  }
+
+  final TextEditingController _nameSupportProject = TextEditingController();
+  TextEditingController get nameSupportProject => _nameSupportProject;
+
+  setNameSupportProject(String val) {
+    _nameSupportProject.text = val; // nombre del proyecto
+    notifyListeners();
+  }
+
+  final TextEditingController _yearSupportProject = TextEditingController();
+  TextEditingController get yearSupportProject => _yearSupportProject;
+
+  setYearSupportProject(String val) {
+    _yearSupportProject.text = val; // año del proyecto
+    notifyListeners();
+  }
+
+  final TextEditingController _typeSupportProject = TextEditingController();
+  TextEditingController get typeSupportProject => _typeSupportProject;
+
+  setTypeSupportProject(String val) {
+    _typeSupportProject.text = val; // tipo de apoyo recibido
+    notifyListeners();
+  }
+
+  //*pantalla nueve #9*/
+
+  final TextEditingController _typeHouse = TextEditingController();
+  TextEditingController get typeHouse => _typeHouse;
+
+  setTypeHouse(String val) {
+    _typeHouse.text = val; // tipo de casa
+    notifyListeners();
+  }
+
+  final TextEditingController _typeHouseOther = TextEditingController();
+  TextEditingController get typeHouseOther => _typeHouseOther;
+
+  setTypeHouseOther(String val) {
+    _typeHouseOther.text =
+        val; //en caso de que haya seleccionado "Otro" tipo de casa
+    notifyListeners();
+  }
+
+  final TextEditingController _typeCeiling = TextEditingController();
+  TextEditingController get typeCeiling => _typeCeiling;
+
+  setTypeCeiling(String val) {
+    _typeCeiling.text = val; // tipo de techo
+    notifyListeners();
+  }
+
+  final TextEditingController _typeCeilingOther = TextEditingController();
+  TextEditingController get typeCeilingOther => _typeCeilingOther;
+
+  setTypeCeilingOther(String val) {
+    _typeCeilingOther.text =
+        val; //en caso de que haya seleccionado "Otro" tipo de techo
+    notifyListeners();
+  }
+
+  final TextEditingController _typeOfWalls = TextEditingController();
+  TextEditingController get typeOfWalls => _typeOfWalls;
+
+  setTypeOfWalls(String val) {
+    _typeOfWalls.text = val; // tipo de paredes
+    notifyListeners();
+  }
+
+  final TextEditingController _typeOfWallsOthers = TextEditingController();
+  TextEditingController get typeOfWallsOthers => _typeOfWallsOthers;
+
+  setTypeOfWallsOthers(String val) {
+    _typeOfWallsOthers.text =
+        val; //en caso de que haya seleccionado "Otro" tipo de paredes
+    notifyListeners();
+  }
+
+  final TextEditingController _typeFloors = TextEditingController();
+  TextEditingController get typeFloors => _typeFloors;
+
+  setTypeFloors(String val) {
+    _typeFloors.text = val; // tipo de pisos
+    notifyListeners();
+  }
+
+  final TextEditingController _typeElectricalRed = TextEditingController();
+  TextEditingController get typeElectricalRed => _typeElectricalRed;
+
+  setTypeElectricalRed(String val) {
+    _typeElectricalRed.text = val; // tipo de red electrica
+    notifyListeners();
+  }
+
+  final TextEditingController _typeSewer = TextEditingController();
+  TextEditingController get typeSewer => _typeSewer;
+
+  setTypeSewer(String val) {
+    _typeSewer.text = val; // tipo de alcantarillado
+    notifyListeners();
+  }
+
+  final TextEditingController _typeToilet = TextEditingController();
+  TextEditingController get typeToilet => _typeToilet;
+
+  setTypeToilet(String val) {
+    _typeToilet.text = val; // tipo de sanitario
+    notifyListeners();
+  }
+
+  final TextEditingController _telephoneAccess = TextEditingController();
+  TextEditingController get telephoneAccess => _telephoneAccess;
+
+  setTelephoneAccess(String val) {
+    _telephoneAccess.text = val; // acceso a telefonoia
+    notifyListeners();
+  }
+
+  final TextEditingController _garbageCollection = TextEditingController();
+  TextEditingController get garbageCollection => _garbageCollection;
+
+  setgGarbageCollection(String val) {
+    _garbageCollection.text = val; // recoleccion de basura
+    notifyListeners();
+  }
+
+  final TextEditingController _typeAqueduct = TextEditingController();
+  TextEditingController get typeAqueduct => _typeAqueduct;
+
+  setTypeAqueduct(String val) {
+    _typeAqueduct.text = val; // tipo de acueducto
+    notifyListeners();
+  }
+
+  final TextEditingController _deleteTrash = TextEditingController();
+  TextEditingController get deleteTrash => _deleteTrash;
+
+  setDeleteTrash(String val) {
+    _deleteTrash.text = val; // eliminación de basura
+    notifyListeners();
+  }
+
+  final TextEditingController _waterForConsumption = TextEditingController();
+  TextEditingController get waterForConsumption => _waterForConsumption;
+
+  setWaterForConsumption(String val) {
+    _waterForConsumption.text = val; // agua para consumo
+    notifyListeners();
+  }
+
+  final TextEditingController _cookingForEnery = TextEditingController();
+  TextEditingController get cookingForEnery => _cookingForEnery;
+
+  setCookingForEnery(String val) {
+    _cookingForEnery.text = val; // energia para cocinar
+    notifyListeners();
+  }
+
+  final TextEditingController _energyOnTheFarm = TextEditingController();
+  TextEditingController get energyOnTheFarm => _energyOnTheFarm;
+
+  setEnergyOnTheFarm(String val) {
+    _energyOnTheFarm.text = val; // energia en la finca
+    notifyListeners();
+  }
+
 //*pantalla once #11*/
   final TextEditingController _nameAndLastNameRelationShip =
       TextEditingController();
