@@ -274,13 +274,12 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    /*navega hacia la pantalla #8*/
-                    Navigator.pushNamed(
-                      context,
-                      MainRoutes.eightSurveyRoute,
-                    );
-                  }
+                  /*navega hacia la pantalla #8*/
+                  Navigator.pushNamed(
+                    context,
+                    MainRoutes.eightSurveyRoute,
+                  );
+                  if (formKey.currentState!.validate()) {}
                 },
               ),
               SizedBox(height: size.height * .06),

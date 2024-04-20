@@ -531,13 +531,12 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    /*navega a la siguiente pantalla*/
-                    Navigator.pushNamed(
-                      context,
-                      MainRoutes.threeSurveysRoute,
-                    );
-                  }
+                  /*navega a la siguiente pantalla*/
+                  Navigator.pushNamed(
+                    context,
+                    MainRoutes.threeSurveysRoute,
+                  );
+                  if (formKey.currentState!.validate()) {}
                 },
               ),
               SizedBox(height: size.height * .06),
