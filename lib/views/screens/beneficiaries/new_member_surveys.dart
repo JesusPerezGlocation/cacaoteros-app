@@ -2,20 +2,19 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
-import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
-pantalla #4 MIEMBROS DE LA FAMILIA QUE VIVEN EN LA FINCA Y APOYAN A LA ACTIVIDAD (HIJOS, YERNO, NUERA, SOBRINO, TIOS Y DEMAS)
+pantalla para añadir a un nuevo miembro a la familia 
 */
-class FourSurveysScreen extends StatefulWidget {
-  const FourSurveysScreen({super.key});
+class NewMemberSurveysScreen extends StatefulWidget {
+  const NewMemberSurveysScreen({super.key});
 
   @override
-  State<FourSurveysScreen> createState() => _FourSurveysScreenState();
+  State<NewMemberSurveysScreen> createState() => _NewMemberSurveysScreenState();
 }
 
-class _FourSurveysScreenState extends State<FourSurveysScreen> {
-/*key*/
+class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
+  /*key*/
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -23,9 +22,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      floatingActionButton:
-          const IconButtonAddMemberComponents(isViewListMembers: true),
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -35,25 +32,16 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 horizontal: size.width * .03, vertical: size.height * .03),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
-              const TitleSurveysComponents(
-                  title:
-                      'INFORMACIÓN DE FAMILIARES (SOLO FAMILIARES QUE VIVEN O TRABAJEN EN EL CULTIVO)'),
-              SizedBox(height: size.height * .02),
-              const LinealPercentComponent(
-                percent: (4 - 1) * (100 / 13) / 100,
-                questions: '30',
-                answers: '4',
-              ),
+              const TitleSurveysComponents(title: 'AÑADIR MIEMBRO DE FAMILIA'),
               SizedBox(height: size.height * .04),
               //#1
               InputsComponent(
                 title: 'Nombres y apellidos',
                 hintext: ' Ingresar nombres y apellidos',
                 textInputAction: TextInputAction.next,
-                controller: surveysPrv.nameAndLastNameRelationShip,
+                controller: surveysPrv.nameAndLastNameMember,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) =>
-                    surveysPrv.setNameAndLastNameRelationShip(val),
+                onChanged: (val) => surveysPrv.setNameAndLastNameMember(val),
               ),
               SizedBox(height: size.height * .03),
               //#2
@@ -73,22 +61,22 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 onChanged: (val) {
                   switch (val.toString()) {
                     case 'Hijos':
-                      surveysPrv.setRelationShip('1');
+                      surveysPrv.setSelectRelationShipMember('1');
                       break;
                     case 'Yerno':
-                      surveysPrv.setRelationShip('2');
+                      surveysPrv.setSelectRelationShipMember('2');
                       break;
                     case 'Nuera':
-                      surveysPrv.setRelationShip('3');
+                      surveysPrv.setSelectRelationShipMember('3');
                       break;
                     case 'Sobrino':
-                      surveysPrv.setRelationShip('4');
+                      surveysPrv.setSelectRelationShipMember('4');
                       break;
                     case 'Tios':
-                      surveysPrv.setRelationShip('5');
+                      surveysPrv.setSelectRelationShipMember('5');
                       break;
                     case 'Demas':
-                      surveysPrv.setRelationShip('6');
+                      surveysPrv.setSelectRelationShipMember('6');
                       break;
                     default:
                   }
@@ -98,26 +86,25 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               SizedBox(height: size.height * .03),
               //#3
               DropdownComponents(
-                title: ' Seleccionar género',
-                initialValue: '-',
-                hintext: ' Seleccionar género',
-                items: const ['Masculino', 'Femenino', 'Otro'],
-                validator: (value) => ValidationInputs.inputTypeSelect(value),
-                onChanged: (val) {
-                  switch (val.toString()) {
-                    case 'Masculino':
-                      surveysPrv.setGenderRelationShip('1');
-                      break;
-                    case 'Femenino':
-                      surveysPrv.setGenderRelationShip('2');
-                      break;
-                    case 'Otro':
-                      surveysPrv.setGenderRelationShip('3');
-                      break;
-                    default:
-                  }
-                },
-              ),
+                  title: ' Seleccionar género',
+                  initialValue: '-',
+                  hintext: ' Seleccionar género',
+                  items: const ['Masculino', 'Femenino', 'Otro'],
+                  validator: (value) => ValidationInputs.inputTypeSelect(value),
+                  onChanged: (val) {
+                    switch (val.toString()) {
+                      case 'Masculino':
+                        surveysPrv.setSelectGenderRelationShipMember('1');
+                        break;
+                      case 'Femenino':
+                        surveysPrv.setSelectGenderRelationShipMember('2');
+                        break;
+                      case 'Otro':
+                        surveysPrv.setSelectGenderRelationShipMember('3');
+                        break;
+                      default:
+                    }
+                  }),
               SizedBox(height: size.height * .03),
               // #4
               Row(
@@ -130,10 +117,10 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                       hintext: ' 03',
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
-                      controller: surveysPrv.monthBrithdayRelationship,
+                      controller: surveysPrv.birthdayMonthRelationShipMember,
                       validator: (val) => ValidationInputs.validateMonth(val),
                       onChanged: (val) =>
-                          surveysPrv.setMonthBrithdayRelationship(val),
+                          surveysPrv.setBirthdayMonthRelationShipMember(val),
                     ),
                   ),
                   SizedBox(width: size.width * .02),
@@ -145,11 +132,11 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                       hintext: ' 07',
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
-                      controller: surveysPrv.dayBrithdayRelationship,
+                      controller: surveysPrv.birthdayDayRelationShipMember,
                       validator: (val) =>
                           ValidationInputs.validateDayOfMonth(val),
                       onChanged: (val) =>
-                          surveysPrv.setDayBrithdayRelationship(val),
+                          surveysPrv.setBirthdayDayRelationShipMember(val),
                     ),
                   ),
                   SizedBox(width: size.width * .02),
@@ -161,10 +148,10 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                       hintext: ' 1999',
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
-                      controller: surveysPrv.yearBrithdayRelationship,
+                      controller: surveysPrv.birthdayYearRelationShipMember,
                       validator: (val) => ValidationInputs.validateYear(val),
                       onChanged: (val) =>
-                          surveysPrv.setYearBrithdayRelationship(val),
+                          surveysPrv.setBirthdayYearRelationShipMember(val),
                     ),
                   ),
                 ],
@@ -185,16 +172,16 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 onChanged: (val) {
                   switch (val.toString()) {
                     case 'Primaria':
-                      surveysPrv.setEducationLevelRelationship('1');
+                      surveysPrv.setLevelShoolRelationShipMember('1');
                       break;
                     case 'Secundaria':
-                      surveysPrv.setEducationLevelRelationship('2');
+                      surveysPrv.setLevelShoolRelationShipMember('2');
                       break;
                     case 'Técnico':
-                      surveysPrv.setEducationLevelRelationship('3');
+                      surveysPrv.setLevelShoolRelationShipMember('3');
                       break;
                     case 'Profesional':
-                      surveysPrv.setEducationLevelRelationship('4');
+                      surveysPrv.setLevelShoolRelationShipMember('4');
                       break;
                     default:
                   }
@@ -205,9 +192,9 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               InputsComponent(
                 title: 'Institución de escolaridad',
                 hintext: ' Ingresar institución',
-                controller: surveysPrv.schoolRelationship,
+                controller: surveysPrv.schoolRelationShipMember,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setSchoolRelationship(val),
+                onChanged: (val) => surveysPrv.setSchoolRelationShipMember(val),
               ),
 
               SizedBox(height: size.height * .03),
@@ -217,9 +204,9 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 hintext: ' Ingresar número',
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                controller: surveysPrv.numberDocRelationship,
+                controller: surveysPrv.numberRelationShipMember,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) => surveysPrv.setNumberDocRelationship(val),
+                onChanged: (val) => surveysPrv.setnumberRelationShipMember(val),
               ),
 
               SizedBox(height: size.height * .06),
@@ -228,13 +215,48 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 onPressed: () {
-                  /*navega a la pantalla #5*/
-                  Navigator.pushNamed(
-                    context,
-                    MainRoutes.fiveSurveysRoute,
-                  );
+                  if (formKey.currentState!.validate()) {
+                    /*añade los miembros al provider*/
+                    FamilyMember newMember = FamilyMember(
+                      id: '', // el ID será asignado por el Provider
+                      name: surveysPrv.nameAndLastNameMember.text,
+                      relationship: surveysPrv.selectRelationShipMember.text,
+                      gender: surveysPrv.selectGenderRelationShipMember.text,
+                      birthdayMonth:
+                          surveysPrv.birthdayMonthRelationShipMember.text,
+                      birthdayDay:
+                          surveysPrv.birthdayDayRelationShipMember.text,
+                      birthdayYear:
+                          surveysPrv.birthdayYearRelationShipMember.text,
+                      educationLevel:
+                          surveysPrv.levelShoolRelationShipMember.text,
+                      school: surveysPrv.schoolRelationShipMember.text,
+                      documentNumber: surveysPrv.numberRelationShipMember.text,
+                    );
+                    //agrega el nuevo miembro a la lista
+                    surveysPrv.addFamilyMember(newMember);
+                    // limpia los campos después de agregar el miembro
+                    surveysPrv.cleanInputsMembers();
 
-                  if (formKey.currentState!.validate()) {}
+                    // verificar si se añadió el miembro a la lista
+                    bool memberAdded =
+                        surveysPrv.familyMembers.contains(newMember);
+                    if (memberAdded) {
+                      /*hace un pop up */
+                      Navigator.pop(context);
+                      SnackBarGlobalWidget.showSnackBar(
+                          context,
+                          'Familiar añadido con éxito',
+                          Icons.check_circle_rounded,
+                          PaletteColorsTheme.principalColor);
+                    } else {
+                      SnackBarGlobalWidget.showSnackBar(
+                          context,
+                          'Lo sentimos, el familiar no pudo ser añadido',
+                          Icons.error_sharp,
+                          PaletteColorsTheme.secondaryColor);
+                    }
+                  }
                 },
               ),
               SizedBox(height: size.height * .06),

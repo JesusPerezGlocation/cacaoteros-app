@@ -1,3 +1,4 @@
+export 'package:surveys_app/models/family_members_models.dart';
 export 'package:surveys_app/views/widgets/show_modal_widget.dart';
 export 'package:surveys_app/views/widgets/select_show_modal_widget.dart';
 export 'package:surveys_app/views/components/list_surveys_home_components.dart';

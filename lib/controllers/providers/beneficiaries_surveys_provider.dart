@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:uuid/uuid.dart';
 
 /*
 provider para la encuesta de caracterización de beneficiarios
@@ -1598,6 +1599,335 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     } catch (e) {
       log('error:$e');
       SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+          Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+    }
+  }
+
+  //*PANTALLA PARA UN AÑADIR MIEMBRO DE FAMILIA*/
+
+  final List<FamilyMember> _familyMembers = [];
+  List<FamilyMember> get familyMembers => _familyMembers;
+
+  int memberCounter = 1;
+
+  final TextEditingController _nameAndLastNameMember = TextEditingController();
+  TextEditingController get nameAndLastNameMember => _nameAndLastNameMember;
+  final TextEditingController _selectRelationShipMember =
+      TextEditingController();
+  TextEditingController get selectRelationShipMember =>
+      _selectRelationShipMember;
+  final TextEditingController _selectGenderRelationShipMember =
+      TextEditingController();
+  TextEditingController get selectGenderRelationShipMember =>
+      _selectGenderRelationShipMember;
+  final TextEditingController _birthdayMonthRelationShipMember =
+      TextEditingController();
+  TextEditingController get birthdayMonthRelationShipMember =>
+      _birthdayMonthRelationShipMember;
+  final TextEditingController _birthdayDayRelationShipMember =
+      TextEditingController();
+  TextEditingController get birthdayDayRelationShipMember =>
+      _birthdayDayRelationShipMember;
+  final TextEditingController _birthdayYearRelationShipMember =
+      TextEditingController();
+  TextEditingController get birthdayYearRelationShipMember =>
+      _birthdayYearRelationShipMember;
+  final TextEditingController _levelShoolRelationShipMember =
+      TextEditingController();
+  TextEditingController get levelShoolRelationShipMember =>
+      _levelShoolRelationShipMember;
+
+  final TextEditingController _schoolRelationShipMember =
+      TextEditingController();
+  TextEditingController get schoolRelationShipMember =>
+      _schoolRelationShipMember;
+  final TextEditingController _numberRelationShipMember =
+      TextEditingController();
+  TextEditingController get numberRelationShipMember =>
+      _numberRelationShipMember;
+
+  setNameAndLastNameMember(String val) {
+    _nameAndLastNameMember.text = val; //nombre y apellido del miembro
+    notifyListeners();
+  }
+
+  setSelectRelationShipMember(String val) {
+    _selectRelationShipMember.text = val; //seleccionar parentesco del miembro
+    notifyListeners();
+  }
+
+  setSelectGenderRelationShipMember(String val) {
+    _selectGenderRelationShipMember.text = val; //genero del miembro
+    notifyListeners();
+  }
+
+  setBirthdayMonthRelationShipMember(String val) {
+    _birthdayMonthRelationShipMember.text = val; //mes de cumpleaños del miembro
+    notifyListeners();
+  }
+
+  setBirthdayDayRelationShipMember(String val) {
+    _birthdayDayRelationShipMember.text = val; //dia de cumpleaños del miembro
+    notifyListeners();
+  }
+
+  setBirthdayYearRelationShipMember(String val) {
+    _birthdayYearRelationShipMember.text = val; // año de cumpleaños del miembro
+    notifyListeners();
+  }
+
+  setLevelShoolRelationShipMember(String val) {
+    _levelShoolRelationShipMember.text = val; //nivel de escolaridad del miembro
+    notifyListeners();
+  }
+
+  setSchoolRelationShipMember(String val) {
+    _schoolRelationShipMember.text = val; //colegio del miembro
+    notifyListeners();
+  }
+
+  setnumberRelationShipMember(String val) {
+    _numberRelationShipMember.text = val; //número de documento del miembro
+    notifyListeners();
+  }
+
+  // añade miembro a la lista
+  addFamilyMember(FamilyMember member) {
+    /*genera un nuevo UUID para el miembro */
+    String memberId = const Uuid().v4();
+
+    /*asignar el ID al miembro */
+    member.id =
+        '$memberId/informacion_solo_trabajan/informacion_familiares_trabajen[$memberCounter]';
+
+    /*añadir el miembro a la lista */
+    familyMembers.add(member);
+
+    /*incrementar el contador para el próximo miembro */
+    memberCounter++;
+
+    notifyListeners();
+
+    log('id: ${member.id}');
+    log('name: ${member.name}');
+    log('relation: ${member.relationship}');
+    log('genero: ${member.gender}');
+    log('cumpleaños: ${member.birthdayMonth}-${member.birthdayDay}-${member.birthdayYear}');
+    log('nivel de educación: ${member.educationLevel}');
+    log('colegio: ${member.school}');
+    log('documento: ${member.documentNumber}');
+  }
+
+  /*limpia la pantalla de add miembros*/
+  cleanInputsMembers() {
+    _nameAndLastNameMember.clear();
+    _selectRelationShipMember.clear();
+    _selectGenderRelationShipMember.clear();
+    _birthdayMonthRelationShipMember.clear();
+    _birthdayDayRelationShipMember.clear();
+    _birthdayYearRelationShipMember.clear();
+    _levelShoolRelationShipMember.clear();
+    _numberRelationShipMember.clear();
+    notifyListeners();
+  }
+
+  /*limpia todos los datos del provider*/
+  cleanAllProvider() {
+    /*limpia la lista*/
+    _familyMembers.clear();
+
+    memberCounter = 1;
+    _nameUnit.clear();
+    _submittionDate.clear();
+    _deviceID.clear();
+    _selectedDocumentType.clear();
+    _selecDocumentTypeOther.clear();
+    _documentNumber.clear();
+    _expeditionMonth.clear();
+    _expeditionDay.clear();
+    _expeditionYear.clear();
+    _placeExpedition.clear();
+    _firtName.clear();
+    _secondName.clear();
+    _firtLastName.clear();
+    _secondLastName.clear();
+    _ageUser.clear();
+    _phoneNumber.clear();
+    _hasWhatsApp.clear();
+    _emailAddress.clear();
+    _hasEmailAddressOther.clear();
+    _servicesEthernet.clear();
+    _typeServicesEthernet.clear();
+    _whatServicesEthernet.clear();
+    _gender.clear();
+    _birthMonth.clear();
+    _birthDay.clear();
+    _birthYear.clear();
+    _placeBorn.clear();
+    _whatconsultEthernet.clear();
+    _hasDisability.clear();
+    _hasDisabilityOther.clear();
+    _whatconsultEthernetOther.clear();
+    _statusCivil.clear();
+    _statusCivilOther.clear();
+    _ethhicGroup.clear();
+    _ethhicGroupOther.clear();
+    _educationalLevel.clear();
+    _educationalLevelOther.clear();
+    _typeOfTenureOther.clear();
+    _obtainerTitle.clear();
+    _typeOfTenure.clear();
+    _originProperty.clear();
+    _originPropertyOther.clear();
+    _typePossesion.clear();
+    _typePossesionOther.clear();
+    _belongAssociation.clear();
+    _belongAssociationOther.clear();
+    _hasOrganization.clear();
+    _hasOrganizationOther.clear();
+    _hasOrganizationOtherYes.clear();
+    _socialSecurity.clear();
+    _socialSecurityOther.clear();
+    _typeLabour.clear();
+    _typeLabourOther.clear();
+    _numberDayFarm.clear();
+    _numberDaysMonthFarm.clear();
+    _possesionLandType.clear();
+    _originPossesionLand.clear();
+    _nationalFederation.clear();
+    _possesionOverCultivation.clear();
+    _interestedFederationYesOrNot.clear();
+    _observationFederationYesOrNot.clear();
+    _obtainingCertificate.clear();
+    _obtainingCertificateOther.clear();
+    _nameAndLastNameRelationShip.clear();
+    _relationShip.clear();
+    _genderRelationShip.clear();
+    _monthBrithdayRelationship.clear();
+    _dayBrithdayRelationship.clear();
+    _yearBrithdayRelationship.clear();
+    _educationLevelRelationship.clear();
+    _numberDocRelationship.clear();
+    _schoolRelationship.clear();
+    _department.clear();
+    _codeDepartament.clear();
+    _municipality.clear();
+    _codeMunicipality.clear();
+    _place.clear();
+    _codePlace.clear();
+    _nameProperty.clear();
+    _mapUnitDomestic.clear();
+    _hectareNumbers.clear();
+    _propertyHeight.clear();
+    _whoWorkUnitDomectic.clear();
+    _externalPeopleWithSeguritySocial.clear();
+    _totalAreaCacao.clear();
+    _ageCacao.clear();
+    _cacaoVariety.clear();
+    _forestAreaTotal.clear();
+    _rastrojoAreaTotal.clear();
+    _glassAreaTotal.clear();
+    _cultivesAreaTotal.clear();
+    _otherCultives.clear();
+    _timberSpecies.clear();
+    _timberSpeciesOther.clear();
+    _timberTrees.clear();
+    _materialsVegetables.clear();
+    _associationWithCocoa.clear();
+    _associationWithCocoaOther.clear();
+    _systemTypeProduct.clear();
+    _systemTypeProductOther.clear();
+    _latitude = null;
+    _longitude = null;
+    _accuracy = null;
+    _altitude = null;
+    _floorSuitability.clear();
+    _maintenaceCultive.clear();
+    _floorSuitabilityOther.clear();
+    _irrigationSystem.clear();
+    _performFertilization.clear();
+    _typeFertilization.clear();
+    _typeFertilizationOther.clear();
+    _recolectionCocoa.clear();
+    _recolectionCocoaOther.clear();
+    _totalCropProduction.clear();
+    _benefitsInfrastructure.clear();
+    _sellTheGrain.clear();
+    _fermentationProcess.clear();
+    _fermentationProcessOther.clear();
+    _fermentationTime.clear();
+    _dryingMethod.clear();
+    _whereCocoaIsDried.clear();
+    _whereCocoaIsDriedOther.clear();
+    _destinationOfTheCocoa.clear();
+    _destinationOfTheCocoaOther.clear();
+    _nameComercializationCocoa.clear();
+    _comercializationMunicipalityCocoa.clear();
+    _bpmInTheFarm.clear();
+    _workInCultivation.clear();
+    _workInCultivationOther.clear();
+    _typeRegisterInFarm.clear();
+    _storageAreas.clear();
+    _storageAreasOther.clear();
+    _hidricWaterSource.clear();
+    _protectedMargins.clear();
+    _waterConcession.clear();
+    _waterUse.clear();
+    _authorizedLitersOfWater.clear();
+    _floorConservationOther.clear();
+    _floorConservation.clear();
+    _systemRegistrationInFarm.clear();
+    _iCACertifiesTheFarms.clear();
+    _plannedToDeforest.clear();
+    _birdController.clear();
+    _mammalsController.clear();
+    _reptilesController.clear();
+    _ruralPossessorOwner.clear();
+    _obsevationRuralPossestion.clear();
+    _boundFederationCacaoteros.clear();
+    _observationboundFederationCacaoteros.clear();
+    _fiveHundredTrees.clear();
+    _observationfiveHundredTrees.clear();
+    _familyNucleo.clear();
+    _observationfamilyNucleo.clear();
+    _phoneAndTecnology.clear();
+    _observationphoneAndTecnology.clear();
+    _ethernetServices.clear();
+    _observationethernetServices.clear();
+
+    _uuidiDSurveys = '';
+    _signatureProducts = '';
+    _signatureTecns = '';
+    notifyListeners();
+  }
+
+  //*ENVIA LA LISTA DE MIEMBROS*/
+  Future<void> sentAddListMembersToFirabase(BuildContext context) async {
+    try {
+      for (var member in familyMembers) {
+        await memberscacaotestingReferences.add({
+          'KEY': member.id,
+          /*ivide el ID del miembro y seleccionar el primer segmento como 'PARENT_KEY'*/
+          'PARENT_KEY': member.id.split('/')[0],
+          'p40_nombres_apellidos': member.name,
+          'p41_parentesco': member.relationship,
+          'p42_genero': member.gender,
+          'p43_anio_nacido':
+              '${member.birthdayYear}-${member.birthdayMonth}-${member.birthdayDay}',
+          'p44_escolaridad_grado': member.educationLevel,
+          'p44_escolaridad_institucion': member.school,
+          'p45_documento_id': member.documentNumber,
+        });
+      }
+
+      // Mostrar Snackbar si los datos se enviaron con éxito
+      SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
+          Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
+
+      notifyListeners();
+    } catch (error) {
+      // Mostrar Snackbar si ocurre un error
+      SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
     }
   }

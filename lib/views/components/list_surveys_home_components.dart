@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -9,6 +10,8 @@ class ListSurveysHomeComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
+
     return ListView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -27,6 +30,8 @@ class ListSurveysHomeComponents extends StatelessWidget {
           image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.principalColor,
           onTap: () {
+            /*limpia el provider*/
+            surveysPrv.cleanAllProvider();
             /*navega a la primera pantalla de preguntas */
             Navigator.push(
                 context,

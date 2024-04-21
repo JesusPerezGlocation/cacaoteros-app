@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla para mostrarle al usuario que termino la en cuenta, si la quiere guardar como borrador o enviar 
@@ -47,10 +50,18 @@ class EndSurveysScreen extends StatelessWidget {
                 ShowModalLoadingWidget.showLoadingView(context);
                 /*enviar datos a firebase */
                 await surveysPrv.sentSurveysToFirabase(context);
-
+                /*envia el primer miembro */
                 await surveysPrv.sentAddMembersToFirabase(context);
+                /*envia si el usuario añadio más miembros*/
+                await surveysPrv.sentAddListMembersToFirabase(context);
 
                 Navigator.pop(context);
+
+                /*navega al home*/
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  MainRoutes.initialRoute,
+                  (route) => false,
+                );
               }),
           SizedBox(height: size.height * .02),
           ButtonOutlineComponents(
