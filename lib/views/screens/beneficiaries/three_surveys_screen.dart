@@ -38,7 +38,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   title: 'INFORMACIÓN SOCIODEMOGRÁFICA DEL PRODUCTOR'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (3 - 1) * (100 / 23) / 100,
+                percent: (3 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '3',
               ),

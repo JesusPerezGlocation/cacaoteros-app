@@ -40,7 +40,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
-                percent: (10 - 1) * (100 / 23) / 100,
+                percent: (10 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '10',
               ),

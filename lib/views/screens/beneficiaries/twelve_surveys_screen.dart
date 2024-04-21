@@ -38,7 +38,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                       'LISTA DE CHEQUEO PARA CRITERIOS DE SELECCIÓN DE BENEFICIOS PRODUCTORES DEL PROYECTO DE TRAZABILIDAD CONCACAO'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (12 - 1) * (100 / 23) / 100,
+                percent: (12 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '12',
               ),
@@ -234,7 +234,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                   /*navega a la pantalla #13*/
                   Navigator.pushNamed(
                     context,
-                    MainRoutes.twentyThreeSurveysRoute,
+                    MainRoutes.thirteenThreeSurveysRoute,
                   );
                   if (formKey.currentState!.validate()) {}
                 },

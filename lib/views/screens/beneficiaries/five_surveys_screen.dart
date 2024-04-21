@@ -42,7 +42,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
-                percent: (5 - 1) * (100 / 23) / 100,
+                percent: (5 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '5',
               ),

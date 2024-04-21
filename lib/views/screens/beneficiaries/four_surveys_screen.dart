@@ -39,7 +39,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                       'INFORMACIÓN DE FAMILIARES (SOLO FAMILIARES QUE VIVEN O TRABAJEN EN EL CULTIVO)'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (4 - 1) * (100 / 23) / 100,
+                percent: (4 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '4',
               ),

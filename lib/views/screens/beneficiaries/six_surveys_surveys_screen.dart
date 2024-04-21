@@ -59,7 +59,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                       'INFORMACIÓN DE LA UNIDAD PRODUCTIVA > GEOGRAFÍA DEL PREDIO'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (6 - 1) * (100 / 23) / 100,
+                percent: (6 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '6',
               ),

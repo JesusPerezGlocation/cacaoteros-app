@@ -34,7 +34,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
                       'MENCIONE ESPECIES DE FAUNA QUE HAYA VISTO O ENCONTRADO EN LA FINCA'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (11 - 1) * (100 / 23) / 100,
+                percent: (11 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '11',
               ),

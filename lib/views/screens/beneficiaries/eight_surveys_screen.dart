@@ -38,7 +38,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
-                percent: (8 - 1) * (100 / 23) / 100,
+                percent: (8 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '8',
               ),

@@ -1262,6 +1262,21 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  String _signatureProducts = '';
+  String get signatureProducts => _signatureProducts;
+  String _signatureTecns = '';
+  String get signatureTecns => _signatureTecns;
+
+  setSignatureProducts(String signature) {
+    _signatureProducts = signature; //set la firma del productor
+    notifyListeners();
+  }
+
+  setSignatureTecns(String signature) {
+    _signatureTecns = signature; //set la firma del tecnico
+    notifyListeners();
+  }
+
   //*PETICIÓN FIREBASE*/
   Future<void> sentSurveysToFirabase(BuildContext context) async {
     try {
@@ -1525,12 +1540,10 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
               _ethernetServices.text,
           'informacion_chequeo_criteriosp114_posee_internet_observaciones':
               _observationethernetServices.text,
-          //pantalla #
-          //pantalla #
-          //pantalla #
-          //pantalla #
-          //pantalla #
-          //pantalla #
+
+          //pantalla #13
+          'habeas_datapdp_firma_campo': _signatureTecns,
+          'habeas_datapdp_firma_productor': _signatureProducts,
         },
       ).then((_) {
         /*si los datos se enviaron con exito*/

@@ -1,23 +1,28 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:signature/signature.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/routes/main_routes.dart';
 
 /*
 pantalla #23 REGISTRO FINAL
 */
-class TwentyThreeSurveysScreen extends StatefulWidget {
-  const TwentyThreeSurveysScreen({super.key});
+class ThirteenurveysScreen extends StatefulWidget {
+  const ThirteenurveysScreen({super.key});
 
   @override
-  State<TwentyThreeSurveysScreen> createState() =>
-      _TwentyThreeSurveysScreenState();
+  State<ThirteenurveysScreen> createState() => _ThirteenurveysScreenState();
 }
 
-class _TwentyThreeSurveysScreenState extends State<TwentyThreeSurveysScreen> {
+class _ThirteenurveysScreenState extends State<ThirteenurveysScreen> {
+  final GlobalKey<SignatureState> signKeyProduct = GlobalKey<SignatureState>();
+  final GlobalKey<SignatureState> signatureTecnh = GlobalKey<SignatureState>();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: const [SaveIconDraftComponents()]),
       body: FadeIn(
@@ -30,17 +35,25 @@ class _TwentyThreeSurveysScreenState extends State<TwentyThreeSurveysScreen> {
             const TitleSurveysComponents(title: 'REGISTRO FINAL'),
             SizedBox(height: size.height * .02),
             const LinealPercentComponent(
-              percent: (13 - 1) * (100 / 23) / 100,
+              percent: (13 - 1) * (100 / 13) / 100,
               questions: '30',
               answers: '13',
             ),
             SizedBox(height: size.height * .04),
             //#01 firma productor
-            const SignatureComponents(title: 'Ingresar firma productor'),
+            SignatureComponentsProdcuts(
+              title: 'Ingresar firma productor',
+              signatureKey: signKeyProduct,
+              provider: surveysPrv,
+            ),
 
             SizedBox(height: size.height * .04),
 
-            const SignatureComponents(title: 'Ingresar firma técnico de campo'),
+            SignatureComponentTieldTechnician(
+              title: 'Ingresar firma técnico de campo',
+              signatureKey: signatureTecnh,
+              provider: surveysPrv,
+            ),
 
             SizedBox(height: size.height * .06),
             /*check */

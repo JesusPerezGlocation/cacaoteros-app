@@ -47,8 +47,8 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
                   title: 'ENCUESTA DE CARACTERIZACIÓN A CACAOCULTORES'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
-                percent: (1 - 1) * (100 / 23) / 100,
-                questions: '30',
+                percent: (1 - 1) * (100 / 13) / 100,
+                questions: '13',
                 answers: '1',
               ),
               SizedBox(height: size.height * .02),

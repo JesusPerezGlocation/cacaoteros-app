@@ -43,7 +43,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
-                percent: (9 - 1) * (100 / 23) / 100,
+                percent: (9 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '9',
               ),

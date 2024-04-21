@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 class SnackBarGlobalWidget {
@@ -12,8 +13,7 @@ class SnackBarGlobalWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       backgroundColor: PaletteColorsTheme.whiteColor,
-      content: Row(
-        children: [
+      content: Row(children: [
         Container(
           height: size.height * .05,
           width: size.width * .01,
@@ -31,7 +31,7 @@ class SnackBarGlobalWidget {
             width: size.width * .7,
             child: Text(
               message,
-             style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium,
               maxLines: 2,
               overflow: TextOverflow.visible,
             ))

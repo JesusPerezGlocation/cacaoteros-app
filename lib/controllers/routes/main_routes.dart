@@ -23,7 +23,7 @@ class MainRoutes {
   static const allDraftsRoute = '/all_drafts_route';
   static const foursSurveysRoute = '/four_surveys_route';
   static const listMembersRoute = '/list_members_route';
-  static const twentyThreeSurveysRoute = '/twenty_three_surveys_route';
+  static const thirteenThreeSurveysRoute = '/twenty_three_surveys_route';
   static const endSurveysScreenRoute = '/end_surveys_screen_route';
 
   // static const fiveSurveysRoute ='/log_and_lat_route';
@@ -44,7 +44,7 @@ class MainRoutes {
     twelveSurveysRoute: (_) => const TwelveSurveysScreen(),
 
     endSurveysScreenRoute: (_) => const EndSurveysScreen(),
-    twentyThreeSurveysRoute: (_) => const TwentyThreeSurveysScreen(),
+    thirteenThreeSurveysRoute: (_) => const ThirteenurveysScreen(),
     allDraftsRoute: (_) => const AllDraftsScreen(),
     listMembersRoute: (_) => const ListMembersScreen(),
 
