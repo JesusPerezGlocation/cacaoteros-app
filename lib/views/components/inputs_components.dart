@@ -58,7 +58,7 @@ input de tipo select
 
 class DropdownComponents extends StatefulWidget {
   final String title;
-  final String hintext;
+  final String? hintext;
   final String? initialValue;
   final List<String> items;
   final void Function(Object? value) onChanged;
@@ -67,7 +67,7 @@ class DropdownComponents extends StatefulWidget {
     super.key,
     required this.title,
     this.initialValue,
-    required this.hintext,
+    this.hintext,
     required this.items,
     required this.validator,
     required this.onChanged,
@@ -89,7 +89,7 @@ class _DropdownComponentsState extends State<DropdownComponents> {
           fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         labelText: widget.title,
-        hintText: widget.hintext,
+        hintText: widget.hintext ?? ' Seleccionar dato',
       ),
       items: widget.items.map((String items) {
         return DropdownMenuItem(

@@ -4,10 +4,17 @@ import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/routes/main_routes.dart';
 
 /*
-pantalla #24 REGISTRO FINAL PARTE 2
+pantalla #23 REGISTRO FINAL
 */
-class TwentyFourSurveysScreen extends StatelessWidget {
-  const TwentyFourSurveysScreen({super.key});
+class TwentyThreeSurveysScreen extends StatefulWidget {
+  const TwentyThreeSurveysScreen({super.key});
+
+  @override
+  State<TwentyThreeSurveysScreen> createState() =>
+      _TwentyThreeSurveysScreenState();
+}
+
+class _TwentyThreeSurveysScreenState extends State<TwentyThreeSurveysScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -23,33 +30,35 @@ class TwentyFourSurveysScreen extends StatelessWidget {
             const TitleSurveysComponents(title: 'REGISTRO FINAL'),
             SizedBox(height: size.height * .02),
             const LinealPercentComponent(
-              percent: (24 - 1) * (100 / 23) / 100,
+              percent: (13 - 1) * (100 / 23) / 100,
               questions: '30',
-              answers: '24',
+              answers: '13',
             ),
             SizedBox(height: size.height * .04),
-            //#01
-            InputsComponent(
-              title: 'Nombre del encuestador',
-              hintext: ' Ingresar nombre',
-              textInputAction: TextInputAction.next,
-              validator: (val) => ValidationInputs.inputEmpty(val),
-              onChanged: (val) {},
-            ),
+            //#01 firma productor
+            const SignatureComponents(title: 'Ingresar firma productor'),
 
             SizedBox(height: size.height * .04),
-            //03 firma
-            const SignatureComponents(),
+
+            const SignatureComponents(title: 'Ingresar firma técnico de campo'),
 
             SizedBox(height: size.height * .06),
-
+            /*check */
+            CheckbuttonComponent(
+              title: 'Autorización de información',
+              check: false,
+              onPressed: () =>
+                  TermAndConditionsShowModal.showModalAuthorization(context),
+            ),
             /*boton para continuar*/
             ButtonComponents(
               title: 'Continuar',
               onPressed: () {
-                //Todo: debe validar
-                /*navega a la pantalla #*/
-                Navigator.pushNamed(context, MainRoutes.endSurveysScreenRoute);
+                /*navega a la pantalla #24*/
+                Navigator.pushNamed(
+                  context,
+                  MainRoutes.endSurveysScreenRoute,
+                );
               },
             ),
             SizedBox(height: size.height * .06),

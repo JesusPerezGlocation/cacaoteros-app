@@ -1011,6 +1011,256 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
         val; //municipio donde comercializa el grano
     notifyListeners();
   }
+  //*PANTALLA DIEZ #10*/
+
+  final TextEditingController _bpmInTheFarm = TextEditingController();
+  TextEditingController get bpmInTheFarm => _bpmInTheFarm;
+  final TextEditingController _workInCultivation = TextEditingController();
+  TextEditingController get workInCultivation => _workInCultivation;
+  final TextEditingController _workInCultivationOther = TextEditingController();
+  TextEditingController get workInCultivationOther => _workInCultivationOther;
+  final TextEditingController _typeRegisterInFarm = TextEditingController();
+  TextEditingController get typeRegisterInFarm => _typeRegisterInFarm;
+  final TextEditingController _storageAreas = TextEditingController();
+  TextEditingController get storageAreas => _storageAreas;
+  final TextEditingController _storageAreasOther = TextEditingController();
+  TextEditingController get storageAreasOther => _storageAreasOther;
+  final TextEditingController _hidricWaterSource = TextEditingController();
+  TextEditingController get hidricWaterSource => _hidricWaterSource;
+  final TextEditingController _protectedMargins = TextEditingController();
+  TextEditingController get protectedMargins => _protectedMargins;
+  final TextEditingController _waterConcession = TextEditingController();
+  TextEditingController get waterConcession => _waterConcession;
+  final TextEditingController _waterUse = TextEditingController();
+  TextEditingController get waterUse => _waterUse;
+  final TextEditingController _authorizedLitersOfWater =
+      TextEditingController();
+  TextEditingController get authorizedLitersOfWater => _authorizedLitersOfWater;
+  final TextEditingController _floorConservationOther = TextEditingController();
+  TextEditingController get floorConservationOther => _floorConservationOther;
+  final TextEditingController _floorConservation = TextEditingController();
+  TextEditingController get floorConservation => _floorConservation;
+  final TextEditingController _systemRegistrationInFarm =
+      TextEditingController();
+  TextEditingController get systemRegistrationInFarm =>
+      _systemRegistrationInFarm;
+  final TextEditingController _iCACertifiesTheFarms = TextEditingController();
+  TextEditingController get iCACertifiesTheFarms => _iCACertifiesTheFarms;
+  final TextEditingController _plannedToDeforest = TextEditingController();
+  TextEditingController get plannedToDeforest => _plannedToDeforest;
+  final TextEditingController _birdController = TextEditingController();
+  TextEditingController get birdController => _birdController;
+  final TextEditingController _mammalsController = TextEditingController();
+  TextEditingController get mammalsController => _mammalsController;
+  final TextEditingController _reptilesController = TextEditingController();
+  TextEditingController get reptilesController => _reptilesController;
+
+  setBpmInTheFarm(String val) {
+    _bpmInTheFarm.text = val; //implementa BPM en su finca
+    notifyListeners();
+  }
+
+  setWorkInCultivation(String val) {
+    _workInCultivation.text = val; //labores que realiza en el cultivo
+    notifyListeners();
+  }
+
+  setWorkInCultivationOther(String val) {
+    _workInCultivationOther.text =
+        val; //en caso de que seleccione "otro" labores que realiza en el cultivo
+    notifyListeners();
+  }
+
+  setTypeRegisterInFarm(String val) {
+    _typeRegisterInFarm.text = val; // tipo de registro que lleva en su finca
+    notifyListeners();
+  }
+
+  setStorageAreas(String val) {
+    _storageAreas.text = val; //Cuenta con áreas de almecenamiento para
+    notifyListeners();
+  }
+
+  setStorageAreasOther(String val) {
+    _storageAreasOther.text =
+        val; //en caso de que seleccione "otro"Cuenta con áreas de almecenamiento para
+    notifyListeners();
+  }
+
+  setHidricWaterSource(String val) {
+    _hidricWaterSource.text = val; //fuente hídrica cercana
+    notifyListeners();
+  }
+
+  setProtectedMargins(String val) {
+    _protectedMargins.text = val; //márgenes protegidos
+    notifyListeners();
+  }
+
+  setWaterUse(String val) {
+    _waterUse.text = val; //usso del agua
+    notifyListeners();
+  }
+
+  setWaterConcession(String val) {
+    _waterConcession.text = val; //concesión de agua
+    notifyListeners();
+  }
+
+  setAuthorizedLitersOfWater(String val) {
+    _authorizedLitersOfWater.text = val; //litros de agua autorizados
+    notifyListeners();
+  }
+
+  setFloorConservation(String val) {
+    _floorConservation.text = val; //conservacion de suelo
+    notifyListeners();
+  }
+
+  setFloorConservationOther(String val) {
+    _floorConservationOther.text =
+        val; //en caso de que seleccione "otro" conservacion de suelo
+    notifyListeners();
+  }
+
+  setSystemRegistrationInFarm(String val) {
+    _systemRegistrationInFarm.text =
+        val; //La familia cuenta con un sistema de registro de información para la administración de su finca
+    notifyListeners();
+  }
+
+  setICACertifiesTheFarms(String val) {
+    _iCACertifiesTheFarms.text = val; //ICA certifica a las fincas BPA
+    notifyListeners();
+  }
+
+  setPlannedToDeforest(String val) {
+    _plannedToDeforest.text = val; // planea degorestar areas
+    notifyListeners();
+  }
+
+  setBirdController(String val) {
+    _birdController.text = val; // aves
+    notifyListeners();
+  }
+
+  setMammalsController(String val) {
+    _mammalsController.text = val; //mamiferos
+    notifyListeners();
+  }
+
+  setReptilesController(String val) {
+    _reptilesController.text = val; //reptiles
+    notifyListeners();
+  }
+
+//*PANTALLA DOCE #12*/
+
+  final TextEditingController _ruralPossessorOwner = TextEditingController();
+  TextEditingController get ruralPossessorOwner => _ruralPossessorOwner;
+  final TextEditingController _obsevationRuralPossestion =
+      TextEditingController();
+  TextEditingController get obsevationRuralPossestion =>
+      _obsevationRuralPossestion;
+
+  final TextEditingController _boundFederationCacaoteros =
+      TextEditingController();
+  TextEditingController get boundFederationCacaoteros =>
+      _boundFederationCacaoteros;
+  final TextEditingController _observationboundFederationCacaoteros =
+      TextEditingController();
+  TextEditingController get observationboundFederationCacaoteros =>
+      _observationboundFederationCacaoteros;
+  final TextEditingController _fiveHundredTrees = TextEditingController();
+  TextEditingController get fiveHundredTrees => _fiveHundredTrees;
+  final TextEditingController _observationfiveHundredTrees =
+      TextEditingController();
+  TextEditingController get observationfiveHundredTrees =>
+      _observationfiveHundredTrees;
+  final TextEditingController _familyNucleo = TextEditingController();
+  TextEditingController get familyNucleo => _familyNucleo;
+  final TextEditingController _observationfamilyNucleo =
+      TextEditingController();
+  TextEditingController get observationfamilyNucleo => _observationfamilyNucleo;
+  final TextEditingController _phoneAndTecnology = TextEditingController();
+  TextEditingController get phoneAndTecnology => _phoneAndTecnology;
+  final TextEditingController _observationphoneAndTecnology =
+      TextEditingController();
+  TextEditingController get observationphoneAndTecnology =>
+      _observationphoneAndTecnology;
+  final TextEditingController _ethernetServices = TextEditingController();
+  TextEditingController get ethernetServices => _ethernetServices;
+  final TextEditingController _observationethernetServices =
+      TextEditingController();
+  TextEditingController get observationethernetServices =>
+      _observationethernetServices;
+
+  setRuralPossessorOwner(String val) {
+    _ruralPossessorOwner.text = val; //propietario o poseedor de predio rural
+    notifyListeners();
+  }
+
+  setObsevationRuralPossestion(String val) {
+    _obsevationRuralPossestion.text =
+        val; //Observacion espropietario o poseedor de predio rural
+    notifyListeners();
+  }
+
+  setBoundFederationCacaoteros(String val) {
+    _boundFederationCacaoteros.text =
+        val; //Se encuentra vinculado a la Federación Nacional de Cacaoteros - FedeCacao
+    notifyListeners();
+  }
+
+  setObservationBoundFederationCacaoteros(String val) {
+    _observationboundFederationCacaoteros.text =
+        val; //Observacion Se encuentra vinculado a la Federación Nacional de Cacaoteros - FedeCacao
+    notifyListeners();
+  }
+
+  setFiveHundredTrees(String val) {
+    _fiveHundredTrees.text = val; //quininentos árboles
+    notifyListeners();
+  }
+
+  setObservationfiveHundredTrees(String val) {
+    _observationfiveHundredTrees.text = val; //Observacion quininentos árboles
+    notifyListeners();
+  }
+
+  setFamilyNucleo(String val) {
+    _familyNucleo.text = val; // nucleo familiar
+    notifyListeners();
+  }
+
+  setObservationFamilyNucleo(String val) {
+    _observationfamilyNucleo.text = val; //Observacion nucleo familiar
+    notifyListeners();
+  }
+
+  setphoneAndTecnology(String val) {
+    _phoneAndTecnology.text =
+        val; //Posee equipo celular y conocimientos tecnólogicos
+    notifyListeners();
+  }
+
+  setObservationphoneAndTecnology(String val) {
+    _observationphoneAndTecnology.text =
+        val; //Observacion Posee equipo celular y conocimientos tecnólogicos
+    notifyListeners();
+  }
+
+  setEthernetServices(String val) {
+    _ethernetServices.text =
+        val; //Cuenta con el servicio de conectividad a internet
+    notifyListeners();
+  }
+
+  setObservationEthernetServices(String val) {
+    _observationethernetServices.text =
+        val; //Observacion Cuenta con el servicio de conectividad a internet
+    notifyListeners();
+  }
 
   //*PETICIÓN FIREBASE*/
   Future<void> sentSurveysToFirabase(BuildContext context) async {
@@ -1212,10 +1462,69 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
           'informacion_comercialp93_municipio_de_comercializacion':
               _comercializationMunicipalityCocoa.text,
 
-          //pantalla #
+          //pantalla #10
+          'informacion_buenas_practicasp94_implementa_bpa': _bpmInTheFarm.text,
+          'informacion_buenas_practicasp95_labores_realiza_cultivo':
+              _workInCultivation.text,
+          'informacion_buenas_practicasp95_labores_realiza_cultivo_otro':
+              _workInCultivationOther.text,
+          'informacion_buenas_practicasp96_tipo_resgistros':
+              _typeRegisterInFarm.text,
+          'informacion_buenas_practicasp97_areas_de_almacenamiento':
+              _storageAreas.text,
+          'informacion_buenas_practicasp97_areas_de_almacenamiento_otro':
+              _storageAreasOther.text,
+          'informacion_buenas_practicasp98_cuenta_fuente_hifrica_cerca':
+              _hidricWaterSource.text,
+          'informacion_buenas_practicasp99_protegidas_sus_margenes':
+              _protectedMargins.text,
 
-          //pantalla #
-          //pantalla #
+          'informacion_buenas_practicasp100_uso_agua': _waterUse.text,
+          'informacion_buenas_practicasp101_tiene_consecion_agua':
+              _waterConcession.text,
+          'informacion_buenas_practicasp102_litros_autorizados':
+              _authorizedLitersOfWater.text,
+          'informacion_buenas_practicasp103_conservacion_suelo':
+              _floorConservation.text,
+          'informacion_buenas_practicasp103_conservacion_suelo_otro':
+              _floorConservationOther.text,
+          'informacion_buenas_practicasp104_cuenta_registro_informacion':
+              _systemRegistrationInFarm.text,
+          'informacion_buenas_practicasp105_ica': _iCACertifiesTheFarms.text,
+          'informacion_buenas_practicasp106_planeado_deforestar':
+              _plannedToDeforest.text,
+
+          //pantalla #11
+          'informacion_buenas_practicasespeciesp107_especies_encontradas_aves':
+              _birdController.text,
+          'informacion_buenas_practicasespeciesp107_especies_encontradas_mamiferos':
+              _mammalsController.text,
+          'informacion_buenas_practicasespeciesp107_especies_encontradas_reptiles':
+              _reptilesController.text,
+
+          //pantalla #12
+          'informacion_chequeo_criteriosp108_predio_rural':
+              _ruralPossessorOwner.text,
+          'informacion_chequeo_criteriosp108_predio_rural_observaciones':
+              _obsevationRuralPossestion.text,
+          // 'informacion_chequeo_criteriosp109_vinculacion_fedecacao':, //!!!esta repetida la pregunta
+          // 'informacion_chequeo_criteriosp109_vinculacion_fedecacao_observaciones':,//!!!esta repetida la pregunta
+          'informacion_chequeo_criteriosp110_500_arboles_cacao':
+              _fiveHundredTrees.text,
+          'informacion_chequeo_criteriosp110_500_arboles_cacao_observaciones':
+              _observationfiveHundredTrees.text,
+          'informacion_chequeo_criteriosp111_vive_nucleo_familiar':
+              _familyNucleo.text,
+          'informacion_chequeo_criteriosp111_vive_nucleo_familiar_observaciones':
+              _observationfamilyNucleo.text,
+          'informacion_chequeo_criteriosp112_posee_tecnologia':
+              _phoneAndTecnology.text,
+          'informacion_chequeo_criteriosp112_posee_tecnologia_observaciones':
+              _observationphoneAndTecnology.text,
+          'informacion_chequeo_criteriosp114_posee_internet':
+              _ethernetServices.text,
+          'informacion_chequeo_criteriosp114_posee_internet_observaciones':
+              _observationethernetServices.text,
           //pantalla #
           //pantalla #
           //pantalla #
