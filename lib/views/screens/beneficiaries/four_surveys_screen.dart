@@ -23,8 +23,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      floatingActionButton:
-          const IconButtonAddMemberComponents(isViewListMembers: true),
+      floatingActionButton: const IconButtonAddMemberComponents(),
       appBar: AppBar(actions: const [
         SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
       ]),

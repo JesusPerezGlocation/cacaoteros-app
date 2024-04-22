@@ -8,8 +8,8 @@ class ButtonComponents extends StatelessWidget {
   const ButtonComponents({
     super.key,
     required this.title,
-    required this.onPressed,
     required this.colorButton,
+    required this.onPressed,
   });
   @override
   Widget build(BuildContext context) {

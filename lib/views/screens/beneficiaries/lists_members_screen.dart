@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla para mostrar la lista de miembros añadidos en la pantalla #11
@@ -14,8 +15,23 @@ class ListMembersScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      floatingActionButton:
-          const IconButtonAddMemberComponents(isViewListMembers: false),
+      floatingActionButton: SizedBox(
+        width: size.width * .6,
+        child: ButtonComponents(
+          title: 'Añadir nuevo miembro',
+          colorButton: PaletteColorsTheme.secondaryColor,
+          onPressed: () {
+            /*limpia los inputs */
+            surveysPrv.cleanInputsMembers();
+            /*abre la pantalla de add un nuevo miembro */
+            Navigator.pushNamed(
+              context,
+              MainRoutes.newMemberRoute,
+            );
+          },
+        ),
+      ),
+      // const IconButtonAddMemberComponents(isViewListMembers: false),
       appBar: AppBar(),
       body: Padding(
         padding: EdgeInsets.symmetric(
