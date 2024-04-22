@@ -120,4 +120,30 @@ class ValidationInputs {
     /*si todo está bien, devuelve null (indicando que no hay errores) */
     return null;
   }
+
+  /*inputs donde el usuario tenga que escribir */
+  static String? validationArea(String? value,
+      {String? otherValue, bool isCacao = false}) {
+    if (value == null || value.isEmpty) {
+      return 'Parece que este campo está vacío.';
+    }
+
+    if (isCacao && otherValue != null) {
+      // Convertir valores a números
+      double areaFinca = double.tryParse(otherValue) ?? 0;
+      double areaCacao = double.tryParse(value) ?? 0;
+
+      // Verificar que el área del cacao no sea mayor al área de la finca
+      if (areaCacao > areaFinca) {
+        return 'El área del cultivo de cacao no puede ser mayor al área de la finca.';
+      }
+
+      // Verificar que el área del cacao no sea menor a 5000 m2
+      if (areaCacao < 5000) {
+        return 'El área del cultivo de cacao no puede ser menor a 5000 m2.';
+      }
+    }
+
+    return null;
+  }
 }

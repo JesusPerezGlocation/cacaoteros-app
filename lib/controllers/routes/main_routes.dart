@@ -26,7 +26,11 @@ class MainRoutes {
   static const thirteenThreeSurveysRoute = '/twenty_three_surveys_route';
   static const endSurveysScreenRoute = '/end_surveys_screen_route';
 
-  // static const fiveSurveysRoute ='/log_and_lat_route';
+  /*encuestas de visitas*/
+  // static const firtVisitsSurveys = '/firt_visits_surveys_route';
+  static const secondVisitsSurveysRoute = '/second_visits_surveys_route';
+  static const thirdVisitsSurveysRoute = '/third_visits_surveys_route';
+  static const fourVisitsSurveysRoute = '/four_visits_surveys_route';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     /*-----RUTA INICIAL------*/
@@ -52,5 +56,11 @@ class MainRoutes {
 
     //firtSurveysRoute:(_) => const FirstSurveysScreens(),
     // fiveSurveysRoute: (_) => const FiveSurveysScreen(),
+
+    /*----------ENCUESTAS DE VISITAS------------*/
+    // firtVisitsSurveys: (_) => const FirtSurveysVisitsScreen(),
+    secondVisitsSurveysRoute: (_) => const SecondSurveysVisitsScreen(),
+    thirdVisitsSurveysRoute: (_) => const ThirdSurveysVisitsScreen(),
+    fourVisitsSurveysRoute: (_) => const FourSurveysVisitsScreen(),
   };
 }

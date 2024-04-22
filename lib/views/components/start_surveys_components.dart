@@ -9,7 +9,6 @@ componente para iniciar las encuentes, en caso de ser varias encuestas retornari
 */
 class StartSurveysComponents extends StatelessWidget {
   final String title;
-  final String image;
   final Color color;
   final String answers;
   final double percent;
@@ -21,7 +20,6 @@ class StartSurveysComponents extends StatelessWidget {
     required this.answers,
     required this.percent,
     required this.dateTime,
-    required this.image,
     required this.color,
     required this.onTap,
   });
@@ -104,7 +102,7 @@ class StartSurveysComponents extends StatelessWidget {
           /*boton para abrir encuesta*/
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal: size.width * .04, vertical: size.height * .01),
+                horizontal: size.width * .02, vertical: size.height * .01),
             child: InkWell(
               borderRadius: BorderRadius.circular(100),
               onTap: () => onTap(),

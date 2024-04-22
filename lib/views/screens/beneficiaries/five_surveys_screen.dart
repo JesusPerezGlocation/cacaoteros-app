@@ -25,8 +25,17 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
     final locationPRV = Provider.of<PermissionLocationProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+        actions: [
+          SaveIconDraftComponents(
+            color: PaletteColorsTheme.secondaryColor,
+            onTap: () {
+              SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  'En proceso de construcción',
+                  Icons.error_outlined,
+                  PaletteColorsTheme.yellowColor);
+            },
+          )
         ],
       ),
       body: FadeIn(

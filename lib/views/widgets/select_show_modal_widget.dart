@@ -8,7 +8,7 @@ show modal para seleccionar datos en las encuestas
 */
 //!!cambiar los inputs por este dato
 class ShowModalSelectWidget {
-  static showModalSelect(BuildContext context, List<String> items,
+  static showModalSelect(BuildContext context, List<String> items, String title,
       TextEditingController controller, Function(String select) onSelect) {
     return showModalBottomSheet(
         backgroundColor: PaletteColorsTheme.transparentColor,
@@ -26,10 +26,9 @@ class ShowModalSelectWidget {
                     topRight: Radius.circular(20))),
             child: Column(
               children: [
-                const TitleAndCloseModal(title: 'DEPARTAMENTO'),
+                TitleAndCloseModal(title: title),
                 if (FilterPlacesServices.departments.isEmpty)
-                  const IsEmptyDataComponent(
-                      title: 'No se encontraron municipios')
+                  const IsEmptyDataComponent(title: 'No se encontraron datos')
                 else
                   Expanded(
                     child: FadeIn(

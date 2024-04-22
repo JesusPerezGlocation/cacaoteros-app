@@ -24,9 +24,16 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(actions: const [
+      appBar: AppBar(actions: [
         SaveIconDraftComponents(
           color: PaletteColorsTheme.secondaryColor,
+          onTap: () {
+            SnackBarGlobalWidget.showSnackBar(
+                context,
+                'En proceso de construcción',
+                Icons.error_outlined,
+                PaletteColorsTheme.yellowColor);
+          },
         )
       ]),
       body: FadeIn(

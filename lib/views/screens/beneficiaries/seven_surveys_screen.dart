@@ -24,8 +24,17 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [
-        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      appBar: AppBar(actions: [
+        SaveIconDraftComponents(
+          color: PaletteColorsTheme.secondaryColor,
+          onTap: () {
+            SnackBarGlobalWidget.showSnackBar(
+                context,
+                'En proceso de construcción',
+                Icons.error_outlined,
+                PaletteColorsTheme.yellowColor);
+          },
+        )
       ]),
       body: FadeIn(
         child: Form(

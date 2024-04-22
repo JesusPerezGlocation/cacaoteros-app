@@ -32,8 +32,17 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        actions: const [
-          SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+        actions: [
+          SaveIconDraftComponents(
+            color: PaletteColorsTheme.secondaryColor,
+            onTap: () {
+              SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  'En proceso de construcción',
+                  Icons.error_outlined,
+                  PaletteColorsTheme.yellowColor);
+            },
+          )
         ],
       ),
       body: FadeIn(
@@ -60,14 +69,11 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
 
               /*fecha de hoy*/
               Text(
-                'Fecha ${widget.dateTime}',
+                widget.dateTime,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(color: PaletteColorsTheme.secondaryColor),
+                style: Theme.of(context).textTheme.bodyLarge,
               ),
 
               SizedBox(height: size.height * .03),

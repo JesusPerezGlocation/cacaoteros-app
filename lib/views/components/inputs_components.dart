@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 manejo de los inputs utilizados en la app
@@ -20,6 +21,7 @@ class InputsComponent extends StatelessWidget {
     required this.title,
     required this.hintext,
     this.initialValue,
+    required this.colorInputs,
     this.enabled,
     this.maxLine,
     this.keyboardType,
@@ -27,7 +29,6 @@ class InputsComponent extends StatelessWidget {
     this.controller,
     required this.validator,
     required this.onChanged,
-    required this.colorInputs,
   });
   @override
   Widget build(BuildContext context) {
@@ -116,7 +117,7 @@ class InputDesabledComponents extends StatelessWidget {
   final String title;
   final String hintext;
   final int? maxLine;
-  final Color colorInputs;
+  final Color? colorInputs;
   final bool? enabled;
   final TextEditingController? controller;
   final String? Function(String? value) validator;
@@ -138,10 +139,9 @@ class InputDesabledComponents extends StatelessWidget {
     return TextFormField(
       controller: controller,
       enabled: enabled ?? false,
-      style: Theme.of(context)
-          .textTheme
-          .bodyLarge!
-          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       // cursorColor: colorInputs,
       keyboardType: TextInputType.text,
@@ -151,7 +151,7 @@ class InputDesabledComponents extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintext,
         labelText: title,
-        // prefixIcon: Icon(iconData),
+        suffixIcon: const Icon(Icons.arrow_drop_down_rounded),
       ),
     );
   }
@@ -195,10 +195,9 @@ class InputsDatesComponent extends StatelessWidget {
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enabled: enabled,
-      style: Theme.of(context)
-          .textTheme
-          .bodyLarge!
-          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       maxLength: maxLength ?? 2,
       // cursorColor: colorInputs,
@@ -219,7 +218,6 @@ class InputsDatesComponent extends StatelessWidget {
 /*
 inputs para números de telefonos
 */
-
 class InputsPhoneComponent extends StatelessWidget {
   final String title;
   final String hintext;
@@ -255,10 +253,9 @@ class InputsPhoneComponent extends StatelessWidget {
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enabled: enabled,
-      style: Theme.of(context)
-          .textTheme
-          .bodyLarge!
-          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          color: PaletteColorsTheme.principalColor,
+          fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       maxLength: maxLength ?? 2,
       // cursorColor: colorInputs,

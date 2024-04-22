@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
@@ -26,7 +27,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.5,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.secondaryColor,
           onTap: () {
             /*limpia el provider*/
@@ -43,13 +43,23 @@ class ListSurveysHomeComponents extends StatelessWidget {
         SizedBox(width: size.width * .02),
         /*capacitaciones*/
         StartSurveysComponents(
-          title: 'Capacitaciones',
+          title: 'Registro de visitas',
           answers: '10/50 respuestas conectar',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.principalColor,
-          onTap: () {},
+          onTap: () {
+            /*navega a visitas*/
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => FirtSurveysVisitsScreen(
+                        dateTime: DateFormat('dd/MM/yyyy').format(dateTime))));
+            // Navigator.pushNamed(
+            //   context,
+            //   MainRoutes.firtVisitsSurveys,
+            // );
+          },
         ),
         SizedBox(width: size.width * .02),
         /*tareas administrativas */
@@ -58,7 +68,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.2,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.principalColor,
           onTap: () {},
         ),
@@ -69,7 +78,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.2,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.secondaryColor,
           onTap: () {},
         ),
@@ -80,7 +88,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.1,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.secondaryColor,
           onTap: () {},
         ),
@@ -91,7 +98,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.secondaryColor,
           onTap: () {},
         ),
@@ -102,11 +108,19 @@ class ListSurveysHomeComponents extends StatelessWidget {
           answers: '10/50 respuestas conectar',
           percent: 0.4,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
-          image: ImagesPaths.surveyImg,
           color: PaletteColorsTheme.secondaryColor,
           onTap: () {},
         ),
       ],
-    );
+    )
+        .animate(delay: const Duration(milliseconds: 500))
+        .fadeIn(delay: const Duration(milliseconds: 100))
+        .slide(
+            begin: const Offset(0.5, 0),
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+            delay: const Duration(milliseconds: 100))
+        // .animate(onPlay: (controller) => controller.reverse())
+        .shimmer(duration: 2400.ms);
   }
 }
