@@ -11,7 +11,6 @@ class ListSurveysHomeComponents extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
-
     return ListView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -19,7 +18,7 @@ class ListSurveysHomeComponents extends StatelessWidget {
       padding: EdgeInsets.only(
           right: size.width * .03,
           top: size.height * .025,
-          bottom: size.height * .025),
+          bottom: size.height * .0),
       children: [
         /*registro de visita*/
         StartSurveysComponents(

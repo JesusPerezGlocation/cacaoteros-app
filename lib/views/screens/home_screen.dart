@@ -44,11 +44,11 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
           children: [
             /*componente para llenar las encuestas*/
             SizedBox(
-              height: size.height * .35,
+              height: size.height * .25,
               width: size.width,
               child: ListSurveysHomeComponents(dateTime: dateTime),
             ),
-
+            SizedBox(height: size.height * .03),
             /*ver todos los borradores*/
             ViewAllDraftComponents(
                 title: 'Borradores',

@@ -35,7 +35,7 @@ class _ContainerShowModal extends StatelessWidget {
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         children: [
           SizedBox(
-              height: size.height * .3,
+              height: size.height * .25,
               child: Image.asset(ImagesPaths.noConecction)),
           Text(
             'Sin conexión a internet',
@@ -51,7 +51,7 @@ class _ContainerShowModal extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: size.height * .02),
+          SizedBox(height: size.height * .05),
           ButtonComponents(
             colorButton: PaletteColorsTheme.principalColor,
             title: 'Volver a intentar',

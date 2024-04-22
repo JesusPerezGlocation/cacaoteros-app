@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 class HomeAppBarComponents extends StatefulWidget {
@@ -20,8 +21,13 @@ class _HomeAppBarComponentsState extends State<HomeAppBarComponents> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       widget.statusPrv.getCheckConnection(context);
-      setState(() {});
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.statusPrv.getCheckConnection(context);
   }
 
   @override
@@ -56,7 +62,10 @@ class _HomeAppBarComponentsState extends State<HomeAppBarComponents> {
             textAlign: TextAlign.start,
           ),
           SizedBox(width: size.width * .02),
-          const Icon(Icons.wifi_off_rounded)
+          LoadingAnimationWidget.fourRotatingDots(
+              color: PaletteColorsTheme.principalColor, size: 25)
+          // const Icon(Icons.wifi_off_rounded,
+          //     color: PaletteColorsTheme.redErrorColor)
         ],
       );
     }

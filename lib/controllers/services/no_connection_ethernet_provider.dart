@@ -25,9 +25,10 @@ class NoConnectionEthernetProvider with ChangeNotifier {
   Future<void> getCheckConnection(BuildContext context) async {
     try {
       final checkEthernet = await Connectivity().checkConnectivity();
+
       if (checkEthernet == ConnectivityResult.none) {
         // ignore: use_build_context_synchronously
-        ConecctionModalEthernetWidget.showConecctionModal(context);
+        return ConecctionModalEthernetWidget.showConecctionModal(context);
       }
     } catch (e) {
       log('check errors: $e');
