@@ -21,3 +21,5 @@ export 'package:surveys_app/views/screens/visits/firt_surveys_visits_screen.dart
 export 'package:surveys_app/views/screens/visits/second_surveys_visits_screen.dart';
 export 'package:surveys_app/views/screens/visits/third_surveys_visits_screen.dart';
 export 'package:surveys_app/views/screens/visits/four_surveys_visits_screen.dart';
+export 'package:surveys_app/views/screens/visits/five_surveys_visits_screen.dart';
+export 'package:surveys_app/views/screens/visits/six_surveys_visits_screen.dart';

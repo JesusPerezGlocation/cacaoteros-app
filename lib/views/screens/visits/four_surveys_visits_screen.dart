@@ -1,8 +1,7 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla número 4 para encuestas las visitas
@@ -94,7 +93,13 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
           ButtonComponents(
             title: 'Continuar',
             colorButton: PaletteColorsTheme.principalColor,
-            onPressed: () {},
+            onPressed: () {
+              /*navega a la pantalla #5 */
+              Navigator.pushNamed(
+                context,
+                MainRoutes.fiveVisitsSurveysRoute,
+              );
+            },
           ),
         ],
       ),
