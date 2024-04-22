@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -23,6 +24,7 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final locationPrv = Provider.of<PermissionLocationProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -90,10 +92,13 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
-                  Navigator.pushNamed(
-                    context,
-                    MainRoutes.fourVisitsSurveysRoute,
-                  );
+                  /*navega a la pantalla #4 */
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FourSurveysVisitsScreen(
+                                locationProvider: locationPrv,
+                              )));
                   if (formKey.currentState!.validate()) {}
                 },
               ),

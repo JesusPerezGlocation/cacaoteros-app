@@ -27,12 +27,12 @@ class MainRoutes {
   static const endSurveysScreenRoute = '/end_surveys_screen_route';
 
   /*encuestas de visitas*/
-  // static const firtVisitsSurveys = '/firt_visits_surveys_route';
   static const secondVisitsSurveysRoute = '/second_visits_surveys_route';
   static const thirdVisitsSurveysRoute = '/third_visits_surveys_route';
-  static const fourVisitsSurveysRoute = '/four_visits_surveys_route';
   static const fiveVisitsSurveysRoute = '/five_visits_surveys_route';
   static const sixVisitsSurveysRoute = '/six_visits_surveys_route';
+  // static const firtVisitsSurveys = '/firt_visits_surveys_route';
+  // static const fourVisitsSurveysRoute = '/four_visits_surveys_route';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     /*-----RUTA INICIAL------*/
@@ -63,8 +63,8 @@ class MainRoutes {
     // firtVisitsSurveys: (_) => const FirtSurveysVisitsScreen(),
     secondVisitsSurveysRoute: (_) => const SecondSurveysVisitsScreen(),
     thirdVisitsSurveysRoute: (_) => const ThirdSurveysVisitsScreen(),
-    fourVisitsSurveysRoute: (_) => const FourSurveysVisitsScreen(),
     fiveVisitsSurveysRoute: (_) => const FiveSurveysVisitsScreen(),
     sixVisitsSurveysRoute: (_) => const SixSurveysVisitsScreen(),
+    // fourVisitsSurveysRoute: (_) => const FourSurveysVisitsScreen(),
   };
 }

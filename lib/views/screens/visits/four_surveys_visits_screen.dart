@@ -1,37 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla número 4 para encuestas las visitas
 */
-class FourSurveysVisitsScreen extends StatelessWidget {
-  const FourSurveysVisitsScreen({super.key});
+class FourSurveysVisitsScreen extends StatefulWidget {
+  final PermissionLocationProvider locationProvider;
+  const FourSurveysVisitsScreen({
+    super.key,
+    required this.locationProvider,
+  });
+
+  @override
+  State<FourSurveysVisitsScreen> createState() =>
+      _FourSurveysVisitsScreenState();
+}
+
+class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    widget.locationProvider.getPermissionLocation(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      bottomNavigationBar: const _BottonNavigatorMapComponents(),
-      appBar: AppBar(actions: [
-        SaveIconDraftComponents(
-          color: PaletteColorsTheme.principalColor,
-          onTap: () {},
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        bottomNavigationBar: _BottonNavigatorMapComponents(
+            data:
+                '${widget.locationProvider.latitude} - ${widget.locationProvider.latitude}'),
+        appBar: AppBar(actions: [
+          SaveIconDraftComponents(
+            color: PaletteColorsTheme.principalColor,
+            onTap: () {},
+          )
+        ]),
+        body: Consumer<PermissionLocationProvider>(
+          builder: (context, provider, _) {
+            if (provider.latitude == null || provider.longitude == null) {
+              return const Center(child: LoadingMapsComponents());
+            } else {
+              if (provider.latitude != null && provider.longitude != null) {
+                return MapMarketComponents(provider: provider);
+              } else {
+                return const Center(
+                  child: Text(
+                    'Error al obtener la ubicación',
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                );
+              }
+            }
+          },
         )
-      ]),
-      body: Stack(
-        children: [
-          Container(
-            height: size.height,
-            width: size.width,
-            color: PaletteColorsTheme.greyColor,
-          ),
-        ],
-      ),
-      // body: FadeIn(child: FlutterMap(options: MapOptions(), children: [])),
-    );
+        // body: FadeIn(child: FlutterMap(options: MapOptions(), children: [])),
+        );
   }
 }
 
@@ -39,7 +69,10 @@ class FourSurveysVisitsScreen extends StatelessWidget {
 componente para el boton del mapa y que navegue a la sig pantalla 
 */
 class _BottonNavigatorMapComponents extends StatelessWidget {
-  const _BottonNavigatorMapComponents({super.key});
+  final String data;
+  const _BottonNavigatorMapComponents({
+    required this.data,
+  });
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -57,52 +90,50 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
           color: PaletteColorsTheme.whiteColor,
           borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(15), topRight: Radius.circular(15))),
-      child: Column(
-        children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Container(
-              height: size.height * .06,
-              width: size.width * .15,
-              decoration: BoxDecoration(
-                  color: PaletteColorsTheme.principalColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: const Center(
-                  child: Icon(
-                IconlyLight.location,
-                color: PaletteColorsTheme.whiteColor,
-                size: 30,
-              )),
-            ),
-            title: Text(
-              'Ubicación marcada',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            subtitle: Text(
-              '39983983984-49329832908308, 291902',
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.start,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+      child: Column(children: [
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: Container(
+            height: size.height * .06,
+            width: size.width * .15,
+            decoration: BoxDecoration(
+                color: PaletteColorsTheme.principalColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: const Center(
+                child: Icon(
+              IconlyLight.location,
+              color: PaletteColorsTheme.whiteColor,
+              size: 30,
+            )),
           ),
-          SizedBox(height: size.height * .02),
-          ButtonComponents(
-            title: 'Continuar',
-            colorButton: PaletteColorsTheme.principalColor,
-            onPressed: () {
-              /*navega a la pantalla #5 */
-              Navigator.pushNamed(
-                context,
-                MainRoutes.fiveVisitsSurveysRoute,
-              );
-            },
+          title: Text(
+            'Ubicación marcada',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
-        ],
-      ),
+          subtitle: Text(
+            data,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+        ),
+        SizedBox(height: size.height * .02),
+        ButtonComponents(
+          title: 'Continuar',
+          colorButton: PaletteColorsTheme.principalColor,
+          onPressed: () {
+            /*navega a la pantalla #5 */
+            Navigator.pushNamed(
+              context,
+              MainRoutes.fiveVisitsSurveysRoute,
+            );
+          },
+        )
+      ]),
     );
   }
 }
