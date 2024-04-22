@@ -25,7 +25,9 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
     final locationPRV = Provider.of<PermissionLocationProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        actions: const [SaveIconDraftComponents()],
+        actions: const [
+          SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+        ],
       ),
       body: FadeIn(
         child: Form(
@@ -37,11 +39,14 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title: 'INFORMACIÓN DE LA UNIDAD PRODUCTIVA'),
 
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (5 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '5',
@@ -57,6 +62,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 child: InputDesabledComponents(
                   title: 'Seleccionar departamento',
                   hintext: ' Seleccionar departamento',
+                  colorInputs: PaletteColorsTheme.secondaryColor,
                   enabled: false,
                   controller: surveysPRV.department,
                   validator: (value) => ValidationInputs.inputTypeSelect(value),
@@ -76,6 +82,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                   child: InputDesabledComponents(
                     title: 'Seleccionar municipio',
                     hintext: ' Seleccionar municipio',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     enabled: false,
                     controller: surveysPRV.municipality,
                     validator: (value) =>
@@ -96,6 +103,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                   child: InputDesabledComponents(
                     title: 'Seleccionar vereda',
                     hintext: ' Seleccionar vereda',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     enabled: false,
                     controller: surveysPRV.place,
                     validator: (value) =>
@@ -109,6 +117,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Nombre del predio',
                 hintext: ' Ingresar nombre del predio',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPRV.setNameProperty(val),
               ),
@@ -117,6 +126,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 title: '¿Posee un mapa de la unidad productiva?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -137,6 +147,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 hintext: ' Ingresar numero de hectáreas',
                 controller: surveysPRV.hectareNumbers,
                 keyboardType: TextInputType.number,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPRV.setHectareNumber(val),
               ),
@@ -144,6 +155,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               DropdownComponents(
                 title: '¿Cómo es la pendiente del terreno?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Llano (0-2%)',
                   'Suavemente inclinado (2-6%)',
@@ -181,6 +193,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               DropdownComponents(
                 title: '¿Quienes laboran en la unidad productiva?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Familiares',
                   'Trabajadores externos',
@@ -211,6 +224,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 DropdownComponents(
                   title: '¿Personal externo cuenta con seguridad social?',
                   hintext: ' Seleccionar dato',
+                  colorInputs: PaletteColorsTheme.secondaryColor,
                   items: const ['Si', 'No'],
                   validator: (val) => ValidationInputs.inputTypeSelect(val),
                   onChanged: (val) {
@@ -230,6 +244,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Área total en el cacao',
                 hintext: 'Ingresar área total',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.totalAreaCacao,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -240,6 +255,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Edad del cultivo de cacao',
                 hintext: 'Ingresar edad',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.ageCacao,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -251,6 +267,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 title: '¿Qué variedades del cacao tiene establecido?',
                 hintext: 'Ingresar variedad',
                 maxLine: 3,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPRV.cacaoVariety,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPRV.setCacaoVariety(val),
@@ -260,6 +277,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Área total en bosque',
                 hintext: 'Ingresar área',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.forestAreaTotal,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -270,6 +288,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Área total en rastrojo',
                 hintext: 'Ingresar área',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.rastrojoAreaTotal,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -280,6 +299,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Área total en pastos',
                 hintext: 'Ingresar área',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.glassAreaTotal,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -290,6 +310,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
               InputsComponent(
                 title: 'Área total en otros cultivos',
                 hintext: 'Ingresar área',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPRV.cultivesAreaTotal,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -300,6 +321,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   Navigator.push(

@@ -71,7 +71,7 @@ class StartSurveysComponents extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      maxLines: 1,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.start,
                       style: Theme.of(context).textTheme.headlineMedium,

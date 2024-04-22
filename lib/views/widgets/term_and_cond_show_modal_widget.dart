@@ -70,6 +70,7 @@ class _ContainerShowModalOne extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: size.width * .02),
             child: ButtonComponents(
+              colorButton: PaletteColorsTheme.secondaryColor,
               title: 'Aceptar',
               onPressed: () {
                 //Todo: crear provider para el check, booleano y pasarlo aca en true y llamarlo en CheckbuttonComponent en twenty_three_screen

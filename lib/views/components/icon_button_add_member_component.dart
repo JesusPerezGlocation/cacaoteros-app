@@ -53,7 +53,7 @@ class IconButtonAddMemberComponents extends StatelessWidget {
               child: const Icon(
                 Icons.person_add_alt_outlined,
                 size: 30,
-                color: PaletteColorsTheme.principalColor,
+                color: PaletteColorsTheme.secondaryColor,
               )),
         )).animate().fade().scale();
   }

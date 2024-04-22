@@ -24,7 +24,9 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -34,10 +36,14 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
                 horizontal: size.width * .03, vertical: size.height * .03),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
-              const TitleSurveysComponents(title: 'INFORMACIÓN DE POSTCOSECHA'),
+              const TitleSurveysComponents(
+                  title: 'INFORMACIÓN DE POSTCOSECHA',
+                  color: PaletteColorsTheme.secondaryColor),
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (8 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '8',
@@ -47,6 +53,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               InputsComponent(
                 title: 'Producción total de cosechada en el último año',
                 hintext: ' Ingresar KG',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPrv.totalCropProduction,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -59,6 +66,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
                   title: 'Posee infraestructura de beneficio',
                   hintext: ' Seleccionar tipo infraestructura',
                   items: const ['Si', 'No'],
+                  colorInputs: PaletteColorsTheme.secondaryColor,
                   validator: (val) => ValidationInputs.inputTypeSelect(val),
                   onChanged: (val) {
                     switch (val.toString()) {
@@ -76,6 +84,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               DropdownComponents(
                 title: '¿Cómo vende el grano?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['En seco', 'En baba'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
@@ -97,6 +106,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
                 title:
                     '¿Que método utiliza para realizar el proceso de fermentación?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'En cajón',
                   'En barril',
@@ -138,6 +148,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar proceso de fermentación',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.fermentationProcessOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -149,6 +160,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               InputsComponent(
                 title: '¿Cúal es el tiempo de fermentación?',
                 hintext: ' Ingrese el tiempo en días',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPrv.fermentationTime,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -159,6 +171,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               DropdownComponents(
                 title: '¿Cual es el método de secado que utiliza?',
                 hintext: ' Seleccionar método',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Al sol', 'Secado artificial', 'No lo seca'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
@@ -181,6 +194,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               DropdownComponents(
                 title: '¿Dónde seca el cacao?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Costal',
                   'Patio de cemento',
@@ -221,6 +235,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.whereCocoaIsDriedOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -232,6 +247,7 @@ class _EightSurveysScreenState extends State<EightSurveysScreen> {
               SizedBox(height: size.height * .06),
               /* boton para continuar */
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   /*navega a la pantalla #9 */

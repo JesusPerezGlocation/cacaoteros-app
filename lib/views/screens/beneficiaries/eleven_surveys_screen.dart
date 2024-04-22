@@ -19,7 +19,9 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -30,10 +32,13 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title:
                       'MENCIONE ESPECIES DE FAUNA QUE HAYA VISTO O ENCONTRADO EN LA FINCA'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (11 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '11',
@@ -43,6 +48,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
               InputsComponent(
                 title: 'Aves - ¿Cúales?',
                 hintext: ' Ingresar aves',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 maxLine: 4,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.birdController,
@@ -54,6 +60,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
               InputsComponent(
                 title: 'Mamíferos - ¿Cúales?',
                 hintext: ' Ingresar mamíferos',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 maxLine: 4,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.mammalsController,
@@ -65,6 +72,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
               InputsComponent(
                 title: 'Reptíles - ¿Cúales?',
                 hintext: ' Ingresar reptíles',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 maxLine: 4,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.reptilesController,
@@ -74,6 +82,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
 
               SizedBox(height: size.height * .06),
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   Navigator.pushNamed(

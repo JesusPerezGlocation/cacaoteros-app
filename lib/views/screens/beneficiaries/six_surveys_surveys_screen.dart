@@ -43,7 +43,9 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        actions: const [SaveIconDraftComponents()],
+        actions: const [
+          SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+        ],
       ),
       body: FadeIn(
         child: Form(
@@ -55,10 +57,13 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title:
                       'INFORMACIÓN DE LA UNIDAD PRODUCTIVA > GEOGRAFÍA DEL PREDIO'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (6 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '6',
@@ -104,6 +109,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
               InputsComponent(
                 title: '¿Cúales son esos otros cultivos',
                 hintext: ' Ingresar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 maxLine: 4,
                 controller: surveysPrv.otherCultives,
@@ -118,6 +124,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     '¿Cuenta con especies maderables para el sombrío del cacao?',
                 initialValue: 'CC',
                 hintext: 'Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
@@ -143,6 +150,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúales?',
                     hintext: ' Ingresar especies',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     maxLine: 3,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.timberSpeciesOther,
@@ -155,6 +163,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
               InputsComponent(
                 title: 'Número total de árboles maderables en el lote',
                 hintext: ' Ingresar total de árboles',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.timberTrees,
@@ -167,6 +176,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 title: '¿Cuenta con material vegetal certificado?',
                 initialValue: 'CC',
                 hintext: 'Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
@@ -187,6 +197,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 title: '¿Tiene cultivos en asocio con el cacao?',
                 initialValue: 'CC',
                 hintext: 'Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
@@ -212,6 +223,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúales?',
                     hintext: ' Ingresar cultivos',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     maxLine: 3,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.associationWithCocoaOther,
@@ -227,6 +239,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     '¿Tipo de sistema productivo de cacao implementado en la finca?',
                 initialValue: 'CC',
                 hintext: 'Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Sistema agroforestal',
                   'Libre exposición',
@@ -259,6 +272,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúales?',
                     hintext: ' Ingresar sistema',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.systemTypeProductOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -270,6 +284,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () async {
                   /*añade la latitud al provider*/
@@ -283,6 +298,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                     context,
                     MainRoutes.sevenSurveysRoute,
                   );
+                  if (formKey.currentState!.validate()) {}
                 },
               ),
               SizedBox(height: size.height * .06),

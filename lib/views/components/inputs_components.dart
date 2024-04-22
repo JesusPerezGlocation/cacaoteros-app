@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 manejo de los inputs utilizados en la app
@@ -7,6 +6,7 @@ manejo de los inputs utilizados en la app
 class InputsComponent extends StatelessWidget {
   final String title;
   final String hintext;
+  final Color colorInputs;
   final String? initialValue;
   final bool? enabled;
   final int? maxLine;
@@ -27,6 +27,7 @@ class InputsComponent extends StatelessWidget {
     this.controller,
     required this.validator,
     required this.onChanged,
+    required this.colorInputs,
   });
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,12 @@ class InputsComponent extends StatelessWidget {
       controller: controller,
       initialValue: initialValue,
       enabled: enabled,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: PaletteColorsTheme.principalColor,
-          fontWeight: FontWeight.w500),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
-      cursorColor: PaletteColorsTheme.principalColor,
+      // cursorColor: colorInputs,
       keyboardType: keyboardType ?? TextInputType.text,
       onChanged: (value) => onChanged(value),
       validator: (value) => validator(value),
@@ -60,6 +62,7 @@ class DropdownComponents extends StatefulWidget {
   final String title;
   final String? hintext;
   final String? initialValue;
+  final Color colorInputs;
   final List<String> items;
   final void Function(Object? value) onChanged;
   final String? Function(String? value) validator;
@@ -68,6 +71,7 @@ class DropdownComponents extends StatefulWidget {
     required this.title,
     this.initialValue,
     this.hintext,
+    required this.colorInputs,
     required this.items,
     required this.validator,
     required this.onChanged,
@@ -84,9 +88,10 @@ class _DropdownComponentsState extends State<DropdownComponents> {
       elevation: 3,
       validator: (value) => widget.validator(value),
       isExpanded: true,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: PaletteColorsTheme.principalColor,
-          fontWeight: FontWeight.w500),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: widget.colorInputs, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
         labelText: widget.title,
         hintText: widget.hintext ?? ' Seleccionar dato',
@@ -111,6 +116,7 @@ class InputDesabledComponents extends StatelessWidget {
   final String title;
   final String hintext;
   final int? maxLine;
+  final Color colorInputs;
   final bool? enabled;
   final TextEditingController? controller;
   final String? Function(String? value) validator;
@@ -120,6 +126,7 @@ class InputDesabledComponents extends StatelessWidget {
     super.key,
     required this.title,
     required this.hintext,
+    required this.colorInputs,
     this.maxLine,
     this.controller,
     required this.validator,
@@ -131,11 +138,12 @@ class InputDesabledComponents extends StatelessWidget {
     return TextFormField(
       controller: controller,
       enabled: enabled ?? false,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: PaletteColorsTheme.principalColor,
-          fontWeight: FontWeight.w500),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
-      cursorColor: PaletteColorsTheme.principalColor,
+      // cursorColor: colorInputs,
       keyboardType: TextInputType.text,
       onChanged: (value) => onChanged(value),
       validator: (value) => validator(value),
@@ -156,6 +164,7 @@ class InputsDatesComponent extends StatelessWidget {
   final String title;
   final String hintext;
   final String? initialValue;
+  final Color colorInputs;
   final bool? enabled;
   final int? maxLine;
   final int? maxLength;
@@ -168,6 +177,7 @@ class InputsDatesComponent extends StatelessWidget {
     super.key,
     required this.title,
     required this.hintext,
+    required this.colorInputs,
     this.initialValue,
     this.maxLength,
     this.enabled,
@@ -185,12 +195,13 @@ class InputsDatesComponent extends StatelessWidget {
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enabled: enabled,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: PaletteColorsTheme.principalColor,
-          fontWeight: FontWeight.w500),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       maxLength: maxLength ?? 2,
-      cursorColor: PaletteColorsTheme.principalColor,
+      // cursorColor: colorInputs,
       keyboardType: keyboardType ?? TextInputType.text,
       onChanged: (value) => onChanged(value),
       validator: (value) => validator(value),
@@ -212,6 +223,7 @@ inputs para números de telefonos
 class InputsPhoneComponent extends StatelessWidget {
   final String title;
   final String hintext;
+  final Color colorInputs;
   final String? initialValue;
   final bool? enabled;
   final int? maxLine;
@@ -225,6 +237,7 @@ class InputsPhoneComponent extends StatelessWidget {
     super.key,
     required this.title,
     required this.hintext,
+    required this.colorInputs,
     this.initialValue,
     this.maxLength,
     this.enabled,
@@ -242,12 +255,13 @@ class InputsPhoneComponent extends StatelessWidget {
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       enabled: enabled,
-      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-          color: PaletteColorsTheme.principalColor,
-          fontWeight: FontWeight.w500),
+      style: Theme.of(context)
+          .textTheme
+          .bodyLarge!
+          .copyWith(color: colorInputs, fontWeight: FontWeight.w500),
       maxLines: maxLine ?? 1,
       maxLength: maxLength ?? 2,
-      cursorColor: PaletteColorsTheme.principalColor,
+      // cursorColor: colorInputs,
       keyboardType: keyboardType ?? TextInputType.text,
       onChanged: (value) => onChanged(value),
       validator: (value) => validator(value),

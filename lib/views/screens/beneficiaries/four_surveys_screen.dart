@@ -25,7 +25,9 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
     return Scaffold(
       floatingActionButton:
           const IconButtonAddMemberComponents(isViewListMembers: true),
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -36,10 +38,13 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title:
                       'INFORMACIÓN DE FAMILIARES (SOLO FAMILIARES QUE VIVEN O TRABAJEN EN EL CULTIVO)'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (4 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '4',
@@ -49,6 +54,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               InputsComponent(
                 title: 'Nombres y apellidos',
                 hintext: ' Ingresar nombres y apellidos',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.nameAndLastNameRelationShip,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -61,6 +67,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 title: ' Seleccionar parentesco',
                 initialValue: '-',
                 hintext: ' Seleccionar parentesco',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Hijos',
                   'Yerno',
@@ -102,6 +109,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 initialValue: '-',
                 hintext: ' Seleccionar género',
                 items: const ['Masculino', 'Femenino', 'Otro'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -128,6 +136,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                     child: InputsComponent(
                       title: 'Mes de nacimiento',
                       hintext: ' 03',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.monthBrithdayRelationship,
@@ -143,6 +152,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                     child: InputsComponent(
                       title: 'Día de nacimiento',
                       hintext: ' 07',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.dayBrithdayRelationship,
@@ -159,6 +169,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                     child: InputsComponent(
                       title: 'Año de nacimiento',
                       hintext: ' 1999',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.yearBrithdayRelationship,
@@ -174,6 +185,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               DropdownComponents(
                 title: 'Nivel de escolaridad',
                 hintext: ' Seleccionar nivel de escolaridad',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Primaria',
                   'Secundaria',
@@ -205,6 +217,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               InputsComponent(
                 title: 'Institución de escolaridad',
                 hintext: ' Ingresar institución',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.schoolRelationship,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setSchoolRelationship(val),
@@ -215,6 +228,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
               InputsComponent(
                 title: 'Número de documento',
                 hintext: ' Ingresar número',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 controller: surveysPrv.numberDocRelationship,
@@ -226,6 +240,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   /*navega a la pantalla #5*/

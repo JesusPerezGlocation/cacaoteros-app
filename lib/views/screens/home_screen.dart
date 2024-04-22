@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -27,9 +28,14 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final ethernetProvider = Provider.of<NetworkStatus>(context);
+    final statusPrv = Provider.of<NoConnectionEthernetProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const HomeAppBarComponents(),
+        title: HomeAppBarComponents(
+          ethernetProvider: ethernetProvider,
+          statusPrv: statusPrv,
+        ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(

@@ -9,11 +9,16 @@ class LinealPercentComponent extends StatelessWidget {
   final double percent;
   final String? questions;
   final String answers;
-  const LinealPercentComponent(
-      {super.key,
-      required this.percent,
-      this.questions,
-      required this.answers});
+  final Color colorOne;
+  final Color colorTwo;
+  const LinealPercentComponent({
+    super.key,
+    required this.percent,
+    this.questions,
+    required this.answers,
+    required this.colorOne,
+    required this.colorTwo,
+  });
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -27,9 +32,11 @@ class LinealPercentComponent extends StatelessWidget {
           percent: percent,
           barRadius: const Radius.circular(10),
           backgroundColor: PaletteColorsTheme.greyColor,
-          linearGradient: const LinearGradient(colors: [
-            PaletteColorsTheme.principalColor,
-            Color.fromARGB(255, 132, 163, 54),
+          linearGradient: LinearGradient(colors: [
+            colorOne,
+            colorTwo
+            // PaletteColorsTheme.principalColor,
+            // Color.fromARGB(255, 132, 163, 54),
           ]),
         ),
         SizedBox(height: size.height * .002),
@@ -45,7 +52,7 @@ class LinealPercentComponent extends StatelessWidget {
                     fontSize: 11),
                 children: [
                   TextSpan(
-                    text: ' de 13 preguntas',
+                    text: ' de 13 pantallas',
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: PaletteColorsTheme.blackColor,
                         fontWeight: FontWeight.w100,

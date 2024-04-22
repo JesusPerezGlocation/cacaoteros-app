@@ -24,7 +24,9 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -35,9 +37,12 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title: 'INFORMACIÓN SOCIODEMOGRÁFICA DEL PRODUCTOR'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (3 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '3',
@@ -47,6 +52,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: 'Estado civil',
                 hintext: ' Seleccionar estado civil',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Soltero/A',
                   'Casado/A',
@@ -88,6 +94,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar estado civil',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.statusCivilOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -99,6 +106,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: 'Etnia o comunidad',
                 hintext: ' Seleccionar etnia o comunidad',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Afrodecendiente',
                   'Gitano',
@@ -143,6 +151,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                     title: '¿Cuál?',
                     hintext: ' Ingresar etnia o comunidad',
                     textInputAction: TextInputAction.next,
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     controller: surveysPrv.ethhicGroupOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
                     onChanged: (val) => surveysPrv.setEthhicGroupOther(val),
@@ -153,6 +162,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: '¿ Cúal es el nivel educativo alcanzado?',
                 hintext: ' Seleccionar nivel educativo',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Primario',
                   'Secundario',
@@ -193,6 +203,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar nivel educativo',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.educationalLevelOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -205,6 +216,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               InputsComponent(
                 title: 'Titulo obtenido',
                 hintext: ' Ingresar titulo obtenido',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.obtainerTitle,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setObtainerTitle(val),
@@ -215,6 +227,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 title: ' Seleccionar tipo de tenencia de la tierra',
                 initialValue: '-',
                 hintext: ' Seleccionar tipo de tenencia',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Carta venta',
                   'Escritura',
@@ -250,6 +263,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 title: ' Seleccionar origen de la tenencia de la tierra',
                 initialValue: '-',
                 hintext: ' Seleccionar tipo de tenencia',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Compra', 'Herencia', 'Subsidio estatal'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
@@ -274,6 +288,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 initialValue: '-',
                 hintext: ' Seleccionar tipo de posesión',
                 items: const ['Arrendatario', 'Sociedad', 'Propietario'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -296,6 +311,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: '¿Pertenece a alguna asociación?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
@@ -323,6 +339,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.hasOrganizationOtherYes,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -335,6 +352,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 title: '¿Pertenece a la federación nacional de cacaoteros?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
                 onChanged: (val) {
@@ -362,6 +380,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                         '¿Esta interesado en iniciar el proceso de cedulación con Fedecacao?',
                     hintext: ' Seleccionar dato',
                     items: const ['Si', 'No'],
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     validator: (val) =>
                         ValidationInputs.inputTypeSelect(val.toString()),
                     onChanged: (val) {
@@ -390,6 +409,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                     title:
                         'Observaciones: se procede a digilenciar el formato de afiliación de Fedecacao',
                     hintext: ' Seleccionar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     items: const ['Si', 'No'],
                     validator: (val) =>
                         ValidationInputs.inputTypeSelect(val.toString()),
@@ -411,6 +431,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: '¿Están afiliados al sistema de seguridad social?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
@@ -437,6 +458,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: DropdownComponents(
                     title: 'Tipo de afiliación',
                     hintext: ' Seleccionar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     items: const ['Contributivo', 'Subsidiado'],
                     validator: (val) =>
                         ValidationInputs.inputTypeSelect(val.toString()),
@@ -452,6 +474,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                     '¿Cuenta o está en proceso de obtención del algún sello de certificación?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) =>
                     ValidationInputs.inputTypeSelect(val.toString()),
                 onChanged: (val) {
@@ -480,6 +503,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: 'Ingresar proceso',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     controller: surveysPrv.obtainingCertificateOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
                     onChanged: (val) =>
@@ -491,6 +515,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               DropdownComponents(
                 title: 'Tipo de mano de obra para el cultivo de cacao',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Administrativo',
                   'Familiar',
@@ -528,6 +553,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: 'Ingresar mano de obra',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     controller: surveysPrv.typeLabourOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
                     onChanged: (val) => surveysPrv.setTypeLabourOther(val),
@@ -539,6 +565,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 title:
                     'Número de días al mes que labora en el cultivo de cacao',
                 hintext: 'Ingresar número de días',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 maxLength: 2,
                 controller: surveysPrv.numberDayFarm,
                 keyboardType: TextInputType.number,
@@ -550,6 +577,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
                 title:
                     'Número de días al mes que fuera labora en el cultivo de cacao',
                 hintext: 'Ingresar número de días',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 maxLength: 2,
                 controller: surveysPrv.numberDaysMonthFarm,
                 keyboardType: TextInputType.number,
@@ -560,6 +588,7 @@ class _ThreeSurveysScreenState extends State<ThreeSurveysScreen> {
               SizedBox(height: size.height * .06),
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   //!!aun no esta validando, cuando cambie el tipo de input activar

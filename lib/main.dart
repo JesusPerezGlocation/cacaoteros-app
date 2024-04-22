@@ -28,12 +28,19 @@ class StateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        StreamProvider(
+          create: (context) => NoConnectionEthernetProvider().controller.stream,
+          initialData: NetworkStatus.online,
+        ),
         /*provider para los permisos */
         ChangeNotifierProvider(
             create: (context) => PermissionLocationProvider()),
         /*encuesta de caracterización de beneficiarios */
         ChangeNotifierProvider(
             create: (context) => BeneficiariesSurveysProvider()),
+        /*conexión a internet */
+        ChangeNotifierProvider(
+            create: (context) => NoConnectionEthernetProvider()),
       ],
       child: const MyApp(),
     );

@@ -24,7 +24,11 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(
+          color: PaletteColorsTheme.secondaryColor,
+        )
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -35,11 +39,14 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title:
                       'INFORMACIÓN DE BUENAS PRACTICAS AGRÍCOLAS (BPA) Y AMBIENTAL'),
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (10 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '10',
@@ -50,6 +57,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: '¿Implementa BPM en su finca?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const ['Si', 'No'],
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
@@ -68,6 +76,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               //#2
               DropdownComponents(
                 title: '¿Cómo planea las labores que realiza en el cultivo?',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Planeador',
                   'No las planea',
@@ -109,6 +118,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.workInCultivationOther,
@@ -122,6 +132,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: '¿Qué tipos de registros lleva en su finca?',
                 hintext: ' Seleccionar tipo de registro',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Jornales',
                   'Uso de insumos',
@@ -155,6 +166,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               //#5
               DropdownComponents(
                 title: '¿Cuenta con áreas de almecenamiento para?',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Herramientas',
                   'Agroinsumos',
@@ -195,6 +207,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.storageAreasOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -206,6 +219,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: '¿Cuenta con una fuente hídrica cercana?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -224,6 +238,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: '¿Están protegidos sus márgenes?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -242,6 +257,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: 'Uso del agua',
                 items: const ['Riego', 'Consumo'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -260,6 +276,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               DropdownComponents(
                 title: '¿Tiene concesión de agua?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -284,6 +301,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuantos litros tiene autorizados?',
                     hintext: ' Ingresar litros autorizados',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     controller: surveysPrv.authorizedLitersOfWater,
@@ -296,6 +314,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
               //13
               DropdownComponents(
                 title: '¿Qúe prácticas de conservación de suelos realiza?',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Coberturas',
                   'Manejo con microorganismos',
@@ -336,6 +355,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.floorConservationOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -350,6 +370,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                 title:
                     '¿La familia cuenta con un sistema de registro de información para la administración de su finca?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -370,6 +391,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                 title:
                     '¿Sabe que el ICA certifica a las fincas que implementan BPA?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -389,6 +411,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                 title:
                     '¿Tiene planeado deforestar áreas de bosques o rastrojo para cultivar o establecer áreas de pasto?',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -407,6 +430,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   //Todo: debe validar

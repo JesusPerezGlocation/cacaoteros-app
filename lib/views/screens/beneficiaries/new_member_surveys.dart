@@ -32,12 +32,15 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                 horizontal: size.width * .03, vertical: size.height * .03),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
-              const TitleSurveysComponents(title: 'AÑADIR MIEMBRO DE FAMILIA'),
+              const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
+                  title: 'AÑADIR MIEMBRO DE FAMILIA'),
               SizedBox(height: size.height * .04),
               //#1
               InputsComponent(
                 title: 'Nombres y apellidos',
                 hintext: ' Ingresar nombres y apellidos',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.nameAndLastNameMember,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -49,6 +52,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                 title: ' Seleccionar parentesco',
                 initialValue: '-',
                 hintext: ' Seleccionar parentesco',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Hijos',
                   'Yerno',
@@ -90,6 +94,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                   initialValue: '-',
                   hintext: ' Seleccionar género',
                   items: const ['Masculino', 'Femenino', 'Otro'],
+                  colorInputs: PaletteColorsTheme.secondaryColor,
                   validator: (value) => ValidationInputs.inputTypeSelect(value),
                   onChanged: (val) {
                     switch (val.toString()) {
@@ -115,6 +120,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                     child: InputsComponent(
                       title: 'Mes de nacimiento',
                       hintext: ' 03',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthdayMonthRelationShipMember,
@@ -130,6 +136,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                     child: InputsComponent(
                       title: 'Día de nacimiento',
                       hintext: ' 07',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthdayDayRelationShipMember,
@@ -146,6 +153,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
                     child: InputsComponent(
                       title: 'Año de nacimiento',
                       hintext: ' 1999',
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthdayYearRelationShipMember,
@@ -161,6 +169,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
               DropdownComponents(
                 title: 'Nivel de escolaridad',
                 hintext: ' Seleccionar nivel de escolaridad',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Primaria',
                   'Secundaria',
@@ -192,6 +201,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
               InputsComponent(
                 title: 'Institución de escolaridad',
                 hintext: ' Ingresar institución',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.schoolRelationShipMember,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setSchoolRelationShipMember(val),
@@ -202,6 +212,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
               InputsComponent(
                 title: 'Número de documento',
                 hintext: ' Ingresar número',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 controller: surveysPrv.numberRelationShipMember,
@@ -213,6 +224,7 @@ class _NewMemberSurveysScreenState extends State<NewMemberSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   if (formKey.currentState!.validate()) {

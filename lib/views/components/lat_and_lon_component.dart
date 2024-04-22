@@ -87,6 +87,7 @@ class LatAndLongComponents extends StatelessWidget {
           ]),
           /*volver a cargar las coordenadas*/
           CircleAvatar(
+            backgroundColor: PaletteColorsTheme.secondaryColor,
             child: IconButton(
                 onPressed: () => onTap(),
                 icon: const Center(

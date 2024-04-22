@@ -23,7 +23,9 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -34,10 +36,13 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title:
                       'LISTA DE CHEQUEO PARA CRITERIOS DE SELECCIÓN DE BENEFICIOS PRODUCTORES DEL PROYECTO DE TRAZABILIDAD CONCACAO'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (12 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '12',
@@ -48,6 +53,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: '¿Es propietario o poseedor de predio rural?',
                 initialValue: '-',
                 items: const ['Cumple', 'No cumple'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -67,43 +73,12 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: 'Observaciones',
                 hintext: ' Ingresar observación',
                 maxLine: 4,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.obsevationRuralPossestion,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) =>
                     surveysPrv.setObsevationRuralPossestion(val),
               ),
-
-              // SizedBox(height: size.height * .04),
-              // //#3
-              // DropdownComponents(
-              //   title:
-              //       '¿Se encuentra vinculado a la Federación Nacional de Cacaoteros - FedeCacao?',
-              //   initialValue: '-',
-              //   items: const ['Cumple', 'No cumple'],
-              //   validator: (value) => ValidationInputs.inputTypeSelect(value),
-              //   onChanged: (val) {
-              //     switch (val.toString()) {
-              //       case 'Cumple':
-              //         surveysPrv.setBoundFederationCacaoteros('1');
-              //         break;
-              //       case 'No cumple':
-              //         surveysPrv.setBoundFederationCacaoteros('2');
-              //         break;
-              //       default:
-              //     }
-              //   },
-              // ),
-              // SizedBox(height: size.height * .02),
-              // //#4
-              // InputsComponent(
-              //   title: 'Observaciones',
-              //   hintext: ' Ingresar observación',
-              //   maxLine: 4,
-              //   controller: surveysPrv.observationboundFederationCacaoteros,
-              //   validator: (val) => ValidationInputs.inputEmpty(val),
-              //   onChanged: (val) =>
-              //       surveysPrv.setObservationBoundFederationCacaoteros(val),
-              // ),
 
               SizedBox(height: size.height * .04),
               //#5
@@ -112,6 +87,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                     '¿Cuenta con un número mínimo de 500 árboles de cacao por unidad productiva?',
                 initialValue: '-',
                 items: const ['Cumple', 'No cumple'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -131,6 +107,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: 'Observaciones',
                 hintext: ' Ingresar observación',
                 maxLine: 4,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.observationfiveHundredTrees,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) =>
@@ -142,6 +119,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: '¿Vive con su núcleo familiar?',
                 initialValue: '-',
                 items: const ['Cumple', 'No cumple'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -161,6 +139,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: 'Observaciones',
                 hintext: ' Ingresar observación',
                 maxLine: 4,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.observationfamilyNucleo,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setObservationFamilyNucleo(val),
@@ -171,6 +150,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: '¿Posee equipo celular y conocimientos tecnólogicos?',
                 initialValue: '-',
                 items: const ['Cumple', 'No cumple'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -190,6 +170,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: 'Observaciones',
                 hintext: ' Ingresar observación',
                 maxLine: 4,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.observationphoneAndTecnology,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) =>
@@ -201,6 +182,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: '¿Cuenta con el servicio de conectividad a internet?',
                 initialValue: '-',
                 items: const ['Cumple', 'No cumple'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -220,6 +202,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 title: 'Observaciones',
                 hintext: ' Ingresar observación',
                 maxLine: 4,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.observationethernetServices,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) =>
@@ -228,6 +211,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
               SizedBox(height: size.height * .06),
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   //Todo: debe validar

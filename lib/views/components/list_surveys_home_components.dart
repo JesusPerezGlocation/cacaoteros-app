@@ -23,12 +23,12 @@ class ListSurveysHomeComponents extends StatelessWidget {
       children: [
         /*registro de visita*/
         StartSurveysComponents(
-          title: 'Registro de visitas',
+          title: 'Caracterización de potenciales beneficiarios',
           answers: '10/50 respuestas conectar',
           percent: 0.5,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
           image: ImagesPaths.surveyImg,
-          color: PaletteColorsTheme.principalColor,
+          color: PaletteColorsTheme.secondaryColor,
           onTap: () {
             /*limpia el provider*/
             surveysPrv.cleanAllProvider();

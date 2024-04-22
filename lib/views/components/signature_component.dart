@@ -73,7 +73,7 @@ class _SignatureComponentsProdcutsState
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
-                    .copyWith(color: PaletteColorsTheme.principalColor),
+                    .copyWith(color: PaletteColorsTheme.secondaryColor),
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start),
           ),
@@ -90,6 +90,12 @@ class _SignatureComponentsProdcutsState
             children: [
               SizedBox(
                 child: OutlinedButton(
+                    style: const ButtonStyle(
+                        side: MaterialStatePropertyAll(BorderSide(
+                            color: PaletteColorsTheme.secondaryColor,
+                            width: 1)),
+                        foregroundColor: MaterialStatePropertyAll(
+                            PaletteColorsTheme.secondaryColor)),
                     onPressed: () async {
                       bytes =
                           await controller.toPngBytes(width: 500, height: 500);
@@ -116,7 +122,10 @@ class _SignatureComponentsProdcutsState
                     bytes = null;
                     controller.clear();
                   },
-                  icon: const Icon(IconlyLight.delete)),
+                  icon: const Icon(
+                    IconlyLight.delete,
+                    color: PaletteColorsTheme.secondaryColor,
+                  )),
             ],
           )
         ],
@@ -192,7 +201,7 @@ class _SignatureComponentTieldTechnicianState
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!
-                    .copyWith(color: PaletteColorsTheme.principalColor),
+                    .copyWith(color: PaletteColorsTheme.secondaryColor),
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start),
           ),
@@ -209,6 +218,12 @@ class _SignatureComponentTieldTechnicianState
             children: [
               SizedBox(
                 child: OutlinedButton(
+                    style: const ButtonStyle(
+                        side: MaterialStatePropertyAll(BorderSide(
+                            color: PaletteColorsTheme.secondaryColor,
+                            width: 1)),
+                        foregroundColor: MaterialStatePropertyAll(
+                            PaletteColorsTheme.secondaryColor)),
                     onPressed: () async {
                       bytes =
                           await controller.toPngBytes(width: 500, height: 500);
@@ -235,7 +250,10 @@ class _SignatureComponentTieldTechnicianState
                     bytes = null;
                     controller.clear();
                   },
-                  icon: const Icon(IconlyLight.delete)),
+                  icon: const Icon(
+                    IconlyLight.delete,
+                    color: PaletteColorsTheme.secondaryColor,
+                  )),
             ],
           )
         ],

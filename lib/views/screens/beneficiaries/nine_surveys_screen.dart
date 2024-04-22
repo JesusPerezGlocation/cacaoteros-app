@@ -28,7 +28,9 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -39,10 +41,13 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title: 'INFORMACIÓN DE COMERCIALIZACIÓN'),
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (9 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '9',
@@ -54,6 +59,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
                 title: 'Destino del grano de cacao',
                 initialValue: 'CC',
                 hintext: ' Seleccionar destino',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Asociación',
                   'Cooperativa',
@@ -98,6 +104,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar destino',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.destinationOfTheCocoaOther,
@@ -111,6 +118,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
               InputsComponent(
                 title: 'Nombre de a quien le comecializa el grano de cacao',
                 hintext: ' Ingresar nombre',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.nameComercializationCocoa,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -122,6 +130,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
               InputsComponent(
                 title: 'Municipio donde comercializa el grano',
                 hintext: ' Ingresar municipio',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.comercializationMunicipalityCocoa,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -133,6 +142,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   /*navega a la pantalla #9 */

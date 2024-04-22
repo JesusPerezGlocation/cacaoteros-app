@@ -7,4 +7,5 @@ class ImagesPaths {
   static String surveyImg = 'assets/img/surveys.jpg';
   static String womanSend = 'assets/img/girl-send-image.png';
   static String otherMembers = 'assets/img/other-members.png';
+  static String noConecction = 'assets/img/no-connection.png';
 }

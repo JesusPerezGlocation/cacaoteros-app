@@ -32,7 +32,9 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        actions: const [SaveIconDraftComponents()],
+        actions: const [
+          SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+        ],
       ),
       body: FadeIn(
         child: Form(
@@ -44,12 +46,15 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title: 'ENCUESTA DE CARACTERIZACIÓN A CACAOCULTORES'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
                 percent: (1 - 1) * (100 / 13) / 100,
                 questions: '13',
                 answers: '1',
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
               ),
               SizedBox(height: size.height * .02),
 
@@ -59,13 +64,17 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start,
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium!
+                    .copyWith(color: PaletteColorsTheme.secondaryColor),
               ),
 
               SizedBox(height: size.height * .03),
               //#2 NOMBRE DE LA UNIDAD TÉCNICA
               InputsComponent(
                 title: 'Nombre del técnico del campo',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 hintext: ' Ingresar nombre',
                 textInputAction: TextInputAction.done,
                 controller: surveysPrv.nameUnit,
@@ -76,6 +85,7 @@ class _FirstSurveysScreensState extends State<FirstSurveysScreens> {
               SizedBox(height: size.height * .06),
 
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {

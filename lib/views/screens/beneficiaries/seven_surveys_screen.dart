@@ -24,7 +24,9 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -35,10 +37,13 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
               const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
                   title: 'PRÁCTICAS DE MANEJO DEL CULTIVO'),
               SizedBox(height: size.height * .02),
 
               const LinealPercentComponent(
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (7 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '7',
@@ -49,6 +54,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title:
                     '¿Qué labores realiza para la edecuación del suelo y el establecimiento del cultivo?',
                 initialValue: 'CC',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 hintext: ' Seleccionar dato',
                 items: const [
                   'Tala de árboles',
@@ -90,6 +96,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title:
                     '¿Qué labores realiza para el mantenimiento del cultivo?',
                 hintext: ' Seleccionar dato',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 items: const [
                   'Poda',
                   'Fertilización',
@@ -128,6 +135,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.floorSuitabilityOther,
@@ -143,6 +151,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title: '¿Posee sistema de riego?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -162,6 +171,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title: '¿Realiza fertilización?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -181,6 +191,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title: '¿Que tipo de fertilización realiza?',
                 hintext: ' Seleccionar dato',
                 items: const ['Orgánica', 'Química', 'Otro'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -208,6 +219,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar tipo de fertilización',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.typeFertilizationOther,
@@ -221,6 +233,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
               InputsComponent(
                 title: 'Número de fertilizaciones al año',
                 hintext: ' Ingresar número',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 keyboardType: TextInputType.number,
                 controller: surveysPrv.typeFertilizationOther,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -233,6 +246,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 title: '¿Cada cuanto hace la recolección de cacao?',
                 hintext: ' Seleccionar dato',
                 items: const ['Quincenal', 'Mensual', 'Otro'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -260,6 +274,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar dato',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.recolectionCocoaOther,
@@ -272,6 +287,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
 
               /*boton para continuar*/
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   /*navega hacia la pantalla #8*/

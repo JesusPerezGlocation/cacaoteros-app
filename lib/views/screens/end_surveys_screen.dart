@@ -32,7 +32,10 @@ class EndSurveysScreen extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge!
+                .copyWith(color: PaletteColorsTheme.secondaryColor),
           ),
           SizedBox(height: size.height * .005),
           Text(
@@ -45,6 +48,7 @@ class EndSurveysScreen extends StatelessWidget {
           SizedBox(height: size.height * .06),
           /*enviar a la base */
           ButtonComponents(
+              colorButton: PaletteColorsTheme.secondaryColor,
               title: 'Enviar encuesta',
               onPressed: () async {
                 ShowModalLoadingWidget.showLoadingView(context);
@@ -65,9 +69,15 @@ class EndSurveysScreen extends StatelessWidget {
               }),
           SizedBox(height: size.height * .02),
           ButtonOutlineComponents(
+              color: PaletteColorsTheme.secondaryColor,
               title: 'Guardar como borrador',
               onPressed: () async {
                 //Todo: debe guardar el borrador en la base sql
+                SnackBarGlobalWidget.showSnackBar(
+                    context,
+                    'En proceso de construcción',
+                    Icons.error_outlined,
+                    PaletteColorsTheme.yellowColor);
               }),
           SizedBox(height: size.height * .06),
         ],

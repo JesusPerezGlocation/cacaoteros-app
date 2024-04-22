@@ -24,7 +24,9 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: const [SaveIconDraftComponents()]),
+      appBar: AppBar(actions: const [
+        SaveIconDraftComponents(color: PaletteColorsTheme.secondaryColor)
+      ]),
       body: FadeIn(
         child: Form(
           key: formKey,
@@ -34,12 +36,16 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 horizontal: size.width * .03, vertical: size.height * .03),
             keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             children: [
-              const TitleSurveysComponents(title: 'INFORMACIÓN DEL PRODUCTOR'),
+              const TitleSurveysComponents(
+                  color: PaletteColorsTheme.secondaryColor,
+                  title: 'INFORMACIÓN DEL PRODUCTOR'),
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
                 percent: (2 - 1) * (100 / 13) / 100,
                 questions: '30',
                 answers: '2',
+                colorOne: PaletteColorsTheme.secondaryColor,
+                colorTwo: PaletteColorsTheme.colorMagentaTwo,
               ),
               SizedBox(height: size.height * .04),
 
@@ -47,6 +53,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               DropdownComponents(
                 title: 'Tipo de documento',
                 initialValue: 'CC',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 hintext: 'Seleccionar tipo de documento',
                 items: const [
                   'Cédula de ciudadanía',
@@ -79,6 +86,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cuál?',
                     hintext: ' Ingresar tipo de documento',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.text,
                     controller: surveysPrv.selecDocumentTypeOther,
@@ -92,6 +100,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsComponent(
                 title: 'Número de documento',
                 hintext: ' Ingresar número de documento',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 controller: surveysPrv.documentNumber,
@@ -111,6 +120,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       maxLength: 2,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       controller: surveysPrv.expeditionMonth,
                       validator: (val) => ValidationInputs.validateMonth(val),
                       onChanged: (val) => surveysPrv.setExpeditionMonth(val),
@@ -124,6 +134,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       title: 'Día de expedición',
                       hintext: ' 02',
                       maxLength: 2,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.expeditionDay,
@@ -140,6 +151,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       title: 'Año de expedición',
                       hintext: ' 1999',
                       maxLength: 4,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.expeditionYear,
@@ -153,6 +165,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               SizedBox(height: size.height * .03),
               //#5
               InputsComponent(
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 title: 'Lugar de expedición',
                 hintext: ' Ingresar lugar',
                 textInputAction: TextInputAction.next,
@@ -166,6 +179,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsComponent(
                 title: 'Primer nombre',
                 hintext: ' Ingresar nombre',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.firtName,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -177,6 +191,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 title: 'Segundo nombre',
                 hintext: ' Ingresar segundo nombre',
                 textInputAction: TextInputAction.next,
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 controller: surveysPrv.secondName,
                 validator: (val) => ValidationInputs.inputEmpty(val),
                 onChanged: (val) => surveysPrv.setSecondName(val),
@@ -186,6 +201,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsComponent(
                 title: 'Primer apellido',
                 hintext: ' Ingresar primero apellido',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.firtLastName,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -196,6 +212,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsComponent(
                 title: 'Segundo apellido',
                 hintext: ' Ingresar segundo apellido',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 controller: surveysPrv.secondLastName,
                 validator: (val) => ValidationInputs.inputEmpty(val),
@@ -212,6 +229,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       title: 'Mes de nacimiento',
                       hintext: ' 03',
                       maxLength: 2,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthMonth,
@@ -227,6 +245,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       title: 'Día de nacimiento',
                       hintext: ' 07',
                       maxLength: 2,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthDay,
@@ -243,6 +262,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                       title: 'Año de nacimiento',
                       hintext: ' 1999',
                       maxLength: 4,
+                      colorInputs: PaletteColorsTheme.secondaryColor,
                       keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       controller: surveysPrv.birthYear,
@@ -257,6 +277,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsDatesComponent(
                 title: 'Edad',
                 hintext: ' Ingresar edad',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 maxLength: 3,
@@ -269,6 +290,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               DropdownComponents(
                 title: 'Seleccionar género',
                 initialValue: '-',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 hintext: ' Seleccionar género',
                 items: const ['Masculino', 'Femenino', 'Otro'],
                 validator: (value) => ValidationInputs.inputTypeSelect(value),
@@ -292,6 +314,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsComponent(
                 title: 'Lugar de nacimiento',
                 hintext: ' Ingresar lugar de nacimiento',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.text,
                 controller: surveysPrv.placeBorn,
@@ -304,6 +327,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               InputsPhoneComponent(
                 title: 'Número de celular',
                 hintext: ' Ingresar número de celular',
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 maxLength: 10,
@@ -318,6 +342,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 title: '¿Tiene WhatsApp en el mismo número de celular?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -338,6 +363,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 title: '¿Tiene correo electrónico?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -363,6 +389,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   child: InputsComponent(
                     title: 'Correo electrónico',
                     hintext: ' Ingresar correo electrónico',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.emailAddress,
                     controller: surveysPrv.hasEmailAddressOther,
@@ -376,6 +403,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 title: '¿Cuenta con servicio de internet?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -401,6 +429,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                     title: 'Tipo de servicio internet',
                     hintext: ' Seleccionar dato',
                     items: const ['Plan de datos', 'Internet hogar', 'Otro'],
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     validator: (val) => ValidationInputs.inputTypeSelect(val),
                     onChanged: (val) {
                       switch (val.toString()) {
@@ -429,6 +458,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar el tipo de servicio',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.whatServicesEthernet,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -439,6 +469,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               SizedBox(height: size.height * .03),
               //#21 temas de consulta en internet
               DropdownComponents(
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 title: '¿Qué temas de consulta a través de internet?',
                 initialValue: '-',
                 hintext: ' Seleccionar dato',
@@ -483,6 +514,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar el tipo de consulta',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.whatconsultEthernetOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -496,6 +528,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                 title: '¿Presenta usted alguna condición de discapacidad?',
                 hintext: ' Seleccionar dato',
                 items: const ['Si', 'No'],
+                colorInputs: PaletteColorsTheme.secondaryColor,
                 validator: (val) => ValidationInputs.inputTypeSelect(val),
                 onChanged: (val) {
                   switch (val.toString()) {
@@ -520,6 +553,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
                   child: InputsComponent(
                     title: '¿Cúal?',
                     hintext: ' Ingresar el tipo de discapacidad',
+                    colorInputs: PaletteColorsTheme.secondaryColor,
                     textInputAction: TextInputAction.next,
                     controller: surveysPrv.hasDisabilityOther,
                     validator: (val) => ValidationInputs.inputEmpty(val),
@@ -529,6 +563,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               SizedBox(height: size.height * .06),
 
               ButtonComponents(
+                colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
                   /*navega a la siguiente pantalla*/

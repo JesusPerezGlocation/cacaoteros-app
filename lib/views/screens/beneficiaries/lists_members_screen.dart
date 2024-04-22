@@ -23,7 +23,9 @@ class ListMembersScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const TitleSurveysComponents(title: 'LISTA DE MIEMBROS'),
+            const TitleSurveysComponents(
+                color: PaletteColorsTheme.secondaryColor,
+                title: 'LISTA DE MIEMBROS'),
             SizedBox(height: size.height * .03),
             /*si la lista está vacia */
             if (surveysPrv.familyMembers.isEmpty ||
@@ -49,6 +51,7 @@ class ListMembersScreen extends StatelessWidget {
                           //Todo: debe navegar a editar al miembro seleccionado
                         },
                         leading: CircleAvatar(
+                          backgroundColor: PaletteColorsTheme.secondaryColor,
                           child: Text(
                             member.name.substring(0, 1),
                             maxLines: 1,
