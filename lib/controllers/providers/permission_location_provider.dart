@@ -3,7 +3,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
@@ -69,5 +71,50 @@ class PermissionLocationProvider extends ChangeNotifier {
     } catch (e) {
       log('error location: $e');
     }
+  }
+
+  /*para el mapa de la encuesta de visitas*/
+  final List<LatLng> _markers = [];
+  List<LatLng> get markers => _markers;
+
+  final MapController _mapController = MapController();
+  MapController get mapController => _mapController;
+
+  /*añade posiciones al mapa  */
+  void addMarkerPolygon(TapPosition tap, LatLng point) {
+    _markers.add(point);
+    notifyListeners();
+  }
+
+  void listMarket(List<LatLng> latLong) {
+    // _markers = latLong;
+    latLong.add(LatLng(_latitude ?? 0.0, _longitude ?? 0.0));
+    notifyListeners();
+  }
+
+  /*función para centrar el mapa en la posición actual del usuario */
+  void centerMapToCurrentPosition() {
+    _mapController.move(
+      LatLng(_latitude ?? 0.0, _longitude ?? 0.0),
+      18.0,
+    );
+    notifyListeners();
+  }
+
+  /*función para borrar los marcadores y el polígono dibujado */
+  void clearMarkersAndPolygon() {
+    _markers.clear();
+    notifyListeners();
+  }
+
+  bool _isLoadingMap = true;
+  bool get isLoadingMap => _isLoadingMap;
+  /*función para actualizar el mapa */
+  void updateMap() {
+    Future.delayed(const Duration(seconds: 1), () {
+      _isLoadingMap = false;
+      notifyListeners();
+    });
+    notifyListeners(); // Notificar a los widgets escuchando los cambios en el provider
   }
 }

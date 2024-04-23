@@ -52,6 +52,7 @@ dependencies:
   provider: ^6.1.2
   signature: ^5.4.1
   uuid: ^4.4.0
+  vibration: ^1.8.4
 
 dev_dependencies:
   flutter_lints: ^3.0.0

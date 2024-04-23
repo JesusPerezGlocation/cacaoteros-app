@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +25,18 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
   @override
   void initState() {
     super.initState();
-    widget.locationProvider.getPermissionLocation(context);
+    getLocationUser();
+  }
+
+  Future getLocationUser() async {
+    try {
+      await widget.locationProvider.getPermissionLocation(context);
+      await widget.locationProvider.getLocationUser();
+      widget.locationProvider.updateMap();
+      setState(() {});
+    } catch (e) {
+      log('error location $e');
+    }
   }
 
   @override

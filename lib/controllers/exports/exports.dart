@@ -1,3 +1,4 @@
+export 'package:surveys_app/controllers/services/vibration_services.dart';
 export 'package:surveys_app/views/components/maps_market_components.dart';
 export 'package:surveys_app/views/widgets/no_conecction_ethernet_widget.dart';
 export 'package:surveys_app/models/family_members_models.dart';
