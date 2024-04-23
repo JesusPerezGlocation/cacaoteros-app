@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 class ButtonComponents extends StatelessWidget {
@@ -116,6 +117,57 @@ class CheckbuttonComponent extends StatelessWidget {
             .textTheme
             .bodyMedium!
             .copyWith(color: colorButton, decoration: TextDecoration.underline),
+      ),
+    );
+  }
+}
+
+/*
+boton para añadir imagen 
+*/
+class ButtonAddImagenComponents extends StatelessWidget {
+  final Function onTap;
+  const ButtonAddImagenComponents({
+    super.key,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      borderRadius: BorderRadius.circular(15),
+      onTap: () => onTap(),
+      child: Container(
+        decoration: BoxDecoration(
+            color: PaletteColorsTheme.principalColor,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                  color: PaletteColorsTheme.principalColor.withOpacity(0.5),
+                  blurRadius: 14)
+            ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              IconlyLight.camera,
+              color: PaletteColorsTheme.whiteColor,
+              size: 35,
+            ),
+            SizedBox(height: size.height * .002),
+            Text(
+              'Añadir',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: PaletteColorsTheme.whiteColor),
+            )
+          ],
+        ),
       ),
     );
   }

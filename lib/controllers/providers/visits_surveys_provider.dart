@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -16,16 +18,11 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
   /*añade a la lista de imagenes*/
   addListImagesData(Uint8List imageBytes) {
-    notifyListeners();
     try {
-      /*Ajusta maxWidth, maxHeight y quality*/
       final compressedImageBytes = compressImage(imageBytes, 800, 800, 360);
-
       String base64String = base64Encode(compressedImageBytes);
-      if (_listImagesAdd.isEmpty) {
-        _listImagesAdd.add(base64String);
-        notifyListeners();
-      }
+      _listImagesAdd
+          .add(base64String); // Agrega la imagen sin verificar si está vacía
       notifyListeners();
     } catch (e) {
       log('error en add imagen $e');
@@ -77,12 +74,37 @@ class VisitsSurveysProvider extends ChangeNotifier {
   Future dataPickerImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.camera);
+
       if (image != null) {
         File fileImage = File(image.path);
+
         final Uint8List imageBytes = await fileImage.readAsBytes();
+
         addListImagesData(imageBytes);
+
         notifyListeners();
       }
+      notifyListeners();
+    } catch (e) {
+      log('dataPickerImage $e');
+    }
+  }
+
+  /*abre la galaria*/
+  Future dataPickerGallery() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      if (image != null) {
+        File fileImage = File(image.path);
+
+        final Uint8List imageBytes = await fileImage.readAsBytes();
+
+        addListImagesData(imageBytes);
+
+        notifyListeners();
+      }
+      notifyListeners();
     } catch (e) {
       log('dataPickerImage $e');
     }

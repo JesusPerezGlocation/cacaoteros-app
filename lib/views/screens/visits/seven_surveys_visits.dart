@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
@@ -18,7 +19,19 @@ class SevenSurveysVisitsScreen extends StatelessWidget {
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     final cemeraPermissionPrv = Provider.of<CameraPermissionProvider>(context);
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: visitsPrv.listImagesAdd.isNotEmpty
+            ? [
+                SaveIconDraftComponents(
+                  icon: IconlyLight.delete,
+                  color: PaletteColorsTheme.principalColor,
+                  onTap: () =>
+                      ShowModalPermissionGalleryWidget.showModalDeleteAllImage(
+                          context),
+                )
+              ]
+            : [],
+      ),
       body: FadeIn(
           child: visitsPrv.listImagesAdd.isEmpty
               ? _EmptyScreenImageComponents(
@@ -50,41 +63,64 @@ class _ListImageSelectComponents extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: size.width * .03),
       child: Column(
         children: [
-          SizedBox(
-            height: size.height * .75,
-            child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              itemCount: visitsPrv.listImagesAdd.length,
-              itemBuilder: (context, index) {
-                final base64Image = visitsPrv.listImagesAdd[index];
-                final bytes = base64Decode(base64Image);
-
-                return Container(
-                  decoration: BoxDecoration(
-                      color: PaletteColorsTheme.greyColor,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.memory(bytes,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
-                            Image.asset(ImagesPaths.errorImage)),
-                  ),
-                );
-              },
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: size.height * .02,
-                crossAxisSpacing: size.width * .02,
-                mainAxisExtent: size.height * .15,
+          if (visitsPrv.listImagesAdd.isEmpty)
+            const Center(
+              child:
+                  IsEmptyDataComponent(title: 'No hay imágenes para mostrar.'),
+            )
+          else
+            SizedBox(
+              height: size.height * .75,
+              child: GridView.builder(
+                physics: const BouncingScrollPhysics(),
+                keyboardDismissBehavior:
+                    ScrollViewKeyboardDismissBehavior.onDrag,
+                itemCount: visitsPrv.listImagesAdd.length + 1,
+                itemBuilder: (context, index) {
+                  if (index == 0) {
+                    /*muestra un boton al inicio de la lsita para añdir mas imagnees */
+                    return ButtonAddImagenComponents(
+                      onTap: () async {
+                        await Permission.camera.request();
+                        /*abre el modal para seleccionar foto o imagen */
+                        ShowModalPermissionGalleryWidget.showModalSelectImage(
+                            context);
+                      },
+                    );
+                  } else {
+                    /*lista de imagenes */
+                    final base64Image = visitsPrv.listImagesAdd[index - 1];
+                    final bytes = base64Decode(base64Image);
+                    return FadeIn(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: PaletteColorsTheme.greyColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.memory(bytes,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Image.asset(ImagesPaths.errorImage)),
+                        ),
+                      ),
+                    );
+                  }
+                },
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  mainAxisSpacing: size.height * .02,
+                  crossAxisSpacing: size.width * .02,
+                  mainAxisExtent: size.height * .15,
+                ),
               ),
             ),
-          ),
           ButtonComponents(
             title: 'Continuar',
             colorButton: PaletteColorsTheme.principalColor,
-            onPressed: () {},
+            onPressed: () {
+              //todo: debe llevar a la siguiente pantalla
+            },
           ),
         ],
       ),
@@ -122,7 +158,7 @@ class _EmptyScreenImageComponents extends StatelessWidget {
           colorButton: PaletteColorsTheme.principalColor,
           onPressed: () async {
             await Permission.camera.request();
-            // await visitsPrv.dataPickerImage();
+            /*abre el modal para seleccionar foto o imagen */
             ShowModalPermissionGalleryWidget.showModalSelectImage(context);
           },
         ),
