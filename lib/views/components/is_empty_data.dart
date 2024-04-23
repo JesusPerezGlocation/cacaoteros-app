@@ -70,3 +70,45 @@ class IsEmptyWithImageComponents extends StatelessWidget {
     ).animate().fade().scale();
   }
 }
+
+/*
+componente con imagen, texto y descripción
+*/
+
+class IsEmptyImageWithDescription extends StatelessWidget {
+  final String title;
+  final String description;
+  final String image;
+  const IsEmptyImageWithDescription({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.image,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SizedBox(
+            height: size.height * .3,
+            child: Image.asset(image, fit: BoxFit.cover)),
+        Text(title,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineMedium),
+        Text(description,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.w100, fontSize: 13))
+      ],
+    ).animate().fade().scale();
+  }
+}

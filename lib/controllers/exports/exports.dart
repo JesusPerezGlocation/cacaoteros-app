@@ -1,3 +1,5 @@
+export 'package:surveys_app/controllers/providers/permission_camera_provider.dart';
+export 'package:surveys_app/controllers/providers/visits_surveys_provider.dart';
 export 'package:surveys_app/controllers/services/vibration_services.dart';
 export 'package:surveys_app/views/components/maps_market_components.dart';
 export 'package:surveys_app/views/widgets/no_conecction_ethernet_widget.dart';
@@ -36,3 +38,4 @@ export 'package:surveys_app/controllers/theme/palette_colors_theme.dart';
 export 'package:surveys_app/views/components/title_surveys_components.dart';
 export 'package:surveys_app/controllers/providers/beneficiaries_surveys_provider.dart';
 export 'package:surveys_app/controllers/services/no_connection_ethernet_provider.dart';
+export 'package:surveys_app/views/widgets/show_modal_permission_gallery_widget.dart';

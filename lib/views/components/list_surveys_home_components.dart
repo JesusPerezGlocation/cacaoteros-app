@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
@@ -12,6 +14,9 @@ class ListSurveysHomeComponents extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
+    final cemeraPermissionPrv = Provider.of<CameraPermissionProvider>(context);
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+
     return ListView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -41,24 +46,25 @@ class ListSurveysHomeComponents extends StatelessWidget {
           },
         ),
         SizedBox(width: size.width * .02),
-        /*capacitaciones*/
+        /*visitas*/
         StartSurveysComponents(
           title: 'Registro de visitas',
           answers: '10/50 respuestas conectar',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(dateTime),
           color: PaletteColorsTheme.principalColor,
-          onTap: () {
+          onTap: () async {
+            /*pide el permiso de camara y fotos*/
+            await cemeraPermissionPrv.requestGalleryPermission(context);
+            // await cemeraPermissionPrv.requestGalleryPermission();
+            /*limpia el provider*/
+            visitsPrv.setStatusProvider();
             /*navega a visitas*/
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => FirtSurveysVisitsScreen(
                         dateTime: DateFormat('dd/MM/yyyy').format(dateTime))));
-            // Navigator.pushNamed(
-            //   context,
-            //   MainRoutes.firtVisitsSurveys,
-            // );
           },
         ),
         SizedBox(width: size.width * .02),

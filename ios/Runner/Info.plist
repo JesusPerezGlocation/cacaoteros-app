@@ -11,12 +11,19 @@
 
     <key>NSLocationUsageDescription</key>
     <string>Necesitamos tu ubicación para obtener la latitud y longitud</string>
-	
+
     <key>NSLocationAlwaysUsageDescription</key>
     <string>Necesitamos tu ubicación para obtener la latitud y longitud</string>
+
     <!-- Permisos de tracking -->
     <key>NSUserTrackingUsageDescription</key>
     <string>Utilizamos el seguimiento para personalizar tu experiencia y proporcionar contenido relevante.</string>
+	
+    <key>NSCameraUsageDescription</key>
+    <string>Esta aplicación necesita acceder a la cámara para tomar fotos.</string>
+	
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Esta aplicación necesita acceder a la galería para seleccionar fotos.</string>
 
 
 	<key>CFBundleDevelopmentRegion</key>

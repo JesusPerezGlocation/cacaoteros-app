@@ -41,6 +41,10 @@ class StateApp extends StatelessWidget {
         /*conexión a internet */
         ChangeNotifierProvider(
             create: (context) => NoConnectionEthernetProvider()),
+        /*provider para la encuesta de visitas */
+        ChangeNotifierProvider(create: (context) => VisitsSurveysProvider()),
+        /*permisos de la camara */
+        ChangeNotifierProvider(create: (context) => CameraPermissionProvider()),
       ],
       child: const MyApp(),
     );

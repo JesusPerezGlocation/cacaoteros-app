@@ -11,4 +11,7 @@ class ImagesPaths {
   static String errorMaps = 'assets/img/error-maps.png';
   static String emptySearch = 'assets/img/emtpy-search.png';
   static String noCoordinates = 'assets/img/no-coordinates.png';
+  static String selectImage = 'assets/img/select-image.png';
+  static String errorImage = 'assets/img/error-image.png';
+  static String permissionGallery = 'assets/img/permission-gallery.png';
 }
