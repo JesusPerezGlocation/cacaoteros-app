@@ -45,9 +45,12 @@ class VisitsSurveysProvider extends ChangeNotifier {
   }
 
   /*eliminar una imagenes*/
-  void deleteOneImage(String image) {
+  void deleteOneImage(Uint8List imageBytes) {
     try {
-      _listImagesAdd.remove(image);
+      final base64Image = base64Encode(imageBytes);
+
+      _listImagesAdd.remove(base64Image);
+
       notifyListeners();
     } catch (e) {
       log('deleteOneImage $e');

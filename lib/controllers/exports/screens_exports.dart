@@ -1,3 +1,4 @@
+export 'package:surveys_app/views/screens/visits/view_image_visits_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/new_member_surveys.dart';
 export 'package:surveys_app/views/screens/beneficiaries/eleven_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/four_surveys_screen.dart';

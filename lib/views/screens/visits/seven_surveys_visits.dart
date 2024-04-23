@@ -1,13 +1,13 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla siete #7 para los registros de visita
@@ -92,16 +92,39 @@ class _ListImageSelectComponents extends StatelessWidget {
                     final base64Image = visitsPrv.listImagesAdd[index - 1];
                     final bytes = base64Decode(base64Image);
                     return FadeIn(
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: PaletteColorsTheme.greyColor,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.memory(bytes,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(ImagesPaths.errorImage)),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(15),
+                        onTap: () {
+                          if (bytes.isNotEmpty) {
+                            /*navega a la pantalla de abrir la imagen */
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ViewImageVisitsScreen(
+                                  image: bytes,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return SnackBarGlobalWidget.showSnackBar(
+                              context,
+                              'Lo sentimos, no pudimos abrir la imagen.',
+                              Icons.error_outlined,
+                              PaletteColorsTheme.redErrorColor,
+                            );
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: PaletteColorsTheme.greyColor,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.memory(bytes,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(ImagesPaths.errorImage)),
+                          ),
                         ),
                       ),
                     );
