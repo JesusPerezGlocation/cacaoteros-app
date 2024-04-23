@@ -32,7 +32,7 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
     try {
       await widget.locationProvider.getPermissionLocation(context);
       await widget.locationProvider.getLocationUser();
-      widget.locationProvider.updateMap();
+      widget.locationProvider.reloadMapUpdate();
       setState(() {});
     } catch (e) {
       log('error location $e');
@@ -120,7 +120,7 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
             )),
           ),
           title: Text(
-            'Ubicación marcada',
+            'Tu ubicación',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.start,

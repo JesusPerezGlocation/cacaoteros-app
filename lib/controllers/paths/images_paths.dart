@@ -10,4 +10,5 @@ class ImagesPaths {
   static String emptyDraft = 'assets/img/draft-empty.png';
   static String errorMaps = 'assets/img/error-maps.png';
   static String emptySearch = 'assets/img/emtpy-search.png';
+  static String noCoordinates = 'assets/img/no-coordinates.png';
 }

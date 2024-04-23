@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_dragmarker/flutter_map_dragmarker.dart';
 import 'package:iconly/iconly.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/views/widgets/show_coordinates_map_widget.dart';
 
 /*
 mapa para la pantalla #4 de encuestas de visitas
@@ -28,7 +30,11 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                 mapController: widget.provider.mapController,
                 options: MapOptions(
                   onTap: (tapPosition, point) async {
+                    /*dibuja y añade los puntos al marcador */
                     widget.provider.addMarkerPolygon(tapPosition, point);
+                    /*añade las coordenadas a la función */
+                    widget.provider.addSelectedCoordinate(point);
+                    /*efecto de vibración */
                     await VibrationServices().vibrate();
                   },
                   initialCenter: LatLng(widget.provider.latitude ?? 0.0,
@@ -67,9 +73,7 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                         onDragUpdate: (details, latLng) {},
                         size: size,
                         builder: (BuildContext context, pos, isDragging) =>
-                            const Icon(IconlyBold.location,
-                                size: 50,
-                                color: PaletteColorsTheme.principalColor),
+                            const _DotMapLocationComponent(),
                       ),
                     ],
                   ),
@@ -77,12 +81,29 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
               ),
               Positioned(
                 left: size.width * .03,
-                top: size.height * .5,
+                top: size.height * .4,
                 right: size.width * .05,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    if (widget.provider.selectedCoordinates.isNotEmpty)
+                      CircleAvatar(
+                        backgroundColor: PaletteColorsTheme.whiteColor,
+                        radius: 25,
+                        child: IconButton(
+                          onPressed: () async {
+                            /*abre la lista de coordenadas */
+                            ShowCoordinatesMapWidget.showShowCoordinates(
+                                context);
+                            VibrationServices().vibrate();
+                          },
+                          icon: const Icon(Icons.visibility_outlined),
+                        ),
+                      ).animate().fade().scale(),
+                    if (widget.provider.selectedCoordinates.isNotEmpty)
+                      SizedBox(height: size.height * .02),
+
                     /*boton para posicionar al usuario*/
                     CircleAvatar(
                       backgroundColor: PaletteColorsTheme.whiteColor,
@@ -115,7 +136,7 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                       radius: 25,
                       child: IconButton(
                         onPressed: () async {
-                          widget.provider.updateMap();
+                          widget.provider.reloadMapUpdate();
                           VibrationServices().vibrate();
                         },
                         icon: const Icon(Icons.replay_outlined),
@@ -126,5 +147,41 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
               )
             ],
           );
+  }
+}
+
+class _DotMapLocationComponent extends StatelessWidget {
+  const _DotMapLocationComponent();
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          height: size.height * .1,
+          width: size.width * .3,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: PaletteColorsTheme.principalColor.withOpacity(0.3)),
+        ),
+        Container(
+          height: size.height * .08,
+          width: size.width * .3,
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: PaletteColorsTheme.principalColor.withOpacity(0.5)),
+        ),
+        Container(
+          height: size.height * .06,
+          width: size.width * .3,
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle, color: PaletteColorsTheme.principalColor),
+          child: const Center(
+              child: Icon(IconlyBold.location,
+                  color: PaletteColorsTheme.whiteColor, size: 25)),
+        ),
+      ],
+    );
   }
 }
