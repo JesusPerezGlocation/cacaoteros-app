@@ -48,7 +48,7 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
               const LinealPercentComponent(
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
-                percent: (3 - 1) * (100 / 13) / 100,
+                percent: (3 - 1) * (100 / 8) / 100,
                 questions: '8',
                 answers: '3',
               ),

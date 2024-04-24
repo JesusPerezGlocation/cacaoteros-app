@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
@@ -24,6 +25,7 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -50,13 +52,13 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
               const LinealPercentComponent(
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
-                percent: (8 - 1) * (100 / 13) / 100,
+                percent: (8 - 1) * (100 / 8) / 100,
                 questions: '8',
                 answers: '8',
               ),
               SizedBox(height: size.height * .04),
               Text(
-                'Yo NAME USER, mayor de edad, identificado con la cédula de ciudadanía No. 93332211',
+                'Yo ${visitsPrv.beneficiaryName.text}, mayor de edad, identificado con la cédula de ciudadanía No. ${visitsPrv.beneficiaryNumDoc.text}',
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start,
@@ -68,8 +70,9 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 title: 'Ingresar lugar de expedición',
                 hintext: ' Ingresar lugar',
                 colorInputs: PaletteColorsTheme.principalColor,
+                controller: visitsPrv.placeExpeditions,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setplaceExpeditions(val),
               ),
               SizedBox(height: size.height * .04),
               //#2
@@ -78,8 +81,9 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 hintext: '',
                 colorInputs: PaletteColorsTheme.principalColor,
                 maxLine: 3,
+                controller: visitsPrv.addresBeneficiary,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setaddresBeneficiary(val),
               ),
               SizedBox(height: size.height * .04),
               //#3
@@ -89,8 +93,9 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 keyboardType: TextInputType.number,
                 maxLength: 10,
                 colorInputs: PaletteColorsTheme.principalColor,
+                controller: visitsPrv.numberPhone,
                 validator: (val) => ValidationInputs.validatePhoneNumber(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setnumberPhone(val),
               ),
               SizedBox(height: size.height * .04),
               //#4
@@ -98,20 +103,21 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 title: 'Ingresar firma',
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureKey,
-                isViewButton: true,
-                onSet: (val) {},
-                onDelete: () {},
+                isViewButton: visitsPrv.signature.isEmpty ? true : false,
+                onSet: (val) => visitsPrv.setSignature(val),
+                onDelete: () => visitsPrv.setdeleteSignature(),
               ),
               SizedBox(height: size.height * .02),
               //#5
               CheckbuttonComponent(
                 title: 'Aceptar tratamientos de datos',
-                check: false,
+                check: visitsPrv.isAcceptsTerm,
                 colorButton: PaletteColorsTheme.principalColor,
-                onPressed: () {},
+                onPressed: () =>
+                    TermAndConditionsShowModal.showModalVisitsTerm(context),
               ),
 
-              SizedBox(height: size.height * .06),
+              SizedBox(height: size.height * .01),
               //button
               ButtonComponents(
                 title: 'Continuar',

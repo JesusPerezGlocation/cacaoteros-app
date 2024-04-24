@@ -268,6 +268,49 @@ class VisitsSurveysProvider extends ChangeNotifier {
     }
   }
 
+  //*PANTALLA #8*/
+
+  final TextEditingController _placeExpeditions = TextEditingController();
+  TextEditingController get placeExpeditions => _placeExpeditions;
+  final TextEditingController _addresBeneficiary = TextEditingController();
+  TextEditingController get addresBeneficiary => _addresBeneficiary;
+  final TextEditingController _numberPhone = TextEditingController();
+  TextEditingController get numberPhone => _numberPhone;
+  String _signature = '';
+  String get signature => _signature;
+  bool _isAcceptsTerm = false;
+  bool get isAcceptsTerm => _isAcceptsTerm;
+
+  setplaceExpeditions(String val) {
+    _placeExpeditions.text = val; //lugar de expdeción
+    notifyListeners();
+  }
+
+  setaddresBeneficiary(String val) {
+    _addresBeneficiary.text = val; // dirección del beneficario
+    notifyListeners();
+  }
+
+  setnumberPhone(String val) {
+    _numberPhone.text = val; // telefono del beneficiario
+    notifyListeners();
+  }
+
+  setSignature(String signature) {
+    _signature = signature; //set la firma
+    notifyListeners();
+  }
+
+  setdeleteSignature() {
+    _signature = ''; //elimina la firma del beneficiario
+    notifyListeners();
+  }
+
+  setAcceptsTerm(bool val) {
+    _isAcceptsTerm = val;
+    notifyListeners();
+  }
+
   /*limpia los campos de los proivider */
   cleanProvider() {
     _listImagesAdd.clear();
@@ -292,6 +335,12 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
     _signatureBeneficiary = '';
     _signatureTecns = '';
+
+    _placeExpeditions.clear();
+    _addresBeneficiary.clear();
+    _numberPhone.clear();
+    _signature = '';
+    _isAcceptsTerm = false;
 
     notifyListeners();
   }

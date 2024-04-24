@@ -58,7 +58,7 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                 const LinealPercentComponent(
                   colorOne: PaletteColorsTheme.principalColor,
                   colorTwo: PaletteColorsTheme.principalColor,
-                  percent: (1 - 1) * (100 / 13) / 100,
+                  percent: (1 - 1) * (100 / 8) / 100,
                   questions: '8',
                   answers: '1',
                 ),

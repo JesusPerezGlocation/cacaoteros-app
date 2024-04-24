@@ -45,7 +45,7 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
               const LinealPercentComponent(
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
-                percent: (5 - 1) * (100 / 13) / 100,
+                percent: (5 - 1) * (100 / 8) / 100,
                 questions: '8',
                 answers: '5',
               ),
