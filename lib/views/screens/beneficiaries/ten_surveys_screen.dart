@@ -55,7 +55,7 @@ class _TenSurveysScreenState extends State<TenSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (10 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '10',
               ),
 

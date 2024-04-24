@@ -51,7 +51,7 @@ class _SecondSurveysScreenState extends State<SecondSurveysScreen> {
               SizedBox(height: size.height * .02),
               const LinealPercentComponent(
                 percent: (2 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '2',
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,

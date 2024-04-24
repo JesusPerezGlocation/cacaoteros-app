@@ -54,7 +54,7 @@ class _SevenSurveysScreenState extends State<SevenSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (7 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '7',
               ),
               SizedBox(height: size.height * .04),

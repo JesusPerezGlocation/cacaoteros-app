@@ -44,7 +44,7 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
                 percent: (5 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '8',
                 answers: '5',
               ),
               SizedBox(height: size.height * .04),

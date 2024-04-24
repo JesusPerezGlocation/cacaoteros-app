@@ -57,7 +57,7 @@ class _FiveSurveysScreenState extends State<FiveSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (5 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '5',
               ),
               SizedBox(height: size.height * .04),

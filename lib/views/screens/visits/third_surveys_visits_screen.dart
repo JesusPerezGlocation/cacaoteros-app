@@ -49,7 +49,7 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
                 percent: (3 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '8',
                 answers: '3',
               ),
               SizedBox(height: size.height * .04),

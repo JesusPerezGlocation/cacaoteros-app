@@ -44,7 +44,7 @@ class _SecondSurveysVisitsScreenState extends State<SecondSurveysVisitsScreen> {
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
                 percent: (2 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '8',
                 answers: '2',
               ),
               SizedBox(height: size.height * .04),

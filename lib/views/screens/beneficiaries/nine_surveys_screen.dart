@@ -58,7 +58,7 @@ class _NineSurveysScreenState extends State<NineSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (9 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '9',
               ),
 

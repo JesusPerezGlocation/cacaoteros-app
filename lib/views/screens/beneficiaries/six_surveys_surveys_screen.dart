@@ -74,7 +74,7 @@ class _SixSurveysScreenState extends State<SixSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (6 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '6',
               ),
               SizedBox(height: size.height * .04),

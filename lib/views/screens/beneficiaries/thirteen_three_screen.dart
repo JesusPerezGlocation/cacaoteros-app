@@ -54,7 +54,7 @@ class _ThirteenurveysScreenState extends State<ThirteenurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (13 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '13',
               ),
               SizedBox(height: size.height * .04),

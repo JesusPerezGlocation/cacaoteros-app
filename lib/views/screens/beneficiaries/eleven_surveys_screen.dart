@@ -49,7 +49,7 @@ class _ElevenSurveysScreenState extends State<ElevenSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (11 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '11',
               ),
               SizedBox(height: size.height * .04),

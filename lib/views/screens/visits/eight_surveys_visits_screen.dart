@@ -51,7 +51,7 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
                 percent: (8 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '8',
                 answers: '8',
               ),
               SizedBox(height: size.height * .04),

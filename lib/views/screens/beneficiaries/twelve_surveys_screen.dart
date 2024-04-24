@@ -53,7 +53,7 @@ class _TwelveSurveysScreenState extends State<TwelveSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (12 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '12',
               ),
               SizedBox(height: size.height * .04),

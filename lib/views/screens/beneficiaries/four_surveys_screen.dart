@@ -54,7 +54,7 @@ class _FourSurveysScreenState extends State<FourSurveysScreen> {
                 colorOne: PaletteColorsTheme.secondaryColor,
                 colorTwo: PaletteColorsTheme.colorMagentaTwo,
                 percent: (4 - 1) * (100 / 13) / 100,
-                questions: '30',
+                questions: '13',
                 answers: '4',
               ),
               SizedBox(height: size.height * .04),

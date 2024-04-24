@@ -52,7 +52,7 @@ class LinealPercentComponent extends StatelessWidget {
                     fontSize: 11),
                 children: [
                   TextSpan(
-                    text: ' de 13 pantallas',
+                    text: ' de $questions pantallas',
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: PaletteColorsTheme.blackColor,
                         fontWeight: FontWeight.w100,
