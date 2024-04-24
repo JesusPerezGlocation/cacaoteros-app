@@ -58,7 +58,7 @@ class ListSurveysHomeComponents extends StatelessWidget {
             await cemeraPermissionPrv.requestGalleryPermission(context);
             // await cemeraPermissionPrv.requestGalleryPermission();
             /*limpia el provider*/
-            visitsPrv.setStatusProvider();
+            visitsPrv.cleanProvider();
             /*navega a visitas*/
             Navigator.push(
                 context,

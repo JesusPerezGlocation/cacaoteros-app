@@ -399,3 +399,130 @@ class _ContainerShowModalThreeState extends State<_ContainerShowModalThree> {
     });
   }
 }
+
+// /*seleccionar municipios en la encuesta de visitas */
+// class _ContainerShowModalVisitsMunicipality extends StatefulWidget {
+//   const _ContainerShowModalVisitsMunicipality({super.key});
+
+//   @override
+//   State<_ContainerShowModalVisitsMunicipality> createState() =>
+//       _ContainerShowModalVisitsMunicipalityState();
+// }
+
+// class _ContainerShowModalVisitsMunicipalityState
+//     extends State<_ContainerShowModalVisitsMunicipality> {
+//   @override
+//   Widget build(BuildContext context) {
+//     final size = MediaQuery.of(context).size;
+//     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+//     return Container(
+//       height: size.height * 0.8,
+//       width: size.width,
+//       decoration: const BoxDecoration(
+//           color: PaletteColorsTheme.whiteColor,
+//           borderRadius: BorderRadius.only(
+//               topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+//       child: Column(
+//         children: [
+//           TitleAndCloseModal(
+//               title: 'MUNICIPIO > ${visitsPrv.selectDepartment.text}'),
+//           if (FilterPlacesServices.getMunicipalitiesByDepartment(
+//                   visitsPrv.selectDepartment.text)
+//               .isEmpty)
+//             const IsEmptyDataComponent(title: 'No se encontraron municipios')
+//           else
+//             Expanded(
+//               child: FutureBuilder<List<MunicipalitiesModels>>(
+//                 future: fetchMunicipalities(visitsPrv.selectDepartment.text),
+//                 builder: (context, snapshot) {
+//                   if (snapshot.connectionState == ConnectionState.waiting) {
+//                     return const LoadingAppComponent();
+//                   } else if (snapshot.hasError) {
+//                     return Center(child: Text('Error: ${snapshot.error}'));
+//                   } else {
+//                     final places = snapshot.data!;
+//                     return FadeIn(
+//                       child: ListView.separated(
+//                         itemCount: places.length,
+//                         separatorBuilder: (context, index) => const Divider(),
+//                         physics: const BouncingScrollPhysics(),
+//                         keyboardDismissBehavior:
+//                             ScrollViewKeyboardDismissBehavior.onDrag,
+//                         itemBuilder: (context, index) {
+//                           final data = places[index];
+//                           return ListTile(
+//                             onTap: () {
+//                               visitsPrv.selectMunicipality.text = data.vereda;
+
+//                               visitsPrv.setselectMunicipality(data.vereda);
+
+//                               /*codigo de la vereda*/
+//                               surveysPRV.codePlace.text = data.codMVer;
+//                               surveysPRV.setCodePlace(data.codMVer);
+
+//                               Navigator.pop(context);
+//                             },
+//                             leading: const Icon(IconlyLight.location),
+//                             title: Text(
+//                               data.vereda,
+//                               maxLines: 1,
+//                               overflow: TextOverflow.ellipsis,
+//                               textAlign: TextAlign.start,
+//                               style: Theme.of(context).textTheme.titleMedium,
+//                             ),
+//                             trailing: const Icon(IconlyLight.arrow_right_2),
+//                           );
+//                         },
+//                       ),
+//                     );
+//                   }
+//                 },
+//               ),
+//             ),
+//           if (FilterPlacesServices.getVeredasByMunicipio(
+//                   surveysPRV.municipality.text)
+//               .isNotEmpty)
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.center,
+//               children: [
+//                 ElevatedButton(
+//                   onPressed: currentPage > 1 ? previousPage : null,
+//                   child: const Text('Anterior'),
+//                 ),
+//                 const SizedBox(width: 10),
+//                 ElevatedButton(
+//                   onPressed: hasNextPage ? nextPage : null,
+//                   child: const Text('Siguiente'),
+//                 ),
+//               ],
+//             ),
+//         ],
+//       ),
+//     );
+//   }
+
+//   Future<List<MunicipalitiesModels>> fetchMunicipalities(
+//       String municipality) async {
+//     final places = FilterPlacesServices.getVeredasByMunicipio(
+//       municipality,
+//       page: currentPage,
+//       pageSize: pageSize,
+//     );
+
+//     hasNextPage = places.length == pageSize;
+
+//     return places;
+//   }
+
+//   void nextPage() {
+//     setState(() {
+//       currentPage++;
+//     });
+//   }
+
+//   void previousPage() {
+//     setState(() {
+//       currentPage--;
+//     });
+//   }
+// }

@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -20,6 +21,7 @@ class _SecondSurveysVisitsScreenState extends State<SecondSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -49,21 +51,34 @@ class _SecondSurveysVisitsScreenState extends State<SecondSurveysVisitsScreen> {
               ),
               SizedBox(height: size.height * .04),
               //#
-              InputDesabledComponents(
-                title: 'Seleccionar departamento',
-                hintext: ' Seleccionar',
-                colorInputs: PaletteColorsTheme.principalColor,
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) {},
+              InkWell(
+                onTap: () => ShowModalSelectWidget.showModalReusableDepartments(
+                  context,
+                  visitsPrv.selectDepartment,
+                  visitsPrv.codeDepartament,
+                  (deparment) => visitsPrv.setselectDepartment(deparment),
+                  (code) => visitsPrv.setCodeDepartament(code),
+                ),
+                child: InputDesabledComponents(
+                  title: 'Seleccionar departamento',
+                  hintext: ' Seleccionar',
+                  controller: visitsPrv.selectDepartment,
+                  colorInputs: PaletteColorsTheme.principalColor,
+                  validator: (val) => ValidationInputs.inputTypeSelect(val),
+                  onChanged: (val) => visitsPrv.setselectDepartment(val),
+                ),
               ),
               SizedBox(height: size.height * .04),
               //#
-              InputDesabledComponents(
-                title: 'Seleccionar municipio',
-                hintext: ' Seleccionar',
-                colorInputs: PaletteColorsTheme.principalColor,
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) {},
+              InkWell(
+                onTap: () {},
+                child: InputDesabledComponents(
+                  title: 'Seleccionar municipio',
+                  hintext: ' Seleccionar',
+                  colorInputs: PaletteColorsTheme.principalColor,
+                  validator: (val) => ValidationInputs.inputTypeSelect(val),
+                  onChanged: (val) {},
+                ),
               ),
               SizedBox(height: size.height * .04),
               //#

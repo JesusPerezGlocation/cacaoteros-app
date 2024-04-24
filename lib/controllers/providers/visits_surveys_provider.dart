@@ -12,6 +12,45 @@ import 'package:image_picker/image_picker.dart';
 provider para las encuestas de visitas
 */
 class VisitsSurveysProvider extends ChangeNotifier {
+//*PANTALLA #1------*/
+
+  final TextEditingController _beneficiaryName = TextEditingController();
+  TextEditingController get beneficiaryName => _beneficiaryName;
+  final TextEditingController _beneficiaryNumDoc = TextEditingController();
+  TextEditingController get beneficiaryNumDoc => _beneficiaryNumDoc;
+  final TextEditingController _selectDepartment = TextEditingController();
+  TextEditingController get selectDepartment => _selectDepartment;
+  final TextEditingController _codeDepartament = TextEditingController();
+  TextEditingController get codeDepartament => _codeDepartament;
+  final TextEditingController _selectMunicipality = TextEditingController();
+  TextEditingController get selectMunicipality => _selectMunicipality;
+
+  setBeneficiaryName(String val) {
+    _beneficiaryName.text = val; // nombre del beneficiario
+    notifyListeners();
+  }
+
+  setbeneficiaryNumDoc(String val) {
+    _beneficiaryNumDoc.text = val; // número de documento del beneficiario
+    notifyListeners();
+  }
+
+  setselectDepartment(String val) {
+    _selectDepartment.text = val; //seleccionar departamentos
+    notifyListeners();
+  }
+
+  setCodeDepartament(String val) {
+    _codeDepartament.text = val; //codigo del departamento
+
+    notifyListeners();
+  }
+
+  setselectMunicipality(String val) {
+    _selectMunicipality.text = val; //seleccionar municipio
+    notifyListeners();
+  }
+
 //*PANTALLA #7-----*/
   final List<String> _listImagesAdd = [];
   List<String> get listImagesAdd => _listImagesAdd;
@@ -67,12 +106,6 @@ class VisitsSurveysProvider extends ChangeNotifier {
     }
   }
 
-  /*estado inicial del provider */
-  void setStatusProvider() {
-    _listImagesAdd.clear();
-    notifyListeners();
-  }
-
 /*abre la camara del usuario*/
   Future dataPickerImage() async {
     try {
@@ -111,5 +144,15 @@ class VisitsSurveysProvider extends ChangeNotifier {
     } catch (e) {
       log('dataPickerImage $e');
     }
+  }
+
+  /*limpia los campos de los proivider */
+  cleanProvider() {
+    _listImagesAdd.clear();
+    _beneficiaryName.clear();
+    _beneficiaryNumDoc.clear();
+    _selectDepartment.clear();
+    _selectMunicipality.clear();
+    notifyListeners();
   }
 }

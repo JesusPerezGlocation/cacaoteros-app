@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -26,6 +27,7 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -74,9 +76,10 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   title: 'Nombre del beneficiario',
                   hintext: ' Ingresar nombre',
                   textInputAction: TextInputAction.next,
-                  validator: (val) => ValidationInputs.inputEmpty(val),
+                  controller: visitsPrv.beneficiaryName,
                   colorInputs: PaletteColorsTheme.principalColor,
-                  onChanged: (val) {},
+                  validator: (val) => ValidationInputs.inputEmpty(val),
+                  onChanged: (val) => visitsPrv.setBeneficiaryName(val),
                 ),
                 SizedBox(height: size.height * .04),
                 //#
@@ -85,9 +88,10 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   hintext: ' Ingresar número de cédula',
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
-                  validator: (val) => ValidationInputs.inputEmpty(val),
                   colorInputs: PaletteColorsTheme.principalColor,
-                  onChanged: (val) {},
+                  controller: visitsPrv.beneficiaryNumDoc,
+                  validator: (val) => ValidationInputs.inputEmpty(val),
+                  onChanged: (val) => visitsPrv.setbeneficiaryNumDoc(val),
                 ),
                 SizedBox(height: size.height * .06),
                 //#
