@@ -1,8 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -16,7 +19,7 @@ class ListSurveysHomeComponents extends StatelessWidget {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     final cemeraPermissionPrv = Provider.of<CameraPermissionProvider>(context);
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
-
+    final isiOS = Platform.isIOS;
     return ListView(
       scrollDirection: Axis.horizontal,
       physics: const BouncingScrollPhysics(),
@@ -55,7 +58,11 @@ class ListSurveysHomeComponents extends StatelessWidget {
           color: PaletteColorsTheme.principalColor,
           onTap: () async {
             /*pide el permiso de camara y fotos*/
-            await cemeraPermissionPrv.requestGalleryPermission(context);
+            if (isiOS) {
+              await cemeraPermissionPrv.requestCameraPermission(context);
+            } else {
+              await Permission.camera.request();
+            }
             // await cemeraPermissionPrv.requestGalleryPermission();
             /*limpia el provider*/
             visitsPrv.cleanProvider();

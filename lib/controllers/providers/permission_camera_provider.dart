@@ -18,7 +18,7 @@ class CameraPermissionProvider extends ChangeNotifier {
 
   /*metodo para solicitar permiso de cámara */
   Future<void> requestCameraPermission(BuildContext context) async {
-    // await Permission.camera.request();
+    await Permission.camera.request();
     final status = await Permission.camera.request();
 
     if (status.isDenied) {

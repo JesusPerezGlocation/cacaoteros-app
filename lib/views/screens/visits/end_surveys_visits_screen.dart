@@ -9,8 +9,8 @@ class EndSurveysVisitsScreen extends StatelessWidget {
   const EndSurveysVisitsScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final ethernetProvider = Provider.of<NetworkStatus>(context);
+    // final size = MediaQuery.of(context).size;
+    // final ethernetProvider = Provider.of<NetworkStatus>(context);
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(),
