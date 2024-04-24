@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
-import 'package:surveys_app/views/screens/visits/seven_surveys_visits.dart';
 
 /*
 manejo de rutas, de forma optmizada, en caso de usar solo se debe llamar la clase y a la ruta que se quiere navegar
@@ -33,6 +32,7 @@ class MainRoutes {
   static const fiveVisitsSurveysRoute = '/five_visits_surveys_route';
   static const sixVisitsSurveysRoute = '/six_visits_surveys_route';
   static const sevenVisitsSurveysRoute = '/seven_visits_surveys_route';
+  static const eightVisitsSurveysRoute = '/eight_visits_surveys_route';
   // static const firtVisitsSurveys = '/firt_visits_surveys_route';
   // static const fourVisitsSurveysRoute = '/four_visits_surveys_route';
 
@@ -69,5 +69,6 @@ class MainRoutes {
     sixVisitsSurveysRoute: (_) => const SixSurveysVisitsScreen(),
     sevenVisitsSurveysRoute: (_) => const SevenSurveysVisitsScreen(),
     // fourVisitsSurveysRoute: (_) => const FourSurveysVisitsScreen(),
+    eightVisitsSurveysRoute: (_) => const EightSurveysVisitsScreen(),
   };
 }

@@ -142,7 +142,11 @@ class _ListImageSelectComponents extends StatelessWidget {
             title: 'Continuar',
             colorButton: PaletteColorsTheme.principalColor,
             onPressed: () {
-              //todo: debe llevar a la siguiente pantalla
+              /*Navega a la pantalla #8*/
+              Navigator.pushNamed(
+                context,
+                MainRoutes.eightVisitsSurveysRoute,
+              );
             },
           ),
         ],
