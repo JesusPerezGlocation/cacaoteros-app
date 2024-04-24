@@ -63,8 +63,8 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
               SizedBox(height: size.height * .04),
               //#2
               InputsComponent(
-                title: 'Ingresar situación encontrada',
-                hintext: ' Ingresar situación',
+                title: 'Ingresar descripción del proyecto',
+                hintext: ' Ingresar descripción',
                 maxLine: 4,
                 controller: visitsPrv.situationFound,
                 colorInputs: PaletteColorsTheme.principalColor,

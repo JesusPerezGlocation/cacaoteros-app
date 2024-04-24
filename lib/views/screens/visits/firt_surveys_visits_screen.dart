@@ -71,9 +71,9 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: size.height * .02),
-                //#
+                //#1
                 InputsComponent(
-                  title: 'Nombre del beneficiario',
+                  title: 'Ingresar nombre del beneficiario',
                   hintext: ' Ingresar nombre',
                   textInputAction: TextInputAction.next,
                   controller: visitsPrv.beneficiaryName,
@@ -82,10 +82,10 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   onChanged: (val) => visitsPrv.setBeneficiaryName(val),
                 ),
                 SizedBox(height: size.height * .04),
-                //#
+                //#2
                 InputsComponent(
-                  title: 'Número de cédula del beneficiario',
-                  hintext: ' Ingresar número de cédula',
+                  title: 'Ingresar número de documento del beneficiario',
+                  hintext: ' Ingresar número de documento',
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.done,
                   colorInputs: PaletteColorsTheme.principalColor,
@@ -99,6 +99,7 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   title: 'Continuar',
                   colorButton: PaletteColorsTheme.principalColor,
                   onPressed: () {
+                    visitsPrv.setdateTimeSurveys(widget.dateTime);
                     /*navega a la segunda pantalla  */
                     Navigator.pushNamed(
                       context,

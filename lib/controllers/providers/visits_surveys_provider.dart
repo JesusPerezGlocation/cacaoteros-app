@@ -4,15 +4,21 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image/image.dart' as img;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 provider para las encuestas de visitas
 */
 class VisitsSurveysProvider extends ChangeNotifier {
+/*instancia*/
+  final CollectionReference databaseReference =
+      FirebaseFirestore.instance.collection(ApiPaths.visitstesting);
+
 //*PANTALLA #1------*/
 
   final TextEditingController _beneficiaryName = TextEditingController();
@@ -29,10 +35,16 @@ class VisitsSurveysProvider extends ChangeNotifier {
   TextEditingController get codeMunicipality => _codeMunicipality;
   final TextEditingController _place = TextEditingController(); //vereda
   TextEditingController get place => _place;
-
   final TextEditingController _codePlace =
       TextEditingController(); //codigo vereda
   TextEditingController get codePlace => _codePlace;
+  String _idSurveys = '';
+  String get idSurveys => _idSurveys;
+  String _dateCreateSurvey = '';
+  String get dateCreateSurvey => _dateCreateSurvey;
+
+  String _dateTimeSurveys = '';
+  String get dateTimeSurveys => _dateTimeSurveys;
 
   setBeneficiaryName(String val) {
     _beneficiaryName.text = val; // nombre del beneficiario
@@ -75,11 +87,24 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  setdateCreateSurvey(String time) {
+    _dateCreateSurvey = time; //fecha de creación de la encuesta
+    notifyListeners();
+  }
+
+  setdateTimeSurveys(String time) {
+    _dateTimeSurveys =
+        time; //fecha general de la encuesta, que se mira arriba de la primeera pantalla ej. day/month/year
+    notifyListeners();
+  }
+
   //*PANTALLA #3------*/
   final TextEditingController _nameFarm = TextEditingController();
   TextEditingController get nameFarm => _nameFarm;
   final TextEditingController _areaFarm = TextEditingController();
   TextEditingController get areaFarm => _areaFarm;
+  final TextEditingController _areaCocoaFarm = TextEditingController();
+  TextEditingController get areaCocoaFarm => _areaCocoaFarm;
 
   setnameFarm(String val) {
     _nameFarm.text = val; // nombre de la finca
@@ -91,11 +116,25 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  setareaCocoaFarm(String val) {
+    _areaCocoaFarm.text = val; //area de cacao
+    notifyListeners();
+  }
+
 //*PANTALLA #4-------*/
 
   String _latLngString = '';
   final List<String> _listSendCoordinates = [];
   List<String> get listSendCoordinates => _listSendCoordinates;
+
+  String _latitude = '0.0';
+  String _longitude = '0.0';
+  String _accuracy = '0.0';
+  String _altitude = '0.0';
+  String get latitude => _latitude;
+  String get longitude => _longitude;
+  String get accuracy => _accuracy;
+  String get altitude => _altitude;
 
   setCoordenates(LatLng coordinates) {
     _latLngString = '${coordinates.latitude}, ${coordinates.longitude}';
@@ -115,6 +154,15 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
 
     log('coordenadas lists: $_listSendCoordinates');
+  }
+
+  setLatAndLong(String lat, String long, String accuracy, String altitude) {
+    _latitude = lat;
+    _longitude = long;
+    _altitude = altitude;
+    _accuracy = accuracy;
+    log('lat: $_latitude long: $_longitude, alt: $_altitude, acc: $_accuracy');
+    notifyListeners();
   }
 
 //*PANTALLA #5-----*/
@@ -311,6 +359,96 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  generateIDsurveys(int id) {
+    _idSurveys = id.toString(); //genera un id para la encuesta
+    notifyListeners();
+  }
+
+  //*ENVIO DE DATOS A FIREBASE*/
+  Future<void> sendDataVisitsFirebase(BuildContext context) async {
+    try {
+      databaseReference.add({
+        /*PANTALLA #1*/
+        "SubmitterName": 'iPhoneUser',
+        "SubmitterID": _idSurveys,
+        "start": _dateCreateSurvey,
+        "ubicacionbeneficiariop4_beneficiario": _beneficiaryName.text,
+        "ubicacionbeneficiariop5_cedula": _beneficiaryNumDoc.text,
+        "ubicaciontecnicop3_fecha": _dateTimeSurveys,
+        /*PANTALLA #2*/
+        "ubicacionubicacion_fincap6_departamento": _selectDepartment.text,
+        "ubicacionubicacion_fincap6_codigo_departamento": _codeDepartament.text,
+        "ubicacionubicacion_fincap7_municipio": _selectMunicipality.text,
+        "ubicacionubicacion_fincap7_codigo_municipio": _codeMunicipality.text,
+        "ubicacionubicacion_fincap8_vereda": _place.text,
+        "ubicacionubicacion_fincap8_codigo_vereda": _codePlace.text,
+
+        /*PANTALLA #3*/
+        "ubicacioninformacion_fincap_9_nombre_finca": _nameFarm.text,
+        "ubicacioninformacion_fincap10_area_finca": _areaFarm.text,
+        "ubicacioninformacion_fincap11_area_cacao": _areaCocoaFarm.text,
+
+        /*PANTALLA #4*/
+        "coordenadasp22_poligono": _latLngString,
+        "startgeopointLatitude": _latitude,
+        "startgeopointLongitude": _longitude,
+        "startgeopointAccuracy": _accuracy,
+        "startgeopointAltitude": _altitude,
+
+        /*PANTALLA #5*/
+        "situacion_actualvisitap14_objetivo_visita": _objectiveVisit.text,
+        "situacion_actualvisitap13_descripcion_proyecto": _situationFound
+            .text, //aqui pase la descripción x situacion encontrada
+        "situacion_actualvisita_resultadop19_recomendaciones":
+            _recomendations.text,
+        "situacion_actualvisita_resultadop18_compromisos":
+            _beneficiaryCommitment.text,
+
+        /*PANTALLA #6*/
+
+        /*PANTALLA #*/
+        /*PANTALLA #*/
+        /*PANTALLA #*/
+        /*PANTALLA #*/
+        /*PANTALLA #*/
+
+        "datos_personalespdp_direccion": '',
+        "datos_personalespdp_fecha_nota": '',
+        "datos_personalespdp_firma": '',
+        "datos_personalespdp_lugar": '',
+        "datos_personalespdp_nota": '',
+        "datos_personalespdp_nota3": '',
+        "datos_personalespdp_nota4": '',
+        "datos_personalespdp_telefono": '',
+        "end": "2024-04-10T17:14:56.195-05:00",
+        "firmasp20_firma_agricultor": '',
+        "firmasp21_firma_tecnico": '',
+        "metainstanceID": '',
+        "ubicacioninformacion_fincap_visita": '',
+        "registroregistro_fotograficop23_foto_registro": '',
+        "ubicaciontecniconota_inicial": '',
+        "ubicaciontecnicop_fecha_nota": '',
+      }).then((_) {
+        /*si los datos se enviaron con exito*/
+
+        notifyListeners();
+        return SnackBarGlobalWidget.showSnackBar(
+            context,
+            '¡Datos enviados con éxito!',
+            Icons.check_circle_rounded,
+            PaletteColorsTheme.principalColor);
+      }).catchError((error) {
+        /*si ocurre un error, muestra un mensaje de error */
+        return SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
+            Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+      });
+    } catch (e) {
+      log('error:$e');
+      SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+          Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+    }
+  }
+
   /*limpia los campos de los proivider */
   cleanProvider() {
     _listImagesAdd.clear();
@@ -341,6 +479,10 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _numberPhone.clear();
     _signature = '';
     _isAcceptsTerm = false;
+
+    _idSurveys = '';
+    _dateCreateSurvey = '';
+    _dateTimeSurveys = '';
 
     notifyListeners();
   }

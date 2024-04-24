@@ -47,8 +47,10 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
         extendBodyBehindAppBar: true,
         bottomNavigationBar: _BottonNavigatorMapComponents(
           visitsPrv: visitsPrv,
-          data:
-              '${widget.locationProvider.latitude} - ${widget.locationProvider.latitude}',
+          lat: '${widget.locationProvider.latitude}',
+          long: '${widget.locationProvider.latitude}',
+          accuracy: '${widget.locationProvider.accuracy}',
+          altitude: '${widget.locationProvider.altitude}',
         ),
         appBar: AppBar(actions: [
           SaveIconDraftComponents(
@@ -88,11 +90,16 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
 componente para el boton del mapa y que navegue a la sig pantalla 
 */
 class _BottonNavigatorMapComponents extends StatelessWidget {
-  final String data;
+  final String lat;
+  final String long;
+  final String accuracy;
+  final String altitude;
   final VisitsSurveysProvider visitsPrv;
-
   const _BottonNavigatorMapComponents({
-    required this.data,
+    required this.lat,
+    required this.long,
+    required this.accuracy,
+    required this.altitude,
     required this.visitsPrv,
   });
   @override
@@ -136,7 +143,7 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           subtitle: Text(
-            data,
+            '$lat, $long',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.start,
@@ -149,6 +156,8 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
           colorButton: PaletteColorsTheme.principalColor,
           onPressed: () {
             if (visitsPrv.listSendCoordinates.isNotEmpty) {
+              /*setea la lat y long*/
+              visitsPrv.setLatAndLong(lat, long, accuracy, altitude);
               /*navega a la pantalla #5 */
               Navigator.pushNamed(
                 context,
