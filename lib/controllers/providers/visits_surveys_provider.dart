@@ -24,6 +24,14 @@ class VisitsSurveysProvider extends ChangeNotifier {
   TextEditingController get codeDepartament => _codeDepartament;
   final TextEditingController _selectMunicipality = TextEditingController();
   TextEditingController get selectMunicipality => _selectMunicipality;
+  final TextEditingController _codeMunicipality = TextEditingController();
+  TextEditingController get codeMunicipality => _codeMunicipality;
+  final TextEditingController _place = TextEditingController(); //vereda
+  TextEditingController get place => _place;
+
+  final TextEditingController _codePlace =
+      TextEditingController(); //codigo vereda
+  TextEditingController get codePlace => _codePlace;
 
   setBeneficiaryName(String val) {
     _beneficiaryName.text = val; // nombre del beneficiario
@@ -48,6 +56,21 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
   setselectMunicipality(String val) {
     _selectMunicipality.text = val; //seleccionar municipio
+    notifyListeners();
+  }
+
+  setCodeMunicipality(String val) {
+    _codeMunicipality.text = val; //codigo del municipio
+    notifyListeners();
+  }
+
+  setPlace(String date) {
+    _place.text = date; //vereda
+    notifyListeners();
+  }
+
+  setCodePlace(String val) {
+    _codePlace.text = val;
     notifyListeners();
   }
 

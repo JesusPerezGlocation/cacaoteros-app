@@ -71,23 +71,43 @@ class _SecondSurveysVisitsScreenState extends State<SecondSurveysVisitsScreen> {
               SizedBox(height: size.height * .04),
               //#
               InkWell(
-                onTap: () {},
+                onTap: () =>
+                    ShowModalSelectWidget.showModalReusableMunicipality(
+                  context,
+                  visitsPrv.selectDepartment,
+                  visitsPrv.selectMunicipality,
+                  visitsPrv.codeMunicipality,
+                  (department) => visitsPrv.setselectMunicipality(department),
+                  (code) => visitsPrv.setCodeMunicipality(code),
+                ),
                 child: InputDesabledComponents(
                   title: 'Seleccionar municipio',
                   hintext: ' Seleccionar',
+                  controller: visitsPrv.selectMunicipality,
                   colorInputs: PaletteColorsTheme.principalColor,
                   validator: (val) => ValidationInputs.inputTypeSelect(val),
-                  onChanged: (val) {},
+                  onChanged: (val) => visitsPrv.setselectMunicipality(val),
                 ),
               ),
               SizedBox(height: size.height * .04),
               //#
-              InputDesabledComponents(
-                title: 'Seleccionar vereda',
-                hintext: ' Seleccionar',
-                colorInputs: PaletteColorsTheme.principalColor,
-                validator: (val) => ValidationInputs.inputTypeSelect(val),
-                onChanged: (val) {},
+              InkWell(
+                onTap: () => ShowModalSelectWidget.showModalReusableVereda(
+                  context,
+                  visitsPrv.selectMunicipality,
+                  visitsPrv.place,
+                  visitsPrv.codePlace,
+                  (department) => visitsPrv.setPlace(department),
+                  (code) => visitsPrv.setCodePlace(code),
+                ),
+                child: InputDesabledComponents(
+                  title: 'Seleccionar vereda',
+                  hintext: ' Seleccionar',
+                  controller: visitsPrv.place,
+                  colorInputs: PaletteColorsTheme.principalColor,
+                  validator: (val) => ValidationInputs.inputTypeSelect(val),
+                  onChanged: (val) => visitsPrv.setPlace(val),
+                ),
               ),
               SizedBox(height: size.height * .06),
               ButtonComponents(
