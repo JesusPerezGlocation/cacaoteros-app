@@ -139,14 +139,25 @@ class _ListImageSelectComponents extends StatelessWidget {
               ),
             ),
           ButtonComponents(
-            title: 'Continuar',
+            title: visitsPrv.listImagesAdd.isNotEmpty
+                ? 'Continuar (${visitsPrv.listImagesAdd.length})'
+                : 'Continuar',
             colorButton: PaletteColorsTheme.principalColor,
             onPressed: () {
-              /*Navega a la pantalla #8*/
-              Navigator.pushNamed(
-                context,
-                MainRoutes.eightVisitsSurveysRoute,
-              );
+              if (visitsPrv.listImagesAdd.isNotEmpty) {
+                /*Navega a la pantalla #8*/
+                Navigator.pushNamed(
+                  context,
+                  MainRoutes.eightVisitsSurveysRoute,
+                );
+              } else {
+                return SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  'Por favor seleccione una o más imagenes',
+                  Icons.error_rounded,
+                  PaletteColorsTheme.redErrorColor,
+                );
+              }
             },
           ),
         ],

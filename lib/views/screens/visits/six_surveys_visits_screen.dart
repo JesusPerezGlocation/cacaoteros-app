@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -24,6 +25,7 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -57,7 +59,10 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 title: 'Firma del beneficiario',
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signBeneficiary,
-                onSet: (val) {},
+                isViewButton:
+                    visitsPrv.signatureBeneficiary.isEmpty ? true : false,
+                onSet: (val) => visitsPrv.setSignatureBeneficiary(val),
+                onDelete: () => visitsPrv.deleteSignatureBeneficiary(),
               ),
               SizedBox(height: size.height * .04),
               //#2
@@ -65,7 +70,9 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 title: 'Firma del técnico',
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureTecnh,
-                onSet: (val) {},
+                isViewButton: visitsPrv.signatureTecns.isEmpty ? true : false,
+                onSet: (val) => visitsPrv.setSignatureTecns(val),
+                onDelete: () => visitsPrv.deleteSignatureTecns(),
               ),
               SizedBox(height: size.height * .06),
               /*button*/
@@ -73,11 +80,21 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
-                  //todo: !!!en caso de que el contralador de la firma este vacia no lo debe dejar navegar
-                  Navigator.pushNamed(
-                    context,
-                    MainRoutes.sevenVisitsSurveysRoute,
-                  );
+                  if (visitsPrv.signatureBeneficiary.isNotEmpty &&
+                      visitsPrv.signatureTecns.isNotEmpty) {
+                    /*navega a la siguiente pantalla*/
+                    Navigator.pushNamed(
+                      context,
+                      MainRoutes.sevenVisitsSurveysRoute,
+                    );
+                  } else {
+                    return SnackBarGlobalWidget.showSnackBar(
+                      context,
+                      'Por favor ingrese la firma',
+                      Icons.error_rounded,
+                      PaletteColorsTheme.redErrorColor,
+                    );
+                  }
                 },
               ),
               SizedBox(height: size.height * .06),

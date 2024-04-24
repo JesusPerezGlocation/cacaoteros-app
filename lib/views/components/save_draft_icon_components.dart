@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 icon button para guardar los datos en las cookies del dispositivo
@@ -23,5 +24,39 @@ class SaveIconDraftComponents extends StatelessWidget {
           size: 30,
           color: color,
         ));
+  }
+}
+
+/*circular avatar para guardar en borrador*/
+
+class CircleAvatarSaveIconDraftComponent extends StatelessWidget {
+  final Color color;
+  final IconData? icon;
+  final Function onTap;
+  const CircleAvatarSaveIconDraftComponent({
+    super.key,
+    required this.color,
+    this.icon,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      onTap: () => onTap(),
+      child: Padding(
+        padding: EdgeInsets.only(right: size.width * .03),
+        child: CircleAvatar(
+          backgroundColor: PaletteColorsTheme.whiteColor,
+          child: Center(
+            child: Icon(
+              icon ?? IconlyLight.bookmark,
+              size: 30,
+              color: color,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

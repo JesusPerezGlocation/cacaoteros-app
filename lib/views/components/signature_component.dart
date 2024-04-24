@@ -273,14 +273,18 @@ componente para la firma de visitas o cualquier otro
 class SignatureDrawComponents extends StatefulWidget {
   final String title;
   final Color color;
+  final bool isViewButton;
   final GlobalKey<SignatureState> signatureKey;
   final Function(String val) onSet;
+  final Function onDelete;
   const SignatureDrawComponents({
     super.key,
     required this.title,
     required this.color,
+    required this.isViewButton,
     required this.signatureKey,
     required this.onSet,
+    required this.onDelete,
   });
 
   @override
@@ -349,38 +353,40 @@ class _SignatureDrawComponentsState extends State<SignatureDrawComponents> {
           SizedBox(height: size.height * .01),
           Row(
             children: [
-              SizedBox(
-                child: OutlinedButton(
-                    style: ButtonStyle(
-                        side: MaterialStatePropertyAll(
-                            BorderSide(color: widget.color, width: 1)),
-                        foregroundColor:
-                            MaterialStatePropertyAll(widget.color)),
-                    onPressed: () async {
-                      bytes =
-                          await controller.toPngBytes(width: 500, height: 500);
-                      /*Verifica que bytes no sea nulo antes de continuar */
-                      if (bytes != null) {
-                        /*Convierte los bytes de la firma a Base64 */
-                        String firmaBase64 = base64Encode(bytes!);
-                        /*convierte la firma */
-                        widget.onSet(firmaBase64);
-                      }
-                      setState(() {});
+              if (widget.isViewButton)
+                SizedBox(
+                  child: OutlinedButton(
+                      style: ButtonStyle(
+                          side: MaterialStatePropertyAll(
+                              BorderSide(color: widget.color, width: 1)),
+                          foregroundColor:
+                              MaterialStatePropertyAll(widget.color)),
+                      onPressed: () async {
+                        bytes = await controller.toPngBytes(
+                            width: 500, height: 500);
+                        /*Verifica que bytes no sea nulo antes de continuar */
+                        if (bytes != null) {
+                          /*Convierte los bytes de la firma a Base64 */
+                          String firmaBase64 = base64Encode(bytes!);
+                          /*convierte la firma */
+                          widget.onSet(firmaBase64);
+                        }
+                        setState(() {});
 
-                      SnackBarGlobalWidget.showSnackBar(
-                          context,
-                          'Firma guardada con éxito!',
-                          Icons.check_circle_outline_outlined,
-                          PaletteColorsTheme.principalColor);
-                    },
-                    child: const Text('Guardar firma')),
-              ),
+                        SnackBarGlobalWidget.showSnackBar(
+                            context,
+                            'Firma guardada con éxito!',
+                            Icons.check_circle_outline_outlined,
+                            PaletteColorsTheme.principalColor);
+                      },
+                      child: const Text('Guardar firma')),
+                ),
               SizedBox(width: size.width * .02),
               IconButton(
                   onPressed: () {
                     bytes = null;
                     controller.clear();
+                    widget.onDelete();
                   },
                   icon: Icon(
                     IconlyLight.delete,

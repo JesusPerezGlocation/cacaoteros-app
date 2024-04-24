@@ -41,12 +41,15 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
         bottomNavigationBar: _BottonNavigatorMapComponents(
-            data:
-                '${widget.locationProvider.latitude} - ${widget.locationProvider.latitude}'),
+          visitsPrv: visitsPrv,
+          data:
+              '${widget.locationProvider.latitude} - ${widget.locationProvider.latitude}',
+        ),
         appBar: AppBar(actions: [
           SaveIconDraftComponents(
             color: PaletteColorsTheme.principalColor,
@@ -59,7 +62,10 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
               return const Center(child: LoadingMapsComponents());
             } else {
               if (provider.latitude != null && provider.longitude != null) {
-                return MapMarketComponents(provider: provider);
+                return MapMarketComponents(
+                  provider: provider,
+                  visitsPrv: visitsPrv,
+                );
               } else {
                 return const Center(
                   child: Text(
@@ -83,8 +89,11 @@ componente para el boton del mapa y que navegue a la sig pantalla
 */
 class _BottonNavigatorMapComponents extends StatelessWidget {
   final String data;
+  final VisitsSurveysProvider visitsPrv;
+
   const _BottonNavigatorMapComponents({
     required this.data,
+    required this.visitsPrv,
   });
   @override
   Widget build(BuildContext context) {
@@ -139,11 +148,20 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
           title: 'Continuar',
           colorButton: PaletteColorsTheme.principalColor,
           onPressed: () {
-            /*navega a la pantalla #5 */
-            Navigator.pushNamed(
-              context,
-              MainRoutes.fiveVisitsSurveysRoute,
-            );
+            if (visitsPrv.listSendCoordinates.isNotEmpty) {
+              /*navega a la pantalla #5 */
+              Navigator.pushNamed(
+                context,
+                MainRoutes.fiveVisitsSurveysRoute,
+              );
+            } else {
+              return SnackBarGlobalWidget.showSnackBar(
+                context,
+                'Por favor, selecciona un área',
+                Icons.error_outlined,
+                PaletteColorsTheme.redErrorColor,
+              );
+            }
           },
         )
       ]),

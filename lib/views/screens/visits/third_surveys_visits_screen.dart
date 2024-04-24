@@ -18,13 +18,13 @@ class ThirdSurveysVisitsScreen extends StatefulWidget {
 class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
   /*key*/
   final formKey = GlobalKey<FormState>();
-  TextEditingController controller = TextEditingController();
-  TextEditingController controllerTwo = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final locationPrv = Provider.of<PermissionLocationProvider>(context);
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -67,11 +67,11 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
                 title: 'Ingresar área de la finca',
                 hintext: ' Ingresar área',
                 keyboardType: TextInputType.number,
-                controller: controller,
+                controller: visitsPrv.nameFarm,
                 colorInputs: PaletteColorsTheme.principalColor,
                 validator: (val) => ValidationInputs.validationArea(val,
-                    otherValue: controller.text, isCacao: false),
-                onChanged: (val) {},
+                    otherValue: visitsPrv.nameFarm.text, isCacao: false),
+                onChanged: (val) => visitsPrv.setnameFarm(val),
               ),
               SizedBox(height: size.height * .04),
               //#3
@@ -80,10 +80,10 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
                 hintext: ' Ingresar área',
                 keyboardType: TextInputType.number,
                 colorInputs: PaletteColorsTheme.principalColor,
-                controller: controllerTwo,
+                controller: visitsPrv.areaFarm,
                 validator: (val) => ValidationInputs.validationArea(val,
-                    otherValue: controllerTwo.text, isCacao: true),
-                onChanged: (val) {},
+                    otherValue: visitsPrv.areaFarm.text, isCacao: true),
+                onChanged: (val) => visitsPrv.setareaFarm(val),
               ),
 
               SizedBox(height: size.height * .06),

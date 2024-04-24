@@ -98,7 +98,9 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 title: 'Ingresar firma',
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureKey,
+                isViewButton: true,
                 onSet: (val) {},
+                onDelete: () {},
               ),
               SizedBox(height: size.height * .02),
               //#5

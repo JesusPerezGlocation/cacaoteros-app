@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:image/image.dart' as img;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:latlong2/latlong.dart';
 
 /*
 provider para las encuestas de visitas
@@ -71,6 +72,104 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
   setCodePlace(String val) {
     _codePlace.text = val;
+    notifyListeners();
+  }
+
+  //*PANTALLA #3------*/
+  final TextEditingController _nameFarm = TextEditingController();
+  TextEditingController get nameFarm => _nameFarm;
+  final TextEditingController _areaFarm = TextEditingController();
+  TextEditingController get areaFarm => _areaFarm;
+
+  setnameFarm(String val) {
+    _nameFarm.text = val; // nombre de la finca
+    notifyListeners();
+  }
+
+  setareaFarm(String val) {
+    _areaFarm.text = val; //area de la finca
+    notifyListeners();
+  }
+
+//*PANTALLA #4-------*/
+
+  String _latLngString = '';
+  final List<String> _listSendCoordinates = [];
+  List<String> get listSendCoordinates => _listSendCoordinates;
+
+  setCoordenates(LatLng coordinates) {
+    _latLngString = '${coordinates.latitude}, ${coordinates.longitude}';
+    _listSendCoordinates.add(_latLngString);
+
+    /*verifica si hay al menos dos coordenadas en la lista */
+    if (_listSendCoordinates.length >= 2) {
+      /*erifica si el primer y el ultimo dato no coinciden */
+      if (_listSendCoordinates.first != _listSendCoordinates.last) {
+        /*agrega una copia del primer dato al final de la lista para que coincidan */
+        _listSendCoordinates.add(_listSendCoordinates.first);
+        notifyListeners();
+      }
+    }
+
+    /*notifica a los oyentes después de completar la lista */
+    notifyListeners();
+
+    log('coordenadas lists: $_listSendCoordinates');
+  }
+
+//*PANTALLA #5-----*/
+  final TextEditingController _objectiveVisit = TextEditingController();
+  TextEditingController get objectiveVisit => _objectiveVisit;
+  final TextEditingController _situationFound = TextEditingController();
+  TextEditingController get situationFound => _situationFound;
+  final TextEditingController _recomendations = TextEditingController();
+  TextEditingController get recomendations => _recomendations;
+  final TextEditingController _beneficiaryCommitment = TextEditingController();
+  TextEditingController get beneficiaryCommitment => _beneficiaryCommitment;
+
+  setobjectiveVisit(String val) {
+    _objectiveVisit.text = val; // objetivo de la visita
+    notifyListeners();
+  }
+
+  setsituationFound(String val) {
+    _situationFound.text = val; // situación encontrada
+    notifyListeners();
+  }
+
+  setrecomendations(String val) {
+    _recomendations.text = val; //recomendación
+    notifyListeners();
+  }
+
+  setbeneficiaryCommitment(String val) {
+    _beneficiaryCommitment.text = val; //compromisos del beneficiario
+    notifyListeners();
+  }
+
+//*PANTALLA #6------*/
+  String _signatureBeneficiary = '';
+  String get signatureBeneficiary => _signatureBeneficiary;
+  String _signatureTecns = '';
+  String get signatureTecns => _signatureTecns;
+
+  setSignatureBeneficiary(String signature) {
+    _signatureBeneficiary = signature; //set la firma del productor
+    notifyListeners();
+  }
+
+  setSignatureTecns(String signature) {
+    _signatureTecns = signature; //set la firma del tecnico
+    notifyListeners();
+  }
+
+  deleteSignatureBeneficiary() {
+    _signatureBeneficiary = ''; //elimina la firma del beneficiario
+    notifyListeners();
+  }
+
+  deleteSignatureTecns() {
+    _signatureTecns = ''; //elimina la firma del beneficiario
     notifyListeners();
   }
 
@@ -175,7 +274,25 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _beneficiaryName.clear();
     _beneficiaryNumDoc.clear();
     _selectDepartment.clear();
+    _codeDepartament.clear();
     _selectMunicipality.clear();
+    _codeMunicipality.clear();
+    _place.clear();
+    _codePlace.clear();
+    _nameFarm.clear();
+    _areaFarm.clear();
+
+    _latLngString = '';
+    _listSendCoordinates.clear();
+
+    _objectiveVisit.clear();
+    _situationFound.clear();
+    _situationFound.clear();
+    _beneficiaryCommitment.clear();
+
+    _signatureBeneficiary = '';
+    _signatureTecns = '';
+
     notifyListeners();
   }
 }

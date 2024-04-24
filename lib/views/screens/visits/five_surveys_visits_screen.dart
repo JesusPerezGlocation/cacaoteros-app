@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -20,6 +21,7 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -54,8 +56,9 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 hintext: ' Ingresar objetivo',
                 maxLine: 4,
                 colorInputs: PaletteColorsTheme.principalColor,
+                controller: visitsPrv.objectiveVisit,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setobjectiveVisit(val),
               ),
               SizedBox(height: size.height * .04),
               //#2
@@ -63,9 +66,10 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 title: 'Ingresar situación encontrada',
                 hintext: ' Ingresar situación',
                 maxLine: 4,
+                controller: visitsPrv.situationFound,
                 colorInputs: PaletteColorsTheme.principalColor,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setsituationFound(val),
               ),
               SizedBox(height: size.height * .04),
               //#3
@@ -73,9 +77,10 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 title: 'Ingresar recomendaciones',
                 hintext: ' Ingresar recomendaciones',
                 maxLine: 4,
+                controller: visitsPrv.recomendations,
                 colorInputs: PaletteColorsTheme.principalColor,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setrecomendations(val),
               ),
               SizedBox(height: size.height * .04),
               //#4
@@ -83,9 +88,10 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 title: 'Ingresar compromisos del beneficio',
                 hintext: ' Ingresar compromisos',
                 maxLine: 4,
+                controller: visitsPrv.beneficiaryCommitment,
                 colorInputs: PaletteColorsTheme.principalColor,
                 validator: (val) => ValidationInputs.inputEmpty(val),
-                onChanged: (val) {},
+                onChanged: (val) => visitsPrv.setbeneficiaryCommitment(val),
               ),
               SizedBox(height: size.height * .06),
 

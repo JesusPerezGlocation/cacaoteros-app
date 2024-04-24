@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconly/iconly.dart';
@@ -40,6 +41,17 @@ class ShowModalPermissionGalleryWidget {
         context: context,
         builder: (context) {
           return const _ContainerShowModalThree();
+        });
+  }
+
+/*eliminar una imagen*/
+  static showModalDeleteImage(BuildContext context, Uint8List image) {
+    return showModalBottomSheet(
+        backgroundColor: PaletteColorsTheme.transparentColor,
+        isScrollControlled: true,
+        context: context,
+        builder: (context) {
+          return _ContainerShowModalFour(image: image);
         });
   }
 }
@@ -196,7 +208,7 @@ class _ContainerShowModalThree extends StatelessWidget {
             textAlign: TextAlign.start,
           ),
           Text(
-            '¿Estás seguro de que deseas eliminar todas las imágenes? Esta acción eliminará permanentemente todas las imágenes?',
+            '¿Estás seguro de que deseas eliminar todas las imágenes? Esta acción eliminará permanentemente todas las imágenes.',
             style: Theme.of(context).textTheme.bodyMedium,
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
@@ -215,6 +227,83 @@ class _ContainerShowModalThree extends StatelessWidget {
               SnackBarGlobalWidget.showSnackBar(
                   context,
                   '¡Imágenes eliminadas con éxito!',
+                  Icons.check_circle_rounded,
+                  PaletteColorsTheme.principalColor);
+            },
+          ),
+          SizedBox(height: size.height * .02),
+          ButtonOutlineComponents(
+            title: 'Cancelar',
+            color: PaletteColorsTheme.redErrorColor,
+            onPressed: () => Navigator.pop(context),
+          ),
+        ],
+      ).animate().fade().scale(),
+    );
+  }
+}
+
+/*eliminar una imagen */
+class _ContainerShowModalFour extends StatelessWidget {
+  final Uint8List image;
+  const _ContainerShowModalFour({
+    required this.image,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+    return Container(
+      height: size.height * .5,
+      width: size.width,
+      decoration: const BoxDecoration(
+          color: PaletteColorsTheme.whiteColor,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+      child: ListView(
+        physics: const BouncingScrollPhysics(),
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * .03, vertical: size.height * .03),
+        children: [
+          const Align(
+            alignment: Alignment.topLeft,
+            child: Icon(
+              IconlyLight.delete,
+              color: PaletteColorsTheme.redErrorColor,
+              size: 50,
+            ),
+          ),
+          SizedBox(height: size.height * .02),
+          Text(
+            'Eliminar imagen seleccionada',
+            style: Theme.of(context).textTheme.headlineMedium,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
+          ),
+          Text(
+            '¿Estás seguro de que deseas eliminar esta imágen? Esta acción eliminará permanentemente todas las imágenes',
+            style: Theme.of(context).textTheme.bodyMedium,
+            maxLines: 4,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.start,
+          ),
+          SizedBox(height: size.height * .05),
+          ButtonComponents(
+            colorButton: PaletteColorsTheme.redErrorColor,
+            title: 'Confirmar',
+            onPressed: () {
+              /*cierra el pop up */
+              Navigator.pop(context);
+              /*elimina todas las imagnees */
+              visitsPrv.deleteOneImage(image);
+
+              Navigator.pop(context);
+
+              SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  '¡Imagen eliminada con éxito!',
                   Icons.check_circle_rounded,
                   PaletteColorsTheme.principalColor);
             },

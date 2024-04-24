@@ -12,7 +12,12 @@ mapa para la pantalla #4 de encuestas de visitas
 */
 class MapMarketComponents extends StatefulWidget {
   final PermissionLocationProvider provider;
-  const MapMarketComponents({super.key, required this.provider});
+  final VisitsSurveysProvider visitsPrv;
+  const MapMarketComponents({
+    super.key,
+    required this.provider,
+    required this.visitsPrv,
+  });
 
   @override
   State<MapMarketComponents> createState() => _MapMarketComponentsState();
@@ -34,6 +39,8 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                     widget.provider.addMarkerPolygon(tapPosition, point);
                     /*añade las coordenadas a la función */
                     widget.provider.addSelectedCoordinate(point);
+                    /*añade los puntos al provider para enviar a firebase */
+                    widget.visitsPrv.setCoordenates(point);
                     /*efecto de vibración */
                     await VibrationServices().vibrate();
                   },
@@ -123,7 +130,10 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                       radius: 25,
                       child: IconButton(
                         onPressed: () async {
+                          /*limpia las listas y lo seleccionado */
                           widget.provider.clearMarkersAndPolygon();
+
+                          widget.visitsPrv.listSendCoordinates.clear();
                           VibrationServices().vibrate();
                         },
                         icon: const Icon(IconlyLight.delete),
@@ -137,6 +147,8 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                       child: IconButton(
                         onPressed: () async {
                           widget.provider.reloadMapUpdate();
+                          widget.visitsPrv.listSendCoordinates.clear();
+
                           VibrationServices().vibrate();
                         },
                         icon: const Icon(Icons.replay_outlined),
