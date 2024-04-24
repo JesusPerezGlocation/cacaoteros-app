@@ -33,6 +33,7 @@ class MainRoutes {
   static const sixVisitsSurveysRoute = '/six_visits_surveys_route';
   static const sevenVisitsSurveysRoute = '/seven_visits_surveys_route';
   static const eightVisitsSurveysRoute = '/eight_visits_surveys_route';
+  static const endVisitsSurveysRoute = '/end_visits_surveys_route';
   // static const firtVisitsSurveys = '/firt_visits_surveys_route';
   // static const fourVisitsSurveysRoute = '/four_visits_surveys_route';
 
@@ -70,5 +71,6 @@ class MainRoutes {
     sevenVisitsSurveysRoute: (_) => const SevenSurveysVisitsScreen(),
     // fourVisitsSurveysRoute: (_) => const FourSurveysVisitsScreen(),
     eightVisitsSurveysRoute: (_) => const EightSurveysVisitsScreen(),
+    endVisitsSurveysRoute: (_) => const EndSurveysVisitsScreen(),
   };
 }

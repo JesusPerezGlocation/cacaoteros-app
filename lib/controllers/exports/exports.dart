@@ -1,3 +1,4 @@
+export 'package:surveys_app/views/components/online_offline_end_surveys_components.dart';
 export 'package:surveys_app/controllers/providers/permission_camera_provider.dart';
 export 'package:surveys_app/controllers/providers/visits_surveys_provider.dart';
 export 'package:surveys_app/controllers/services/vibration_services.dart';

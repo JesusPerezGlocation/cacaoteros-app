@@ -4,6 +4,7 @@ import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:signature/signature.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 pantalla #8 para las visitas 
@@ -122,7 +123,31 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
               ButtonComponents(
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
-                onPressed: () {},
+                onPressed: () {
+                  if (visitsPrv.signature.isNotEmpty) {
+                    if (visitsPrv.isAcceptsTerm) {
+                      /*navega a la pantalla ffinal */
+                      Navigator.pushNamed(
+                        context,
+                        MainRoutes.endVisitsSurveysRoute,
+                      );
+                    } else {
+                      return SnackBarGlobalWidget.showSnackBar(
+                        context,
+                        'Por favor, acepte los términos y condiciones',
+                        Icons.error_rounded,
+                        PaletteColorsTheme.redErrorColor,
+                      );
+                    }
+                  } else {
+                    return SnackBarGlobalWidget.showSnackBar(
+                      context,
+                      'Por favor ingrese la firma',
+                      Icons.error_rounded,
+                      PaletteColorsTheme.redErrorColor,
+                    );
+                  }
+                },
               ),
               SizedBox(height: size.height * .06),
             ],
