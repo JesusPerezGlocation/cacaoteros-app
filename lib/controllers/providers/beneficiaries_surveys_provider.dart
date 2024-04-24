@@ -1268,6 +1268,16 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   String _signatureTecns = '';
   String get signatureTecns => _signatureTecns;
 
+  deleteSignatureProduct() {
+    _signatureProducts = ''; //elimina la firma del productor
+    notifyListeners();
+  }
+
+  deleteSignatureTecns() {
+    _signatureTecns = ''; //elimina la firma del beneficiario
+    notifyListeners();
+  }
+
   setSignatureProducts(String signature) {
     _signatureProducts = signature; //set la firma del productor
     notifyListeners();
@@ -1275,6 +1285,15 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
 
   setSignatureTecns(String signature) {
     _signatureTecns = signature; //set la firma del tecnico
+    notifyListeners();
+  }
+
+  //aceptar terminos y condiciones
+  bool _isAcceptTerm = false;
+  bool get isAcceptTerm => _isAcceptTerm;
+
+  setIsAcceptTermAndConditions(bool value) {
+    _isAcceptTerm = value; //aceptar terminos
     notifyListeners();
   }
 

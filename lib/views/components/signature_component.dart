@@ -88,39 +88,41 @@ class _SignatureComponentsProdcutsState
           SizedBox(height: size.height * .01),
           Row(
             children: [
-              SizedBox(
-                child: OutlinedButton(
-                    style: const ButtonStyle(
-                        side: MaterialStatePropertyAll(BorderSide(
-                            color: PaletteColorsTheme.secondaryColor,
-                            width: 1)),
-                        foregroundColor: MaterialStatePropertyAll(
-                            PaletteColorsTheme.secondaryColor)),
-                    onPressed: () async {
-                      bytes =
-                          await controller.toPngBytes(width: 500, height: 500);
-                      /*Verifica que bytes no sea nulo antes de continuar */
-                      if (bytes != null) {
-                        /*Convierte los bytes de la firma a Base64 */
-                        String firmaBase64 = base64Encode(bytes!);
-                        /*convierte la firma */
-                        widget.provider.setSignatureProducts(firmaBase64);
-                      }
-                      setState(() {});
+              if (widget.provider.signatureProducts.isEmpty)
+                SizedBox(
+                  child: OutlinedButton(
+                      style: const ButtonStyle(
+                          side: MaterialStatePropertyAll(BorderSide(
+                              color: PaletteColorsTheme.secondaryColor,
+                              width: 1)),
+                          foregroundColor: MaterialStatePropertyAll(
+                              PaletteColorsTheme.secondaryColor)),
+                      onPressed: () async {
+                        bytes = await controller.toPngBytes(
+                            width: 500, height: 500);
+                        /*Verifica que bytes no sea nulo antes de continuar */
+                        if (bytes != null) {
+                          /*Convierte los bytes de la firma a Base64 */
+                          String firmaBase64 = base64Encode(bytes!);
+                          /*convierte la firma */
+                          widget.provider.setSignatureProducts(firmaBase64);
+                        }
+                        setState(() {});
 
-                      SnackBarGlobalWidget.showSnackBar(
-                          context,
-                          'Firma guardada con éxito!',
-                          Icons.check_circle_outline_outlined,
-                          PaletteColorsTheme.principalColor);
-                    },
-                    child: const Text('Guardar firma')),
-              ),
+                        SnackBarGlobalWidget.showSnackBar(
+                            context,
+                            'Firma guardada con éxito!',
+                            Icons.check_circle_outline_outlined,
+                            PaletteColorsTheme.principalColor);
+                      },
+                      child: const Text('Guardar firma')),
+                ),
               SizedBox(width: size.width * .02),
               IconButton(
                   onPressed: () {
                     bytes = null;
                     controller.clear();
+                    widget.provider.deleteSignatureProduct();
                   },
                   icon: const Icon(
                     IconlyLight.delete,
@@ -216,39 +218,41 @@ class _SignatureComponentTieldTechnicianState
           SizedBox(height: size.height * .01),
           Row(
             children: [
-              SizedBox(
-                child: OutlinedButton(
-                    style: const ButtonStyle(
-                        side: MaterialStatePropertyAll(BorderSide(
-                            color: PaletteColorsTheme.secondaryColor,
-                            width: 1)),
-                        foregroundColor: MaterialStatePropertyAll(
-                            PaletteColorsTheme.secondaryColor)),
-                    onPressed: () async {
-                      bytes =
-                          await controller.toPngBytes(width: 500, height: 500);
-                      /*Verifica que bytes no sea nulo antes de continuar */
-                      if (bytes != null) {
-                        /*Convierte los bytes de la firma a Base64 */
-                        String firmaBase64 = base64Encode(bytes!);
-                        /*convierte la firma */
-                        widget.provider.setSignatureTecns(firmaBase64);
-                      }
-                      setState(() {});
+              if (widget.provider.signatureTecns.isEmpty)
+                SizedBox(
+                  child: OutlinedButton(
+                      style: const ButtonStyle(
+                          side: MaterialStatePropertyAll(BorderSide(
+                              color: PaletteColorsTheme.secondaryColor,
+                              width: 1)),
+                          foregroundColor: MaterialStatePropertyAll(
+                              PaletteColorsTheme.secondaryColor)),
+                      onPressed: () async {
+                        bytes = await controller.toPngBytes(
+                            width: 500, height: 500);
+                        /*Verifica que bytes no sea nulo antes de continuar */
+                        if (bytes != null) {
+                          /*Convierte los bytes de la firma a Base64 */
+                          String firmaBase64 = base64Encode(bytes!);
+                          /*convierte la firma */
+                          widget.provider.setSignatureTecns(firmaBase64);
+                        }
+                        setState(() {});
 
-                      SnackBarGlobalWidget.showSnackBar(
-                          context,
-                          'Firma guardada con éxito!',
-                          Icons.check_circle_outline_outlined,
-                          PaletteColorsTheme.principalColor);
-                    },
-                    child: const Text('Guardar firma')),
-              ),
+                        SnackBarGlobalWidget.showSnackBar(
+                            context,
+                            'Firma guardada con éxito!',
+                            Icons.check_circle_outline_outlined,
+                            PaletteColorsTheme.principalColor);
+                      },
+                      child: const Text('Guardar firma')),
+                ),
               SizedBox(width: size.width * .02),
               IconButton(
                   onPressed: () {
                     bytes = null;
                     controller.clear();
+                    widget.provider.deleteSignatureTecns();
                   },
                   icon: const Icon(
                     IconlyLight.delete,

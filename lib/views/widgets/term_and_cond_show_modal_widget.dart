@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
@@ -17,11 +18,20 @@ class TermAndConditionsShowModal {
   }
 }
 
-class _ContainerShowModalOne extends StatelessWidget {
+class _ContainerShowModalOne extends StatefulWidget {
   const _ContainerShowModalOne();
+
+  @override
+  State<_ContainerShowModalOne> createState() => _ContainerShowModalOneState();
+}
+
+class _ContainerShowModalOneState extends State<_ContainerShowModalOne> {
+  bool isAcceptTerm = false;
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     return Container(
       height: size.height * .5,
       width: size.width,
@@ -75,6 +85,10 @@ class _ContainerShowModalOne extends StatelessWidget {
               onPressed: () {
                 //Todo: crear provider para el check, booleano y pasarlo aca en true y llamarlo en CheckbuttonComponent en twenty_three_screen
                 Navigator.pop(context);
+                /*cambia el estado */
+                setState(() => isAcceptTerm = true);
+                /*acepta los terminos y condiciones */
+                surveysPrv.setIsAcceptTermAndConditions(isAcceptTerm);
               },
             ),
           )

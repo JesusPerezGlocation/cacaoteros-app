@@ -78,7 +78,7 @@ class _ThirteenurveysScreenState extends State<ThirteenurveysScreen> {
               CheckbuttonComponent(
                 colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Autorización de información',
-                check: false,
+                check: surveysPrv.isAcceptTerm,
                 onPressed: () =>
                     TermAndConditionsShowModal.showModalAuthorization(context),
               ),
@@ -87,12 +87,33 @@ class _ThirteenurveysScreenState extends State<ThirteenurveysScreen> {
                 colorButton: PaletteColorsTheme.secondaryColor,
                 title: 'Continuar',
                 onPressed: () {
-                  /*navega a la pantalla #24*/
-                  Navigator.pushNamed(
-                    context,
-                    MainRoutes.endSurveysScreenRoute,
-                  );
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    /*si no hay firmas no navega*/
+                    if (surveysPrv.signatureTecns.isNotEmpty &&
+                        surveysPrv.signatureProducts.isNotEmpty) {
+                      if (surveysPrv.isAcceptTerm) {
+                        /*navega a la pantalla #de enviar datos*/
+                        Navigator.pushNamed(
+                          context,
+                          MainRoutes.endSurveysScreenRoute,
+                        );
+                      } else {
+                        return SnackBarGlobalWidget.showSnackBar(
+                          context,
+                          'Por favor, acepte los términos y condiciones',
+                          Icons.error_rounded,
+                          PaletteColorsTheme.redErrorColor,
+                        );
+                      }
+                    } else {
+                      return SnackBarGlobalWidget.showSnackBar(
+                        context,
+                        'Por favor ingrese la firma',
+                        Icons.error_rounded,
+                        PaletteColorsTheme.redErrorColor,
+                      );
+                    }
+                  }
                 },
               ),
               SizedBox(height: size.height * .06),
