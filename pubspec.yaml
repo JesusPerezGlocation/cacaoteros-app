@@ -43,6 +43,7 @@ dependencies:
   flutter_map_dragmarker: ^6.0.0
   geolocator: ^11.0.0
   google_fonts: ^6.2.1
+  http: ^1.2.1
   iconly: ^1.0.1
   icons_plus: ^5.0.0
   image: ^4.1.7

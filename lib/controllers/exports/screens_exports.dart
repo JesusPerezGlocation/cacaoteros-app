@@ -16,7 +16,7 @@ export 'package:surveys_app/views/screens/beneficiaries/six_surveys_surveys_scre
 export 'package:surveys_app/views/screens/beneficiaries/nine_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/ten_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/thirteen_three_screen.dart';
-export 'package:surveys_app/views/screens/end_surveys_screen.dart';
+export 'package:surveys_app/views/screens/draft/end_surveys_screen.dart';
 export 'package:surveys_app/views/screens/beneficiaries/five_surveys_screen.dart';
 export 'package:surveys_app/views/screens/visits/firt_surveys_visits_screen.dart';
 export 'package:surveys_app/views/screens/visits/second_surveys_visits_screen.dart';

@@ -1,9 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
 
 /*
 provider para la encuesta de caracterización de beneficiarios
@@ -1948,6 +1952,40 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
       // Mostrar Snackbar si ocurre un error
       SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
+    }
+  }
+
+  //*ENVIAR IMAGEN A BASE DE DATOS--------*/
+  Future<void> sendImageSignature(BuildContext context) async {
+    try {
+      final url = Uri.http(ApiPaths.apiUrl, ApiPathsEndpoint.image);
+      final response = await http.post(
+        url,
+        body: {
+          'downloadUrl': _signatureProducts,
+        },
+      );
+      log('sendImageSignature: ${response.body}');
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        final data = json.decode(response.body);
+        /*captura la respuesta */
+        final downloadUrl = data['downloadUrl'];
+        /*settea la imagen*/
+        setSignatureProducts(downloadUrl);
+
+        log('imagen url retornada $downloadUrl');
+
+        notifyListeners();
+      }
+    } catch (e) {
+      // notifyListeners();
+      // SnackBarGlobalWidget.showSnackBar(
+      //   context,
+      //   'Error $e',
+      //   Icons.error_rounded,
+      //   PaletteColorsTheme.redErrorColor,
+      // );
     }
   }
 }

@@ -74,6 +74,8 @@ class _OnlineScreenComponents extends StatelessWidget {
             title: 'Enviar encuesta',
             onPressed: () async {
               ShowModalLoadingWidget.showLoadingView(context);
+              /*envia la imagen a la base de datos*/
+              await surveysPrv.sendImageSignature(context);
               /*enviar datos a firebase */
               await surveysPrv.sentSurveysToFirabase(context);
               /*envia el primer miembro */
