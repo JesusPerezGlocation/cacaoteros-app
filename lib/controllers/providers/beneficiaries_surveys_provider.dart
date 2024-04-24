@@ -1574,15 +1574,17 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
 
         //Navigator.of(context).pop(); // cierra el dialogo de carga
 
-        SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
-            Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
-
         notifyListeners();
+        return SnackBarGlobalWidget.showSnackBar(
+            context,
+            '¡Datos enviados con éxito!',
+            Icons.check_circle_rounded,
+            PaletteColorsTheme.principalColor);
       }).catchError((error) {
         //Navigator.of(context).pop(); // cierra el dialogo de carga
 
         /*si ocurre un error, muestra un mensaje de error */
-        SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
+        return SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
             Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
       });
     } catch (e) {
@@ -1917,7 +1919,7 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     _observationphoneAndTecnology.clear();
     _ethernetServices.clear();
     _observationethernetServices.clear();
-
+    _isAcceptTerm = false;
     _uuidiDSurveys = '';
     _signatureProducts = '';
     _signatureTecns = '';
@@ -1943,13 +1945,15 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
         });
       }
 
-      // Mostrar Snackbar si los datos se enviaron con éxito
-      SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
-          Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
-
       notifyListeners();
+      // Mostrar Snackbar si los datos se enviaron con éxito
+      return SnackBarGlobalWidget.showSnackBar(
+          context,
+          '¡Datos enviados con éxito!',
+          Icons.check_circle_rounded,
+          PaletteColorsTheme.principalColor);
     } catch (error) {
-      // Mostrar Snackbar si ocurre un error
+      // // Mostrar Snackbar si ocurre un error
       SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
     }
@@ -1958,14 +1962,16 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   //*ENVIAR IMAGEN A BASE DE DATOS--------*/
   Future<void> sendImageSignature(BuildContext context) async {
     try {
-      final url = Uri.http(ApiPaths.apiUrl, ApiPathsEndpoint.image);
+      final url = Uri.https(ApiPaths.apiUrl, ApiPathsEndpoint.image);
       final response = await http.post(
         url,
+        headers: {
+          'Accept': 'application/json',
+        },
         body: {
-          'downloadUrl': _signatureProducts,
+          'image': _signatureProducts,
         },
       );
-      log('sendImageSignature: ${response.body}');
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
         final data = json.decode(response.body);
@@ -1979,7 +1985,7 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
         notifyListeners();
       }
     } catch (e) {
-      // notifyListeners();
+      notifyListeners();
       // SnackBarGlobalWidget.showSnackBar(
       //   context,
       //   'Error $e',
