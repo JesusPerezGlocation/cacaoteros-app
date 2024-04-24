@@ -1960,7 +1960,8 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   }
 
   //*ENVIAR IMAGEN A BASE DE DATOS--------*/
-  Future<void> sendImageSignature(BuildContext context) async {
+  /*petición para enviar la firma de productor */
+  Future<void> sendImageSignatureProduct(BuildContext context) async {
     try {
       final url = Uri.https(ApiPaths.apiUrl, ApiPathsEndpoint.image);
       final response = await http.post(
@@ -1986,12 +1987,36 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
       }
     } catch (e) {
       notifyListeners();
-      // SnackBarGlobalWidget.showSnackBar(
-      //   context,
-      //   'Error $e',
-      //   Icons.error_rounded,
-      //   PaletteColorsTheme.redErrorColor,
-      // );
+    }
+  }
+
+  /*enviar firma del tecnico*/
+  Future<void> sendImageSignatureTecnh(BuildContext context) async {
+    try {
+      final url = Uri.https(ApiPaths.apiUrl, ApiPathsEndpoint.image);
+      final response = await http.post(
+        url,
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: {
+          'image': _signatureTecns,
+        },
+      );
+
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        final data = json.decode(response.body);
+        /*captura la respuesta */
+        final downloadUrl = data['downloadUrl'];
+        /*settea la imagen*/
+        setSignatureTecns(downloadUrl);
+
+        log('imagen url retornada sendImageSignatureTecnh $downloadUrl');
+
+        notifyListeners();
+      }
+    } catch (e) {
+      notifyListeners();
     }
   }
 }

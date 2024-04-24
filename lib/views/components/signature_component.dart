@@ -109,9 +109,6 @@ class _SignatureComponentsProdcutsState
                         }
                         setState(() {});
 
-                        // /*envia la imagen a la base de datos*/
-                        // await widget.provider.sendImageSignature(context);
-
                         SnackBarGlobalWidget.showSnackBar(
                             context,
                             'Firma guardada con éxito!',
