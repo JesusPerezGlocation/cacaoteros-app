@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -91,7 +93,7 @@ class ListDraftAllSurveysSQL {
     _listSurveysAll = List.generate(maps.length, (index) {
       return DraftSurveysListModel.fromJson(maps[index]);
     });
-
+    log('borradores guardados: ${_listSurveysAll.length}');
     return _listSurveysAll;
   }
 

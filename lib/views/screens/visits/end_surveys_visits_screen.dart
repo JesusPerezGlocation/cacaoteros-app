@@ -46,7 +46,21 @@ class EndSurveysVisitsScreen extends StatelessWidget {
                   (route) => false,
                 );
               },
-              onDraft: () {},
+              onDraft: () async {
+                /*setea el modelo con los campos  de la encuesta*/
+                visitsPrv.setSaveDraftSurveys();
+
+                /*guarda los datos*/
+                await ListDraftAllSurveysSQL.instance
+                    .insertAllSurveys([visitsPrv.draftListModel]);
+
+                SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  'Guardado en borradores',
+                  Icons.check_circle_rounded,
+                  PaletteColorsTheme.principalColor,
+                );
+              },
             );
           }
         },

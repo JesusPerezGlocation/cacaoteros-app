@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 provider para las encuestas de visitas
@@ -548,6 +549,36 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
     _isSendingData = false;
 
+    _draftListModel = DraftSurveysListModel(
+      id: '',
+      categorie: '',
+      colors: PaletteColorsTheme.principalColor,
+      date: '',
+      title: '',
+    );
+
+    notifyListeners();
+  }
+
+//*ALMACENA LOS DATOS DE LA ENCUESTA DE VISITA EN LA SQL*/
+  /*modelo inicial de los datos */
+  DraftSurveysListModel _draftListModel = DraftSurveysListModel(
+    id: '',
+    title: '',
+    categorie: '',
+    date: '',
+    colors: PaletteColorsTheme.principalColor,
+  );
+  /*get para manejar el modelo */
+  DraftSurveysListModel get draftListModel => _draftListModel;
+
+  /*almacena los datos*/
+  setSaveDraftSurveys() {
+    _idSurveys = _draftListModel.id;
+    _beneficiaryName.text = _draftListModel.title;
+    _categorieSurveys = _draftListModel.categorie;
+    _dateCreateSurvey = _draftListModel.date;
+    _colorsSurveys = _draftListModel.colors;
     notifyListeners();
   }
 }

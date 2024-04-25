@@ -28,47 +28,75 @@ class AllDraftsScreen extends StatelessWidget {
                   title: 'BORRADORES GUARDADOS',
                   color: PaletteColorsTheme.principalColor),
               SizedBox(height: size.height * .02),
-              //Todo:!! descomentar y  mostrar cuando la lista venga vacia
-              Expanded(
-                  child: ListView.separated(
-                itemCount: 3,
-                physics: const BouncingScrollPhysics(),
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                separatorBuilder: (context, index) =>
-                    SizedBox(height: size.height * .01),
-                itemBuilder: (context, index) {
-                  /*retorna la lista de items */
-                  return FadeIn(
-                    child: CardDraftComponents(
-                      id: '10002',
-                      title: 'Title card data',
-                      date: '22 Abril',
-                      categorie: 'Categore.data',
-                      icons: IconlyLight.arrow_right_2,
-                      colors: PaletteColorsTheme.principalColor,
-                      onTap: () {
-                        /*navega a la pantalla de la lista de una encuesta */
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  const DraftOfOneSurveysScreen(
-                                    color: PaletteColorsTheme.principalColor,
-                                    categorie: 'CATEGORIE NAME',
-                                  )),
-                        );
-                      },
-                    ),
-                  );
+              /*future para obtener los datos*/
+
+              FutureBuilder<List<DraftSurveysListModel>>(
+                future: ListDraftAllSurveysSQL.instance.getAllSurveysGet(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: LoadingAppComponent(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: IsEmptyDataComponent(
+                        title:
+                            'Error al obtener la lista: ${snapshot.hasError}',
+                      ),
+                    );
+                  } else {
+                    List<DraftSurveysListModel> surveys = snapshot.data!;
+
+                    if (surveys.isEmpty) {
+                      return Center(
+                        child: IsEmptyWithImageComponents(
+                          image: ImagesPaths.emptyDraft,
+                          title: 'No se hallaron resultados de borradores.',
+                        ),
+                      );
+                    } else {
+                      return Expanded(
+                          child: ListView.separated(
+                        itemCount: surveys.length,
+                        physics: const BouncingScrollPhysics(),
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        separatorBuilder: (context, index) =>
+                            SizedBox(height: size.height * .01),
+                        itemBuilder: (context, index) {
+                          final data = surveys[index];
+                          /*retorna la lista de items */
+                          return FadeIn(
+                            child: CardDraftComponents(
+                              id: data.id,
+                              title: data.title,
+                              date: data.date,
+                              categorie: data.categorie,
+                              icons: IconlyLight.arrow_right_2,
+                              colors: data.colors,
+                              onTap: () {
+                                /*navega a la pantalla de la lista de una encuesta */
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DraftOfOneSurveysScreen(
+                                            color: PaletteColorsTheme
+                                                .principalColor,
+                                            categorie: 'CATEGORIE NAME',
+                                          )),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ));
+                    }
+                  }
                 },
-              )),
-              // Center(
-              //   child: IsEmptyWithImageComponents(
-              //     image: ImagesPaths.emptyDraft,
-              //     title: 'No se hallaron resultados de borradores.',
-              //   ),
-              // )
+              ),
+              //Todo:!! descomentar y  mostrar cuando la lista venga vacia
+
               /*lista de borradores */
             ],
           ),
