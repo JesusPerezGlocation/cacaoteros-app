@@ -34,6 +34,8 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
     final surveysPrv = Provider.of<BeneficiariesSurveysProvider>(context);
     final cemeraPermissionPrv = Provider.of<CameraPermissionProvider>(context);
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+    final domianPrv = Provider.of<SendImageApi>(context);
+
     final isiOS = Platform.isIOS;
     return ListView(
       scrollDirection: Axis.horizontal,
@@ -82,6 +84,8 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
             // await cemeraPermissionPrv.requestGalleryPermission();
             /*limpia el provider*/
             visitsPrv.cleanProvider();
+            /*limpia el provider de las firmas e imagenes enviadas*/
+            domianPrv.clearProvider();
             /*genera el id la encuesta */
             setIDsurveys();
             /*setea el dato con  el id generado */

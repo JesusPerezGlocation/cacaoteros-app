@@ -63,11 +63,11 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 isViewButton:
                     visitsPrv.signatureBeneficiary.isEmpty ? true : false,
                 onSet: (val) async {
-                  visitsPrv.setSignatureBeneficiary(domianPrv.image);
-
                   domianPrv.setSignature(val);
 
                   await domianPrv.sendSignatureImageApi();
+
+                  visitsPrv.setSignatureBeneficiary(domianPrv.image);
                 },
                 onDelete: () => visitsPrv.deleteSignatureBeneficiary(),
               ),
@@ -80,11 +80,11 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 isViewButton: visitsPrv.signatureTecns.isEmpty ? true : false,
                 // onSet: (val) => visitsPrv.setSignatureTecns(val),
                 onSet: (val) async {
-                  visitsPrv.setSignatureTecns(domianPrv.image);
-
                   domianPrv.setSignature(val);
 
                   await domianPrv.sendSignatureImageApi();
+
+                  visitsPrv.setSignatureTecns(domianPrv.image);
                 },
                 onDelete: () => visitsPrv.deleteSignatureTecns(),
               ),

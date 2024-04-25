@@ -101,6 +101,11 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  generateIDsurveys(int id) {
+    _idSurveys = id.toString(); //genera un id para la encuesta
+    notifyListeners();
+  }
+
   setmetaInstanceUIID(String id) {
     _metaInstanceUIID = id; //id de la encuesta tipo uiid
     notifyListeners();
@@ -273,6 +278,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
       final base64Image = base64Encode(imageBytes);
 
       _listImagesAdd.remove(base64Image);
+      _selectImage = '';
 
       notifyListeners();
     } catch (e) {
@@ -283,6 +289,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
   /*función para eliminar todas las imagenes */
   void deleteAllImage() {
     try {
+      _selectImage = '';
       _listImagesAdd.clear();
       notifyListeners();
     } catch (e) {
@@ -351,6 +358,9 @@ class VisitsSurveysProvider extends ChangeNotifier {
   bool _isAcceptsTerm = false;
   bool get isAcceptsTerm => _isAcceptsTerm;
 
+  String _endSurveys = '';
+  String get endSurveys => _endSurveys;
+
   setplaceExpeditions(String val) {
     _placeExpeditions.text = val; //lugar de expdeción
     notifyListeners();
@@ -381,12 +391,10 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  generateIDsurveys(int id) {
-    _idSurveys = id.toString(); //genera un id para la encuesta
+  setendDateSurveys(String end) {
+    _endSurveys = end; //guarda la fecha de finalización
     notifyListeners();
   }
-
-  //*PANTALLA #8*/
 
   //*ENVIO DE DATOS A FIREBASE*/
   Future<void> sendDataVisitsFirebase(BuildContext context) async {
@@ -436,22 +444,19 @@ class VisitsSurveysProvider extends ChangeNotifier {
         /*PANTALLA #7*/
         "registroregistro_fotograficop23_foto_registro": _selectImage,
 
-        /*PANTALLA #*/
-        /*PANTALLA #*/
-        /*PANTALLA #*/
-        /*PANTALLA #*/
+        /*PANTALLA #8*/
+        "datos_personalespdp_lugar": _placeExpeditions.text,
+        "datos_personalespdp_direccion": _addresBeneficiary.text,
+        "datos_personalespdp_telefono": _numberPhone.text,
+        "datos_personalespdp_firma": _signature,
+        "end": _endSurveys,
 
-        "datos_personalespdp_direccion": '',
+        /*DATOS VACIOS */
+        "ubicacioninformacion_fincap_visita": '',
         "datos_personalespdp_fecha_nota": '',
-        "datos_personalespdp_firma": '',
-        "datos_personalespdp_lugar": '',
         "datos_personalespdp_nota": '',
         "datos_personalespdp_nota3": '',
         "datos_personalespdp_nota4": '',
-        "datos_personalespdp_telefono": '',
-        "end": "2024-04-10T17:14:56.195-05:00",
-
-        "ubicacioninformacion_fincap_visita": '',
         "ubicaciontecniconota_inicial": '',
         "ubicaciontecnicop_fecha_nota": '',
       }).then((_) {

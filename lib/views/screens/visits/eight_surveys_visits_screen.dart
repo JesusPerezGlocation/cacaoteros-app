@@ -21,12 +21,16 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
   /*key*/
   final formKey = GlobalKey<FormState>();
 
+  DateTime endSurveys = DateTime.now();
+
   final GlobalKey<SignatureState> signatureKey = GlobalKey<SignatureState>();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+    final domianPrv = Provider.of<SendImageApi>(context);
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -105,7 +109,15 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureKey,
                 isViewButton: visitsPrv.signature.isEmpty ? true : false,
-                onSet: (val) => visitsPrv.setSignature(val),
+                onSet: (val) async {
+                  //Todo: debe validar si tiene internet
+                  /*setea la firma dibujada */
+                  domianPrv.setSignature(val);
+                  /*envia la petición */
+                  await domianPrv.sendSignatureImageApi();
+                  /*setea la firma que retornó la api */
+                  visitsPrv.setSignature(domianPrv.image);
+                },
                 onDelete: () => visitsPrv.setdeleteSignature(),
               ),
               SizedBox(height: size.height * .02),
@@ -124,6 +136,8 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
+                  /*guarda la fecha de finalización */
+                  visitsPrv.setendDateSurveys(endSurveys.toString());
                   if (visitsPrv.signature.isNotEmpty) {
                     if (visitsPrv.isAcceptsTerm) {
                       /*navega a la pantalla ffinal */

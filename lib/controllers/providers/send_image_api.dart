@@ -85,4 +85,11 @@ class SendImageApi extends ChangeNotifier {
       log('$e');
     }
   }
+
+  clearProvider() {
+    _image = '';
+    _downloadUrl = '';
+    _selectImage = '';
+    notifyListeners();
+  }
 }
