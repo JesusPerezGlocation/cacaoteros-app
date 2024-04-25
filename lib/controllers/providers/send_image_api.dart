@@ -19,6 +19,7 @@ class SendImageApi extends ChangeNotifier {
     notifyListeners();
   }
 
+  /*envia la firma a la base de datos*/
   Future sendSignatureImageApi() async {
     try {
       final url = Uri.https(ApiPaths.apiUrl, ApiPathsEndpoint.image);
@@ -37,6 +38,45 @@ class SendImageApi extends ChangeNotifier {
         _downloadUrl = data['downloadUrl'];
         /*settea la imagen*/
         setSignature(downloadUrl);
+
+        log('sendImageApi imagen url retornada $downloadUrl');
+        notifyListeners();
+      }
+    } catch (e) {
+      log('$e');
+    }
+  }
+
+  //*ENVIA LA IMAGEN TOMADO POR EL USUARIO*/
+  String _selectImage = '';
+  String get selectImage => _selectImage;
+
+  setSelectImage(String image) {
+    _selectImage = image; //setea la imagen seleccionada
+    notifyListeners();
+  }
+
+  /*envia la imagen a la api*/
+  Future sendImageApi() async {
+    try {
+      /*transforma la imagen a String */
+
+      final url = Uri.https(ApiPaths.apiUrl, ApiPathsEndpoint.image);
+      final response = await http.post(
+        url,
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: {
+          'image': _selectImage,
+        },
+      );
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        final data = json.decode(response.body);
+        /*captura la respuesta */
+        _downloadUrl = data['downloadUrl'];
+        /*settea la imagen*/
+        setSelectImage(downloadUrl);
 
         log('sendImageApi imagen url retornada $downloadUrl');
         notifyListeners();

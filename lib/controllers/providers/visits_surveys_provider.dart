@@ -299,7 +299,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
         File fileImage = File(image.path);
 
         final Uint8List imageBytes = await fileImage.readAsBytes();
-
+        /*añade a la lista de imagenes*/
         addListImagesData(imageBytes);
 
         notifyListeners();
@@ -328,6 +328,14 @@ class VisitsSurveysProvider extends ChangeNotifier {
     } catch (e) {
       log('dataPickerImage $e');
     }
+  }
+
+  String _selectImage = '';
+  String get selectImage => _selectImage;
+
+  setImageSelect(String image) {
+    _selectImage = image; //selecciona la imagen
+    notifyListeners();
   }
 
   //*PANTALLA #8*/
@@ -378,6 +386,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //*PANTALLA #8*/
+
   //*ENVIO DE DATOS A FIREBASE*/
   Future<void> sendDataVisitsFirebase(BuildContext context) async {
     try {
@@ -422,7 +432,10 @@ class VisitsSurveysProvider extends ChangeNotifier {
         /*PANTALLA #6*/
         "firmasp20_firma_agricultor": _signatureBeneficiary,
         "firmasp21_firma_tecnico": _signatureTecns,
-        /*PANTALLA #*/
+
+        /*PANTALLA #7*/
+        "registroregistro_fotograficop23_foto_registro": _selectImage,
+
         /*PANTALLA #*/
         /*PANTALLA #*/
         /*PANTALLA #*/
@@ -439,7 +452,6 @@ class VisitsSurveysProvider extends ChangeNotifier {
         "end": "2024-04-10T17:14:56.195-05:00",
 
         "ubicacioninformacion_fincap_visita": '',
-        "registroregistro_fotograficop23_foto_registro": '',
         "ubicaciontecniconota_inicial": '',
         "ubicaciontecnicop_fecha_nota": '',
       }).then((_) {
@@ -466,6 +478,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
   /*limpia los campos de los proivider */
   cleanProvider() {
     _listImagesAdd.clear();
+    _selectImage = '';
     _beneficiaryName.clear();
     _beneficiaryNumDoc.clear();
     _selectDepartment.clear();
