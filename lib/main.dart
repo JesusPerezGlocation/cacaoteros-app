@@ -45,6 +45,8 @@ class StateApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => VisitsSurveysProvider()),
         /*permisos de la camara */
         ChangeNotifierProvider(create: (context) => CameraPermissionProvider()),
+        /*provuder para transfomar la imagen con dominio */
+        ChangeNotifierProvider(create: (context) => SendImageApi()),
       ],
       child: const MyApp(),
     );

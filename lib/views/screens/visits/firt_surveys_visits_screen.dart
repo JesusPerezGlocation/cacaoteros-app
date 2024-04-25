@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
+import 'package:uuid/uuid.dart';
 
 /*
 primera pantalla para la encuesta de visitas
@@ -23,6 +24,12 @@ class FirtSurveysVisitsScreen extends StatefulWidget {
 class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
   /*key*/
   final formKey = GlobalKey<FormState>();
+
+  /*genera un uuid random*/
+  final uuid = const Uuid();
+  String generatedIdRandom() {
+    return uuid.v4();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +106,12 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                   title: 'Continuar',
                   colorButton: PaletteColorsTheme.principalColor,
                   onPressed: () {
+                    /*setea la fecha */
                     visitsPrv.setdateTimeSurveys(widget.dateTime);
+                    /*genera un id uuid */
+                    String idRandom = generatedIdRandom();
+                    /*le pasa el dato del uuid id */
+                    visitsPrv.setmetaInstanceUIID(idRandom);
                     /*navega a la segunda pantalla  */
                     Navigator.pushNamed(
                       context,

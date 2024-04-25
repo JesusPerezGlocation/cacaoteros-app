@@ -43,6 +43,9 @@ class VisitsSurveysProvider extends ChangeNotifier {
   String _dateCreateSurvey = '';
   String get dateCreateSurvey => _dateCreateSurvey;
 
+  String _metaInstanceUIID = '';
+  String get metaInstanceUIID => _metaInstanceUIID;
+
   String _dateTimeSurveys = '';
   String get dateTimeSurveys => _dateTimeSurveys;
 
@@ -95,6 +98,11 @@ class VisitsSurveysProvider extends ChangeNotifier {
   setdateTimeSurveys(String time) {
     _dateTimeSurveys =
         time; //fecha general de la encuesta, que se mira arriba de la primeera pantalla ej. day/month/year
+    notifyListeners();
+  }
+
+  setmetaInstanceUIID(String id) {
+    _metaInstanceUIID = id; //id de la encuesta tipo uiid
     notifyListeners();
   }
 
@@ -220,6 +228,12 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _signatureTecns = ''; //elimina la firma del beneficiario
     notifyListeners();
   }
+
+  // sendSignatureApiBeneficiary() async {
+  //   await SendImageApi().sendImageApi(
+  //       _signatureBeneficiary, setSignatureBeneficiary(_signatureBeneficiary));
+  //   notifyListeners();
+  // }
 
 //*PANTALLA #7-----*/
   final List<String> _listImagesAdd = [];
@@ -375,6 +389,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
         "ubicacionbeneficiariop4_beneficiario": _beneficiaryName.text,
         "ubicacionbeneficiariop5_cedula": _beneficiaryNumDoc.text,
         "ubicaciontecnicop3_fecha": _dateTimeSurveys,
+        "metainstanceID": 'uuid:$_metaInstanceUIID',
         /*PANTALLA #2*/
         "ubicacionubicacion_fincap6_departamento": _selectDepartment.text,
         "ubicacionubicacion_fincap6_codigo_departamento": _codeDepartament.text,
@@ -405,7 +420,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
             _beneficiaryCommitment.text,
 
         /*PANTALLA #6*/
-
+        "firmasp20_firma_agricultor": _signatureBeneficiary,
+        "firmasp21_firma_tecnico": _signatureTecns,
         /*PANTALLA #*/
         /*PANTALLA #*/
         /*PANTALLA #*/
@@ -421,9 +437,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
         "datos_personalespdp_nota4": '',
         "datos_personalespdp_telefono": '',
         "end": "2024-04-10T17:14:56.195-05:00",
-        "firmasp20_firma_agricultor": '',
-        "firmasp21_firma_tecnico": '',
-        "metainstanceID": '',
+
         "ubicacioninformacion_fincap_visita": '',
         "registroregistro_fotograficop23_foto_registro": '',
         "ubicaciontecniconota_inicial": '',
@@ -483,6 +497,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _idSurveys = '';
     _dateCreateSurvey = '';
     _dateTimeSurveys = '';
+    _metaInstanceUIID = '';
 
     notifyListeners();
   }

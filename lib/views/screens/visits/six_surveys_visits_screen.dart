@@ -26,6 +26,7 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
+    final domianPrv = Provider.of<SendImageApi>(context);
     return Scaffold(
       appBar: AppBar(actions: [
         SaveIconDraftComponents(
@@ -61,7 +62,13 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 signatureKey: signBeneficiary,
                 isViewButton:
                     visitsPrv.signatureBeneficiary.isEmpty ? true : false,
-                onSet: (val) => visitsPrv.setSignatureBeneficiary(val),
+                onSet: (val) async {
+                  visitsPrv.setSignatureBeneficiary(domianPrv.image);
+
+                  domianPrv.setSignature(val);
+
+                  await domianPrv.sendSignatureImageApi();
+                },
                 onDelete: () => visitsPrv.deleteSignatureBeneficiary(),
               ),
               SizedBox(height: size.height * .04),
@@ -71,7 +78,14 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureTecnh,
                 isViewButton: visitsPrv.signatureTecns.isEmpty ? true : false,
-                onSet: (val) => visitsPrv.setSignatureTecns(val),
+                // onSet: (val) => visitsPrv.setSignatureTecns(val),
+                onSet: (val) async {
+                  visitsPrv.setSignatureTecns(domianPrv.image);
+
+                  domianPrv.setSignature(val);
+
+                  await domianPrv.sendSignatureImageApi();
+                },
                 onDelete: () => visitsPrv.deleteSignatureTecns(),
               ),
               SizedBox(height: size.height * .06),
