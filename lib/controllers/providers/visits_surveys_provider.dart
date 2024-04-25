@@ -19,12 +19,20 @@ class VisitsSurveysProvider extends ChangeNotifier {
   final CollectionReference databaseReference =
       FirebaseFirestore.instance.collection(ApiPaths.visitstesting);
 
-  //*categoria de la encuenta*/
+  //*categoria de la encuenta y colores*/
   String _categorieSurveys = '';
   String get categorieSurveys => _categorieSurveys;
 
-  setCategorieSurveys(String categorie) {
+  setcategorieSurveys(String categorie) {
     _categorieSurveys = categorie; //setea la categoria de la encuesta
+    notifyListeners();
+  }
+
+  String _colorsSurveys = '';
+  String get colorsSurveys => _colorsSurveys;
+
+  setcolorsSurveys(String colors) {
+    _colorsSurveys = colors; //setea los colores de la encuesta
     notifyListeners();
   }
 

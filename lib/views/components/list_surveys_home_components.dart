@@ -56,9 +56,10 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
           onTap: () {
             /*limpia el provider*/
             surveysPrv.cleanAllProvider();
-            /*guarda la categoria*/
-            surveysPrv.setCategorieSurveys(
+            /*guarda la categoria y el color*/
+            surveysPrv.setcategorieSurveys(
                 'Caracterización de potenciales beneficiarios');
+            surveysPrv.setcolorsSurveys('0xff76942b');
             /*navega a la primera pantalla de preguntas */
             Navigator.push(
                 context,
@@ -90,8 +91,9 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
             /*limpia el provider de las firmas e imagenes enviadas*/
             domianPrv.clearProvider();
 
-            /*guarda la categoria*/
-            visitsPrv.setCategorieSurveys('Registro de visitas');
+            /*guarda la categoria y el color*/
+            visitsPrv.setcategorieSurveys('Registro de visitas');
+            visitsPrv.setcolorsSurveys('0xff76942b');
 
             /*genera el id la encuesta */
             setIDsurveys();

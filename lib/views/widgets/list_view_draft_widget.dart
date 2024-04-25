@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
@@ -22,6 +23,7 @@ class ListViewHomeDraftWidget extends StatelessWidget {
             title: 'Title card data',
             date: '22 Abril',
             categorie: 'Categore.data',
+            icons: IconlyLight.arrow_right_2,
             colors: PaletteColorsTheme.principalColor,
             onTap: () {
               //Todo: debe la opción de subir, eliminar y si ya está arriba debe eliminarse de la lista
@@ -40,15 +42,17 @@ class CardDraftComponents extends StatelessWidget {
   final String title;
   final String date;
   final Color colors;
+  final IconData icons;
   final String categorie;
   final Function onTap;
   const CardDraftComponents({
     super.key,
     required this.title,
     required this.date,
-    required this.onTap,
     required this.categorie,
     required this.colors,
+    required this.icons,
+    required this.onTap,
   });
   @override
   Widget build(BuildContext context) {
@@ -110,7 +114,8 @@ class CardDraftComponents extends StatelessWidget {
                   )
                 ],
               ),
-            )
+            ),
+            Icon(icons, color: colors)
           ],
         ),
       ),

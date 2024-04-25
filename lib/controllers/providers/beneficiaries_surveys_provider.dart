@@ -19,12 +19,20 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   final CollectionReference memberscacaotestingReferences =
       FirebaseFirestore.instance.collection(ApiPaths.memberscacaotesting);
 
-  //*categoria de la encuenta*/
+  //*categoria de la encuenta y colors*/
   String _categorieSurveys = '';
   String get categorieSurveys => _categorieSurveys;
 
-  setCategorieSurveys(String categorie) {
+  setcategorieSurveys(String categorie) {
     _categorieSurveys = categorie; //setea la categoria de la encuesta
+    notifyListeners();
+  }
+
+  String _colorsSurveys = '';
+  String get colorsSurveys => _colorsSurveys;
+
+  setcolorsSurveys(String colors) {
+    _colorsSurveys = colors; //setea los colores de la encuesta
     notifyListeners();
   }
 
