@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 final de la encuesta para las visitas
@@ -29,7 +32,19 @@ class EndSurveysVisitsScreen extends StatelessWidget {
               title: visitsPrv.beneficiaryName.text,
               description:
                   "No podrá realizar ediciones una vez que envíe. Si necesita hacer cambios, presione en 'Guardar como borrador' hasta que esté listo para enviar.",
-              onSendData: () {},
+              onSendData: () async {
+                /*muestra un loading*/
+                ShowModalLoadingWidget.showLoadingView(context);
+
+                await visitsPrv.sendDataVisitsFirebase(context);
+
+                Navigator.pop(context);
+                /*navega al home*/
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  MainRoutes.initialRoute,
+                  (route) => false,
+                );
+              },
               onDraft: () {},
             );
           }

@@ -54,11 +54,11 @@ class _MapMarketComponentsState extends State<MapMarketComponents> {
                   TileLayer(
                     errorImage: AssetImage(ImagesPaths.errorMaps),
                     urlTemplate:
-                        "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-                    additionalOptions: {
-                      'accessToken': MapKeysPaths.mapBoxToken,
-                      'id': MapKeysPaths.mapStyle,
-                    },
+                        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    // additionalOptions: {
+                    //   'accessToken': MapKeysPaths.mapBoxToken,
+                    //   'id': MapKeysPaths.mapStyle,
+                    // },
                   ),
                   PolygonLayer(
                     drawLabelsLast: true,

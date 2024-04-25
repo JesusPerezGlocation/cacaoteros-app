@@ -81,63 +81,61 @@ class _ListImageSelectComponents extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 keyboardDismissBehavior:
                     ScrollViewKeyboardDismissBehavior.onDrag,
-                itemCount: visitsPrv.listImagesAdd.length,
-                // + 1,
+                itemCount: visitsPrv.listImagesAdd.length + 1,
                 itemBuilder: (context, index) {
                   //!!funcionalidad de añadir mas imagenes
-                  // if (index == 0) {
-                  //   /*muestra un boton al inicio de la lsita para añdir mas imagnees */
-                  //   return ButtonAddImagenComponents(
-                  //     onTap: () async {
-                  //       await Permission.camera.request();
-                  //       /*abre el modal para seleccionar foto o imagen */
-                  //       ShowModalPermissionGalleryWidget.showModalSelectImage(
-                  //           context);
-                  //     },
-                  //   );
-                  // } else {
-                  /*lista de imagenes */
-                  // final base64Image = visitsPrv.listImagesAdd[index - 1];
-                  final base64Image = visitsPrv.listImagesAdd[index];
-                  final bytes = base64Decode(base64Image);
-                  return FadeIn(
-                    child: InkWell(
-                      borderRadius: BorderRadius.circular(15),
-                      onTap: () {
-                        if (bytes.isNotEmpty) {
-                          /*navega a la pantalla de abrir la imagen */
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ViewImageVisitsScreen(
-                                image: bytes,
-                              ),
-                            ),
-                          );
-                        } else {
-                          return SnackBarGlobalWidget.showSnackBar(
-                            context,
-                            'Lo sentimos, no pudimos abrir la imagen.',
-                            Icons.error_outlined,
-                            PaletteColorsTheme.redErrorColor,
-                          );
-                        }
+                  if (index == 0) {
+                    /*muestra un boton al inicio de la lsita para añdir mas imagnees */
+                    return ButtonAddImagenComponents(
+                      onTap: () async {
+                        await Permission.camera.request();
+                        /*abre el modal para seleccionar foto o imagen */
+                        ShowModalPermissionGalleryWidget.showModalSelectImage(
+                            context);
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: PaletteColorsTheme.greyColor,
-                            borderRadius: BorderRadius.circular(15)),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.memory(bytes,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Image.asset(ImagesPaths.errorImage)),
+                    );
+                  } else {
+                    /*lista de imagenes */
+                    final base64Image = visitsPrv.listImagesAdd[index - 1];
+                    final bytes = base64Decode(base64Image);
+                    return FadeIn(
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(15),
+                        onTap: () {
+                          if (bytes.isNotEmpty) {
+                            /*navega a la pantalla de abrir la imagen */
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ViewImageVisitsScreen(
+                                  image: bytes,
+                                ),
+                              ),
+                            );
+                          } else {
+                            return SnackBarGlobalWidget.showSnackBar(
+                              context,
+                              'Lo sentimos, no pudimos abrir la imagen.',
+                              Icons.error_outlined,
+                              PaletteColorsTheme.redErrorColor,
+                            );
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: PaletteColorsTheme.greyColor,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.memory(bytes,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(ImagesPaths.errorImage)),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                  // }
+                    );
+                  }
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
