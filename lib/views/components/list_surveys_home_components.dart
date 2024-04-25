@@ -59,7 +59,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
             /*guarda la categoria y el color*/
             surveysPrv.setcategorieSurveys(
                 'Caracterización de potenciales beneficiarios');
-            surveysPrv.setcolorsSurveys('0xff76942b');
+            surveysPrv.setcolorsSurveys(const Color(0xffb82748));
             /*navega a la primera pantalla de preguntas */
             Navigator.push(
                 context,
@@ -93,7 +93,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
 
             /*guarda la categoria y el color*/
             visitsPrv.setcategorieSurveys('Registro de visitas');
-            visitsPrv.setcolorsSurveys('0xff76942b');
+            visitsPrv.setcolorsSurveys(const Color(0xff76942b));
 
             /*genera el id la encuesta */
             setIDsurveys();

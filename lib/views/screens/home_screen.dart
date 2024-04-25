@@ -50,12 +50,18 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
             ),
             SizedBox(height: size.height * .03),
             /*ver todos los borradores*/
+            //Todo: "Ver todos" debe mostrarse cuando la lista de borradores sea mayor a 3
             ViewAllDraftComponents(
                 title: 'Borradores',
                 action: 'Ver todos',
                 onTap: () {
                   /*navega a ver todos los borradores */
-                  Navigator.pushNamed(context, MainRoutes.allDraftsRoute);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AllDraftsScreen(
+                                color: PaletteColorsTheme.principalColor,
+                              )));
                 }),
 
             /*lista de borradores*/

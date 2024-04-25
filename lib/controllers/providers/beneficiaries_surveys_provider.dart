@@ -28,10 +28,10 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  String _colorsSurveys = '';
-  String get colorsSurveys => _colorsSurveys;
+  Color _colorsSurveys = Colors.transparent;
+  Color get colorsSurveys => _colorsSurveys;
 
-  setcolorsSurveys(String colors) {
+  setcolorsSurveys(Color colors) {
     _colorsSurveys = colors; //setea los colores de la encuesta
     notifyListeners();
   }
