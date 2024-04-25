@@ -56,6 +56,9 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
           onTap: () {
             /*limpia el provider*/
             surveysPrv.cleanAllProvider();
+            /*guarda la categoria*/
+            surveysPrv.setCategorieSurveys(
+                'Caracterización de potenciales beneficiarios');
             /*navega a la primera pantalla de preguntas */
             Navigator.push(
                 context,
@@ -86,6 +89,10 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
             visitsPrv.cleanProvider();
             /*limpia el provider de las firmas e imagenes enviadas*/
             domianPrv.clearProvider();
+
+            /*guarda la categoria*/
+            visitsPrv.setCategorieSurveys('Registro de visitas');
+
             /*genera el id la encuesta */
             setIDsurveys();
             /*setea el dato con  el id generado */

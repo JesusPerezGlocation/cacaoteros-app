@@ -11,7 +11,7 @@ class ListViewHomeDraftWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ListView.separated(
-      itemCount: 14,
+      itemCount: 3,
       physics: const BouncingScrollPhysics(),
       keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       separatorBuilder: (context, index) => SizedBox(height: size.height * .01),
@@ -21,7 +21,8 @@ class ListViewHomeDraftWidget extends StatelessWidget {
           child: CardDraftComponents(
             title: 'Title card data',
             date: '22 Abril',
-            hour: '08:00 am',
+            categorie: 'Categore.data',
+            colors: PaletteColorsTheme.principalColor,
             onTap: () {
               //Todo: debe la opción de subir, eliminar y si ya está arriba debe eliminarse de la lista
             },
@@ -38,73 +39,80 @@ card para retornar en la lista de borradores
 class CardDraftComponents extends StatelessWidget {
   final String title;
   final String date;
-  final String hour;
+  final Color colors;
+  final String categorie;
   final Function onTap;
   const CardDraftComponents({
     super.key,
     required this.title,
     required this.date,
     required this.onTap,
-    required this.hour,
+    required this.categorie,
+    required this.colors,
   });
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * .09,
-      width: size.width,
-      decoration: BoxDecoration(
-        color: PaletteColorsTheme.greyColor,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Row(
-        children: [
-          /*fecha */
-          Container(
-            height: size.height,
-            width: size.width * .13,
-            margin: EdgeInsets.symmetric(
-                horizontal: size.width * .02, vertical: size.height * .01),
-            decoration: BoxDecoration(
-                color: PaletteColorsTheme.principalColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Center(
-                child: Text(
-              date,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(color: PaletteColorsTheme.whiteColor),
-            )),
-          ),
-          SizedBox(
-            width: size.width * .65,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                /*titulo */
-                Text(
-                  title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(
-                  hour,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                )
-              ],
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      splashColor: PaletteColorsTheme.greyColor,
+      onTap: () => onTap(),
+      child: Container(
+        height: size.height * .09,
+        width: size.width,
+        decoration: BoxDecoration(
+          color: PaletteColorsTheme.greyColor,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          children: [
+            /*fecha */
+            Container(
+              height: size.height,
+              width: size.width * .13,
+              margin: EdgeInsets.symmetric(
+                  horizontal: size.width * .02, vertical: size.height * .01),
+              decoration: BoxDecoration(
+                  color: colors.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                  child: Text(
+                date,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(color: colors),
+              )),
             ),
-          )
-        ],
+            SizedBox(
+              width: size.width * .65,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*titulo */
+                  Text(
+                    title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    categorie,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.start,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

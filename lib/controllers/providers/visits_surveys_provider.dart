@@ -19,6 +19,15 @@ class VisitsSurveysProvider extends ChangeNotifier {
   final CollectionReference databaseReference =
       FirebaseFirestore.instance.collection(ApiPaths.visitstesting);
 
+  //*categoria de la encuenta*/
+  String _categorieSurveys = '';
+  String get categorieSurveys => _categorieSurveys;
+
+  setCategorieSurveys(String categorie) {
+    _categorieSurveys = categorie; //setea la categoria de la encuesta
+    notifyListeners();
+  }
+
 //*PANTALLA #1------*/
 
   final TextEditingController _beneficiaryName = TextEditingController();
