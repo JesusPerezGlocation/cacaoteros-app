@@ -68,12 +68,11 @@ class AllDraftsScreen extends StatelessWidget {
                           /*retorna la lista de items */
                           return FadeIn(
                             child: CardDraftComponents(
-                              id: data.id,
+                              id: data.id.toString(),
                               title: data.title,
                               date: data.date,
                               categorie: data.categorie,
                               icons: IconlyLight.arrow_right_2,
-                              colors: data.colors,
                               onTap: () {
                                 /*navega a la pantalla de la lista de una encuesta */
                                 Navigator.push(
@@ -95,9 +94,6 @@ class AllDraftsScreen extends StatelessWidget {
                   }
                 },
               ),
-              //Todo:!! descomentar y  mostrar cuando la lista venga vacia
-
-              /*lista de borradores */
             ],
           ),
         ),

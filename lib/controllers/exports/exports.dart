@@ -42,3 +42,4 @@ export 'package:surveys_app/views/components/title_surveys_components.dart';
 export 'package:surveys_app/controllers/providers/beneficiaries_surveys_provider.dart';
 export 'package:surveys_app/controllers/services/no_connection_ethernet_provider.dart';
 export 'package:surveys_app/views/widgets/show_modal_permission_gallery_widget.dart';
+export 'package:surveys_app/controllers/providers/get_lists_draft_surveys_provider.dart';

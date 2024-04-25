@@ -35,20 +35,13 @@ class ListDraftAllSurveysSQL {
   /*instancia para acceder la a la lista*/
   List<DraftSurveysListModel> get listSurveysAll => _listSurveysAll;
 
-  /*modelo json de los datos*/
-  static String columID = 'id';
-  static String columnmTitle = 'title';
-  static String columnmDate = 'date';
-  static String columnmColor = 'colors';
-  static String columnmCategorie = 'categorie';
-
   Future<Database> _initDB(String filePath) async {
     /*ayuda a determinar el path adecuado para los archivos */
     final dbPath = await getDatabasesPath();
     final path = join(dbPath, filePath);
     return await openDatabase(
       path,
-      version: 1,
+      version: 7,
       onCreate: _onCreateDB,
     );
   }
@@ -58,11 +51,10 @@ class ListDraftAllSurveysSQL {
     /*si es primera vez que se abre la base de datos, crea una tabla */
     await db.execute('''
     CREATE TABLE $tableListSurveys(
-    $columID INTEGER PRIMARY KEY,
-    $columnmTitle TEXT, 
-    $columnmDate TEXT, 
-    $columnmColor TEXT,
-    $columnmCategorie TEXT
+    id INTEGER PRIMARY KEY,
+    title TEXT, 
+    date TEXT,
+    categorie TEXT
     )
 ''');
   }
@@ -78,9 +70,15 @@ class ListDraftAllSurveysSQL {
       batch.insert(tableListSurveys, todo.toJson());
       /*almacena en la lists */
       _listSurveysAll.add(todo);
+      print('id: ${todo.id}');
+      print('title: ${todo.title}');
+      print('date: ${todo.date}');
+      print('categorie: ${todo.categorie}');
     }
 
     await batch.commit(noResult: true);
+
+    log('dato almacenado: ${_listSurveysAll.length}');
   }
 
   /*obtiene todos los datos de la lista*/
@@ -107,7 +105,7 @@ class ListDraftAllSurveysSQL {
       batch.update(
         tableListSurveys,
         todo.toJson(),
-        where: '$columID = ?',
+        where: 'id = ?',
         whereArgs: [todo.id],
       );
       /*actualiza el todo en la lista en memoria*/
@@ -136,7 +134,7 @@ class ListDraftAllSurveysSQL {
 
     await db.delete(
       tableListSurveys,
-      where: '$columID = ?',
+      where: 'id = ?',
       whereArgs: [id],
     );
     /*elimina un dato de la lista*/

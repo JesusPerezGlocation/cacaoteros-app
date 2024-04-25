@@ -28,14 +28,6 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Color _colorsSurveys = Colors.transparent;
-  Color get colorsSurveys => _colorsSurveys;
-
-  setcolorsSurveys(Color colors) {
-    _colorsSurveys = colors; //setea los colores de la encuesta
-    notifyListeners();
-  }
-
   //*primera pantalla #1*/
   final TextEditingController _nameUnit = TextEditingController();
   TextEditingController get nameUnit => _nameUnit;

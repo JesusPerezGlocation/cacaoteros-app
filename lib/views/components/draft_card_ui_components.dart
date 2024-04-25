@@ -9,7 +9,6 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
   final String id;
   final String title;
   final String date;
-  final Color colors;
   final IconData icons;
   final double percent;
   final Function onTap;
@@ -17,7 +16,6 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
     super.key,
     required this.title,
     required this.date,
-    required this.colors,
     required this.icons,
     required this.percent,
     required this.onTap,
@@ -28,14 +26,14 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return InkWell(
       borderRadius: BorderRadius.circular(15),
-      splashColor: colors.withOpacity(0.4),
+      splashColor: PaletteColorsTheme.greyColor.withOpacity(0.4),
       onTap: () => onTap(),
       child: Container(
         height: size.height * .1,
         width: size.width,
         padding: EdgeInsets.symmetric(horizontal: size.width * .02),
         decoration: BoxDecoration(
-          color: colors.withOpacity(0.3),
+          color: PaletteColorsTheme.greyColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -53,15 +51,13 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: colors),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
-                backgroundColor: colors.withOpacity(0.1),
+                backgroundColor:
+                    PaletteColorsTheme.principalColor.withOpacity(0.1),
                 linearGradient: LinearGradient(colors: [
-                  colors,
-                  colors.withOpacity(0.4),
+                  PaletteColorsTheme.principalColor,
+                  PaletteColorsTheme.principalColor.withOpacity(0.4),
                 ]),
               ),
             ),
@@ -78,25 +74,19 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: colors),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
                     date,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: colors),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
               ),
             ),
-            Icon(icons, color: colors)
+            Icon(icons)
           ],
         ),
       ),
@@ -111,7 +101,6 @@ class CardDraftComponents extends StatelessWidget {
   final String id;
   final String title;
   final String date;
-  final Color colors;
   final IconData icons;
   final String categorie;
   final Function onTap;
@@ -120,7 +109,6 @@ class CardDraftComponents extends StatelessWidget {
     required this.title,
     required this.date,
     required this.categorie,
-    required this.colors,
     required this.icons,
     required this.onTap,
     required this.id,
@@ -130,13 +118,13 @@ class CardDraftComponents extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return InkWell(
       borderRadius: BorderRadius.circular(15),
-      splashColor: colors.withOpacity(0.4),
+      splashColor: PaletteColorsTheme.greyColor,
       onTap: () => onTap(),
       child: Container(
         height: size.height * .09,
         width: size.width,
         decoration: BoxDecoration(
-          color: colors.withOpacity(0.3),
+          color: PaletteColorsTheme.greyColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -148,10 +136,11 @@ class CardDraftComponents extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                   horizontal: size.width * .02, vertical: size.height * .01),
               decoration: BoxDecoration(
-                  color: colors, borderRadius: BorderRadius.circular(10)),
+                  color: PaletteColorsTheme.principalColor,
+                  borderRadius: BorderRadius.circular(10)),
               child: Center(
                   child: Text(
-                date,
+                date.substring(0, 4),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
@@ -173,25 +162,19 @@ class CardDraftComponents extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: colors),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
                     categorie,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: colors),
+                    style: Theme.of(context).textTheme.bodyMedium!,
                   )
                 ],
               ),
             ),
-            Icon(icons, color: colors)
+            Icon(icons)
           ],
         ),
       ),

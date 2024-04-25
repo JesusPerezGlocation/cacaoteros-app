@@ -48,17 +48,27 @@ class EndSurveysVisitsScreen extends StatelessWidget {
               },
               onDraft: () async {
                 /*setea el modelo con los campos  de la encuesta*/
-                visitsPrv.setSaveDraftSurveys();
+                final dates = DraftSurveysListModel(
+                  id: visitsPrv.idSurveys,
+                  title: visitsPrv.beneficiaryName.text,
+                  date: visitsPrv.dateCreateSurvey,
+                  categorie: visitsPrv.categorieSurveys,
+                );
 
                 /*guarda los datos*/
-                await ListDraftAllSurveysSQL.instance
-                    .insertAllSurveys([visitsPrv.draftListModel]);
+                await ListDraftAllSurveysSQL.instance.insertAllSurveys([dates]);
 
                 SnackBarGlobalWidget.showSnackBar(
                   context,
                   'Guardado en borradores',
                   Icons.check_circle_rounded,
                   PaletteColorsTheme.principalColor,
+                );
+
+                /*navega al home*/
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  MainRoutes.initialRoute,
+                  (route) => false,
                 );
               },
             );

@@ -44,7 +44,6 @@ class DraftOfOneSurveysScreen extends StatelessWidget {
                           id: '2312132',
                           title: 'Title surveys data',
                           date: '20/05/2023 - 10:00 AM',
-                          colors: color,
                           icons: IconlyLight.arrow_right_2,
                           percent: .2,
                           onTap: () {},

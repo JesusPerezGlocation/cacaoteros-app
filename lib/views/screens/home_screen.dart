@@ -30,6 +30,7 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
     final size = MediaQuery.of(context).size;
     final ethernetProvider = Provider.of<NetworkStatus>(context);
     final statusPrv = Provider.of<NoConnectionEthernetProvider>(context);
+    final getSurveys = Provider.of<GetListDraftSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: HomeAppBarComponents(
@@ -60,8 +61,10 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
                 }),
 
             /*lista de borradores*/
-            const Expanded(
-              child: ListViewHomeDraftWidget(),
+            Expanded(
+              child: ListViewHomeDraftWidget(
+                getSurveys: getSurveys,
+              ),
             ),
           ],
         ),

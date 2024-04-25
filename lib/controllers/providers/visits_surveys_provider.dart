@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
-import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 provider para las encuestas de visitas
@@ -26,14 +25,6 @@ class VisitsSurveysProvider extends ChangeNotifier {
 
   setcategorieSurveys(String categorie) {
     _categorieSurveys = categorie; //setea la categoria de la encuesta
-    notifyListeners();
-  }
-
-  Color _colorsSurveys = Colors.transparent;
-  Color get colorsSurveys => _colorsSurveys;
-
-  setcolorsSurveys(Color colors) {
-    _colorsSurveys = colors; //setea los colores de la encuesta
     notifyListeners();
   }
 
@@ -65,8 +56,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
   final TextEditingController _codePlace =
       TextEditingController(); //codigo vereda
   TextEditingController get codePlace => _codePlace;
-  String _idSurveys = '';
-  String get idSurveys => _idSurveys;
+  int _idSurveys = 0;
+  int get idSurveys => _idSurveys;
   String _dateCreateSurvey = '';
   String get dateCreateSurvey => _dateCreateSurvey;
 
@@ -129,7 +120,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
   }
 
   generateIDsurveys(int id) {
-    _idSurveys = id.toString(); //genera un id para la encuesta
+    _idSurveys = id; //genera un id para la encuesta
     notifyListeners();
   }
 
@@ -542,43 +533,13 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _signature = '';
     _isAcceptsTerm = false;
 
-    _idSurveys = '';
+    _idSurveys = 0;
     _dateCreateSurvey = '';
     _dateTimeSurveys = '';
     _metaInstanceUIID = '';
 
     _isSendingData = false;
 
-    _draftListModel = DraftSurveysListModel(
-      id: '',
-      categorie: '',
-      colors: PaletteColorsTheme.principalColor,
-      date: '',
-      title: '',
-    );
-
-    notifyListeners();
-  }
-
-//*ALMACENA LOS DATOS DE LA ENCUESTA DE VISITA EN LA SQL*/
-  /*modelo inicial de los datos */
-  DraftSurveysListModel _draftListModel = DraftSurveysListModel(
-    id: '',
-    title: '',
-    categorie: '',
-    date: '',
-    colors: PaletteColorsTheme.principalColor,
-  );
-  /*get para manejar el modelo */
-  DraftSurveysListModel get draftListModel => _draftListModel;
-
-  /*almacena los datos*/
-  setSaveDraftSurveys() {
-    _idSurveys = _draftListModel.id;
-    _beneficiaryName.text = _draftListModel.title;
-    _categorieSurveys = _draftListModel.categorie;
-    _dateCreateSurvey = _draftListModel.date;
-    _colorsSurveys = _draftListModel.colors;
     notifyListeners();
   }
 }
