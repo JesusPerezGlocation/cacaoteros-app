@@ -79,10 +79,10 @@ class AllDraftsScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const DraftOfOneSurveysScreen(
+                                          DraftOfOneSurveysScreen(
                                             color: PaletteColorsTheme
                                                 .principalColor,
-                                            categorie: 'CATEGORIE NAME',
+                                            categorie: data.categorie,
                                           )),
                                 );
                               },
