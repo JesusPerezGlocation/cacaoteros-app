@@ -52,12 +52,14 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
           accuracy: '${widget.locationProvider.accuracy}',
           altitude: '${widget.locationProvider.altitude}',
         ),
-        appBar: AppBar(actions: [
-          SaveIconDraftComponents(
-            color: PaletteColorsTheme.principalColor,
-            onTap: () {},
-          )
-        ]),
+        appBar: AppBar(
+            //
+            actions: [
+              SaveIconDraftComponents(
+                color: PaletteColorsTheme.principalColor,
+                onTap: () {},
+              )
+            ]),
         body: Consumer<PermissionLocationProvider>(
           builder: (context, provider, _) {
             if (provider.latitude == null || provider.longitude == null) {

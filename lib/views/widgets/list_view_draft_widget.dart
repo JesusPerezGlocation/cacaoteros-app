@@ -21,6 +21,7 @@ class ListViewHomeDraftWidget extends StatelessWidget {
         /*retorna la lista de items */
         return FadeIn(
           child: CardDraftComponents(
+            id: '29393',
             title: 'Title card data',
             date: '22 Abril',
             categorie: 'Categore.data',

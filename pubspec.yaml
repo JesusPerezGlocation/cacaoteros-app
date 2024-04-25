@@ -55,6 +55,7 @@ dependencies:
   permission_handler: ^11.3.1
   provider: ^6.1.2
   signature: ^5.4.1
+  sqflite: ^2.3.3
   uuid: ^4.4.0
   vibration: ^1.8.4
 

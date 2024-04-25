@@ -5,8 +5,8 @@ import 'package:surveys_app/controllers/exports/exports.dart';
 /*
 card para retornar en la lista de borradores de una encuesta
 */
-
 class CardDraftOneSurveyComponents extends StatelessWidget {
+  final String id;
   final String title;
   final String date;
   final Color colors;
@@ -21,6 +21,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
     required this.icons,
     required this.percent,
     required this.onTap,
+    required this.id,
   });
   @override
   Widget build(BuildContext context) {
@@ -107,6 +108,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
 card para retornar en la lista de borradores
 */
 class CardDraftComponents extends StatelessWidget {
+  final String id;
   final String title;
   final String date;
   final Color colors;
@@ -121,6 +123,7 @@ class CardDraftComponents extends StatelessWidget {
     required this.colors,
     required this.icons,
     required this.onTap,
+    required this.id,
   });
   @override
   Widget build(BuildContext context) {

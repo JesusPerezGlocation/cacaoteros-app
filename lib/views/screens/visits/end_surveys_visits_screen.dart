@@ -13,7 +13,7 @@ class EndSurveysVisitsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    // final ethernetProvider = Provider.of<NetworkStatus>(context);
+    // final ethernetProvider = Provider.of<NoConnectionEthernetProvider>(context);
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(),
@@ -39,6 +39,7 @@ class EndSurveysVisitsScreen extends StatelessWidget {
                 await visitsPrv.sendDataVisitsFirebase(context);
 
                 Navigator.pop(context);
+
                 /*navega al home*/
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   MainRoutes.initialRoute,

@@ -36,6 +36,15 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  //*TIMEOUT PARA EL TIEMPO DE ENVIO*/
+  bool _isSendingData = false;
+  bool get isSendingData => _isSendingData;
+
+  setisTimeoutSend(bool send) {
+    _isSendingData = send; //setea el el bool para el timout de la petición
+    notifyListeners();
+  }
+
 //*PANTALLA #1------*/
 
   final TextEditingController _beneficiaryName = TextEditingController();
@@ -414,7 +423,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
   }
 
   //*ENVIO DE DATOS A FIREBASE*/
-  Future<void> sendDataVisitsFirebase(BuildContext context) async {
+  Future sendDataVisitsFirebase(BuildContext context) async {
     try {
       databaseReference.add({
         /*PANTALLA #1*/
@@ -486,13 +495,16 @@ class VisitsSurveysProvider extends ChangeNotifier {
             Icons.check_circle_rounded,
             PaletteColorsTheme.principalColor);
       }).catchError((error) {
+        notifyListeners();
+
         /*si ocurre un error, muestra un mensaje de error */
         return SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
             Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
       });
     } catch (e) {
       log('error:$e');
-      SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+      notifyListeners();
+      return SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
     }
   }
@@ -533,6 +545,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _dateCreateSurvey = '';
     _dateTimeSurveys = '';
     _metaInstanceUIID = '';
+
+    _isSendingData = false;
 
     notifyListeners();
   }

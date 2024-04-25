@@ -41,6 +41,7 @@ class DraftOfOneSurveysScreen extends StatelessWidget {
                           SizedBox(height: size.height * .01),
                       itemBuilder: (context, index) {
                         return CardDraftOneSurveyComponents(
+                          id: '2312132',
                           title: 'Title surveys data',
                           date: '20/05/2023 - 10:00 AM',
                           colors: color,

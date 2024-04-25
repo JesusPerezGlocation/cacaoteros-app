@@ -41,6 +41,7 @@ class AllDraftsScreen extends StatelessWidget {
                   /*retorna la lista de items */
                   return FadeIn(
                     child: CardDraftComponents(
+                      id: '10002',
                       title: 'Title card data',
                       date: '22 Abril',
                       categorie: 'Categore.data',

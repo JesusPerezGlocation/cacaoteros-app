@@ -34,4 +34,13 @@ class NoConnectionEthernetProvider with ChangeNotifier {
       log('check errors: $e');
     }
   }
+
+  //*TIMEOUT PARA EL TIEMPO DE ENVIO*/
+  bool _isSendingData = true;
+  bool get isSendingData => _isSendingData;
+
+  setisTimeoutSend(bool send) {
+    _isSendingData = send; //setea el el bool para el timout de la petición
+    notifyListeners();
+  }
 }
