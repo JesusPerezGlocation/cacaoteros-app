@@ -20,11 +20,13 @@ class MainRoutes {
   static const elevenSurveysRoute = '/eleven_surveys_route';
   static const twelveSurveysRoute = '/twelve_surveys_route';
   static const threeSurveysRoute = '/six_surveys_route';
-  // static const allDraftsRoute = '/all_drafts_route';
   static const foursSurveysRoute = '/four_surveys_route';
   static const listMembersRoute = '/list_members_route';
   static const thirteenThreeSurveysRoute = '/twenty_three_surveys_route';
   static const endSurveysScreenRoute = '/end_surveys_screen_route';
+  /*borradores*/
+  static const allDraftsRoute = '/all_drafts_route';
+  // static const draftOfSurveysRoute = '/draft_of_surveys_route';
 
   /*encuestas de visitas*/
   static const secondVisitsSurveysRoute = '/second_visits_surveys_route';
@@ -54,13 +56,14 @@ class MainRoutes {
 
     endSurveysScreenRoute: (_) => const EndSurveysScreen(),
     thirteenThreeSurveysRoute: (_) => const ThirteenurveysScreen(),
-    // allDraftsRoute: (_) => const AllDraftsScreen(),
     listMembersRoute: (_) => const ListMembersScreen(),
-
     newMemberRoute: (_) => const NewMemberSurveysScreen(),
 
     //firtSurveysRoute:(_) => const FirstSurveysScreens(),
     // fiveSurveysRoute: (_) => const FiveSurveysScreen(),
+    /*--------BORRADORES------------*/
+    allDraftsRoute: (_) => const AllDraftsScreen(),
+    // draftOfSurveysRoute: (_) => const DraftOfOneSurveysScreen(),
 
     /*----------ENCUESTAS DE VISITAS------------*/
     // firtVisitsSurveys: (_) => const FirtSurveysVisitsScreen(),

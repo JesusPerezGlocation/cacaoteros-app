@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
+import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
 lista de borradores sin enviar
@@ -26,7 +27,15 @@ class ListViewHomeDraftWidget extends StatelessWidget {
             icons: IconlyLight.arrow_right_2,
             colors: PaletteColorsTheme.principalColor,
             onTap: () {
-              //Todo: debe la opción de subir, eliminar y si ya está arriba debe eliminarse de la lista
+              /*navega a la pantalla de la lista de una encuesta */
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const DraftOfOneSurveysScreen(
+                          color: PaletteColorsTheme.principalColor,
+                          categorie: 'CATEGORIE NAME',
+                        )),
+              );
             },
           ),
         );

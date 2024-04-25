@@ -56,12 +56,7 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
                 action: 'Ver todos',
                 onTap: () {
                   /*navega a ver todos los borradores */
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AllDraftsScreen(
-                                color: PaletteColorsTheme.principalColor,
-                              )));
+                  Navigator.pushNamed(context, MainRoutes.allDraftsRoute);
                 }),
 
             /*lista de borradores*/
