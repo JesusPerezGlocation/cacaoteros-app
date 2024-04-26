@@ -54,12 +54,13 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
             //Todo: "Ver todos" debe mostrarse cuando la lista de borradores sea mayor a 3
             ViewAllDraftComponents(
                 title: 'Borradores',
+                lenght: getSurveys.listsSurveysDraft.length,
                 action: 'Ver todos',
                 onTap: () {
                   /*navega a ver todos los borradores */
                   Navigator.pushNamed(context, MainRoutes.allDraftsRoute);
                 }),
-
+            SizedBox(height: size.height * .02),
             /*lista de borradores*/
             Expanded(
               child: ListViewHomeDraftWidget(

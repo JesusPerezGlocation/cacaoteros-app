@@ -101,10 +101,14 @@ class ListDraftAllSurveysSQL {
   }
 
   /*obtiene todos los datos de la lista*/
-  Future<List<DraftSurveysListModel>> getAllSurveysGet() async {
+  Future<List<DraftSurveysListModel>> getAllSurveysGet({int limit = 5}) async {
     final db = await instance.database;
 
-    final List<Map<String, dynamic>> maps = await db.query(tableListSurveys);
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableListSurveys,
+      limit: limit,
+      orderBy: 'id DESC',
+    );
 
     /*le da valor a  _listSurveysAll y lo retorna*/
     _listSurveysAll = List.generate(maps.length, (index) {

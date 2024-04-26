@@ -36,7 +36,7 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
     final size = MediaQuery.of(context).size;
 
     return FutureBuilder<List<DraftSurveysListModel>>(
-      future: ListDraftAllSurveysSQL.instance.getAllSurveysGet(),
+      future: ListDraftAllSurveysSQL.instance.getAllSurveysGet(limit: 6),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
