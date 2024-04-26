@@ -16,3 +16,12 @@ class ImagesPaths {
   static String permissionGallery = 'assets/img/permission-gallery.png';
   static String mapMenImage = 'assets/img/map-men.png';
 }
+
+/*
+clase para manejar los assets del tile map
+*/
+class TileMapAssets {
+  static String tilecacaoteros = 'assets/mbtiles/cacaoteos.mbtiles';
+  static String testing = 'assets/mbtiles/prueba.mbtiles';
+  static String exampleThree = 'assets/mbtiles/example3.mbtiles';
+}

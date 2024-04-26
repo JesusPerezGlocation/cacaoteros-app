@@ -1158,6 +1158,21 @@ PODS:
   - sqflite (0.0.3):
     - Flutter
     - FlutterMacOS
+  - "sqlite3 (3.45.3+1)":
+    - "sqlite3/common (= 3.45.3+1)"
+  - "sqlite3/common (3.45.3+1)"
+  - "sqlite3/fts5 (3.45.3+1)":
+    - sqlite3/common
+  - "sqlite3/perf-threadsafe (3.45.3+1)":
+    - sqlite3/common
+  - "sqlite3/rtree (3.45.3+1)":
+    - sqlite3/common
+  - sqlite3_flutter_libs (0.0.1):
+    - Flutter
+    - "sqlite3 (~> 3.45.3+1)"
+    - sqlite3/fts5
+    - sqlite3/perf-threadsafe
+    - sqlite3/rtree
   - SwiftyGif (5.4.5)
   - vibration (1.7.5):
     - Flutter
@@ -1176,6 +1191,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/darwin`)
+  - sqlite3_flutter_libs (from `.symlinks/plugins/sqlite3_flutter_libs/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
 
 SPEC REPOS:
@@ -1201,6 +1217,7 @@ SPEC REPOS:
     - PromisesObjC
     - Reachability
     - SDWebImage
+    - sqlite3
     - SwiftyGif
 
 EXTERNAL SOURCES:
@@ -1230,6 +1247,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/darwin"
+  sqlite3_flutter_libs:
+    :path: ".symlinks/plugins/sqlite3_flutter_libs/ios"
   vibration:
     :path: ".symlinks/plugins/vibration/ios"
 
@@ -1268,6 +1287,8 @@ SPEC CHECKSUMS:
   Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   sqflite: 673a0e54cc04b7d6dba8d24fb8095b31c3a99eec
+  sqlite3: 02d1f07eaaa01f80a1c16b4b31dfcbb3345ee01a
+  sqlite3_flutter_libs: 9bfe005308998aeca155330bbc2ea6dddf834a3b
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
   vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
 

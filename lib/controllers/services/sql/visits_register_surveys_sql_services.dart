@@ -108,6 +108,8 @@ class VisitsRegisterSQLServices {
       final db = await database;
       await db.insert(tableVisitsRegister, visitsSurveysModels.toJson());
       _listVisitsRegister.add(visitsSurveysModels);
+
+      log('lista insertada: ${_listVisitsRegister.length}');
     } catch (e) {
       log('Error al insertar registro de visita: ${e.toString()}');
       return SnackBarGlobalWidget.showSnackBar(

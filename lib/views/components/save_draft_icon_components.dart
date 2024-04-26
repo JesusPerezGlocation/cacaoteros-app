@@ -32,6 +32,7 @@ class SaveIconDraftComponents extends StatelessWidget {
 
 class CircleAvatarSaveIconDraftComponent extends StatelessWidget {
   final Color color;
+  final Color? colorCircle;
   final IconData? icon;
   final Function onTap;
   const CircleAvatarSaveIconDraftComponent({
@@ -39,6 +40,7 @@ class CircleAvatarSaveIconDraftComponent extends StatelessWidget {
     required this.color,
     this.icon,
     required this.onTap,
+    this.colorCircle,
   });
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class CircleAvatarSaveIconDraftComponent extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(right: size.width * .03),
         child: CircleAvatar(
-          backgroundColor: PaletteColorsTheme.whiteColor,
+          backgroundColor: colorCircle ?? PaletteColorsTheme.whiteColor,
           child: Center(
             child: Icon(
               icon ?? IconlyLight.bookmark,

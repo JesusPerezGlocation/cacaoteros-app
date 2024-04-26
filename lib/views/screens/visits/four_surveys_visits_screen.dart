@@ -60,8 +60,9 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
       appBar: AppBar(
           //
           actions: [
-            SaveIconDraftComponents(
+            CircleAvatarSaveIconDraftComponent(
               color: PaletteColorsTheme.principalColor,
+              colorCircle: PaletteColorsTheme.whiteColor,
               onTap: () {},
             )
           ]),

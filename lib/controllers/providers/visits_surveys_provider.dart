@@ -155,6 +155,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
 //*PANTALLA #4-------*/
 
   String _latLngString = '';
+  String get latLngString => _latLngString;
+
   final List<String> _listSendCoordinates = [];
   List<String> get listSendCoordinates => _listSendCoordinates;
 

@@ -1,3 +1,5 @@
+export 'package:surveys_app/views/widgets/show_coordinates_map_widget.dart';
+
 export 'package:surveys_app/controllers/services/sql/visits_register_surveys_sql_services.dart';
 export 'package:surveys_app/models/visits_surveys_model.dart';
 export 'package:surveys_app/controllers/paths/name_surveys_paths.dart';

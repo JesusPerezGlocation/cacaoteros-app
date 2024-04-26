@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -84,7 +85,12 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
                                 )),
                       );
                     },
-                  ),
+                  )
+                      .animate(delay: const Duration(milliseconds: 50))
+                      .fadeIn(delay: const Duration(milliseconds: 10))
+
+                      // .animate(onPlay: (controller) => controller.reverse())
+                      .shimmer(duration: 1400.ms),
                 );
               },
             );
