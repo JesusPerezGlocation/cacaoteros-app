@@ -9,13 +9,16 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
   final String id;
   final String title;
   final String date;
+  final Color color;
   final IconData icons;
   final double percent;
   final Function onTap;
+
   const CardDraftOneSurveyComponents({
     super.key,
     required this.title,
     required this.date,
+    required this.color,
     required this.icons,
     required this.percent,
     required this.onTap,
@@ -26,14 +29,14 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return InkWell(
       borderRadius: BorderRadius.circular(15),
-      splashColor: PaletteColorsTheme.greyColor.withOpacity(0.4),
+      splashColor: color.withOpacity(0.4),
       onTap: () => onTap(),
       child: Container(
         height: size.height * .1,
         width: size.width,
         padding: EdgeInsets.symmetric(horizontal: size.width * .02),
         decoration: BoxDecoration(
-          color: PaletteColorsTheme.greyColor,
+          color: color.withOpacity(0.2),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -51,13 +54,15 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: color),
                 ),
-                backgroundColor:
-                    PaletteColorsTheme.principalColor.withOpacity(0.1),
+                backgroundColor: color.withOpacity(0.2),
                 linearGradient: LinearGradient(colors: [
-                  PaletteColorsTheme.principalColor,
-                  PaletteColorsTheme.principalColor.withOpacity(0.4),
+                  color,
+                  color.withOpacity(0.4),
                 ]),
               ),
             ),
@@ -74,19 +79,28 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(color: color),
                   ),
                   Text(
                     date,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: color),
                   )
                 ],
               ),
             ),
-            Icon(icons)
+            Icon(
+              icons,
+              color: color,
+            )
           ],
         ),
       ),

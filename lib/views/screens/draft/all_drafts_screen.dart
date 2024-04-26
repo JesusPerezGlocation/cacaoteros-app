@@ -79,8 +79,6 @@ class AllDraftsScreen extends StatelessWidget {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           DraftOfOneSurveysScreen(
-                                            color: PaletteColorsTheme
-                                                .principalColor,
                                             categorie: data.categorie,
                                           )),
                                 );

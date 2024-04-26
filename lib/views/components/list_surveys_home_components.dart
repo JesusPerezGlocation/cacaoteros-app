@@ -48,17 +48,16 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
       children: [
         /*registro de visita*/
         StartSurveysComponents(
-          title: 'Caracterización de potenciales beneficiarios',
+          title: NameSurveys.beneficiaries,
           answers: '10/50 respuestas conectar',
           percent: 0.5,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.secondaryColor,
+          color: NameSurveys.beneficiariesColor,
           onTap: () {
             /*limpia el provider*/
             surveysPrv.cleanAllProvider();
             /*guarda los categoria, id, fecha*/
-            surveysPrv.setcategorieSurveys(
-                'Caracterización de potenciales beneficiarios');
+            surveysPrv.setcategorieSurveys(NameSurveys.beneficiaries);
 
             surveysPrv.generateIDsurveys(randomNumber);
 
@@ -77,11 +76,11 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
         SizedBox(width: size.width * .02),
         /*visitas*/
         StartSurveysComponents(
-          title: 'Registro de visitas',
+          title: NameSurveys.visits,
           answers: '10/50 respuestas conectar',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.principalColor,
+          color: NameSurveys.visitsColor,
           onTap: () async {
             /*pide el permiso de camara y fotos*/
             if (isiOS) {
@@ -96,7 +95,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
             domianPrv.clearProvider();
 
             /*guarda la categoria*/
-            visitsPrv.setcategorieSurveys('Registro de visitas');
+            visitsPrv.setcategorieSurveys(NameSurveys.visits);
 
             /*genera el id la encuesta */
             setIDsurveys();
@@ -116,51 +115,51 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
         SizedBox(width: size.width * .02),
         /*tareas administrativas */
         StartSurveysComponents(
-          title: 'Tareas administrativas',
+          title: NameSurveys.taskAdminist,
           answers: '10/50 respuestas conectar',
           percent: 0.2,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.principalColor,
+          color: NameSurveys.taskAdministColor,
           onTap: () {},
         ),
         SizedBox(width: size.width * .02),
         /*caracterización de Cacaocultores */
         StartSurveysComponents(
-          title: 'Caracterización de Cacaocultores',
+          title: NameSurveys.caracterization,
           answers: '10/50 respuestas conectar',
           percent: 0.2,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.secondaryColor,
+          color: NameSurveys.caracterizationColor,
           onTap: () {},
         ),
         SizedBox(width: size.width * .02),
         /*caracterización de Cacaocultores */
         StartSurveysComponents(
-          title: 'Caracterización de Centro de Acopio',
+          title: NameSurveys.collectionCenter,
           answers: '10/50 respuestas conectar',
           percent: 0.1,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.secondaryColor,
+          color: NameSurveys.collectionCenterColor,
           onTap: () {},
         ),
         SizedBox(width: size.width * .02),
         /*kardex */
         StartSurveysComponents(
-          title: 'Kardex',
+          title: NameSurveys.kardex,
           answers: '10/50 respuestas conectar',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.secondaryColor,
+          color: NameSurveys.kardexColor,
           onTap: () {},
         ),
         SizedBox(width: size.width * .02),
         /*registro calidad del grano */
         StartSurveysComponents(
-          title: 'Registro Calidad del Grano',
+          title: NameSurveys.registerCocoa,
           answers: '10/50 respuestas conectar',
           percent: 0.4,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
-          color: PaletteColorsTheme.secondaryColor,
+          color: NameSurveys.registerCocoaColor,
           onTap: () {},
         ),
       ],

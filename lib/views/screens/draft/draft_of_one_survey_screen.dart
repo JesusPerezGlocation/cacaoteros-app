@@ -6,14 +6,57 @@ import 'package:surveys_app/controllers/exports/exports.dart';
 /*
 para ver la lista de borradores de una encuesta
 */
-class DraftOfOneSurveysScreen extends StatelessWidget {
-  final Color color;
+class DraftOfOneSurveysScreen extends StatefulWidget {
   final String categorie;
   const DraftOfOneSurveysScreen({
     super.key,
-    required this.color,
     required this.categorie,
   });
+
+  @override
+  State<DraftOfOneSurveysScreen> createState() =>
+      _DraftOfOneSurveysScreenState();
+}
+
+class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
+  Color changeColor = PaletteColorsTheme.principalColor;
+
+  @override
+  void initState() {
+    super.initState();
+    changeColorCard();
+  }
+
+  changeColorCard() {
+    switch (widget.categorie) {
+      case NameSurveys.beneficiaries:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.visits:
+        changeColor = PaletteColorsTheme.principalColor;
+        break;
+      case NameSurveys.taskAdminist:
+        changeColor = PaletteColorsTheme.principalColor;
+        break;
+      case NameSurveys.caracterization:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.collectionCenter:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.kardex:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.registerCocoa:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      default:
+        changeColor = PaletteColorsTheme.principalColor;
+    }
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -27,8 +70,8 @@ class DraftOfOneSurveysScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TitleSurveysComponents(
-                title: categorie,
-                color: color,
+                title: widget.categorie,
+                color: changeColor,
               ),
               SizedBox(height: size.height * .02),
               Expanded(
@@ -45,6 +88,7 @@ class DraftOfOneSurveysScreen extends StatelessWidget {
                           title: 'Title surveys data',
                           date: '20/05/2023 - 10:00 AM',
                           icons: IconlyLight.arrow_right_2,
+                          color: changeColor,
                           percent: .2,
                           onTap: () {},
                         );

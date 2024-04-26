@@ -80,7 +80,6 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => DraftOfOneSurveysScreen(
-                                  color: PaletteColorsTheme.principalColor,
                                   categorie: data.categorie,
                                 )),
                       );

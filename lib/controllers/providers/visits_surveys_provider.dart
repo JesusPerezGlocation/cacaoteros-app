@@ -415,7 +415,7 @@ class VisitsSurveysProvider extends ChangeNotifier {
   }
 
   //*ENVIO DE DATOS A FIREBASE*/
-  Future sendDataVisitsFirebase(BuildContext context) async {
+  Future<void> sendDataVisitsFirebase(BuildContext context) async {
     try {
       databaseReference.add({
         /*PANTALLA #1*/
@@ -481,22 +481,17 @@ class VisitsSurveysProvider extends ChangeNotifier {
         /*si los datos se enviaron con exito*/
 
         notifyListeners();
-        return SnackBarGlobalWidget.showSnackBar(
-            context,
-            '¡Datos enviados con éxito!',
-            Icons.check_circle_rounded,
-            PaletteColorsTheme.principalColor);
+        SnackBarGlobalWidget.showSnackBar(context, '¡Datos enviados con éxito!',
+            Icons.check_circle_rounded, PaletteColorsTheme.principalColor);
       }).catchError((error) {
-        notifyListeners();
-
         /*si ocurre un error, muestra un mensaje de error */
-        return SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
+        SnackBarGlobalWidget.showSnackBar(context, 'Error $error',
             Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
       });
     } catch (e) {
       log('error:$e');
       notifyListeners();
-      return SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
+      SnackBarGlobalWidget.showSnackBar(context, 'Error $e',
           Icons.error_outline_rounded, PaletteColorsTheme.redErrorColor);
     }
   }
