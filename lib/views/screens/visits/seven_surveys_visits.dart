@@ -155,6 +155,8 @@ class _ListImageSelectComponents extends StatelessWidget {
                 /*añade los datos a las imagees y toma el primer dato de la lista */
                 String? firstImageBase64 = visitsPrv.listImagesAdd[0];
 
+                /*setea el porcentaje almacenado*/
+                visitsPrv.setPercentSurvey((7 - 1) * (100 / 8) / 100);
                 /*setea el provider de donde voy a transformar la foto*/
                 domianPrv.setSelectImage(firstImageBase64);
 

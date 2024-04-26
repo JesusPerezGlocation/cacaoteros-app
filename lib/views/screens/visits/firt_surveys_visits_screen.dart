@@ -36,18 +36,20 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
     final size = MediaQuery.of(context).size;
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
-      appBar: AppBar(actions: [
-        SaveIconDraftComponents(
-          color: PaletteColorsTheme.principalColor,
-          onTap: () {
-            SnackBarGlobalWidget.showSnackBar(
-                context,
-                'En proceso de construcción',
-                Icons.error_outlined,
-                PaletteColorsTheme.yellowColor);
-          },
-        )
-      ]),
+      appBar: AppBar(
+        actions: [
+          SaveIconDraftComponents(
+            color: PaletteColorsTheme.principalColor,
+            onTap: () {
+              SnackBarGlobalWidget.showSnackBar(
+                  context,
+                  'En proceso de construcción',
+                  Icons.error_outlined,
+                  PaletteColorsTheme.yellowColor);
+            },
+          )
+        ],
+      ),
       body: FadeIn(
         child: FadeIn(
           child: Form(
@@ -112,6 +114,9 @@ class _FirtSurveysVisitsScreenState extends State<FirtSurveysVisitsScreen> {
                     String idRandom = generatedIdRandom();
                     /*le pasa el dato del uuid id */
                     visitsPrv.setmetaInstanceUIID(idRandom);
+
+                    /*setea el porcentaje almacenado*/
+                    visitsPrv.setPercentSurvey((1 - 1) * (100 / 8) / 100);
                     /*navega a la segunda pantalla  */
                     Navigator.pushNamed(
                       context,

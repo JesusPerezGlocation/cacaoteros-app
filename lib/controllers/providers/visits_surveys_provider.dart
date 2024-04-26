@@ -415,6 +415,14 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  double _percent = 0.0;
+  double get percent => _percent;
+
+  setPercentSurvey(double perc) {
+    _percent = perc; //setea el porcentaje de preguntas completas
+    notifyListeners();
+  }
+
   //*ENVIO DE DATOS A FIREBASE*/
   Future<void> sendDataVisitsFirebase(BuildContext context) async {
     try {
@@ -535,6 +543,8 @@ class VisitsSurveysProvider extends ChangeNotifier {
     _metaInstanceUIID = '';
 
     _isSendingData = false;
+
+    _percent = 0.0;
 
     notifyListeners();
   }

@@ -57,7 +57,7 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
               const LinealPercentComponent(
                 colorOne: PaletteColorsTheme.principalColor,
                 colorTwo: PaletteColorsTheme.principalColor,
-                percent: (8 - 1) * (100 / 8) / 100,
+                percent: (9 - 1) * (100 / 8) / 100,
                 questions: '8',
                 answers: '8',
               ),
@@ -140,6 +140,8 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
                   visitsPrv.setendDateSurveys(endSurveys.toString());
                   if (visitsPrv.signature.isNotEmpty) {
                     if (visitsPrv.isAcceptsTerm) {
+                      /*setea el porcentaje almacenado*/
+                      visitsPrv.setPercentSurvey((9 - 1) * (100 / 8) / 100);
                       /*navega a la pantalla ffinal */
                       Navigator.pushNamed(
                         context,

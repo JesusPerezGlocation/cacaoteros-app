@@ -96,6 +96,9 @@ class _SixSurveysVisitsScreenState extends State<SixSurveysVisitsScreen> {
                 onPressed: () {
                   if (visitsPrv.signatureBeneficiary.isNotEmpty &&
                       visitsPrv.signatureTecns.isNotEmpty) {
+                    /*setea el porcentaje almacenado*/
+                    visitsPrv.setPercentSurvey((6 - 1) * (100 / 8) / 100);
+
                     /*navega a la siguiente pantalla*/
                     Navigator.pushNamed(
                       context,

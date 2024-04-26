@@ -1,9 +1,7 @@
-// ignore_for_file: depend_on_referenced_packages
-
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
 import 'dart:developer';
-
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
@@ -105,19 +103,25 @@ class VisitsRegisterSQLServices {
 
   /*inserta los datos en la table */
   Future<void> insertVisitsRegister(
-      VisitsSurveysModels visitsSurveysModels) async {
+      VisitsSurveysModels visitsSurveysModels, BuildContext context) async {
     try {
       final db = await database;
       await db.insert(tableVisitsRegister, visitsSurveysModels.toJson());
       _listVisitsRegister.add(visitsSurveysModels);
     } catch (e) {
       log('Error al insertar registro de visita: ${e.toString()}');
+      return SnackBarGlobalWidget.showSnackBar(
+        context,
+        'Hubo un error $e',
+        Icons.error_outlined,
+        PaletteColorsTheme.redErrorColor,
+      );
     }
   }
 
   /*actualiza una encueesta visita */
   Future<void> updateVisitsRegister(
-      VisitsSurveysModels visitsSurveysModels) async {
+      VisitsSurveysModels visitsSurveysModels, BuildContext context) async {
     try {
       final db = await database;
       await db.update(
@@ -134,6 +138,12 @@ class VisitsRegisterSQLServices {
       }
     } catch (e) {
       log('Error al actualizar registro de visita: ${e.toString()}');
+      return SnackBarGlobalWidget.showSnackBar(
+        context,
+        'Hubo un error $e',
+        Icons.error_outlined,
+        PaletteColorsTheme.redErrorColor,
+      );
     }
   }
 

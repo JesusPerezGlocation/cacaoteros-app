@@ -93,6 +93,9 @@ class _ThirdSurveysVisitsScreenState extends State<ThirdSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
+                  /*setea el porcentaje almacenado*/
+                  visitsPrv.setPercentSurvey((3 - 1) * (100 / 8) / 100);
+
                   /*navega a la pantalla #4 */
                   Navigator.push(
                       context,

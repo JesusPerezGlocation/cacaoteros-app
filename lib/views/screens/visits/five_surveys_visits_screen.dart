@@ -99,6 +99,8 @@ class _FiveSurveysVisitsScreenState extends State<FiveSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
+                  /*setea el porcentaje almacenado*/
+                  visitsPrv.setPercentSurvey((5 - 1) * (100 / 8) / 100);
                   /*navega a la pantalla #6 */
                   Navigator.pushNamed(
                     context,

@@ -114,6 +114,9 @@ class _SecondSurveysVisitsScreenState extends State<SecondSurveysVisitsScreen> {
                 title: 'Continuar',
                 colorButton: PaletteColorsTheme.principalColor,
                 onPressed: () {
+                  /*setea el porcentaje almacenado*/
+                  visitsPrv.setPercentSurvey((2 - 1) * (100 / 8) / 100);
+                  /*navega a la #3*/
                   Navigator.pushNamed(
                     context,
                     MainRoutes.thirdVisitsSurveysRoute,

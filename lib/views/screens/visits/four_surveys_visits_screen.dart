@@ -160,6 +160,10 @@ class _BottonNavigatorMapComponents extends StatelessWidget {
             if (visitsPrv.listSendCoordinates.isNotEmpty) {
               /*setea la lat y long*/
               visitsPrv.setLatAndLong(lat, long, accuracy, altitude);
+
+              /*setea el porcentaje almacenado*/
+              visitsPrv.setPercentSurvey((4 - 1) * (100 / 8) / 100);
+
               /*navega a la pantalla #5 */
               Navigator.pushNamed(
                 context,
