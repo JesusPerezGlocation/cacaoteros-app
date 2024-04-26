@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:iconly/iconly.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
 card para retornar en la lista de borradores de una encuesta
 */
-class CardDraftOneSurveyComponents extends StatelessWidget {
+class CardDraftOneSurveyComponents extends StatefulWidget {
   final String id;
   final String title;
   final String date;
   final Color color;
   final IconData icons;
   final double percent;
-  final Function onTap;
 
   const CardDraftOneSurveyComponents({
     super.key,
@@ -21,84 +22,139 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
     required this.color,
     required this.icons,
     required this.percent,
-    required this.onTap,
     required this.id,
   });
+
+  @override
+  State<CardDraftOneSurveyComponents> createState() =>
+      _CardDraftOneSurveyComponentsState();
+}
+
+class _CardDraftOneSurveyComponentsState
+    extends State<CardDraftOneSurveyComponents> with TickerProviderStateMixin {
+  SlidableController? slidableController;
+  @override
+  void initState() {
+    super.initState();
+    slidableController = SlidableController(this);
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return InkWell(
-      borderRadius: BorderRadius.circular(15),
-      splashColor: color.withOpacity(0.4),
-      onTap: () => onTap(),
-      child: Container(
-        height: size.height * .1,
-        width: size.width,
-        padding: EdgeInsets.symmetric(horizontal: size.width * .02),
-        decoration: BoxDecoration(
-          color: color.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            /*porcentaje completado*/
-            SizedBox(
-              child: CircularPercentIndicator(
-                radius: 25,
-                percent: percent,
-                circularStrokeCap: CircularStrokeCap.round,
-                lineWidth: 6.0,
-                center: Text(
-                  '$percent%',
-                  textAlign: TextAlign.center,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                backgroundColor: color.withOpacity(0.2),
-                linearGradient: LinearGradient(colors: [
-                  color,
-                  color.withOpacity(0.4),
-                ]),
-              ),
-            ),
-            SizedBox(width: size.width * .02),
-            SizedBox(
-              width: size.width * .65,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  /*titulo */
-                  Text(
-                    title,
+    // borderRadius: BorderRadius.circular(15),
+    // splashColor: color.withOpacity(0.4),
+    // onTap: () => onTap(),
+    return Slidable(
+      controller: slidableController,
+      key: ValueKey(widget.id),
+      startActionPane: ActionPane(
+        extentRatio: 0.3,
+        motion: const ScrollMotion(),
+        children: [
+          /*boton para editar la encuesta*/
+          ButtonSliderComponents(
+            color: widget.color,
+            iconData: IconlyLight.edit,
+            onTap: () {
+              //Todo: debe pasar el dia y navegar a editar la encuest
+            },
+          )
+        ],
+      ),
+      endActionPane: ActionPane(
+        extentRatio: 0.3,
+        motion: const ScrollMotion(),
+        children: [
+          const Spacer(),
+          /*boton para eliminar la encuesta de la lista de encuentas guardas*/
+          ButtonSliderComponents(
+            color: PaletteColorsTheme.redErrorColor,
+            iconData: IconlyLight.delete,
+            onTap: () {
+              //Todo debe prguntar si quiere eliminar la encuesta
+            },
+          ),
+        ],
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(15),
+        splashColor: widget.color.withOpacity(0.4),
+        onTap: () {
+          slidableController!.openStartActionPane();
+        },
+        onDoubleTap: () {
+          slidableController!.openEndActionPane();
+        },
+        child: Container(
+          height: size.height * .1,
+          width: size.width,
+          padding: EdgeInsets.symmetric(horizontal: size.width * .02),
+          decoration: BoxDecoration(
+            color: widget.color.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              /*porcentaje completado*/
+              SizedBox(
+                child: CircularPercentIndicator(
+                  radius: 25,
+                  percent: widget.percent,
+                  circularStrokeCap: CircularStrokeCap.round,
+                  lineWidth: 6.0,
+                  center: Text(
+                    '${widget.percent}%',
+                    textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: PaletteColorsTheme.blackColor),
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  Text(
-                    date,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: PaletteColorsTheme.greyColorTwo),
-                  )
-                ],
+                  backgroundColor: widget.color.withOpacity(0.2),
+                  linearGradient: LinearGradient(colors: [
+                    widget.color,
+                    widget.color.withOpacity(0.4),
+                  ]),
+                ),
               ),
-            ),
-            Icon(
-              icons,
-              color: color,
-            )
-          ],
+              SizedBox(width: size.width * .02),
+              SizedBox(
+                width: size.width * .65,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    /*titulo */
+                    Text(
+                      widget.title,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(color: PaletteColorsTheme.blackColor),
+                    ),
+                    Text(
+                      widget.date,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: PaletteColorsTheme.greyColorTwo),
+                    )
+                  ],
+                ),
+              ),
+              Icon(
+                widget.icons,
+                color: widget.color,
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -189,9 +245,9 @@ class _CardDraftComponentsState extends State<CardDraftComponents> {
               height: size.height,
               width: size.width * .13,
               padding: EdgeInsets.symmetric(
-                  horizontal: size.width * .002, vertical: size.height * .002),
+                  horizontal: size.width * .011, vertical: size.height * .002),
               margin: EdgeInsets.symmetric(
-                  horizontal: size.width * .02, vertical: size.height * .01),
+                  horizontal: size.width * .02, vertical: size.height * .017),
               decoration: BoxDecoration(
                   color: changeColor, borderRadius: BorderRadius.circular(10)),
               child: Center(

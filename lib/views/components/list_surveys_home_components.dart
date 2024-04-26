@@ -22,6 +22,7 @@ class ListSurveysHomeComponents extends StatefulWidget {
 
 class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
   int randomNumber = 0;
+  /*genera un número ramdon para el id de la encuesta */
   setIDsurveys() {
     Random random = Random(); //genera un número aleatero de 1 a 10m
     randomNumber = random.nextInt(10000001);
@@ -49,7 +50,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
         /*registro de visita*/
         StartSurveysComponents(
           title: NameSurveys.beneficiaries,
-          answers: '10/50 respuestas conectar',
+          answers: '13 pantallas',
           percent: 0.5,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
           color: NameSurveys.beneficiariesColor,
@@ -77,7 +78,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
         /*visitas*/
         StartSurveysComponents(
           title: NameSurveys.visits,
-          answers: '10/50 respuestas conectar',
+          answers: '8 pantallas',
           percent: 0.9,
           dateTime: DateFormat('dd/MM/yyyy').format(widget.dateTime),
           color: NameSurveys.visitsColor,

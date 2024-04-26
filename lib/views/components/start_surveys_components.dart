@@ -91,7 +91,7 @@ class StartSurveysComponents extends StatelessWidget {
                 SizedBox(height: size.height * .015),
                 Text(
                   answers,
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.start,
                   style: Theme.of(context).textTheme.bodySmall,

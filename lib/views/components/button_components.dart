@@ -172,3 +172,38 @@ class ButtonAddImagenComponents extends StatelessWidget {
     );
   }
 }
+
+/*componente para el boton del slider */
+class ButtonSliderComponents extends StatelessWidget {
+  final Color color;
+  final IconData iconData;
+  final Function onTap;
+  const ButtonSliderComponents({
+    super.key,
+    required this.color,
+    required this.iconData,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return InkWell(
+      splashColor: color.withOpacity(0.5),
+      borderRadius: BorderRadius.circular(15),
+      onTap: () => onTap(),
+      child: Container(
+        height: size.height * .1,
+        width: size.width * .25,
+        margin: EdgeInsets.symmetric(vertical: size.height * .001),
+        decoration: BoxDecoration(
+            color: color.withOpacity(0.7),
+            borderRadius: BorderRadius.circular(15)),
+        child: Icon(
+          iconData,
+          color: PaletteColorsTheme.whiteColor,
+          size: 35,
+        ),
+      ),
+    );
+  }
+}

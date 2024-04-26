@@ -115,7 +115,6 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
                           icons: IconlyLight.arrow_right_2,
                           color: changeColor,
                           percent: .2,
-                          onTap: () {},
                         );
                       })),
             ],

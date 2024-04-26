@@ -409,8 +409,9 @@ class VisitsSurveysProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  setendDateSurveys(String end) {
+  setendDateSurveys(String end) async {
     _endSurveys = end; //guarda la fecha de finalización
+
     notifyListeners();
   }
 

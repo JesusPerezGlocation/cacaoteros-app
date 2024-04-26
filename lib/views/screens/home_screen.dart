@@ -47,11 +47,12 @@ class _HomeSurveysScreenState extends State<HomeSurveysScreen> {
             SizedBox(
               height: size.height * .25,
               width: size.width,
-              child: ListSurveysHomeComponents(dateTime: dateTime),
+              child: ListSurveysHomeComponents(
+                dateTime: dateTime,
+              ),
             ),
             SizedBox(height: size.height * .03),
             /*ver todos los borradores*/
-            //Todo: "Ver todos" debe mostrarse cuando la lista de borradores sea mayor a 3
             ViewAllDraftComponents(
                 title: 'Borradores',
                 lenght: getSurveys.listsSurveysDraft.length,
