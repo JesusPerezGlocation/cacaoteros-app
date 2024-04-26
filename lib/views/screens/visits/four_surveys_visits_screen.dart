@@ -26,6 +26,7 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
   void initState() {
     super.initState();
     getLocationUser();
+    isViewMap = false;
   }
 
   Future getLocationUser() async {
@@ -39,52 +40,67 @@ class _FourSurveysVisitsScreenState extends State<FourSurveysVisitsScreen> {
     }
   }
 
+  bool isViewMap = false;
+
   @override
   Widget build(BuildContext context) {
     final visitsPrv = Provider.of<VisitsSurveysProvider>(context);
     return Scaffold(
-        extendBody: true,
-        extendBodyBehindAppBar: true,
-        bottomNavigationBar: _BottonNavigatorMapComponents(
-          visitsPrv: visitsPrv,
-          lat: '${widget.locationProvider.latitude}',
-          long: '${widget.locationProvider.latitude}',
-          accuracy: '${widget.locationProvider.accuracy}',
-          altitude: '${widget.locationProvider.altitude}',
-        ),
-        appBar: AppBar(
-            //
-            actions: [
-              SaveIconDraftComponents(
-                color: PaletteColorsTheme.principalColor,
-                onTap: () {},
-              )
-            ]),
-        body: Consumer<PermissionLocationProvider>(
-          builder: (context, provider, _) {
-            if (provider.latitude == null || provider.longitude == null) {
-              return const Center(child: LoadingMapsComponents());
-            } else {
-              if (provider.latitude != null && provider.longitude != null) {
-                return MapMarketComponents(
-                  provider: provider,
-                  visitsPrv: visitsPrv,
-                );
-              } else {
-                return const Center(
-                  child: Text(
-                    'Error al obtener la ubicación',
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                );
-              }
-            }
-          },
-        )
-        // body: FadeIn(child: FlutterMap(options: MapOptions(), children: [])),
-        );
+      extendBody: true,
+      extendBodyBehindAppBar: true,
+      bottomNavigationBar: isViewMap
+          ? _BottonNavigatorMapComponents(
+              visitsPrv: visitsPrv,
+              lat: '${widget.locationProvider.latitude}',
+              long: '${widget.locationProvider.latitude}',
+              accuracy: '${widget.locationProvider.accuracy}',
+              altitude: '${widget.locationProvider.altitude}',
+            )
+          : const SizedBox(),
+      appBar: AppBar(
+          //
+          actions: [
+            SaveIconDraftComponents(
+              color: PaletteColorsTheme.principalColor,
+              onTap: () {},
+            )
+          ]),
+      body: !isViewMap
+          ? IsEmptyImageWithOnTap(
+              title: 'Marque el perímetro de la finca',
+              description:
+                  'Le solicitamos que marque el perímetro de la propiedad utilizando la herramienta de marcar sobre el mapa.',
+              image: ImagesPaths.mapMenImage,
+              titleButton: 'Generar mapa',
+              buttonColor: PaletteColorsTheme.principalColor,
+              onTap: () {
+                setState(() => isViewMap = true);
+              },
+            )
+          : Consumer<PermissionLocationProvider>(
+              builder: (context, provider, _) {
+                if (provider.latitude == null || provider.longitude == null) {
+                  return const Center(child: LoadingMapsComponents());
+                } else {
+                  if (provider.latitude != null && provider.longitude != null) {
+                    return MapMarketComponents(
+                      provider: provider,
+                      visitsPrv: visitsPrv,
+                    );
+                  } else {
+                    return const Center(
+                      child: Text(
+                        'Error al obtener la ubicación',
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    );
+                  }
+                }
+              },
+            ),
+    );
   }
 }
 

@@ -112,3 +112,59 @@ class IsEmptyImageWithDescription extends StatelessWidget {
     ).animate().fade().scale();
   }
 }
+
+/*
+componente vacio con funcion de tap, ej. volver a cargar datos
+*/
+class IsEmptyImageWithOnTap extends StatelessWidget {
+  final String title;
+  final String description;
+  final String image;
+  final String titleButton;
+  final Color buttonColor;
+  final Function onTap;
+  const IsEmptyImageWithOnTap({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.titleButton,
+    required this.buttonColor,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: size.width * .03),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+              height: size.height * .3,
+              child: Image.asset(image, fit: BoxFit.cover)),
+          Text(title,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineMedium),
+          Text(description,
+              maxLines: 4,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(fontWeight: FontWeight.w100, fontSize: 13)),
+          SizedBox(height: size.height * .02),
+          ButtonComponents(
+            title: title,
+            colorButton: buttonColor,
+            onPressed: () => onTap(),
+          )
+        ],
+      ).animate().fade().scale(),
+    );
+  }
+}

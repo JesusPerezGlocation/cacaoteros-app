@@ -14,4 +14,5 @@ class ImagesPaths {
   static String selectImage = 'assets/img/select-image.png';
   static String errorImage = 'assets/img/error-image.png';
   static String permissionGallery = 'assets/img/permission-gallery.png';
+  static String mapMenImage = 'assets/img/map-men.png';
 }
