@@ -133,6 +133,8 @@ class CardDraftComponents extends StatelessWidget {
             Container(
               height: size.height,
               width: size.width * .13,
+              padding: EdgeInsets.symmetric(
+                  horizontal: size.width * .002, vertical: size.height * .002),
               margin: EdgeInsets.symmetric(
                   horizontal: size.width * .02, vertical: size.height * .01),
               decoration: BoxDecoration(
@@ -140,14 +142,12 @@ class CardDraftComponents extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)),
               child: Center(
                   child: Text(
-                date.substring(0, 4),
+                date.substring(0, 10),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: PaletteColorsTheme.whiteColor),
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                    color: PaletteColorsTheme.whiteColor, fontSize: 10),
               )),
             ),
             SizedBox(
@@ -174,7 +174,7 @@ class CardDraftComponents extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(icons)
+            Icon(icons, color: PaletteColorsTheme.principalColor)
           ],
         ),
       ),

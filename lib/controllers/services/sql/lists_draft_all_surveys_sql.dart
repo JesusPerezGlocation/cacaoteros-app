@@ -1,9 +1,11 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, use_build_context_synchronously
 
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
 /*
@@ -60,25 +62,42 @@ class ListDraftAllSurveysSQL {
   }
 
   /*inserta los datos a lista*/
-  Future<void> insertAllSurveys(List<DraftSurveysListModel> todos) async {
-    final db = await instance.database;
+  Future<void> insertAllSurveys(
+      List<DraftSurveysListModel> todos, BuildContext context) async {
+    try {
+      final db = await instance.database;
 
-    final batch = db.batch();
+      final batch = db.batch();
 
-    /*recorre la lista */
-    for (var todo in todos) {
-      batch.insert(tableListSurveys, todo.toJson());
-      /*almacena en la lists */
-      _listSurveysAll.add(todo);
-      print('id: ${todo.id}');
-      print('title: ${todo.title}');
-      print('date: ${todo.date}');
-      print('categorie: ${todo.categorie}');
+      /*recorre la lista */
+      for (var todo in todos) {
+        batch.insert(tableListSurveys, todo.toJson());
+        /*almacena en la lists */
+        _listSurveysAll.add(todo);
+        log('id: ${todo.id}');
+        log('title: ${todo.title}');
+        log('date: ${todo.date}');
+        log('categorie: ${todo.categorie}');
+
+        SnackBarGlobalWidget.showSnackBar(
+          context,
+          'Añadido a borradores',
+          Icons.check_circle_rounded,
+          PaletteColorsTheme.principalColor,
+        );
+      }
+
+      await batch.commit(noResult: true);
+
+      log('dato almacenado: ${_listSurveysAll.length}');
+    } catch (e) {
+      return SnackBarGlobalWidget.showSnackBar(
+        context,
+        'Error $e',
+        Icons.error_rounded,
+        PaletteColorsTheme.redErrorColor,
+      );
     }
-
-    await batch.commit(noResult: true);
-
-    log('dato almacenado: ${_listSurveysAll.length}');
   }
 
   /*obtiene todos los datos de la lista*/
@@ -138,6 +157,6 @@ class ListDraftAllSurveysSQL {
       whereArgs: [id],
     );
     /*elimina un dato de la lista*/
-    _listSurveysAll.removeWhere((todo) => todo.id == id);
+    _listSurveysAll.removeWhere((todo) => todo.id.toString() == id);
   }
 }

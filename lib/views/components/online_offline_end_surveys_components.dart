@@ -77,13 +77,13 @@ class OfflineEndSurveysComponents extends StatelessWidget {
   final String title;
   final String description;
   final String? image;
-  final Function onTap;
+  final Function onDraft;
   const OfflineEndSurveysComponents({
     super.key,
     required this.title,
     this.image,
     required this.description,
-    required this.onTap,
+    required this.onDraft,
   });
   @override
   Widget build(BuildContext context) {
@@ -120,7 +120,7 @@ class OfflineEndSurveysComponents extends StatelessWidget {
         ButtonOutlineComponents(
           color: PaletteColorsTheme.secondaryColor,
           title: 'Guardar como borrador',
-          onPressed: () => onTap(),
+          onPressed: () => onDraft(),
         ),
         SizedBox(height: size.height * .06),
       ],

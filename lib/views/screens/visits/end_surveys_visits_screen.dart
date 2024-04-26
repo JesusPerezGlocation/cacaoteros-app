@@ -25,7 +25,24 @@ class EndSurveysVisitsScreen extends StatelessWidget {
               title: visitsPrv.beneficiaryName.text,
               description:
                   'Lo sentimos, parece que no tienes conexión a Internet en este momento. No te preocupes, ¡aún puedes completar la encuesta! Puedes guardar tus respuestas como borrador y enviarlas más tarde cuando tengas conexión.',
-              onTap: () {},
+              onDraft: () async {
+                /*setea el modelo con los campos  de la encuesta*/
+                final dates = DraftSurveysListModel(
+                  id: visitsPrv.idSurveys,
+                  title: visitsPrv.beneficiaryName.text,
+                  date: visitsPrv.dateCreateSurvey,
+                  categorie: visitsPrv.categorieSurveys,
+                );
+
+                /*guarda los datos en la base SQL*/
+                await ListDraftAllSurveysSQL.instance
+                    .insertAllSurveys([dates], context);
+                /*navega al home*/
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  MainRoutes.initialRoute,
+                  (route) => false,
+                );
+              },
             );
           } else {
             return OnlineEndSurveysComponents(
@@ -55,16 +72,9 @@ class EndSurveysVisitsScreen extends StatelessWidget {
                   categorie: visitsPrv.categorieSurveys,
                 );
 
-                /*guarda los datos*/
-                await ListDraftAllSurveysSQL.instance.insertAllSurveys([dates]);
-
-                SnackBarGlobalWidget.showSnackBar(
-                  context,
-                  'Guardado en borradores',
-                  Icons.check_circle_rounded,
-                  PaletteColorsTheme.principalColor,
-                );
-
+                /*guarda los datos en la base SQL*/
+                await ListDraftAllSurveysSQL.instance
+                    .insertAllSurveys([dates], context);
                 /*navega al home*/
                 Navigator.of(context).pushNamedAndRemoveUntil(
                   MainRoutes.initialRoute,

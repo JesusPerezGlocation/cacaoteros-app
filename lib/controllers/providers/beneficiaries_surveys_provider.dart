@@ -19,12 +19,21 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   final CollectionReference memberscacaotestingReferences =
       FirebaseFirestore.instance.collection(ApiPaths.memberscacaotesting);
 
-  //*categoria de la encuenta y colors*/
+  //*para la base de datos de borradores*/
+  final TextEditingController _deviceID = TextEditingController();
+  TextEditingController get deviceID => _deviceID;
   String _categorieSurveys = '';
   String get categorieSurveys => _categorieSurveys;
+  String _dateCreateSurvey = '';
+  String get dateCreateSurvey => _dateCreateSurvey;
 
   setcategorieSurveys(String categorie) {
     _categorieSurveys = categorie; //setea la categoria de la encuesta
+    notifyListeners();
+  }
+
+  setdateCreateSurvey(String time) {
+    _dateCreateSurvey = time; //fecha de creación de la encuesta
     notifyListeners();
   }
 
@@ -35,8 +44,9 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
   TextEditingController get submittionDate => _submittionDate;
   String _uuidiDSurveys = '';
   String get uuidiDSurveys => _uuidiDSurveys;
-  final TextEditingController _deviceID = TextEditingController();
-  TextEditingController get deviceID => _deviceID;
+
+  int _idSurveys = 0;
+  int get idSurveys => _idSurveys;
 
   setNameUnit(String val) {
     _nameUnit.text = val; //nombre de la unidad
@@ -55,6 +65,11 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
 
   setDeviceID(String date) {
     _deviceID.text = date; // id del dispositivo
+    notifyListeners();
+  }
+
+  generateIDsurveys(int id) {
+    _idSurveys = id; //genera un id para la encuesta
     notifyListeners();
   }
 
@@ -1932,6 +1947,9 @@ class BeneficiariesSurveysProvider extends ChangeNotifier {
     _uuidiDSurveys = '';
     _signatureProducts = '';
     _signatureTecns = '';
+    _idSurveys = 0;
+    _dateCreateSurvey = '';
+
     notifyListeners();
   }
 

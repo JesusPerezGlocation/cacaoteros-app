@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
-import 'package:surveys_app/views/screens/draft/draft_of_one_survey_screen.dart';
 /*
 pantalla para ver todos los borradores almacenados
 */

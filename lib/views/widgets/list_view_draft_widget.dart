@@ -79,9 +79,9 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const DraftOfOneSurveysScreen(
+                            builder: (context) => DraftOfOneSurveysScreen(
                                   color: PaletteColorsTheme.principalColor,
-                                  categorie: 'CATEGORIE NAME',
+                                  categorie: data.categorie,
                                 )),
                       );
                     },

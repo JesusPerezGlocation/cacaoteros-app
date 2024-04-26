@@ -56,9 +56,13 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
           onTap: () {
             /*limpia el provider*/
             surveysPrv.cleanAllProvider();
-            /*guarda la categoria y el color*/
+            /*guarda los categoria, id, fecha*/
             surveysPrv.setcategorieSurveys(
                 'Caracterización de potenciales beneficiarios');
+
+            surveysPrv.generateIDsurveys(randomNumber);
+
+            surveysPrv.setdateCreateSurvey(widget.dateTime.toString());
 
             /*navega a la primera pantalla de preguntas */
             Navigator.push(
