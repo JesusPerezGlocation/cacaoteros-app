@@ -54,10 +54,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium!
-                      .copyWith(color: color),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 backgroundColor: color.withOpacity(0.2),
                 linearGradient: LinearGradient(colors: [
@@ -82,7 +79,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!
-                        .copyWith(color: color),
+                        .copyWith(color: PaletteColorsTheme.blackColor),
                   ),
                   Text(
                     date,
@@ -92,7 +89,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
-                        .copyWith(color: color),
+                        .copyWith(color: PaletteColorsTheme.greyColorTwo),
                   )
                 ],
               ),
@@ -111,7 +108,7 @@ class CardDraftOneSurveyComponents extends StatelessWidget {
 /*
 card para retornar en la lista de borradores
 */
-class CardDraftComponents extends StatelessWidget {
+class CardDraftComponents extends StatefulWidget {
   final String id;
   final String title;
   final String date;
@@ -127,18 +124,62 @@ class CardDraftComponents extends StatelessWidget {
     required this.onTap,
     required this.id,
   });
+
+  @override
+  State<CardDraftComponents> createState() => _CardDraftComponentsState();
+}
+
+class _CardDraftComponentsState extends State<CardDraftComponents> {
+  Color changeColor = PaletteColorsTheme.principalColor;
+
+  @override
+  void initState() {
+    super.initState();
+    changeColorCard();
+  }
+
+  changeColorCard() {
+    switch (widget.categorie) {
+      case NameSurveys.beneficiaries:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.visits:
+        changeColor = PaletteColorsTheme.principalColor;
+        break;
+      case NameSurveys.taskAdminist:
+        changeColor = PaletteColorsTheme.principalColor;
+        break;
+      case NameSurveys.caracterization:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.collectionCenter:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.kardex:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      case NameSurveys.registerCocoa:
+        changeColor = PaletteColorsTheme.secondaryColor;
+        break;
+      default:
+        changeColor = PaletteColorsTheme.principalColor;
+    }
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return InkWell(
       borderRadius: BorderRadius.circular(15),
-      splashColor: PaletteColorsTheme.greyColor,
-      onTap: () => onTap(),
+      splashColor: changeColor.withOpacity(0.4),
+      onTap: () => widget.onTap(),
       child: Container(
-        height: size.height * .09,
+        height: size.height * .1,
         width: size.width,
         decoration: BoxDecoration(
-          color: PaletteColorsTheme.greyColor,
+          color: changeColor.withOpacity(0.2),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
@@ -152,11 +193,10 @@ class CardDraftComponents extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                   horizontal: size.width * .02, vertical: size.height * .01),
               decoration: BoxDecoration(
-                  color: PaletteColorsTheme.principalColor,
-                  borderRadius: BorderRadius.circular(10)),
+                  color: changeColor, borderRadius: BorderRadius.circular(10)),
               child: Center(
                   child: Text(
-                date.substring(0, 10),
+                widget.date.substring(0, 10),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
@@ -172,23 +212,27 @@ class CardDraftComponents extends StatelessWidget {
                 children: [
                   /*titulo */
                   Text(
-                    title,
+                    widget.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(color: PaletteColorsTheme.blackColor),
                   ),
-                  Text(
-                    categorie,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.bodyMedium!,
-                  )
+                  Text(widget.categorie,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: PaletteColorsTheme.greyColorTwo))
                 ],
               ),
             ),
-            Icon(icons, color: PaletteColorsTheme.principalColor)
+            Icon(widget.icons, color: changeColor)
           ],
         ),
       ),

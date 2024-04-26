@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
 /*
@@ -27,6 +28,7 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
     changeColorCard();
   }
 
+  /*cambia el color dependiendo de la categoria */
   changeColorCard() {
     switch (widget.categorie) {
       case NameSurveys.beneficiaries:
@@ -61,7 +63,25 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          Consumer<NetworkStatus>(
+            builder: (context, value, child) {
+              /*si esta conectado a internet muestra el boton */
+              if (value == NetworkStatus.online) {
+                return UpLoadDataSurveysComponent(
+                  color: changeColor,
+                  onTap: () {
+                    //Todo: debe enviar la lista de datos a firabase
+                  },
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
+          )
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: size.width * .03, vertical: size.height * .03),
@@ -72,6 +92,11 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
               TitleSurveysComponents(
                 title: widget.categorie,
                 color: changeColor,
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium!
+                    .copyWith(color: changeColor),
+                maxLine: 3,
               ),
               SizedBox(height: size.height * .02),
               Expanded(

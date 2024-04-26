@@ -113,7 +113,7 @@ class _ListSurveysHomeComponentsState extends State<ListSurveysHomeComponents> {
           },
         ),
         SizedBox(width: size.width * .02),
-        /*tareas administrativas */
+        /*tdareas administrativas */
         StartSurveysComponents(
           title: NameSurveys.taskAdminist,
           answers: '10/50 respuestas conectar',

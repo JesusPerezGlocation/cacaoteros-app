@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconly/iconly.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 
@@ -23,7 +24,7 @@ class SaveIconDraftComponents extends StatelessWidget {
           icon ?? IconlyLight.bookmark,
           size: 30,
           color: color,
-        ));
+        )).animate().fade().scale();
   }
 }
 
@@ -57,6 +58,49 @@ class CircleAvatarSaveIconDraftComponent extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ).animate().fade().scale();
+  }
+}
+
+/*
+boton para mostrarle al usuario que puede subir los archivos locales a firabase
+*/
+class UpLoadDataSurveysComponent extends StatelessWidget {
+  final Color color;
+  final IconData? icon;
+  final Function onTap;
+  const UpLoadDataSurveysComponent({
+    super.key,
+    required this.color,
+    this.icon,
+    required this.onTap,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () => onTap(),
+        icon: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Icon(
+              icon ?? Icons.cloud_upload_outlined,
+              size: 30,
+              color: color,
+            ),
+            Container(
+              height: 10,
+              width: 10,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color,
+                  boxShadow: [
+                    BoxShadow(
+                        color: color.withOpacity(0.9),
+                        blurRadius: 3,
+                        offset: const Offset(0, 2))
+                  ]),
+            )
+          ],
+        )).animate().fade().scale();
   }
 }

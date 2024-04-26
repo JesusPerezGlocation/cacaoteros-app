@@ -7,7 +7,7 @@ class InputDecorationMainTheme {
   /*tipo de fuente */
   static TextStyle typeFont = GoogleFonts.openSans();
 
-  //Todo: input modo claro
+  //: input modo claro
   static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
     contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 2),
     iconColor: PaletteColorsTheme.principalColor,
@@ -15,7 +15,7 @@ class InputDecorationMainTheme {
     prefixIconColor: PaletteColorsTheme.principalColor,
     suffixIconColor: PaletteColorsTheme.principalColor,
     floatingLabelBehavior: FloatingLabelBehavior.always,
-    floatingLabelStyle:typeFont.copyWith(
+    floatingLabelStyle: typeFont.copyWith(
         fontSize: 15,
         fontWeight: FontWeight.w400,
         color: PaletteColorsTheme.principalColor),
@@ -42,18 +42,18 @@ class InputDecorationMainTheme {
             width: 2.0)),
     errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide:
-            const BorderSide(color: PaletteColorsTheme.redErrorColor, width: 2.0)),
+        borderSide: const BorderSide(
+            color: PaletteColorsTheme.redErrorColor, width: 2.0)),
     focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
-        borderSide:
-            const BorderSide(color: PaletteColorsTheme.redErrorColor, width: 2.0)),
+        borderSide: const BorderSide(
+            color: PaletteColorsTheme.redErrorColor, width: 2.0)),
   );
-  //Todo: input modo oscuro
+  //: input modo oscuro
   static InputDecorationTheme inputDecorationDark = InputDecorationTheme(
     contentPadding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 2),
-      iconColor: PaletteColorsTheme.principalColor, 
-      prefixIconColor: PaletteColorsTheme.principalColor,
+    iconColor: PaletteColorsTheme.principalColor,
+    prefixIconColor: PaletteColorsTheme.principalColor,
     suffixIconColor: PaletteColorsTheme.principalColor,
     fillColor: PaletteColorsTheme.blackColor,
     hintStyle: typeFont.copyWith(
@@ -62,23 +62,23 @@ class InputDecorationMainTheme {
         color: PaletteColorsTheme.whiteColor),
     disabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(
-            color: PaletteColorsTheme.whiteColor, width: 1.0)),
+        borderSide:
+            const BorderSide(color: PaletteColorsTheme.whiteColor, width: 1.0)),
     enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide: const BorderSide(
-            color: PaletteColorsTheme.whiteColor, width: 1.0)),
+        borderSide:
+            const BorderSide(color: PaletteColorsTheme.whiteColor, width: 1.0)),
     focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(
             color: PaletteColorsTheme.whiteColor.withOpacity(0.4), width: 2.0)),
     errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide:
-            const BorderSide(color: PaletteColorsTheme.redErrorColor, width: 2.0)),
+        borderSide: const BorderSide(
+            color: PaletteColorsTheme.redErrorColor, width: 2.0)),
     focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
-        borderSide:
-            const BorderSide(color: PaletteColorsTheme.redErrorColor, width: 2.0)),
+        borderSide: const BorderSide(
+            color: PaletteColorsTheme.redErrorColor, width: 2.0)),
   );
 }

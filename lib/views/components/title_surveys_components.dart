@@ -6,12 +6,14 @@ titulos para las encuentas
 class TitleSurveysComponents extends StatelessWidget {
   final String title;
   final int? maxLine;
+  final TextStyle? style;
   final Color color;
   const TitleSurveysComponents({
     super.key,
     required this.title,
     this.maxLine,
     required this.color,
+    this.style,
   });
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class TitleSurveysComponents extends StatelessWidget {
       maxLines: maxLine ?? 4,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.start,
-      style: Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
+      style: style ??
+          Theme.of(context).textTheme.titleLarge!.copyWith(color: color),
     );
   }
 }
