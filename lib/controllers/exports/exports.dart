@@ -1,3 +1,4 @@
+export 'package:surveys_app/models/visits_surveys_model.dart';
 export 'package:surveys_app/controllers/paths/name_surveys_paths.dart';
 export 'package:surveys_app/views/components/draft_card_ui_components.dart';
 export 'package:surveys_app/controllers/providers/send_image_api.dart';
