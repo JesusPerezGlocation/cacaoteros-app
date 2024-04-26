@@ -94,7 +94,7 @@ class VisitsSurveysModels {
 
   factory VisitsSurveysModels.fromJson(Map<String, dynamic> json) {
     return VisitsSurveysModels(
-      listID: json['listID'],
+      listID: json['list_id'],
       percent: json['percent'],
       submitterName: json['SubmitterName'],
       submitterID: json['SubmitterID'],
@@ -157,7 +157,7 @@ class VisitsSurveysModels {
 
   Map<String, dynamic> toJson() {
     return {
-      'listID': listID,
+      'list_id': listID,
       'percent': percent,
       'SubmitterName': submitterName,
       'SubmitterID': submitterID,
