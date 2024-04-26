@@ -2,7 +2,7 @@
 modelo para la encuesta de registro de visitas
 */
 class VisitsSurveysModels {
-  final String id;
+  final String metainstanceID;
   final String listID;
   final double percent;
   final String submitterName;
@@ -12,7 +12,6 @@ class VisitsSurveysModels {
   final String ubicacionBeneficiarioBeneficiario;
   final String ubicacionBeneficiarioCedula;
   final String ubicacionTecnicoFecha;
-  final String metainstanceID;
   final String ubicacionUbicacionFincaDepartamento;
   final String ubicacionUbicacionFincaCodigoDepartamento;
   final String ubicacionUbicacionFincaMunicipio;
@@ -48,7 +47,6 @@ class VisitsSurveysModels {
   final String ubicacionTecnicoFechaNota;
 
   VisitsSurveysModels({
-    required this.id,
     required this.listID,
     required this.percent,
     required this.categorieSurveys,
@@ -96,7 +94,6 @@ class VisitsSurveysModels {
 
   factory VisitsSurveysModels.fromJson(Map<String, dynamic> json) {
     return VisitsSurveysModels(
-      id: json['id'],
       listID: json['listID'],
       percent: json['percent'],
       submitterName: json['SubmitterName'],
@@ -160,7 +157,6 @@ class VisitsSurveysModels {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'listID': listID,
       'percent': percent,
       'SubmitterName': submitterName,
