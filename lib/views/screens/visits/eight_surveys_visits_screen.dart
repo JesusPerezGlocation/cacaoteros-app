@@ -105,7 +105,7 @@ class _EightSurveysVisitsScreenState extends State<EightSurveysVisitsScreen> {
               SizedBox(height: size.height * .04),
               //#4
               SignatureDrawComponents(
-                title: 'Ingresar firma',
+                title: 'Ingresar firma del beneficiario',
                 color: PaletteColorsTheme.principalColor,
                 signatureKey: signatureKey,
                 isViewButton: visitsPrv.signature.isEmpty ? true : false,
