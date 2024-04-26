@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 
@@ -28,14 +29,14 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
   }
 
   Future getData() async {
-    widget.getSurveys.getSetListSurveys();
+    await widget.getSurveys.getSetListSurveys();
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    final getSurveys = Provider.of<GetListDraftSurveysProvider>(context);
     return FutureBuilder<List<DraftSurveysListModel>>(
       future: ListDraftAllSurveysSQL.instance.getAllSurveysGet(limit: 6),
       builder: (context, snapshot) {
@@ -82,6 +83,7 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
                         MaterialPageRoute(
                             builder: (context) => DraftOfOneSurveysScreen(
                                   categorie: data.categorie,
+                                  getVisitsList: getSurveys,
                                 )),
                       );
                     },

@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
 import 'package:surveys_app/controllers/exports/screens_exports.dart';
 /*
@@ -14,6 +15,7 @@ class AllDraftsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final getSurveys = Provider.of<GetListDraftSurveysProvider>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -80,6 +82,7 @@ class AllDraftsScreen extends StatelessWidget {
                                       builder: (context) =>
                                           DraftOfOneSurveysScreen(
                                             categorie: data.categorie,
+                                            getVisitsList: getSurveys,
                                           )),
                                 );
                               },

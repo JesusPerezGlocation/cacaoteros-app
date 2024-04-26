@@ -1,5 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:surveys_app/controllers/exports/exports.dart';
@@ -9,9 +10,12 @@ para ver la lista de borradores de una encuesta
 */
 class DraftOfOneSurveysScreen extends StatefulWidget {
   final String categorie;
+  final GetListDraftSurveysProvider getVisitsList;
+
   const DraftOfOneSurveysScreen({
     super.key,
     required this.categorie,
+    required this.getVisitsList,
   });
 
   @override
@@ -25,7 +29,13 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
   @override
   void initState() {
     super.initState();
+    getDataVisits();
     changeColorCard();
+  }
+
+  Future getDataVisits() async {
+    await widget.getVisitsList.getListVisitsRegister();
+    setState(() {});
   }
 
   /*cambia el color dependiendo de la categoria */
@@ -99,24 +109,59 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
                 maxLine: 3,
               ),
               SizedBox(height: size.height * .02),
-              Expanded(
-                  child: ListView.separated(
-                      itemCount: 3,
-                      physics: const BouncingScrollPhysics(),
-                      keyboardDismissBehavior:
-                          ScrollViewKeyboardDismissBehavior.onDrag,
-                      separatorBuilder: (context, index) =>
-                          SizedBox(height: size.height * .01),
-                      itemBuilder: (context, index) {
-                        return CardDraftOneSurveyComponents(
-                          id: '2312132',
-                          title: 'Title surveys data',
-                          date: '20/05/2023 - 10:00 AM',
-                          icons: IconlyLight.arrow_right_2,
-                          color: changeColor,
-                          percent: .2,
-                        );
-                      })),
+              FutureBuilder<List<VisitsSurveysModels>>(
+                future: widget.getVisitsList.getListVisitsRegister(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: LoadingAppComponent(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: IsEmptyDataComponent(
+                        title:
+                            'Error al obtener la lista: ${snapshot.hasError}',
+                      ),
+                    );
+                  } else {
+                    List<VisitsSurveysModels> visits = snapshot.data!;
+                    if (visits.isEmpty) {
+                      return Center(
+                        child: IsEmptyWithImageComponents(
+                          image: ImagesPaths.emptyDraft,
+                          title: 'No se hallaron resultados de borradores.',
+                        ),
+                      );
+                    } else {
+                      return Expanded(
+                              child: ListView.separated(
+                                  itemCount: visits.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  keyboardDismissBehavior:
+                                      ScrollViewKeyboardDismissBehavior.onDrag,
+                                  separatorBuilder: (context, index) =>
+                                      SizedBox(height: size.height * .01),
+                                  itemBuilder: (context, index) {
+                                    final date = visits[index];
+
+                                    return CardDraftOneSurveyComponents(
+                                      id: date.metainstanceID,
+                                      title: date.submitterName,
+                                      date: date.start,
+                                      icons: IconlyLight.arrow_right_2,
+                                      color: changeColor,
+                                      percent: date.percent,
+                                    );
+                                  }))
+                          .animate(delay: const Duration(milliseconds: 50))
+                          .fadeIn(delay: const Duration(milliseconds: 10))
+
+                          // .animate(onPlay: (controller) => controller.reverse())
+                          .shimmer(duration: 1400.ms);
+                    }
+                  }
+                },
+              ),
             ],
           ),
         ),

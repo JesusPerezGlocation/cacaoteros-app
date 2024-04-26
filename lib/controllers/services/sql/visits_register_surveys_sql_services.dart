@@ -32,7 +32,7 @@ class VisitsRegisterSQLServices {
   }
 
   /*lista de visitas */
-  final List<VisitsSurveysModels> _listVisitsRegister = [];
+  List<VisitsSurveysModels> _listVisitsRegister = [];
 
   /*instancia para acceder la a la lista*/
   List<VisitsSurveysModels> get listVisitsRegister => _listVisitsRegister;
@@ -43,7 +43,7 @@ class VisitsRegisterSQLServices {
     final path = join(dbPath, filePath);
     return await openDatabase(
       path,
-      version: 1,
+      version: 3,
       onCreate: _onCreateDB,
     );
   }
@@ -108,16 +108,33 @@ class VisitsRegisterSQLServices {
       final db = await database;
       await db.insert(tableVisitsRegister, visitsSurveysModels.toJson());
       _listVisitsRegister.add(visitsSurveysModels);
-
-      log('lista insertada: ${_listVisitsRegister.length}');
     } catch (e) {
-      log('Error al insertar registro de visita: ${e.toString()}');
+      log('Error al insertar registro de visita: ');
       return SnackBarGlobalWidget.showSnackBar(
         context,
         'Hubo un error $e',
         Icons.error_outlined,
         PaletteColorsTheme.redErrorColor,
       );
+    }
+    log('lista insertada: ${_listVisitsRegister.length}');
+  }
+
+  /*obtener la lista*/
+  Future<List<VisitsSurveysModels>> readVisitsRegister() async {
+    try {
+      final db = await database;
+      final results = await db.query(
+        tableVisitsRegister,
+        orderBy: 'id DESC',
+      );
+
+      _listVisitsRegister =
+          results.map((row) => VisitsSurveysModels.fromJson(row)).toList();
+      return _listVisitsRegister;
+    } catch (e) {
+      log('Error al leer registros de visita: ${e.toString()}');
+      return [];
     }
   }
 
