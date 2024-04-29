@@ -43,7 +43,7 @@ class ListDraftAllSurveysSQL {
     final path = join(dbPath, filePath);
     return await openDatabase(
       path,
-      version: 7,
+      version: 8,
       onCreate: _onCreateDB,
     );
   }
@@ -74,10 +74,6 @@ class ListDraftAllSurveysSQL {
         batch.insert(tableListSurveys, todo.toJson());
         /*almacena en la lists */
         _listSurveysAll.add(todo);
-        log('id: ${todo.id}');
-        log('title: ${todo.title}');
-        log('date: ${todo.date}');
-        log('categorie: ${todo.categorie}');
 
         SnackBarGlobalWidget.showSnackBar(
           context,

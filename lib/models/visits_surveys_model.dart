@@ -3,7 +3,7 @@ modelo para la encuesta de registro de visitas
 */
 class VisitsSurveysModels {
   final String metainstanceID;
-  final String listID;
+  final String surveyId;
   final double percent;
   final String submitterName;
   final String submitterID;
@@ -47,7 +47,7 @@ class VisitsSurveysModels {
   final String ubicacionTecnicoFechaNota;
 
   VisitsSurveysModels({
-    required this.listID,
+    required this.surveyId,
     required this.percent,
     required this.categorieSurveys,
     required this.submitterName,
@@ -92,9 +92,138 @@ class VisitsSurveysModels {
     required this.ubicacionTecnicoFechaNota,
   });
 
+  // Método para crear una nueva instancia de VisitsSurveysModels con campos actualizados
+  VisitsSurveysModels copyWith({
+    String? metainstanceID,
+    String? surveyId,
+    double? percent,
+    String? submitterName,
+    String? submitterID,
+    String? categorieSurveys,
+    String? start,
+    String? ubicacionBeneficiarioBeneficiario,
+    String? ubicacionBeneficiarioCedula,
+    String? ubicacionTecnicoFecha,
+    String? ubicacionUbicacionFincaDepartamento,
+    String? ubicacionUbicacionFincaCodigoDepartamento,
+    String? ubicacionUbicacionFincaMunicipio,
+    String? ubicacionUbicacionFincaCodigoMunicipio,
+    String? ubicacionUbicacionFincaVereda,
+    String? ubicacionUbicacionFincaCodigoVereda,
+    String? ubicacionInformacionFincaNombreFinca,
+    String? ubicacionInformacionFincaAreaFinca,
+    String? ubicacionInformacionFincaAreaCacao,
+    String? coordenadasPoligono,
+    String? startGeopointLatitude,
+    String? startGeopointLongitude,
+    String? startGeopointAccuracy,
+    String? startGeopointAltitude,
+    String? situacionActualVisitaObjetivoVisita,
+    String? situacionActualVisitaDescripcionProyecto,
+    String? situacionActualVisitaRecomendaciones,
+    String? situacionActualVisitaCompromisos,
+    String? firmasFirmaAgricultor,
+    String? firmasFirmaTecnico,
+    String? registroFotograficoFotoRegistro,
+    String? datosPersonalesLugar,
+    String? datosPersonalesDireccion,
+    String? datosPersonalesTelefono,
+    String? datosPersonalesFirma,
+    String? end,
+    String? ubicacionInformacionFincaVisita,
+    String? datosPersonalesFechaNota,
+    String? datosPersonalesNota,
+    String? datosPersonalesNota3,
+    String? datosPersonalesNota4,
+    String? ubicacionTecnicoNotaInicial,
+    String? ubicacionTecnicoFechaNota,
+  }) {
+    return VisitsSurveysModels(
+      surveyId: surveyId ?? this.surveyId,
+      percent: percent ?? this.percent,
+      submitterName: submitterName ?? this.submitterName,
+      submitterID: submitterID ?? this.submitterID,
+      categorieSurveys: categorieSurveys ?? this.categorieSurveys,
+      start: start ?? this.start,
+      ubicacionBeneficiarioBeneficiario: ubicacionBeneficiarioBeneficiario ??
+          this.ubicacionBeneficiarioBeneficiario,
+      ubicacionBeneficiarioCedula:
+          ubicacionBeneficiarioCedula ?? this.ubicacionBeneficiarioCedula,
+      ubicacionTecnicoFecha:
+          ubicacionTecnicoFecha ?? this.ubicacionTecnicoFecha,
+      metainstanceID: metainstanceID ?? this.metainstanceID,
+      ubicacionUbicacionFincaDepartamento:
+          ubicacionUbicacionFincaDepartamento ??
+              this.ubicacionUbicacionFincaDepartamento,
+      ubicacionUbicacionFincaCodigoDepartamento:
+          ubicacionUbicacionFincaCodigoDepartamento ??
+              this.ubicacionUbicacionFincaCodigoDepartamento,
+      ubicacionUbicacionFincaMunicipio: ubicacionUbicacionFincaMunicipio ??
+          this.ubicacionUbicacionFincaMunicipio,
+      ubicacionUbicacionFincaCodigoMunicipio:
+          ubicacionUbicacionFincaCodigoMunicipio ??
+              this.ubicacionUbicacionFincaCodigoMunicipio,
+      ubicacionUbicacionFincaVereda:
+          ubicacionUbicacionFincaVereda ?? this.ubicacionUbicacionFincaVereda,
+      ubicacionUbicacionFincaCodigoVereda:
+          ubicacionUbicacionFincaCodigoVereda ??
+              this.ubicacionUbicacionFincaCodigoVereda,
+      ubicacionInformacionFincaNombreFinca:
+          ubicacionInformacionFincaNombreFinca ??
+              this.ubicacionInformacionFincaNombreFinca,
+      ubicacionInformacionFincaAreaFinca: ubicacionInformacionFincaAreaFinca ??
+          this.ubicacionInformacionFincaAreaFinca,
+      ubicacionInformacionFincaAreaCacao: ubicacionInformacionFincaAreaCacao ??
+          this.ubicacionInformacionFincaAreaCacao,
+      coordenadasPoligono: coordenadasPoligono ?? this.coordenadasPoligono,
+      startGeopointLatitude:
+          startGeopointLatitude ?? this.startGeopointLatitude,
+      startGeopointLongitude:
+          startGeopointLongitude ?? this.startGeopointLongitude,
+      startGeopointAccuracy:
+          startGeopointAccuracy ?? this.startGeopointAccuracy,
+      startGeopointAltitude:
+          startGeopointAltitude ?? this.startGeopointAltitude,
+      situacionActualVisitaObjetivoVisita:
+          situacionActualVisitaObjetivoVisita ??
+              this.situacionActualVisitaObjetivoVisita,
+      situacionActualVisitaDescripcionProyecto:
+          situacionActualVisitaDescripcionProyecto ??
+              this.situacionActualVisitaDescripcionProyecto,
+      situacionActualVisitaRecomendaciones:
+          situacionActualVisitaRecomendaciones ??
+              this.situacionActualVisitaRecomendaciones,
+      situacionActualVisitaCompromisos: situacionActualVisitaCompromisos ??
+          this.situacionActualVisitaCompromisos,
+      firmasFirmaAgricultor:
+          firmasFirmaAgricultor ?? this.firmasFirmaAgricultor,
+      firmasFirmaTecnico: firmasFirmaTecnico ?? this.firmasFirmaTecnico,
+      registroFotograficoFotoRegistro: registroFotograficoFotoRegistro ??
+          this.registroFotograficoFotoRegistro,
+      datosPersonalesLugar: datosPersonalesLugar ?? this.datosPersonalesLugar,
+      datosPersonalesDireccion:
+          datosPersonalesDireccion ?? this.datosPersonalesDireccion,
+      datosPersonalesTelefono:
+          datosPersonalesTelefono ?? this.datosPersonalesTelefono,
+      datosPersonalesFirma: datosPersonalesFirma ?? this.datosPersonalesFirma,
+      end: end ?? this.end,
+      ubicacionInformacionFincaVisita: ubicacionInformacionFincaVisita ??
+          this.ubicacionInformacionFincaVisita,
+      datosPersonalesFechaNota:
+          datosPersonalesFechaNota ?? this.datosPersonalesFechaNota,
+      datosPersonalesNota: datosPersonalesNota ?? this.datosPersonalesNota,
+      datosPersonalesNota3: datosPersonalesNota3 ?? this.datosPersonalesNota3,
+      datosPersonalesNota4: datosPersonalesNota4 ?? this.datosPersonalesNota4,
+      ubicacionTecnicoNotaInicial:
+          ubicacionTecnicoNotaInicial ?? this.ubicacionTecnicoNotaInicial,
+      ubicacionTecnicoFechaNota:
+          ubicacionTecnicoFechaNota ?? this.ubicacionTecnicoFechaNota,
+    );
+  }
+
   factory VisitsSurveysModels.fromJson(Map<String, dynamic> json) {
     return VisitsSurveysModels(
-      listID: json['list_id'],
+      surveyId: json['surveyId'],
       percent: json['percent'],
       submitterName: json['SubmitterName'],
       submitterID: json['SubmitterID'],
@@ -157,7 +286,7 @@ class VisitsSurveysModels {
 
   Map<String, dynamic> toJson() {
     return {
-      'list_id': listID,
+      'surveyId': surveyId,
       'percent': percent,
       'SubmitterName': submitterName,
       'SubmitterID': submitterID,

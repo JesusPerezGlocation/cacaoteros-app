@@ -37,7 +37,7 @@ class EndSurveysVisitsScreen extends StatelessWidget {
 
                 /*guarda la lista de visitas > encuesta visitas*/
                 final visits = VisitsSurveysModels(
-                  listID: visitsPrv.idSurveys.toString(),
+                  surveyId: visitsPrv.idSurveys.toString(),
                   percent: visitsPrv.percent,
                   categorieSurveys: visitsPrv.categorieSurveys,
                   submitterName: 'iPhoneUser',
@@ -83,13 +83,13 @@ class EndSurveysVisitsScreen extends StatelessWidget {
                   datosPersonalesTelefono: visitsPrv.numberPhone.text,
                   datosPersonalesFirma: visitsPrv.signature,
                   end: visitsPrv.endSurveys,
-                  ubicacionInformacionFincaVisita: '',
-                  datosPersonalesFechaNota: '',
-                  datosPersonalesNota: '',
-                  datosPersonalesNota3: '',
-                  datosPersonalesNota4: '',
-                  ubicacionTecnicoNotaInicial: '',
-                  ubicacionTecnicoFechaNota: '',
+                  ubicacionInformacionFincaVisita: '-',
+                  datosPersonalesFechaNota: '-',
+                  datosPersonalesNota: '-',
+                  datosPersonalesNota3: '-',
+                  datosPersonalesNota4: '-',
+                  ubicacionTecnicoNotaInicial: '-',
+                  ubicacionTecnicoFechaNota: '-',
                 );
 
                 /*guarda los datos en la base SQL*/
@@ -136,7 +136,7 @@ class EndSurveysVisitsScreen extends StatelessWidget {
                 );
                 /*guarda la lista de visitas > encuesta visitas*/
                 final visits = VisitsSurveysModels(
-                  listID: visitsPrv.idSurveys.toString(),
+                  surveyId: visitsPrv.idSurveys.toString(),
                   percent: visitsPrv.percent,
                   categorieSurveys: visitsPrv.categorieSurveys,
                   submitterName: 'iPhoneUser',

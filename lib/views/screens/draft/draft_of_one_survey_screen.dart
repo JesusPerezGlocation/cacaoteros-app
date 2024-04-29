@@ -110,7 +110,7 @@ class _DraftOfOneSurveysScreenState extends State<DraftOfOneSurveysScreen> {
               ),
               SizedBox(height: size.height * .02),
               FutureBuilder<List<VisitsSurveysModels>>(
-                future: widget.getVisitsList.getListVisitsRegister(),
+                future: VisitsRegisterSQLServices.instance.readVisitsRegister(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(

@@ -28,7 +28,7 @@ class ViewAllDraftComponents extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         const Spacer(),
-        if (lenght >= 6)
+        if (lenght >= 5)
           InkWell(
               borderRadius: BorderRadius.circular(10),
               splashColor: PaletteColorsTheme.greyColor,

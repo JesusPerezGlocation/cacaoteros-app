@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -77,6 +79,7 @@ class _ListViewHomeDraftWidgetState extends State<ListViewHomeDraftWidget> {
                     categorie: data.categorie,
                     icons: IconlyLight.arrow_right_2,
                     onTap: () {
+                      log('id de la encuesta madre: ${data.id}');
                       /*navega a la pantalla de la lista de una encuesta */
                       Navigator.push(
                         context,
